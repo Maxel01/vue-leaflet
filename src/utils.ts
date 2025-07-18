@@ -1,5 +1,21 @@
+// REWRITE DONE
 import { Evented, type LeafletEventHandlerFnMap } from 'leaflet'
-import { type DefineProps, watch } from 'vue'
+import { type InjectionKey, provide, ref, watch } from 'vue'
+
+// BREAKING CHANGES: remove type Data
+export declare type ListenersAndAttrs = {
+    listeners: LeafletEventHandlerFnMap;
+    attrs: Record<string, unknown>;
+};
+
+export const bindEventHandlers = (
+    leafletObject: Evented,
+    eventHandlers: LeafletEventHandlerFnMap
+): void => {
+    for (const eventName of Object.keys(eventHandlers)) {
+        leafletObject.on(eventName, eventHandlers[eventName])
+    }
+}
 
 export const cancelDebounces = (handlerMethods: LeafletEventHandlerFnMap) => {
     for (const name of Object.keys(handlerMethods)) {
@@ -10,59 +26,37 @@ export const cancelDebounces = (handlerMethods: LeafletEventHandlerFnMap) => {
     }
 }
 
+export const capitalizeFirstLetter = (s: string) => {
+    if (!s || typeof s.charAt !== 'function') {
+        return s
+    }
+    return s.charAt(0).toUpperCase() + s.slice(1)
+}
 
 export const isFunction = (x: unknown) => typeof x === 'function'
 
 export const propsBinder = (methods, leafletElement: Evented, props) => {
     for (const key in props) {
-        const setMethodName = "set" + capitalizeFirstLetter(key);
+        const setMethodName = 'set' + capitalizeFirstLetter(key)
         if (methods[setMethodName]) {
             watch(
                 () => props[key],
                 (newVal, oldVal) => {
-                    methods[setMethodName](newVal, oldVal);
+                    methods[setMethodName](newVal, oldVal)
                 }
-            );
+            )
         } else if (leafletElement[setMethodName]) {
             watch(
                 () => props[key],
                 (newVal) => {
-                    leafletElement[setMethodName](newVal);
+                    leafletElement[setMethodName](newVal)
                 }
-            );
+            )
         }
     }
-};
-
-export declare type ListenersAndAttrs = {
-    listeners: LeafletEventHandlerFnMap;
-    attrs: Record<string, unknown>;
-};
-
-export const bindEventHandlers = (
-    leafletObject: Evented,
-    eventHandlers: LeafletEventHandlerFnMap
-) => {
-    for (const eventName of Object.keys(eventHandlers)) {
-        leafletObject.on(eventName, eventHandlers[eventName])
-    }
 }
 
-export const resetWebpackIcon = async (Icon) => {
-    const modules = await Promise.all([
-        import('leaflet/dist/images/marker-icon-2x.png'),
-        import('leaflet/dist/images/marker-icon.png'),
-        import('leaflet/dist/images/marker-shadow.png')
-    ])
-
-    delete Icon.Default.prototype._getIconUrl
-
-    Icon.Default.mergeOptions({
-        iconRetinaUrl: modules[0].default,
-        iconUrl: modules[1].default,
-        shadowUrl: modules[2].default
-    })
-}
+// BREAKING CHANGES: remove propsToLeafletOptions
 
 export const remapEvents = (contextAttrs: Record<string, unknown>): ListenersAndAttrs => {
     const listeners: LeafletEventHandlerFnMap = {}
@@ -83,6 +77,23 @@ export const remapEvents = (contextAttrs: Record<string, unknown>): ListenersAnd
     return { listeners, attrs }
 }
 
+
+export const resetWebpackIcon = async (Icon) => {
+    const modules = await Promise.all([
+        import('leaflet/dist/images/marker-icon-2x.png'),
+        import('leaflet/dist/images/marker-icon.png'),
+        import('leaflet/dist/images/marker-shadow.png')
+    ])
+
+    delete Icon.Default.prototype._getIconUrl
+
+    Icon.Default.mergeOptions({
+        iconRetinaUrl: modules[0].default,
+        iconUrl: modules[1].default,
+        shadowUrl: modules[2].default
+    })
+}
+
 /**
  * Wrap a placeholder function and provide it with the given name.
  * The wrapper can later be updated with {@link updateLeafletWrapper}
@@ -90,16 +101,16 @@ export const remapEvents = (contextAttrs: Record<string, unknown>): ListenersAnd
  *
  * @param {String} methodName Key used to provide the wrapper function
  */
-export const provideLeafletWrapper = (methodName: string) => {
+export const provideLeafletWrapper = (methodName: InjectionKey<unknown>) => {
     const wrapped = ref((..._args: any[]) =>
-        console.warn(`Method ${methodName} has been invoked without being replaced`)
-    );
-    const wrapper = (...args: any[]) => wrapped.value(...args);
-    wrapper.wrapped = wrapped;
-    provide(methodName, wrapper);
+        console.warn(`Method ${String(methodName)} has been invoked without being replaced`)
+    )
+    const wrapper = (...args: any[]) => wrapped.value(...args)
+    wrapper.wrapped = wrapped
+    provide(methodName, wrapper)
 
-    return wrapper;
-};
+    return wrapper
+}
 
 /**
  * Change the function that will be executed when an injected Leaflet wrapper
@@ -108,5 +119,7 @@ export const provideLeafletWrapper = (methodName: string) => {
  * @param {*} wrapper Provided wrapper whose wrapped function is to be updated
  * @param {function} leafletMethod New method to be wrapped by the wrapper
  */
-export const updateLeafletWrapper = (wrapper, leafletMethod) =>
-    (wrapper.wrapped.value = leafletMethod);
+export const updateLeafletWrapper = (wrapper, leafletMethod: Function) =>
+    (wrapper.wrapped.value = leafletMethod)
+
+// BREAKING CHANGES: remove WINDOW_OR_GLOBAL
