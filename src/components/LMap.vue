@@ -6,11 +6,11 @@ import {
     onBeforeUnmount,
     onMounted,
     reactive,
-    ref
+    ref, useAttrs
 } from 'vue'
 import {
     type CRS,
-    type FitBoundsOptions,
+    type FitBoundsOptions, Icon,
     LatLng,
     LatLngBounds, type LatLngBoundsExpression, type LatLngExpression,
     type LeafletEvent,
@@ -21,9 +21,19 @@ import {
     type ZoomPanOptions
 } from 'leaflet'
 import { debounce } from 'ts-debounce'
-import { cancelDebounces } from '../utils.ts'
-import type { ILayerDefinition } from '../types/interfaces/ILayerDefinition.ts'
-import type { IControlDefinition } from '../types/interfaces/IControlDefinition.ts'
+import {
+    bindEventHandlers,
+    cancelDebounces, propsBinder,
+    provideLeafletWrapper,
+    remapEvents,
+    resetWebpackIcon, updateLeafletWrapper
+} from '../utils.ts'
+import type { ILayerDefinition, IControlDefinition } from '../types/interfaces'
+import {
+    AddLayerInjection,
+    RegisterControlInjection, RegisterLayerControlInjection,
+    RemoveLayerInjection
+} from '../types/injectionKeys.ts'
 
 interface IMapBlueprint {
     ready: boolean;
@@ -52,7 +62,10 @@ const blueprint = reactive<IMapBlueprint>({
     layersToAdd: [],
     layersInControl: []
 })
+const leafletObject = computed(() => blueprint.leafletRef);
+const ready = computed(() => blueprint.ready);
 
+const { listeners, _attrs } = remapEvents(useAttrs())
 
 onMounted(async () => {
     try {
@@ -65,13 +78,24 @@ onMounted(async () => {
             `The following error occurred running the provided beforeMapMount hook ${error.message}`
         )
     }
+    await resetWebpackIcon(Icon)
+
+    updateLeafletWrapper(addLayer, methods.addLayer);
+    updateLeafletWrapper(removeLayer, methods.removeLayer);
+    updateLeafletWrapper(registerControl, methods.registerControl);
+    updateLeafletWrapper(registerLayerControl, methods.registerLayerControl);
 
     blueprint.leafletRef = markRaw(new Map(mapRoot.value!, props.mapOptions))
+
+    propsBinder(methods, blueprint.leafletRef, props);
 
     new TileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(blueprint.leafletRef as Map)
+
+    bindEventHandlers(blueprint.leafletRef, eventHandlers)
+    bindEventHandlers(blueprint.leafletRef, listeners)
 
     blueprint.ready = true
     nextTick(() => emit('ready', blueprint.leafletRef as Map))
@@ -84,6 +108,13 @@ onBeforeUnmount(() => {
         blueprint.leafletRef.remove()
     }
 })
+
+const addLayer = provideLeafletWrapper(AddLayerInjection);
+const removeLayer = provideLeafletWrapper(RemoveLayerInjection);
+const registerControl = provideLeafletWrapper(RegisterControlInjection);
+const registerLayerControl = provideLeafletWrapper(
+    RegisterLayerControlInjection
+);
 
 const methods = {
     addLayer(layer: ILayerDefinition) {
@@ -251,9 +282,14 @@ const emit = defineEmits<{
 </script>
 
 <template>
-    <div ref="mapRoot" style="width: 100%; height: 100%">
-        <slot v-if="blueprint.ready" />
+    <div ref="mapRoot" class="fill">
+        <slot v-if="ready" />
     </div>
 </template>
 
-<style></style>
+<style scoped>
+.fill {
+    width: 100%;
+    height: 100%;
+}
+</style>
