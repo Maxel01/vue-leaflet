@@ -1,6 +1,6 @@
 // REWRITE DONE
 import { Evented, type LeafletEventHandlerFnMap } from 'leaflet'
-import { type InjectionKey, provide, ref, watch } from 'vue'
+import { inject, type InjectionKey, provide, ref, watch } from 'vue'
 
 // BREAKING CHANGES: remove type Data
 export declare type ListenersAndAttrs = {
@@ -122,4 +122,16 @@ export const provideLeafletWrapper = (methodName: InjectionKey<unknown>) => {
 export const updateLeafletWrapper = (wrapper, leafletMethod: Function) =>
     (wrapper.wrapped.value = leafletMethod)
 
+
 // BREAKING CHANGES: remove WINDOW_OR_GLOBAL
+
+export const assertInject = <T>(key: InjectionKey<T>) => {
+    const value = inject<T>(key)
+    if (value === undefined) {
+        throw new Error(
+            `Attempt to inject ${key.description} before it was provided.`
+        )
+    }
+
+    return value
+}
