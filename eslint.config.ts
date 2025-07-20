@@ -10,22 +10,25 @@ import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 // More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
 
 export default defineConfigWithVueTs(
-  {
-    name: '@vue-leaflet/vue-leaflet',
-    files: ['**/*.{ts,mts,tsx,vue}'],
-  },
-
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
-
-  pluginVue.configs['flat/essential'],
-  vueTsConfigs.recommended,
-
-  {
-    rules: {
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    {
+        name: '@vue-leaflet/vue-leaflet',
+        files: ['**/*.{ts,mts,tsx,vue}']
     },
-    ...pluginVitest.configs.recommended,
-    files: ['src/**/__tests__/*'],
-  },
-  skipFormatting,
+
+    globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
+
+    pluginVue.configs['flat/essential'],
+    vueTsConfigs.recommended,
+
+    {
+        rules: {
+            '@typescript-eslint/no-unused-vars': ['error', {
+                argsIgnorePattern: '^_',
+                varsIgnorePattern: '^_'
+            }]
+        },
+        ...pluginVitest.configs.recommended,
+        files: ['src/**/__tests__/*']
+    },
+    skipFormatting
 )
