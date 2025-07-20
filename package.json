@@ -26,7 +26,8 @@
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs"
+    "docs:build": "vitepress build docs",
+    "release": "release-it"
   },
   "dependencies": {
     "leaflet": "^2.0.0-alpha",
@@ -55,6 +56,10 @@
     "vite": "^7.0.4",
     "vitepress": "^1.6.3",
     "vitest": "^3.2.4",
-    "vue-tsc": "^2.2.12"
+    "vue-tsc": "^2.2.12",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@release-it/conventional-changelog": "^10.0.1",
+    "release-it": "^19.0.4"
   }
 }
