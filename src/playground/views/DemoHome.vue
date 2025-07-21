@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { LMap } from '../../components'
 import type { MapOptions } from 'leaflet'
+import { LTileLayer } from '@/components'
 
 const mapOptions: MapOptions = {
     center: [51.505, -0.09],
@@ -13,11 +14,11 @@ function onZoom(zoom: number) {
 
 <template>
     <LMap ref="map" :mapOptions="mapOptions" @update:zoom="onZoom">
-        <!--l-tile-layer
+        <LTileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             layer-type="base"
             name="OpenStreetMap"
-        ></l-tile-layer-->
+        ></LTileLayer>
     </LMap>
 </template>
 
