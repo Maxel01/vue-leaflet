@@ -7,11 +7,21 @@ import {
     Point,
     type TileEvent,
 } from 'leaflet'
-import { setupLayer } from './layer.ts'
+import {type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer} from './layer.ts'
+
+export type GridLayerProps<T extends GridLayerOptions = GridLayerOptions> = LayerProps<T>
+
+export const gridLayerPropsDefaults = {
+    ...layerPropsDefaults
+}
+
+export type GridLayerEmits<T extends GridLayer = GridLayer> = LayerEmits & {
+    (event: 'ready', layer: T): void
+}
 
 export type VueGridLayerTileRenderer = (props: { coords: Point }) => () => VNode
 
-export const setupGridLayer = (props, leafletRef: Ref<GridLayer>, emit) => {
+export const setupGridLayer = <T extends GridLayer>(props: GridLayerProps, leafletRef: Ref<T | undefined>, emit: GridLayerEmits<T>) => {
     const { methods: layerMethods } = setupLayer(props, leafletRef, emit)
 
     const methods = {
@@ -22,7 +32,7 @@ export const setupGridLayer = (props, leafletRef: Ref<GridLayer>, emit) => {
     }
 
     onUnmounted(() => {
-        leafletRef.value.off()
+        leafletRef.value?.off()
     })
 
     return { methods }

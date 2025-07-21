@@ -1,11 +1,9 @@
-export const componentProps = {
-    options: {
-        type: Object,
-        default: () => ({}),
-        custom: true,
-    },
-} as const;
+export interface ComponentProps {
+    options?: Record<string, unknown>
+}
+
+export const componentPropsDefaults = {}
 
 export const setupComponent = () => {
-    return { methods: {} };
-};
+    return { methods: {} }
+}

@@ -1,4 +1,4 @@
-import { type PropType, type Ref, h, onUnmounted, provide } from 'vue'
+import { onUnmounted, provide, type Ref } from 'vue'
 
 import {
     AddLayerInjection,
@@ -11,27 +11,30 @@ import {
 import { assertInject, isFunction } from '../utils'
 
 import type { LayerType } from '../types/enums/LayerType'
-import { componentProps, setupComponent } from './component'
-import { type Layer, Popup, Tooltip } from 'leaflet'
+import { type ComponentProps, componentPropsDefaults, setupComponent } from './component'
+import { type Layer, type LayerOptions, Popup, Tooltip } from 'leaflet'
 
-export const layerProps = {
-    ...componentProps,
-    name: {
-        type: String,
-        custom: true,
-    },
-    layerType: {
-        type: String as PropType<LayerType>,
-        custom: true,
-    },
-    visible: {
-        type: Boolean,
-        custom: true,
-        default: true,
-    },
-} as const
+export interface LayerProps<T extends LayerOptions = LayerOptions> extends ComponentProps {
+    layerOptions?: T
+    name?: string
+    layerType?: LayerType
+    visible?: boolean
+}
 
-export const setupLayer = <T extends Layer>(props: typeof layerProps, leafletRef: Ref<T>, emit) => {
+export const layerPropsDefaults = {
+    ...componentPropsDefaults,
+    visible: true,
+}
+
+export type LayerEmits = {
+    (event: 'update:visible', value: boolean): void
+}
+
+export const setupLayer = <T extends Layer>(
+    props: LayerProps,
+    leafletRef: Ref<T | undefined>,
+    emit: LayerEmits,
+) => {
     const addLayer = assertInject(AddLayerInjection)
     const removeLayer = assertInject(RemoveLayerInjection)
     const { methods: componentMethods } = setupComponent()

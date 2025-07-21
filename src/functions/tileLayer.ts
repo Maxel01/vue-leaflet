@@ -1,10 +1,28 @@
-import { setupGridLayer } from './gridLayer'
+import {
+    type GridLayerEmits,
+    type GridLayerProps,
+    gridLayerPropsDefaults,
+    setupGridLayer,
+} from './gridLayer'
 import type { Ref } from 'vue'
-import { type TileLayer } from 'leaflet'
+import { type TileLayer, type TileLayerOptions } from 'leaflet'
 
-export const setupTileLayer = (props, leafletRef: Ref<TileLayer>, emit) => {
+export interface TileLayerProps extends GridLayerProps<TileLayerOptions> {
+    url: string
+}
+
+export const tileLayerPropsDefaults = {
+    ...gridLayerPropsDefaults,
+}
+
+export type TileLayerEmits = GridLayerEmits<TileLayer>
+
+export const setupTileLayer = <T extends TileLayer>(
+    props: TileLayerProps,
+    leafletRef: Ref<T>,
+    emit: TileLayerEmits,
+) => {
     const { methods: gridLayerMethods } = setupGridLayer(props, leafletRef, emit)
-
     const methods = {
         ...gridLayerMethods,
     }
