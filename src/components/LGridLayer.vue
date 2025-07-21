@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { setupGridLayer, type VueGridLayerTileRenderer } from '../functions/gridLayer.ts'
+import {
+    CreateVueGridLayer,
+    setupGridLayer,
+    type VueGridLayerTileRenderer,
+} from '../functions/gridLayer.ts'
 import type { LayerType } from '../types/enums/LayerType.ts'
 import { markRaw, nextTick, onMounted, type Ref, ref, useAttrs } from 'vue'
 import { AddLayerInjection } from '../types/injectionKeys.ts'
@@ -7,17 +11,20 @@ import { assertInject, propsBinder, remapEvents } from '../utils.ts'
 import { GridLayer } from 'leaflet'
 import type { GridLayerOptions } from 'leaflet'
 
-const props = defineProps<{
-    gridLayerOptions?: GridLayerOptions
-    name?: string
-    layerType?: LayerType
-    visible?: boolean
-    childRender: VueGridLayerTileRenderer
-}>()
+const props = withDefaults(
+    defineProps<{
+        gridLayerOptions?: GridLayerOptions
+        name?: string
+        layerType?: LayerType
+        visible?: boolean
+        childRender: VueGridLayerTileRenderer
+    }>(),
+    { visible: true },
+)
 
 const leafletObject = ref<GridLayer>()
-const root = ref(null)
-const ready = ref(false)
+const root = ref<HTMLElement>()
+const ready = ref<boolean>(false)
 
 const addLayer = assertInject(AddLayerInjection)
 
@@ -30,7 +37,8 @@ const emit = defineEmits<{
 const { methods } = setupGridLayer(props, leafletObject as Ref<GridLayer>, emit)
 
 onMounted(async () => {
-    leafletObject.value = markRaw<L.GridLayer>(new GridLayer(props.gridLayerOptions))
+    const GLayer = CreateVueGridLayer(props.childRender)
+    leafletObject.value = markRaw<GridLayer>(new GLayer(props.gridLayerOptions))
 
     const { listeners } = remapEvents(useAttrs())
     leafletObject.value!.on(listeners)
