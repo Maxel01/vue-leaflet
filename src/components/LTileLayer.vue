@@ -1,21 +1,31 @@
 <script setup lang="ts">
-import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
-import { TileLayer } from 'leaflet'
+import { markRaw, nextTick, onMounted, type Ref, ref, useAttrs } from 'vue'
+import { TileLayer, type TileLayerOptions } from 'leaflet'
 import { assertInject, propsBinder, remapEvents } from '../utils.ts'
 import { AddLayerInjection } from '../types/injectionKeys.ts'
+import type { LayerType } from '../types/enums/LayerType.ts'
+import { setupTileLayer } from '../functions/tileLayer.ts'
 
-const props = defineProps<{}>()
+const props = withDefaults(
+    defineProps<{
+        tileLayerOptions?: TileLayerOptions
+        name?: string
+        layerType?: LayerType
+        visible?: boolean
+        url: string
+    }>(),
+    { visible: true },
+)
 const leafletObject = ref<TileLayer>()
 
 const addLayer = assertInject(AddLayerInjection)
 
-const { options, methods } = setupTileLayer(props, leafletObject, context)
+const emit = defineEmits<{ (event: 'ready', tileLayer: TileLayer): void }>()
+const { methods } = setupTileLayer(props, leafletObject as Ref<TileLayer>, emit)
 
 defineExpose({ leafletObject })
-const emit = defineEmits<{ (event: 'ready', tileLayer: TileLayer): void }>()
-
 onMounted(async () => {
-    leafletObject.value = markRaw<TileLayer>(new TileLayer(props.url, options))
+    leafletObject.value = markRaw<TileLayer>(new TileLayer(props.url, props.tileLayerOptions))
 
     const { listeners } = remapEvents(useAttrs())
     leafletObject.value.on(listeners)
@@ -24,12 +34,10 @@ onMounted(async () => {
     addLayer({
         ...props,
         ...methods,
-        leafletObject: leafletObject.value
+        leafletObject: leafletObject.value,
     })
-    nextTick(() => emit('ready', leafletObject.value))
+    nextTick(() => emit('ready', leafletObject.value!))
 })
 </script>
 
 <template></template>
-
-<style scoped></style>
