@@ -7,43 +7,51 @@ import {
     onMounted,
     reactive,
     ref,
-    useAttrs
+    useAttrs,
 } from 'vue'
 import {
     type CRS,
-    type FitBoundsOptions, Icon,
+    type FitBoundsOptions,
+    Icon,
     LatLng,
-    LatLngBounds, type LatLngBoundsExpression, type LatLngExpression,
+    LatLngBounds,
+    type LatLngBoundsExpression,
+    type LatLngExpression,
     type LeafletEvent,
     type LeafletEventHandlerFnMap,
     Map,
-    type MapOptions, type PointExpression,
+    type MapOptions,
+    type PointExpression,
     Util,
-    type ZoomPanOptions
+    type ZoomPanOptions,
 } from 'leaflet'
 import { debounce } from 'ts-debounce'
 import {
     bindEventHandlers,
-    cancelDebounces, propsBinder,
+    cancelDebounces,
+    propsBinder,
     provideLeafletWrapper,
     remapEvents,
-    resetWebpackIcon, updateLeafletWrapper
+    resetWebpackIcon,
+    updateLeafletWrapper,
 } from '../utils.ts'
-import type { ILayerDefinition, IControlDefinition } from '../types/interfaces'
+import type { IControlDefinition, ILayerDefinition } from '../types/interfaces'
 import {
     AddLayerInjection,
-    RegisterControlInjection, RegisterLayerControlInjection,
-    RemoveLayerInjection
+    RegisterControlInjection,
+    RegisterLayerControlInjection,
+    RemoveLayerInjection,
 } from '../types/injectionKeys.ts'
 import type { IMapBlueprint } from '../types/interfaces/IMapBlueprint.ts'
+import { setupComponent } from '../functions/component.ts'
 
 const props = defineProps<{
-    mapOptions?: MapOptions,
-    bounds?: LatLngBounds,
-    padding?: PointExpression,
-    paddingTopLeft?: PointExpression,
-    paddingBottomRight?: PointExpression,
-    noBlockingAnimations?: boolean,
+    mapOptions?: MapOptions
+    bounds?: LatLngBounds
+    padding?: PointExpression
+    paddingTopLeft?: PointExpression
+    paddingBottomRight?: PointExpression
+    noBlockingAnimations?: boolean
     beforeMapMount?: () => void | Promise<void>
     // BREAKING CHANGES: removed useGlobalLeaflet
     // BREAKING CHANGES: crs value needs to be a value of CRS class
@@ -71,8 +79,10 @@ function useMap() {
     const blueprint = reactive<IMapBlueprint>({
         ready: false,
         layersToAdd: [],
-        layersInControl: []
+        layersInControl: [],
     })
+
+    const {} = setupComponent()
 
     const leafletObject = computed(() => blueprint.leafletRef)
     const ready = computed(() => blueprint.ready)
@@ -85,7 +95,7 @@ function useMap() {
             }
         } catch (error: any) {
             console.error(
-                `The following error occurred running the provided beforeMapMount hook ${error.message}`
+                `The following error occurred running the provided beforeMapMount hook ${error.message}`,
             )
         }
         await resetWebpackIcon(Icon)
@@ -103,10 +113,8 @@ function useMap() {
 
     onBeforeUnmount(() => {
         cancelDebounces(eventHandlers)
-        if (blueprint.leafletRef) {
-            blueprint.leafletRef.off()
-            blueprint.leafletRef.remove()
-        }
+        blueprint.leafletRef?.off()
+        blueprint.leafletRef?.remove()
     })
 
     return { root, blueprint, leafletObject, ready }
@@ -144,7 +152,7 @@ function useMethods() {
                 blueprint.layersToAdd.push(layer)
             } else {
                 const exist = blueprint.layersInControl.find(
-                    (l) => Util.stamp(l.leafletObject) === Util.stamp(layer.leafletObject)
+                    (l) => Util.stamp(l.leafletObject) === Util.stamp(layer.leafletObject),
                 )
                 if (!exist) {
                     blueprint.layerControl.addLayer(layer)
@@ -152,7 +160,7 @@ function useMethods() {
                 }
             }
         }
-        if (layer.visible !== false) {
+        if (layer.leafletObject && layer.visible !== false) {
             blueprint.leafletRef!.addLayer(layer.leafletObject)
         }
     }
@@ -160,17 +168,15 @@ function useMethods() {
     function removeLayer(layer: ILayerDefinition) {
         if (layer.layerType !== undefined) {
             if (blueprint.layerControl === undefined) {
-                blueprint.layersToAdd = blueprint.layersToAdd.filter(
-                    (l) => l.name !== layer.name
-                )
+                blueprint.layersToAdd = blueprint.layersToAdd.filter((l) => l.name !== layer.name)
             } else {
                 blueprint.layerControl.removeLayer(layer.leafletObject)
                 blueprint.layersInControl = blueprint.layersInControl.filter(
-                    (l) => Util.stamp(l.leafletObject) !== Util.stamp(layer.leafletObject)
+                    (l) => Util.stamp(l.leafletObject) !== Util.stamp(layer.leafletObject),
                 )
             }
         }
-        blueprint.leafletRef!.removeLayer(layer.leafletObject)
+        if (layer.leafletObject) blueprint.leafletRef!.removeLayer(layer.leafletObject)
     }
 
     function registerLayerControl(lControlLayer: IControlDefinition<L.Control.Layers>) {
@@ -199,12 +205,12 @@ function useMethods() {
         blueprint.leafletRef!.options.crs = crs
         blueprint.leafletRef!.fitBounds(prevBounds, {
             animate: false,
-            padding: [0, 0]
+            padding: [0, 0],
         })
     }
 
     function fitBounds(bounds: LatLngBoundsExpression) {
-        (blueprint.leafletRef! as Map).fitBounds(bounds, fitBoundsOptions.value)
+        ;(blueprint.leafletRef! as Map).fitBounds(bounds, fitBoundsOptions.value)
     }
 
     function setBounds(bounds: LatLngExpression[]) {
@@ -215,8 +221,7 @@ function useMethods() {
         if (!newBounds.isValid()) {
             return
         }
-        const oldBounds =
-            blueprint.lastSetBounds || blueprint.leafletRef!.getBounds()
+        const oldBounds = blueprint.lastSetBounds || blueprint.leafletRef!.getBounds()
         const boundsChanged = !oldBounds.equals(newBounds, 0) // set maxMargin to 0 - check exact equals
         if (boundsChanged) {
             blueprint.lastSetBounds = newBounds
@@ -229,12 +234,8 @@ function useMethods() {
             return
         }
         const newCenter = new LatLng(...center)
-        const oldCenter =
-            blueprint.lastSetCenter || blueprint.leafletRef!.getCenter()
-        if (
-            oldCenter.lat !== newCenter.lat ||
-            oldCenter.lng !== newCenter.lng
-        ) {
+        const oldCenter = blueprint.lastSetCenter || blueprint.leafletRef!.getCenter()
+        if (oldCenter.lat !== newCenter.lat || oldCenter.lng !== newCenter.lng) {
             blueprint.lastSetCenter = newCenter
 
             blueprint.leafletRef!.panTo(newCenter, zoomPanOptions.value)
@@ -250,7 +251,7 @@ function useMethods() {
         setCrs,
         fitBounds,
         setBounds,
-        setCenter
+        setCenter,
     }
 }
 
@@ -263,31 +264,27 @@ function useEvents() {
              * Triggers when zoom is updated
              * @type {number,string}
              */
-            emit('update:zoom', (blueprint.leafletRef as Map).getZoom())
+            emit('update:zoom', blueprint.leafletRef.getZoom())
             /**
              * Triggers when center is updated
              * @type {object,array}
              */
-            emit('update:center', (blueprint.leafletRef as Map).getCenter())
-
+            emit('update:center', blueprint.leafletRef.getCenter())
             /**
              * Triggers when bounds are updated
              * @type {object}
              */
-            emit('update:bounds', (blueprint.leafletRef as Map).getBounds())
+            emit('update:bounds', blueprint.leafletRef.getBounds())
         }),
         overlayadd(ev) {
             const layer = blueprint.layersInControl.find((l) => l.name === ev.name)
-            if (layer) {
-                layer.updateVisibleProp(true)
-            }
+
+            layer?.updateVisibleProp(true)
         },
         overlayremove(ev) {
             const layer = blueprint.layersInControl.find((l) => l.name === ev.name)
-            if (layer) {
-                layer.updateVisibleProp(false)
-            }
-        }
+            layer?.updateVisibleProp(false)
+        },
     }
 
     return { listeners, attrs, eventHandlers }
@@ -297,9 +294,7 @@ function useProvideFunctions() {
     const addLayer = provideLeafletWrapper(AddLayerInjection)
     const removeLayer = provideLeafletWrapper(RemoveLayerInjection)
     const registerControl = provideLeafletWrapper(RegisterControlInjection)
-    const registerLayerControl = provideLeafletWrapper(
-        RegisterLayerControlInjection
-    )
+    const registerLayerControl = provideLeafletWrapper(RegisterLayerControlInjection)
 
     onMounted(() => {
         updateLeafletWrapper(addLayer, methods.addLayer)
