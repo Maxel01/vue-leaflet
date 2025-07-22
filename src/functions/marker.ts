@@ -6,6 +6,7 @@ import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from
 const unrenderedContentTypes = ['Symbol(Comment)', 'Symbol(Text)']
 const unrenderedComponentNames = ['LTooltip', 'LPopup']
 
+// BREAKING CHANGES: pass layerOptions as Object instead of props
 export interface MarkerProps extends LayerProps<MarkerOptions> {
     latLng: LatLngExpression
 }
@@ -20,6 +21,7 @@ export type MarkerEmits = LayerEmits & {
     (event: 'update:lat-lng', value: LatLngExpression): void
 }
 
+// BREAKING CHANGES: setupMarker does not return options anymore
 export const setupMarker = (
     props: MarkerProps,
     leafletRef: Ref<Marker | undefined>,
@@ -34,10 +36,12 @@ export const setupMarker = (
             else leafletRef.value?.dragging?.disable()
         },
         latLngSync(
-            event: LeafletEvent & { latlng: LatLngExpression; oldLatLng: LatLngExpression },
+            event: LeafletEvent & { latlng?: LatLngExpression; oldLatLng?: LatLngExpression },
         ) {
-            emit('update:latLng', event.latlng)
-            emit('update:lat-lng', event.latlng)
+            if(event.latlng) {
+                emit('update:latLng', event.latlng)
+                emit('update:lat-lng', event.latlng)
+            }
         },
         setLatLng(newVal: LatLngExpression) {
             if (leafletRef.value) {

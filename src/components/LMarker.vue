@@ -34,55 +34,62 @@ import {
 } from '../functions/marker.ts'
 
 const props = withDefaults(defineProps<MarkerProps>(), markerPropsDefaults)
-
-const leafletObject = ref<Marker>()
-const ready = ref<boolean>(false)
-
-defineExpose({ ready, leafletObject })
 const emit = defineEmits<MarkerEmits>()
 
-const addLayer = assertInject(AddLayerInjection)
+const { listeners, eventHandlers } = useEvents()
+const { leafletObject, ready, methods } = useMarker()
 
-provide(CanSetParentHtmlInjection, () => !!leafletObject.value?.getElement())
-provide(SetParentHtmlInjection, (html: string) => {
-    const el = isFunction(leafletObject.value?.getElement) && leafletObject.value?.getElement()
-    if (!el) return
-    el.innerHTML = html
-})
-provide(
-    SetIconInjection,
-    (newIcon: Icon | DivIcon) =>
-        leafletObject.value?.setIcon && leafletObject.value.setIcon(newIcon),
-)
+useProvideFunctions()
+defineExpose({ ready, leafletObject })
 
-const { methods } = setupMarker(props, leafletObject, emit)
+function useMarker() {
+    const leafletObject = ref<Marker>()
+    const ready = ref<boolean>(false)
+    const addLayer = assertInject(AddLayerInjection)
+    const { methods } = setupMarker(props, leafletObject, emit)
 
-const eventHandlers: LeafletEventHandlerFnMap = {
-    move: debounce(methods.latLngSync),
+    onMounted(async () => {
+        const layerOptions = props.layerOptions || {}
+        if (shouldBlankIcon(useSlots())) {
+            layerOptions.icon = new DivIcon({ className: '' })
+        }
+        leafletObject.value = markRaw<Marker>(new Marker(props.latLng, layerOptions))
+
+        bindEventHandlers(leafletObject.value, listeners)
+        bindEventHandlers(leafletObject.value, eventHandlers)
+        propsBinder(methods, leafletObject.value, props)
+        addLayer({
+            ...props,
+            ...methods,
+            leafletObject: leafletObject.value,
+        })
+        ready.value = true
+        nextTick(() => emit('ready', leafletObject.value!))
+    })
+
+    onBeforeUnmount(() => cancelDebounces(eventHandlers))
+    return { leafletObject, ready, methods }
 }
 
-onMounted(async () => {
-    const layerOptions = props.layerOptions || {}
-    if (shouldBlankIcon(useSlots())) {
-        layerOptions.icon = new DivIcon({ className: '' })
-    }
-    leafletObject.value = markRaw<Marker>(new Marker(props.latLng, layerOptions))
-
+function useEvents() {
     const { listeners } = remapEvents(useAttrs())
+    const eventHandlers: LeafletEventHandlerFnMap = {
+        move: debounce(methods.latLngSync),
+    }
+    return { listeners, eventHandlers }
+}
 
-    bindEventHandlers(leafletObject.value, listeners)
-    bindEventHandlers(leafletObject.value, eventHandlers)
-    propsBinder(methods, leafletObject.value, props)
-    addLayer({
-        ...props,
-        ...methods,
-        leafletObject: leafletObject.value,
+function useProvideFunctions() {
+    provide(CanSetParentHtmlInjection, () => !!leafletObject.value?.getElement())
+    provide(SetParentHtmlInjection, (html: string) => {
+        const el = isFunction(leafletObject.value?.getElement) && leafletObject.value?.getElement()
+        if (!el) return
+        el.innerHTML = html
     })
-    ready.value = true
-    nextTick(() => emit('ready', leafletObject.value!))
-})
-
-onBeforeUnmount(() => cancelDebounces(eventHandlers))
+    provide(SetIconInjection, (newIcon: Icon | DivIcon | undefined) => {
+        if (newIcon && leafletObject.value?.setIcon) return leafletObject.value.setIcon(newIcon)
+    })
+}
 </script>
 
 <template>
