@@ -21,7 +21,7 @@ export type TileLayerEmits = GridLayerEmits<TileLayer>
 // BREAKING CHANGES: setupTileLayer does not return options anymore
 export const setupTileLayer = <T extends TileLayer>(
     props: TileLayerProps,
-    leafletRef: Ref<T>,
+    leafletRef: Ref<T | undefined>,
     emit: TileLayerEmits,
 ) => {
     const { methods: gridLayerMethods } = setupGridLayer(props, leafletRef, emit)
