@@ -1,0 +1,79 @@
+import type { LatLngExpression, LeafletEvent, Marker, MarkerOptions } from 'leaflet'
+import type { Ref, Slots } from 'vue'
+
+import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
+
+const unrenderedContentTypes = ['Symbol(Comment)', 'Symbol(Text)']
+const unrenderedComponentNames = ['LTooltip', 'LPopup']
+
+// BREAKING CHANGES: pass layerOptions as Object instead of props
+export interface MarkerProps extends LayerProps<MarkerOptions> {
+    latLng: LatLngExpression
+}
+
+export const markerPropsDefaults = {
+    ...layerPropsDefaults,
+}
+
+export type MarkerEmits = LayerEmits & {
+    (event: 'ready', marker: Marker): void
+    (event: 'update:latLng', value: LatLngExpression): void
+    (event: 'update:lat-lng', value: LatLngExpression): void
+}
+
+// BREAKING CHANGES: setupMarker does not return options anymore
+export const setupMarker = (
+    props: MarkerProps,
+    leafletRef: Ref<Marker | undefined>,
+    emit: MarkerEmits,
+) => {
+    const { methods: layerMethods } = setupLayer(props, leafletRef, emit)
+
+    const methods = {
+        ...layerMethods,
+        setDraggable(value: boolean) {
+            if (value) leafletRef.value?.dragging?.enable()
+            else leafletRef.value?.dragging?.disable()
+        },
+        latLngSync(
+            event: LeafletEvent & { latlng?: LatLngExpression; oldLatLng?: LatLngExpression },
+        ) {
+            if(event.latlng) {
+                emit('update:latLng', event.latlng)
+                emit('update:lat-lng', event.latlng)
+            }
+        },
+        setLatLng(newVal: LatLngExpression) {
+            if (leafletRef.value) {
+                const oldLatLng = leafletRef.value.getLatLng()
+                if (!oldLatLng || !oldLatLng.equals(newVal)) {
+                    leafletRef.value.setLatLng(newVal)
+                }
+            }
+        },
+    }
+
+    return { methods }
+}
+
+/**
+ * Determine whether the default Leaflet icon should be replaced with a blank div initially.
+ *
+ * @param {*} slots slots object returned by useSlots()
+ * @returns boolean
+ */
+export const shouldBlankIcon = (slots: Slots) => {
+    // If there is content within the <LMarker>, and it contains anything other than a
+    // tooltip for the marker, then the icon should be replaced with an empty div on
+    // creation so that Leaflet does not render its default icon momentarily before
+    // Vue mounts the inner content and vue-leaflet updates the marker with it.
+    // See https://github.com/vue-leaflet/vue-leaflet/issues/170
+    const slotContent = slots.default && slots.default()
+
+    return slotContent && slotContent.length && slotContent.some(contentIsRendered)
+}
+
+function contentIsRendered(el) {
+    if (unrenderedContentTypes.includes(el.type.toString())) return false
+    return !unrenderedComponentNames.includes(el.type.name)
+}

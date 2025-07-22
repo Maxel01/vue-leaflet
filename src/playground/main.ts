@@ -43,10 +43,9 @@ const routes = [
         component: () => import("./views/ControlZoomDemo.vue"),
     },
     { path: "/geo-json", component: () => import("./views/GeoJsonDemo.vue") },
-    { path: "/icon", component: () => import("./views/IconDemo.vue") },
+    { path: "/icon", component: () => import("./views/IconDemo.vue") },*/
     { path: "/marker", component: () => import("./views/MarkerDemo.vue") },
-    { path: "/tile-layer", component: () => import("./views/TileLayerDemo.vue") },
-    {
+    /*{
         path: "/image-overlay",
         component: () => import("./views/ImageOverlayDemo.vue"),
     },
