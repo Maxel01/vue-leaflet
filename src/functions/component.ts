@@ -1,8 +1,10 @@
 export interface ComponentProps {
-    options?: Record<string, unknown>
+    options?: object
 }
 
-export const componentPropsDefaults = {}
+export const componentPropsDefaults = {
+    options: {}
+}
 
 export const setupComponent = () => {
     return { methods: {} }

@@ -9,6 +9,7 @@ import {
 } from 'leaflet'
 import {type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer} from './layer.ts'
 
+// BREAKING CHANGES: pass layerOptions as Object instead of props
 export type GridLayerProps<T extends GridLayerOptions = GridLayerOptions> = LayerProps<T>
 
 export const gridLayerPropsDefaults = {
@@ -21,6 +22,7 @@ export type GridLayerEmits<T extends GridLayer = GridLayer> = LayerEmits & {
 
 export type VueGridLayerTileRenderer = (props: { coords: Point }) => () => VNode
 
+// BREAKING CHANGES: setupGridLayer does not return options anymore
 export const setupGridLayer = <T extends GridLayer>(props: GridLayerProps, leafletRef: Ref<T | undefined>, emit: GridLayerEmits<T>) => {
     const { methods: layerMethods } = setupLayer(props, leafletRef, emit)
 

@@ -20,34 +20,38 @@ const props = withDefaults(
     gridLayerPropsDefaults,
 )
 
-const leafletObject = ref<GridLayer>()
-const root = ref<HTMLElement>()
-const ready = ref<boolean>(false)
-
-const addLayer = assertInject(AddLayerInjection)
+const {leafletObject, root, ready} = useGridLayer()
 
 defineExpose({ root, ready, leafletObject })
 
 const emit = defineEmits<GridLayerEmits>()
 
-const { methods } = setupGridLayer(props, leafletObject, emit)
+function useGridLayer() {
+    const leafletObject = ref<GridLayer>()
+    const root = ref<HTMLElement>()
+    const ready = ref<boolean>(false)
 
-onMounted(async () => {
-    const GLayer = CreateVueGridLayer(props.childRender)
-    leafletObject.value = markRaw<GridLayer>(new GLayer(props.layerOptions))
+    const addLayer = assertInject(AddLayerInjection)
+    const { methods } = setupGridLayer(props, leafletObject, emit)
 
-    const { listeners } = remapEvents(useAttrs())
-    leafletObject.value!.on(listeners)
+    onMounted(async () => {
+        const GLayer = CreateVueGridLayer(props.childRender)
+        leafletObject.value = markRaw<GridLayer>(new GLayer(props.layerOptions))
 
-    propsBinder(methods, leafletObject.value, props)
-    addLayer({
-        ...props,
-        ...methods,
-        leafletObject: leafletObject.value,
+        const { listeners } = remapEvents(useAttrs())
+        leafletObject.value!.on(listeners)
+
+        propsBinder(methods, leafletObject.value, props)
+        addLayer({
+            ...props,
+            ...methods,
+            leafletObject: leafletObject.value,
+        })
+        ready.value = true
+        nextTick(() => emit('ready', leafletObject.value!))
     })
-    ready.value = true
-    nextTick(() => emit('ready', leafletObject.value!))
-})
+    return {leafletObject, root, ready}
+}
 </script>
 
 <template>

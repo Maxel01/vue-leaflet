@@ -15,6 +15,7 @@ import { type ComponentProps, componentPropsDefaults, setupComponent } from './c
 import { type Layer, type LayerOptions, Popup, Tooltip } from 'leaflet'
 
 export interface LayerProps<T extends LayerOptions = LayerOptions> extends ComponentProps {
+    // BREAKING CHANGES: pass layerOptions as Object instead of props
     layerOptions?: T
     name?: string
     layerType?: LayerType
@@ -30,6 +31,7 @@ export type LayerEmits = {
     (event: 'update:visible', value: boolean): void
 }
 
+// BREAKING CHANGES: setupLayer does not return options anymore
 export const setupLayer = <T extends Layer>(
     props: LayerProps,
     leafletRef: Ref<T | undefined>,
@@ -46,7 +48,8 @@ export const setupLayer = <T extends Layer>(
         ...componentMethods,
         setAttribution(val: string | undefined) {
             removeThisLayer()
-            leafletRef.value.options.attribution = val
+            if(leafletRef.value)
+                leafletRef.value.options.attribution = val
             if (props.visible) {
                 addThisLayer()
             }
