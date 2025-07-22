@@ -7,9 +7,9 @@ import 'leaflet/dist/leaflet.css';
 
 const routes = [
     { path: "/", component: Home },
-    /*{ path: "/grid-layer", component: () => import("./views/GridLayerDemo.vue") },
+    { path: "/grid-layer", component: () => import("./views/GridLayerDemo.vue") },
     { path: "/tile-layer", component: () => import("./views/TileLayerDemo.vue") },
-    {
+    /*{
         path: "/wms-tile-layer",
         component: () => import("./views/WmsTileLayerDemo.vue"),
     },
