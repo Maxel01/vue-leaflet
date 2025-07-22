@@ -5,5 +5,5 @@ export interface ILayerDefinition<T extends Layer = Layer> {
     name?: string;
     layerType?: LayerType;
     visible?: boolean;
-    leafletObject: T;
+    leafletObject: T | undefined;
 }
