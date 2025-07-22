@@ -1,0 +1,33 @@
+{
+  "git": {
+    "commitMessage": "chore(release): v${version}",
+    "tagName": "v${version}"
+  },
+  "npm": {
+    "publish": false
+  },
+  "github": {
+    "release": true,
+    "releaseName": "v${version}",
+    "web": true
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": {
+        "name": "conventionalcommits",
+        "types": [
+          { "type": "feat", "section": "✨ Features" },
+          { "type": "fix", "section": "🐛 Bug Fixes" },
+          { "type": "docs", "section": "📝 Documentation" },
+          { "type": "refactor", "section": "♻️ Refactoring" },
+          { "type": "chore", "section": "🚧 Chores" },
+          { "type": "test", "section": "✅ Tests" },
+          { "type": "style", "section": "💄 Style" }
+        ]
+      },
+      "infile": "CHANGELOG.md",
+      "header": "# Changelog",
+      "ignoreRecommendedBump": true
+    }
+  }
+}

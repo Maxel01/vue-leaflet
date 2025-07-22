@@ -122,7 +122,6 @@ export const provideLeafletWrapper = (methodName: InjectionKey<unknown>) => {
 export const updateLeafletWrapper = (wrapper, leafletMethod: Function) =>
     (wrapper.wrapped.value = leafletMethod)
 
-
 // BREAKING CHANGES: remove WINDOW_OR_GLOBAL
 
 export const assertInject = <T>(key: InjectionKey<T>) => {
