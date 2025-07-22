@@ -20,11 +20,10 @@ const props = withDefaults(
     gridLayerPropsDefaults,
 )
 
+const emit = defineEmits<GridLayerEmits>()
 const {leafletObject, root, ready} = useGridLayer()
 
 defineExpose({ root, ready, leafletObject })
-
-const emit = defineEmits<GridLayerEmits>()
 
 function useGridLayer() {
     const leafletObject = ref<GridLayer>()
