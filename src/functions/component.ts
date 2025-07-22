@@ -3,7 +3,7 @@ export interface ComponentProps {
 }
 
 export const componentPropsDefaults = {
-    options: {}
+    options: () => ({})
 }
 
 export const setupComponent = () => {

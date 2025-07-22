@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { LMap } from '../../components'
+import { LMap, LTileLayer } from '../../components'
 import type { MapOptions } from 'leaflet'
-import { LTileLayer } from '@/components'
 
 const mapOptions: MapOptions = {
     center: [51.505, -0.09],
