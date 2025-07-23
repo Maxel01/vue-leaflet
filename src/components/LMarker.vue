@@ -36,8 +36,7 @@ import {
 const props = withDefaults(defineProps<MarkerProps>(), markerPropsDefaults)
 const emit = defineEmits<MarkerEmits>()
 
-const { listeners, eventHandlers } = useEvents()
-const { leafletObject, ready, methods } = useMarker()
+const { leafletObject, ready } = useMarker()
 
 useProvideFunctions()
 defineExpose({ ready, leafletObject })
@@ -47,6 +46,15 @@ function useMarker() {
     const ready = ref<boolean>(false)
     const addLayer = assertInject(AddLayerInjection)
     const { methods } = setupMarker(props, leafletObject, emit)
+    const { listeners, eventHandlers } = useEvents()
+
+    function useEvents() {
+        const { listeners } = remapEvents(useAttrs())
+        const eventHandlers: LeafletEventHandlerFnMap = {
+            move: debounce(methods.latLngSync),
+        }
+        return { listeners, eventHandlers }
+    }
 
     onMounted(async () => {
         const layerOptions = props.layerOptions || {}
@@ -68,15 +76,7 @@ function useMarker() {
     })
 
     onBeforeUnmount(() => cancelDebounces(eventHandlers))
-    return { leafletObject, ready, methods }
-}
-
-function useEvents() {
-    const { listeners } = remapEvents(useAttrs())
-    const eventHandlers: LeafletEventHandlerFnMap = {
-        move: debounce(methods.latLngSync),
-    }
-    return { listeners, eventHandlers }
+    return { leafletObject, ready }
 }
 
 function useProvideFunctions() {

@@ -1,14 +1,14 @@
-import { createApp } from "vue";
-import { createRouter, createWebHistory } from "vue-router";
+import { createApp } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
 
-import App from "./App.vue";
-import Home from "./views/DemoHome.vue";
-import 'leaflet/dist/leaflet.css';
+import App from './App.vue'
+import Home from './views/DemoHome.vue'
+import 'leaflet/dist/leaflet.css'
 
 const routes = [
-    { path: "/", component: Home },
-    { path: "/grid-layer", component: () => import("./views/GridLayerDemo.vue") },
-    { path: "/tile-layer", component: () => import("./views/TileLayerDemo.vue") },
+    { path: '/', component: Home },
+    { path: '/grid-layer', component: () => import('./views/GridLayerDemo.vue') },
+    { path: '/tile-layer', component: () => import('./views/TileLayerDemo.vue') },
     /*{
         path: "/wms-tile-layer",
         component: () => import("./views/WmsTileLayerDemo.vue"),
@@ -42,9 +42,9 @@ const routes = [
         path: "/control-zoom",
         component: () => import("./views/ControlZoomDemo.vue"),
     },
-    { path: "/geo-json", component: () => import("./views/GeoJsonDemo.vue") },
-    { path: "/icon", component: () => import("./views/IconDemo.vue") },*/
-    { path: "/marker", component: () => import("./views/MarkerDemo.vue") },
+    { path: "/geo-json", component: () => import("./views/GeoJsonDemo.vue") },*/
+    { path: '/icon', component: () => import('./views/IconDemo.vue') },
+    { path: '/marker', component: () => import('./views/MarkerDemo.vue') },
     /*{
         path: "/image-overlay",
         component: () => import("./views/ImageOverlayDemo.vue"),
@@ -54,15 +54,15 @@ const routes = [
     { path: "/popups", component: () => import("./views/PopupsDemo.vue") },
     { path: "/rectangle", component: () => import("./views/RectangleDemo.vue") },
     { path: "/tooltips", component: () => import("./views/TooltipsDemo.vue") },*/
-];
+]
 
 const router = createRouter({
     history: createWebHistory(),
     routes,
-});
+})
 
-const app = createApp(App);
+const app = createApp(App)
 
-app.use(router);
+app.use(router)
 
-app.mount("#app");
+app.mount('#app')
