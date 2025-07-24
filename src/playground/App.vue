@@ -23,7 +23,7 @@
             <router-link to="/polyline">Polyline</router-link>
             <router-link to="/popups">Popups</router-link>
             <router-link to="/rectangle">Rectangle</router-link>
-            <router-link to="/tooltips">Tooltips</router-link>
+            <router-link to="/tooltip">Tooltips</router-link>
         </div>
         <div class="map-wrapper">
             <router-view />
@@ -35,6 +35,7 @@
 .main-wrapper {
     display: flex;
 }
+
 .menu {
     display: flex;
     flex-direction: column;
@@ -49,6 +50,7 @@
 .menu .router-link-exact-active {
     background-color: lightgray;
 }
+
 .map-wrapper {
     height: 75vh;
     width: 100%;

@@ -52,8 +52,8 @@ const routes = [
     { path: "/polygon", component: () => import("./views/PolygonDemo.vue") },
     { path: "/polyline", component: () => import("./views/PolylineDemo.vue") },
     { path: "/popups", component: () => import("./views/PopupsDemo.vue") },
-    { path: "/rectangle", component: () => import("./views/RectangleDemo.vue") },
-    { path: "/tooltips", component: () => import("./views/TooltipsDemo.vue") },*/
+    { path: "/rectangle", component: () => import("./views/RectangleDemo.vue") },*/
+    { path: '/tooltip', component: () => import('./views/TooltipDemo.vue') },
 ]
 
 const router = createRouter({
