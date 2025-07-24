@@ -3,7 +3,7 @@ import { LIcon, LMap, LMarker, LTileLayer } from '../../components'
 import { computed, ref } from 'vue'
 import type { PointExpression } from 'leaflet'
 
-const zoom = 8
+const zoom = ref<number>(8)
 const iconWidth = ref<number>(21)
 const iconHeight = ref<number>(42)
 
@@ -24,7 +24,7 @@ const iconSize = computed((): PointExpression => {
 
 <template>
     <div style="width: 100%; height: 100%">
-        <LMap ref="map" :map-options="{ zoom: zoom, center: [47.41322, -1.219482] }">
+        <LMap ref="map" v-model:zoom="zoom" :center="[47.41322, -1.219482]">
             <LTileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 layer-type="base"

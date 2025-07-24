@@ -56,7 +56,26 @@ export const propsBinder = (methods, leafletElement: Evented, props) => {
     }
 }
 
-// BREAKING CHANGES: remove propsToLeafletOptions
+export const propsToLeafletOptions = <T extends object>(
+    props: Record<string, unknown>,
+    baseOptions: Partial<T> = {}
+): T => {
+    const output = { ...baseOptions }
+
+    for (const key in props) {
+        if (
+            key === 'options' ||
+            props[key] === undefined ||
+            !(key in baseOptions)
+        ) {
+            continue
+        }
+
+        output[key as keyof T] = props[key]
+    }
+
+    return output as T
+}
 
 export const remapEvents = (contextAttrs: Record<string, unknown>): ListenersAndAttrs => {
     const listeners: LeafletEventHandlerFnMap = {}
