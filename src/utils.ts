@@ -1,16 +1,17 @@
 // REWRITE DONE
 import { Evented, type LeafletEventHandlerFnMap } from 'leaflet'
 import { inject, type InjectionKey, provide, ref, watch } from 'vue'
+import type { ComponentProps } from './functions/component.ts'
 
 // BREAKING CHANGES: remove type Data
 export declare type ListenersAndAttrs = {
-    listeners: LeafletEventHandlerFnMap;
-    attrs: Record<string, unknown>;
-};
+    listeners: LeafletEventHandlerFnMap
+    attrs: Record<string, unknown>
+}
 
 export const bindEventHandlers = (
     leafletObject: Evented,
-    eventHandlers: LeafletEventHandlerFnMap
+    eventHandlers: LeafletEventHandlerFnMap,
 ): void => {
     for (const eventName of Object.keys(eventHandlers)) {
         leafletObject.on(eventName, eventHandlers[eventName])
@@ -43,35 +44,31 @@ export const propsBinder = (methods, leafletElement: Evented, props) => {
                 () => props[key],
                 (newVal, oldVal) => {
                     methods[setMethodName](newVal, oldVal)
-                }
+                },
             )
         } else if (leafletElement[setMethodName]) {
             watch(
                 () => props[key],
                 (newVal) => {
                     leafletElement[setMethodName](newVal)
-                }
+                },
             )
         }
     }
 }
 
 export const propsToLeafletOptions = <T extends object>(
-    props: Record<string, unknown>,
-    baseOptions: Partial<T> = {}
+    props: ComponentProps,
+    baseOptions: Partial<T> = {},
 ): T => {
     const output = { ...baseOptions }
 
     for (const key in props) {
-        if (
-            key === 'options' ||
-            props[key] === undefined ||
-            !(key in baseOptions)
-        ) {
+        if (key === 'options' || props[key as keyof ComponentProps] === undefined /* || !(key in baseOptions) */) {
             continue
         }
 
-        output[key as keyof T] = props[key]
+        output[key as keyof T] = props[key as keyof ComponentProps] as T[keyof T]
     }
 
     return output as T
@@ -96,12 +93,11 @@ export const remapEvents = (contextAttrs: Record<string, unknown>): ListenersAnd
     return { listeners, attrs }
 }
 
-
 export const resetWebpackIcon = async (Icon) => {
     const modules = await Promise.all([
         import('leaflet/dist/images/marker-icon-2x.png'),
         import('leaflet/dist/images/marker-icon.png'),
-        import('leaflet/dist/images/marker-shadow.png')
+        import('leaflet/dist/images/marker-shadow.png'),
     ])
 
     delete Icon.Default.prototype._getIconUrl
@@ -109,7 +105,7 @@ export const resetWebpackIcon = async (Icon) => {
     Icon.Default.mergeOptions({
         iconRetinaUrl: modules[0].default,
         iconUrl: modules[1].default,
-        shadowUrl: modules[2].default
+        shadowUrl: modules[2].default,
     })
 }
 
@@ -122,7 +118,7 @@ export const resetWebpackIcon = async (Icon) => {
  */
 export const provideLeafletWrapper = (methodName: InjectionKey<unknown>) => {
     const wrapped = ref((..._args: any[]) =>
-        console.warn(`Method ${String(methodName)} has been invoked without being replaced`)
+        console.warn(`Method ${String(methodName)} has been invoked without being replaced`),
     )
     const wrapper = (...args: any[]) => wrapped.value(...args)
     wrapper.wrapped = wrapped
@@ -146,9 +142,7 @@ export const updateLeafletWrapper = (wrapper, leafletMethod: Function) =>
 export const assertInject = <T>(key: InjectionKey<T>) => {
     const value = inject<T>(key)
     if (value === undefined) {
-        throw new Error(
-            `Attempt to inject ${key.description} before it was provided.`
-        )
+        throw new Error(`Attempt to inject ${key.description} before it was provided.`)
     }
 
     return value

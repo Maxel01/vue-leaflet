@@ -6,9 +6,12 @@ import {
 } from './gridLayer'
 import type { Ref } from 'vue'
 import { type TileLayer, type TileLayerOptions } from 'leaflet'
+import { propsToLeafletOptions } from '../utils.ts'
 
-// BREAKING CHANGES: pass layerOptions as Object instead of props
 export interface TileLayerProps extends GridLayerProps<TileLayerOptions> {
+    tms?: boolean
+    subdomains?: string | string[]
+    detectRetina?: boolean
     url: string
 }
 
@@ -18,16 +21,21 @@ export const tileLayerPropsDefaults = {
 
 export type TileLayerEmits = GridLayerEmits<TileLayer>
 
-// BREAKING CHANGES: setupTileLayer does not return options anymore
 export const setupTileLayer = <T extends TileLayer>(
     props: TileLayerProps,
     leafletRef: Ref<T | undefined>,
     emit: TileLayerEmits,
 ) => {
-    const { methods: gridLayerMethods } = setupGridLayer(props, leafletRef, emit)
+    const { options: gridLayerOptions, methods: gridLayerMethods } = setupGridLayer(
+        props,
+        leafletRef,
+        emit,
+    )
+    const options = propsToLeafletOptions<TileLayerOptions>(props, gridLayerOptions)
+
     const methods = {
         ...gridLayerMethods,
     }
 
-    return { methods }
+    return { options, methods }
 }

@@ -74,6 +74,7 @@ function useMap() {
     const { options: componentOptions } = setupMap(props)
 
     const options: MapOptions = propsToLeafletOptions<MapOptions>(props, componentOptions)
+    console.log(props, componentOptions, options)
 
     const leafletObject = computed(() => blueprint.leafletRef)
     const ready = computed(() => blueprint.ready)
