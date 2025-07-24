@@ -21,10 +21,10 @@ function useTileLayer() {
     const leafletObject = ref<TileLayer>()
 
     const addLayer = assertInject(AddLayerInjection)
-    const { methods } = setupTileLayer(props, leafletObject, emit)
+    const { options, methods } = setupTileLayer(props, leafletObject, emit)
 
     onMounted(async () => {
-        leafletObject.value = markRaw<TileLayer>(new TileLayer(props.url, props.layerOptions))
+        leafletObject.value = markRaw<TileLayer>(new TileLayer(props.url, options))
 
         const { listeners } = remapEvents(useAttrs())
         leafletObject.value.on(listeners)

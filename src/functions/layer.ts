@@ -8,15 +8,15 @@ import {
     UnbindPopupInjection,
     UnbindTooltipInjection,
 } from '../types/injectionKeys'
-import { assertInject, isFunction } from '../utils'
+import { assertInject, isFunction, propsToLeafletOptions } from '../utils'
 
 import type { LayerType } from '../types/enums/LayerType'
 import { type ComponentProps, componentPropsDefaults, setupComponent } from './component'
 import { type Layer, type LayerOptions, Popup, Tooltip } from 'leaflet'
 
-export interface LayerProps<T extends LayerOptions = LayerOptions> extends ComponentProps {
-    // BREAKING CHANGES: pass layerOptions as Object instead of props
-    layerOptions?: T
+export interface LayerProps<T extends LayerOptions = LayerOptions> extends ComponentProps<T> {
+    pane?: string,
+    attribution?: string,
     name?: string
     layerType?: LayerType
     visible?: boolean
@@ -31,7 +31,6 @@ export type LayerEmits = {
     (event: 'update:visible', value: boolean): void
 }
 
-// BREAKING CHANGES: setupLayer does not return options anymore
 export const setupLayer = <T extends Layer>(
     props: LayerProps,
     leafletRef: Ref<T | undefined>,
@@ -39,7 +38,9 @@ export const setupLayer = <T extends Layer>(
 ) => {
     const addLayer = assertInject(AddLayerInjection)
     const removeLayer = assertInject(RemoveLayerInjection)
-    const { methods: componentMethods } = setupComponent()
+    const { options: componentOptions, methods: componentMethods } = setupComponent(props)
+
+    const options = propsToLeafletOptions<LayerOptions>(props, componentOptions)
 
     const addThisLayer = () => addLayer({ leafletObject: leafletRef.value })
     const removeThisLayer = () => removeLayer({ leafletObject: leafletRef.value })
@@ -48,8 +49,7 @@ export const setupLayer = <T extends Layer>(
         ...componentMethods,
         setAttribution(val: string | undefined) {
             removeThisLayer()
-            if(leafletRef.value)
-                leafletRef.value.options.attribution = val
+            if (leafletRef.value) leafletRef.value.options.attribution = val
             if (props.visible) {
                 addThisLayer()
             }
@@ -136,5 +136,5 @@ export const setupLayer = <T extends Layer>(
         removeThisLayer()
     })
 
-    return { methods }
+    return { options, methods }
 }

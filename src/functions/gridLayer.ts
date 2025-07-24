@@ -5,15 +5,26 @@ import {
     GridLayer,
     type GridLayerOptions,
     Point,
+    type PointExpression,
     type TileEvent,
 } from 'leaflet'
-import {type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer} from './layer.ts'
+import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer.ts'
+import { propsToLeafletOptions } from '../utils.ts'
 
-// BREAKING CHANGES: pass layerOptions as Object instead of props
-export type GridLayerProps<T extends GridLayerOptions = GridLayerOptions> = LayerProps<T>
+export interface GridLayerProps<T extends GridLayerOptions = GridLayerOptions>
+    extends LayerProps<T> {
+    opacity?: number
+    zIndex?: number
+    tileSize?: number | PointExpression
+    noWrap?: boolean
+    minZoom?: number
+    maxZoom?: number
+    className?: string
+}
 
 export const gridLayerPropsDefaults = {
-    ...layerPropsDefaults
+    ...layerPropsDefaults,
+    noWrap: undefined,
 }
 
 export type GridLayerEmits<T extends GridLayer = GridLayer> = LayerEmits & {
@@ -22,9 +33,14 @@ export type GridLayerEmits<T extends GridLayer = GridLayer> = LayerEmits & {
 
 export type VueGridLayerTileRenderer = (props: { coords: Point }) => () => VNode
 
-// BREAKING CHANGES: setupGridLayer does not return options anymore
-export const setupGridLayer = <T extends GridLayer>(props: GridLayerProps, leafletRef: Ref<T | undefined>, emit: GridLayerEmits<T>) => {
-    const { methods: layerMethods } = setupLayer(props, leafletRef, emit)
+export const setupGridLayer = <T extends GridLayer>(
+    props: GridLayerProps,
+    leafletRef: Ref<T | undefined>,
+    emit: GridLayerEmits<T>,
+) => {
+    const { options: layerOptions, methods: layerMethods } = setupLayer(props, leafletRef, emit)
+
+    const options = propsToLeafletOptions<GridLayerOptions>(props, layerOptions)
 
     const methods = {
         ...layerMethods,
@@ -37,7 +53,7 @@ export const setupGridLayer = <T extends GridLayer>(props: GridLayerProps, leafl
         leafletRef.value?.off()
     })
 
-    return { methods }
+    return { options, methods }
 }
 
 export function CreateVueGridLayer(childRenderer: VueGridLayerTileRenderer): typeof GridLayer {

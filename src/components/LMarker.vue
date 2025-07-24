@@ -45,7 +45,7 @@ function useMarker() {
     const leafletObject = ref<Marker>()
     const ready = ref<boolean>(false)
     const addLayer = assertInject(AddLayerInjection)
-    const { methods } = setupMarker(props, leafletObject, emit)
+    const { options, methods } = setupMarker(props, leafletObject, emit)
     const { listeners, eventHandlers } = useEvents()
 
     function useEvents() {
@@ -57,11 +57,10 @@ function useMarker() {
     }
 
     onMounted(async () => {
-        const layerOptions = props.layerOptions || {}
         if (shouldBlankIcon(useSlots())) {
-            layerOptions.icon = new DivIcon({ className: '' })
+            options.icon = new DivIcon({ className: '' })
         }
-        leafletObject.value = markRaw<Marker>(new Marker(props.latLng, layerOptions))
+        leafletObject.value = markRaw<Marker>(new Marker(props.latLng, options))
 
         bindEventHandlers(leafletObject.value, listeners)
         bindEventHandlers(leafletObject.value, eventHandlers)
