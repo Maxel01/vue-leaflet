@@ -16,7 +16,7 @@ export const polygonPropsDefaults = {
     ...polylinePropsDefaults,
 }
 
-export type PolygonEmits = PolylineEmits<Polygon>
+export type PolygonEmits<T extends Polygon = Polygon> = PolylineEmits<T>
 
 export const setupPolygon = (
     props: PolygonProps,

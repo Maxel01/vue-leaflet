@@ -1,4 +1,4 @@
-import type { PathOptions, Path, FillRule, LineJoinShape, LineCapShape } from 'leaflet'
+import type { FillRule, LineCapShape, LineJoinShape, Path, PathOptions } from 'leaflet'
 import { onBeforeUnmount, type Ref } from 'vue'
 
 import { RemoveLayerInjection } from '../types/injectionKeys'
@@ -6,12 +6,12 @@ import { assertInject, propsToLeafletOptions } from '../utils'
 
 import {
     type InteractiveLayerEmits,
+    type InteractiveLayerProps,
     interactiveLayerPropsDefaults,
     setupInteractiveLayer,
 } from './interactiveLayer'
-import { type LayerProps } from './layer.ts'
 
-export interface PathProps<T extends PathOptions = PathOptions> extends LayerProps<T> {
+export interface PathProps<T extends PathOptions = PathOptions> extends InteractiveLayerProps<T> {
     stroke?: boolean
     color?: string
     weight?: number
