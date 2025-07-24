@@ -16,8 +16,8 @@ export const polylinePropsDefaults = {
     noClip: undefined,
 }
 
-export type PolylineEmits = PathEmits & {
-    (event: 'ready', layer: Polyline): void
+export type PolylineEmits<T extends Polyline = Polyline> = PathEmits & {
+    (event: 'ready', layer: T): void
 }
 
 export const setupPolyline = (
