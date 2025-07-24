@@ -17,27 +17,33 @@ export interface MapProps extends ComponentProps<MapOptions> {
     zoom?: number
     minZoom?: number
     maxZoom?: number
-    paddingBottomRight?: PointExpression,
-    paddingTopLeft?: PointExpression,
-    padding?: PointExpression,
-    worldCopyJump?: boolean,
+    paddingBottomRight?: PointExpression
+    paddingTopLeft?: PointExpression
+    padding?: PointExpression
+    worldCopyJump?: boolean
     // BREAKING CHANGES: crs value needs to be a value of CRS class
     crs?: CRS
-    maxBoundsViscosity?: number,
-    inertia?: boolean,
-    inertiaDeceleration?: number,
-    inertiaMaxSpeed?: number,
-    easeLinearity?: number,
-    zoomAnimation?: boolean,
+    maxBoundsViscosity?: number
+    inertia?: boolean
+    inertiaDeceleration?: number
+    inertiaMaxSpeed?: number
+    easeLinearity?: number
+    zoomAnimation?: boolean
     zoomAnimationThreshold?: number
-    fadeAnimation?: boolean,
-    markerZoomAnimation?: boolean,
-    noBlockingAnimations?: boolean,
+    fadeAnimation?: boolean
+    markerZoomAnimation?: boolean
+    noBlockingAnimations?: boolean
     beforeMapMount?: () => void | Promise<void>
 }
 
 export const mapPropsDefaults = {
     ...componentPropsDefaults,
+    worldCopyJump: undefined,
+    inertia: undefined,
+    zoomAnimation: undefined,
+    fadeAnimation: undefined,
+    markerZoomAnimation: undefined,
+    noBlockingAnimations: undefined,
 }
 
 export const setupMap = (props: MapProps) => {

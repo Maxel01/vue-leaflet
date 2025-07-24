@@ -17,6 +17,8 @@ export interface TileLayerProps extends GridLayerProps<TileLayerOptions> {
 
 export const tileLayerPropsDefaults = {
     ...gridLayerPropsDefaults,
+    tms: undefined,
+    detectRetina: undefined,
 }
 
 export type TileLayerEmits = GridLayerEmits<TileLayer>

@@ -24,6 +24,7 @@ export interface GridLayerProps<T extends GridLayerOptions = GridLayerOptions>
 
 export const gridLayerPropsDefaults = {
     ...layerPropsDefaults,
+    noWrap: undefined,
 }
 
 export type GridLayerEmits<T extends GridLayer = GridLayer> = LayerEmits & {

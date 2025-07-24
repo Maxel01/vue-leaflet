@@ -64,7 +64,10 @@ export const propsToLeafletOptions = <T extends object>(
     const output = { ...baseOptions }
 
     for (const key in props) {
-        if (key === 'options' || props[key as keyof ComponentProps] === undefined /* || !(key in baseOptions) */) {
+        if (
+            key === 'options' ||
+            props[key as keyof ComponentProps] === undefined /* || !(key in baseOptions) */
+        ) {
             continue
         }
 
