@@ -7,30 +7,32 @@ import { assertInject, propsBinder, remapEvents } from '../utils.js'
 import { type TooltipProps, tooltipPropsDefaults } from '../functions/tooltip.ts'
 
 const props = withDefaults(defineProps<TooltipProps>(), tooltipPropsDefaults)
-
-const leafletObject = ref<Tooltip>()
-const root = ref(null)
-
-const bindTooltip = assertInject(BindTooltipInjection)
-
-const { options, methods } = setupTooltip(props, leafletObject)
-
 const emit = defineEmits<{
     (event: 'ready', tooltip: Tooltip): void
 }>()
-
-onMounted(async () => {
-    leafletObject.value = markRaw<Tooltip>(new Tooltip(options))
-
-    propsBinder(methods, leafletObject.value, props)
-    const { listeners } = remapEvents(useAttrs())
-    leafletObject.value.on(listeners)
-    leafletObject.value.setContent(props.content || root.value || '')
-    bindTooltip(leafletObject.value)
-    nextTick(() => emit('ready', leafletObject.value!))
-})
-
+const { root, leafletObject } = useTooltip()
 defineExpose({ root, leafletObject })
+
+function useTooltip() {
+    const leafletObject = ref<Tooltip>()
+    const root = ref(null)
+
+    const bindTooltip = assertInject(BindTooltipInjection)
+
+    const { options, methods } = setupTooltip(props, leafletObject)
+
+    onMounted(async () => {
+        leafletObject.value = markRaw<Tooltip>(new Tooltip(options))
+
+        propsBinder(methods, leafletObject.value, props)
+        const { listeners } = remapEvents(useAttrs())
+        leafletObject.value.on(listeners)
+        leafletObject.value.setContent(props.content || root.value || '')
+        bindTooltip(leafletObject.value)
+        nextTick(() => emit('ready', leafletObject.value!))
+    })
+    return { root, leafletObject }
+}
 </script>
 
 <template>

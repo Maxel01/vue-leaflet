@@ -3,16 +3,16 @@ import { type Ref } from 'vue'
 import { type ComponentProps, componentPropsDefaults, setupComponent } from './component'
 import { DivOverlay } from 'leaflet'
 
-export interface PopperProps extends ComponentProps {
+export interface PopperProps<T extends object> extends ComponentProps<T> {
     content?: string
 }
 
 export const popperPropsDefaults = {
     ...componentPropsDefaults,
-    content: null,
+    content: undefined,
 }
 
-export const setupPopper = (props: PopperProps, leafletRef: Ref<DivOverlay | undefined>) => {
+export const setupPopper = (props: PopperProps<object>, leafletRef: Ref<DivOverlay | undefined>) => {
     const { options, methods: componentMethods } = setupComponent(props)
 
     const methods = {
