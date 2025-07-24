@@ -8,7 +8,7 @@ import type { Ref } from 'vue'
 import { type TileLayer, type TileLayerOptions } from 'leaflet'
 import { propsToLeafletOptions } from '../utils.ts'
 
-export interface TileLayerProps extends GridLayerProps<TileLayerOptions> {
+export interface TileLayerProps<T extends TileLayerOptions = TileLayerOptions> extends GridLayerProps<T> {
     tms?: boolean
     subdomains?: string | string[]
     detectRetina?: boolean
@@ -21,12 +21,12 @@ export const tileLayerPropsDefaults = {
     detectRetina: undefined,
 }
 
-export type TileLayerEmits = GridLayerEmits<TileLayer>
+export type TileLayerEmits<T extends TileLayer = TileLayer> = GridLayerEmits<T>
 
 export const setupTileLayer = <T extends TileLayer>(
     props: TileLayerProps,
     leafletRef: Ref<T | undefined>,
-    emit: TileLayerEmits,
+    emit: TileLayerEmits<T>,
 ) => {
     const { options: gridLayerOptions, methods: gridLayerMethods } = setupGridLayer(
         props,
