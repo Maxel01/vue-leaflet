@@ -32,17 +32,17 @@ const iconSize = computed((): PointExpression => {
             ></LTileLayer>
 
             <LMarker :lat-lng="[47.41322, -1.219482]">
-                <LIcon :icon-options="{ iconUrl: iconUrl, iconSize: iconSize }" />
+                <LIcon :iconUrl="iconUrl" :iconSize="iconSize" />
             </LMarker>
             <LMarker :lat-lng="[47.41323, -1.219482]"></LMarker>
 
             <LMarker :lat-lng="[47.61322, -0.519482]">
-                <LIcon :icon-options="{ iconSize: [21, 21] }">★</LIcon>
+                <LIcon :iconSize="[21, 21]">★</LIcon>
             </LMarker>
             <LMarker :lat-lng="[47.61322, -0.519482]"></LMarker>
 
             <LMarker :lat-lng="[47, -1]">
-                <LIcon :icon-options="{ className: '' }">Hello, Map!</LIcon>
+                <LIcon className="">Hello, Map!</LIcon>
             </LMarker>
             <LMarker :lat-lng="[47, -1]"></LMarker>
         </LMap>

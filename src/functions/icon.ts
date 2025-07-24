@@ -1,9 +1,19 @@
-import type { DivIconOptions } from 'leaflet'
+import type { DivIconOptions, PointExpression } from 'leaflet'
 import { type ComponentProps, componentPropsDefaults } from './component.ts'
 
-// BREAKING CHANGES: pass iconOptions as Object instead of props
-export interface IconProps extends ComponentProps {
-    iconOptions?: DivIconOptions
+export interface IconProps extends ComponentProps<DivIconOptions> {
+    iconUrl?: string
+    iconRetinaUrl?: string
+    iconSize?: PointExpression
+    iconAnchor?: PointExpression
+    popupAnchor?: PointExpression
+    tooltipAnchor?: PointExpression
+    shadowUrl?: string
+    shadowRetinaUrl?: string
+    shadowSize?: PointExpression
+    shadowAnchor?: PointExpression
+    bgPos?: PointExpression
+    className?: string
 }
 
 export const iconPropsDefaults = {

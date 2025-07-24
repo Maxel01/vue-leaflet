@@ -1,23 +1,24 @@
 <script setup lang="ts">
 import { type IconProps, iconPropsDefaults } from '../functions/icon.ts'
 import { nextTick, onMounted, ref, useAttrs } from 'vue'
-import { assertInject, propsBinder, remapEvents } from '../utils.ts'
+import { assertInject, propsBinder, propsToLeafletOptions, remapEvents } from '../utils.ts'
 import {
     CanSetParentHtmlInjection,
     SetIconInjection,
     SetParentHtmlInjection,
 } from '../types/injectionKeys.ts'
-import { DivIcon, DomEvent, Icon } from 'leaflet'
+import { DivIcon, type DivIconOptions, DomEvent, Icon } from 'leaflet'
+import { setupComponent } from '../functions/component.ts'
 
 const props = withDefaults(defineProps<IconProps>(), iconPropsDefaults)
 
-const {root} = useIcon()
+const { root } = useIcon()
 defineExpose({ root })
 
 function useIcon() {
     const root = ref<HTMLElement>()
 
-    const {scheduleCreateIcon, scheduleHtmlSwap} = useCreateIcon()
+    const { scheduleCreateIcon, scheduleHtmlSwap } = useCreateIcon()
     const methods = {
         setIconUrl: scheduleCreateIcon,
         setIconRetinaUrl: scheduleCreateIcon,
@@ -45,7 +46,7 @@ function useIcon() {
         })
         scheduleCreateIcon()
     })
-    return {root}
+    return { root }
 }
 
 function useCreateIcon() {
@@ -65,11 +66,13 @@ function useCreateIcon() {
             return
         }
 
-        const {listeners} = remapEvents(attrs)
+        const { listeners } = remapEvents(attrs)
         if (iconObject) {
             DomEvent.off(iconObject, listeners)
         }
-        const options = props.iconOptions || {}
+
+        const { options: componentOptions } = setupComponent(props)
+        const options = propsToLeafletOptions<DivIconOptions>(props, componentOptions)
         if (elHtml) {
             options.html = elHtml
         }
@@ -90,7 +93,7 @@ function useCreateIcon() {
             if (root.value) createIcon(root.value, false, true)
         })
     }
-    return {scheduleCreateIcon, scheduleHtmlSwap}
+    return { scheduleCreateIcon, scheduleHtmlSwap }
 }
 </script>
 
