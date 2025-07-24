@@ -1,5 +1,5 @@
 import type { LatLngExpression, LeafletEvent, Marker, MarkerOptions } from 'leaflet'
-import type { Ref, Slots } from 'vue'
+import type { Ref, Slots, VNode } from 'vue'
 
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
 
@@ -38,7 +38,7 @@ export const setupMarker = (
         latLngSync(
             event: LeafletEvent & { latlng?: LatLngExpression; oldLatLng?: LatLngExpression },
         ) {
-            if(event.latlng) {
+            if (event.latlng) {
                 emit('update:latLng', event.latlng)
                 emit('update:lat-lng', event.latlng)
             }
@@ -68,12 +68,15 @@ export const shouldBlankIcon = (slots: Slots) => {
     // creation so that Leaflet does not render its default icon momentarily before
     // Vue mounts the inner content and vue-leaflet updates the marker with it.
     // See https://github.com/vue-leaflet/vue-leaflet/issues/170
-    const slotContent = slots.default && slots.default()
-
-    return slotContent && slotContent.length && slotContent.some(contentIsRendered)
+    const slotContent = slots.default?.()
+    return !!slotContent?.length && slotContent.some(contentIsRendered)
 }
 
-function contentIsRendered(el) {
+function contentIsRendered(el: VNode) {
     if (unrenderedContentTypes.includes(el.type.toString())) return false
-    return !unrenderedComponentNames.includes(el.type.name)
+    return (
+        typeof el.type === 'object' &&
+        '__name' in el.type &&
+        !unrenderedComponentNames.includes(el.type.__name || "")
+    )
 }
