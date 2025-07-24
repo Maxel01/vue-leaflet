@@ -9,11 +9,11 @@ const routes = [
     { path: '/', component: Home },
     { path: '/grid-layer', component: () => import('./views/GridLayerDemo.vue') },
     { path: '/tile-layer', component: () => import('./views/TileLayerDemo.vue') },
-    /*{
-        path: "/wms-tile-layer",
-        component: () => import("./views/WmsTileLayerDemo.vue"),
-    },
     {
+        path: '/wms-tile-layer',
+        component: () => import('./views/WmsTileLayerDemo.vue'),
+    },
+    /* {
         path: "/feature-group",
         component: () => import("./views/FeatureGroupDemo.vue"),
     },
