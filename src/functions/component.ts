@@ -1,11 +1,11 @@
-export interface ComponentProps {
-    options?: object
+export interface ComponentProps<T extends object = object> {
+    options?: T
 }
 
 export const componentPropsDefaults = {
-    options: () => ({})
+    options: () => ({}),
 }
 
-export const setupComponent = () => {
-    return { methods: {} }
+export const setupComponent = (props: ComponentProps) => {
+    return { options: props.options, methods: {} }
 }

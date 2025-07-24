@@ -1,18 +1,22 @@
-import type { LatLngExpression, LeafletEvent, Marker, MarkerOptions } from 'leaflet'
+import type { Icon, LatLngExpression, LeafletEvent, Marker, MarkerOptions } from 'leaflet'
 import type { Ref, Slots, VNode } from 'vue'
 
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
+import { propsToLeafletOptions } from '../utils.ts'
 
 const unrenderedContentTypes = ['Symbol(Comment)', 'Symbol(Text)']
 const unrenderedComponentNames = ['LTooltip', 'LPopup']
 
-// BREAKING CHANGES: pass layerOptions as Object instead of props
 export interface MarkerProps extends LayerProps<MarkerOptions> {
+    draggable?: boolean
+    icon?: Icon
+    zIndexOffset?: number
     latLng: LatLngExpression
 }
 
 export const markerPropsDefaults = {
     ...layerPropsDefaults,
+    draggable: undefined,
 }
 
 export type MarkerEmits = LayerEmits & {
@@ -21,13 +25,14 @@ export type MarkerEmits = LayerEmits & {
     (event: 'update:lat-lng', value: LatLngExpression): void
 }
 
-// BREAKING CHANGES: setupMarker does not return options anymore
 export const setupMarker = (
     props: MarkerProps,
     leafletRef: Ref<Marker | undefined>,
     emit: MarkerEmits,
 ) => {
-    const { methods: layerMethods } = setupLayer(props, leafletRef, emit)
+    const { options: layerOptions, methods: layerMethods } = setupLayer(props, leafletRef, emit)
+
+    const options = propsToLeafletOptions<MarkerOptions>(props, layerOptions)
 
     const methods = {
         ...layerMethods,
@@ -53,7 +58,7 @@ export const setupMarker = (
         },
     }
 
-    return { methods }
+    return { options, methods }
 }
 
 /**
@@ -77,6 +82,6 @@ function contentIsRendered(el: VNode) {
     return (
         typeof el.type === 'object' &&
         '__name' in el.type &&
-        !unrenderedComponentNames.includes(el.type.__name || "")
+        !unrenderedComponentNames.includes(el.type.__name || '')
     )
 }

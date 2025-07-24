@@ -31,11 +31,11 @@ function useGridLayer() {
     const ready = ref<boolean>(false)
 
     const addLayer = assertInject(AddLayerInjection)
-    const { methods } = setupGridLayer(props, leafletObject, emit)
+    const { options, methods } = setupGridLayer(props, leafletObject, emit)
 
     onMounted(async () => {
         const GLayer = CreateVueGridLayer(props.childRender)
-        leafletObject.value = markRaw<GridLayer>(new GLayer(props.layerOptions))
+        leafletObject.value = markRaw<GridLayer>(new GLayer(options))
 
         const { listeners } = remapEvents(useAttrs())
         leafletObject.value!.on(listeners)

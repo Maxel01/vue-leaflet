@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { h } from 'vue'
+import { h, ref } from 'vue'
 import { LMap, LGridLayer, LTileLayer } from '../../components'
-import type { MapOptions } from 'leaflet'
 
 /*
     TODO NEXT: While sorting out type errors in LGridLayer.vue, I realized I'm not sure
@@ -20,14 +19,11 @@ const childRender = (props) => () => {
     )
 }
 
-const mapOptions: MapOptions = {
-    center: [47.41322, -1.219482],
-    zoom: 2
-}
+const zoom = ref<number>(2)
 </script>
 
 <template>
-    <LMap ref="map" :map-options="mapOptions">
+    <LMap ref="map" v-model:zoom="zoom" :center="[47.41322, -1.219482]">
         <LTileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></LTileLayer>
         <LGridLayer :child-render="childRender"></LGridLayer>
     </LMap>

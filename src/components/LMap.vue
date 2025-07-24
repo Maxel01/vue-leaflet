@@ -21,7 +21,6 @@ import {
     type LeafletEventHandlerFnMap,
     Map,
     type MapOptions,
-    type PointExpression,
     Util,
     type ZoomPanOptions,
 } from 'leaflet'
@@ -30,6 +29,7 @@ import {
     bindEventHandlers,
     cancelDebounces,
     propsBinder,
+    propsToLeafletOptions,
     provideLeafletWrapper,
     remapEvents,
     resetWebpackIcon,
@@ -43,20 +43,9 @@ import {
     RemoveLayerInjection,
 } from '../types/injectionKeys.ts'
 import type { IMapBlueprint } from '../types/interfaces/IMapBlueprint.ts'
-import { setupComponent } from '../functions/component.ts'
+import { type MapProps, mapPropsDefaults, setupMap } from '../functions/map.ts'
 
-const props = defineProps<{
-    mapOptions?: MapOptions
-    bounds?: LatLngBounds
-    padding?: PointExpression
-    paddingTopLeft?: PointExpression
-    paddingBottomRight?: PointExpression
-    noBlockingAnimations?: boolean
-    beforeMapMount?: () => void | Promise<void>
-    // BREAKING CHANGES: removed useGlobalLeaflet
-    // BREAKING CHANGES: crs value needs to be a value of CRS class
-    // BREAKING CHANGES: use prop mapOptions directly instead of combining all props
-}>()
+const props = withDefaults(defineProps<MapProps>(), mapPropsDefaults)
 
 const { root, blueprint, leafletObject, ready } = useMap()
 const { zoomPanOptions, fitBoundsOptions } = useOptions()
@@ -82,7 +71,9 @@ function useMap() {
         layersInControl: [],
     })
 
-    const {} = setupComponent()
+    const { options: componentOptions } = setupMap(props)
+
+    const options: MapOptions = propsToLeafletOptions<MapOptions>(props, componentOptions)
 
     const leafletObject = computed(() => blueprint.leafletRef)
     const ready = computed(() => blueprint.ready)
@@ -100,7 +91,7 @@ function useMap() {
         }
         await resetWebpackIcon(Icon)
 
-        blueprint.leafletRef = markRaw(new Map(root.value!, props.mapOptions))
+        blueprint.leafletRef = markRaw(new Map(root.value!, options))
 
         propsBinder(methods, blueprint.leafletRef, props)
 
