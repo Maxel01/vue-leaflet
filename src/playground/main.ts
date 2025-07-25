@@ -49,10 +49,10 @@ const routes = [
         path: "/image-overlay",
         component: () => import("./views/ImageOverlayDemo.vue"),
     },*/
-    { path: "/polygon", component: () => import("./views/PolygonDemo.vue") },
-    { path: "/polyline", component: () => import("./views/PolylineDemo.vue") },
-    /*{ path: "/popups", component: () => import("./views/PopupsDemo.vue") },
-    { path: "/rectangle", component: () => import("./views/RectangleDemo.vue") },*/
+    { path: '/polygon', component: () => import('./views/PolygonDemo.vue') },
+    { path: '/polyline', component: () => import('./views/PolylineDemo.vue') },
+    /*{ path: "/popups", component: () => import("./views/PopupsDemo.vue") },*/
+    { path: '/rectangle', component: () => import('./views/RectangleDemo.vue') },
     { path: '/tooltip', component: () => import('./views/TooltipDemo.vue') },
 ]
 
