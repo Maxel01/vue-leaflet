@@ -38,11 +38,11 @@ const routes = [
         path: "/control-scale",
         component: () => import("./views/ControlScaleDemo.vue"),
     },
-    /*{
+    {
         path: "/control-zoom",
         component: () => import("./views/ControlZoomDemo.vue"),
     },
-    { path: "/geo-json", component: () => import("./views/GeoJsonDemo.vue") },*/
+    /*{ path: "/geo-json", component: () => import("./views/GeoJsonDemo.vue") },*/
     { path: '/icon', component: () => import('./views/IconDemo.vue') },
     { path: '/marker', component: () => import('./views/MarkerDemo.vue') },
     /*{
