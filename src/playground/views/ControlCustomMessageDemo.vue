@@ -1,10 +1,5 @@
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
 import { LControl, LMap, LTileLayer } from '../../components'
-
-export default defineComponent({
-    components: { LControl, LTileLayer, LMap },
-})
 </script>
 
 <template>

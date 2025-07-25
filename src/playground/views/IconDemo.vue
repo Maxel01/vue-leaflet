@@ -15,7 +15,7 @@ function changeIcon() {
 }
 
 const iconUrl = computed(() => {
-    return `https://placekitten.com/${iconWidth.value}/${iconHeight.value}`
+    return `https://placebear.com/${iconWidth.value}/${iconHeight.value}`
 })
 const iconSize = computed((): PointExpression => {
     return [iconWidth.value, iconHeight.value]
