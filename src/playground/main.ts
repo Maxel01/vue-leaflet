@@ -30,11 +30,11 @@ const routes = [
         path: "/control-custom-message",
         component: () => import("./views/ControlCustomMessageDemo.vue"),
     },
-    /*{
+    {
         path: "/control-layers",
         component: () => import("./views/ControlLayersDemo.vue"),
     },
-    {
+    /*{
         path: "/control-scale",
         component: () => import("./views/ControlScaleDemo.vue"),
     },
