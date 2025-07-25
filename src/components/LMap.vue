@@ -50,7 +50,7 @@ const props = withDefaults(
     mapPropsDefaults,
 )
 
-const { root, style, blueprint, leafletObject, ready } = useMap()
+const { root, mapStyle, blueprint, leafletObject, ready } = useMap()
 const { zoomPanOptions, fitBoundsOptions } = useOptions()
 const methods = useMethods()
 const { listeners, attrs, eventHandlers } = useEvents()
@@ -67,7 +67,7 @@ defineExpose({ root, ready, leafletObject, attrs, ...methods })
 
 function useMap() {
     const root = ref<HTMLElement>()
-    const style = computed(() => ({
+    const mapStyle = computed(() => ({
         width: props.style?.width ?? '100%',
         height: props.style?.height ?? '100%',
         ...props.style,
@@ -116,7 +116,7 @@ function useMap() {
         blueprint.leafletRef?.remove()
     })
 
-    return { root, style, blueprint, leafletObject, ready }
+    return { root, mapStyle, blueprint, leafletObject, ready }
 }
 
 function useOptions() {
@@ -305,7 +305,7 @@ function useProvideFunctions() {
 </script>
 
 <template>
-    <div ref="root" :style="style">
+    <div ref="root" :style="mapStyle">
         <slot v-if="ready" />
     </div>
 </template>
