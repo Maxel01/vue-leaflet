@@ -1,7 +1,7 @@
 import type { InjectionKey } from 'vue'
 
 import type { IControlDefinition, ILayerDefinition } from './interfaces'
-import { Control, DivIcon, type Icon, Marker } from 'leaflet'
+import type { Control, DivIcon, Icon, Layer, Marker } from 'leaflet'
 
 export const AddLayerInjection = Symbol('addLayer') as InjectionKey<
     (layer: ILayerDefinition) => void

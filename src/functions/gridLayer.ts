@@ -4,7 +4,7 @@ import {
     DomUtil,
     GridLayer,
     type GridLayerOptions,
-    Point,
+    type Point,
     type PointExpression,
     type TileEvent,
 } from 'leaflet'
