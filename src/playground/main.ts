@@ -21,7 +21,7 @@ const routes = [
     {
         path: "/circle-marker",
         component: () => import("./views/CircleMarkerDemo.vue"),
-    },
+    },*/
     {
         path: "/control-attribution",
         component: () => import("./views/ControlAttributionDemo.vue"),
@@ -42,7 +42,7 @@ const routes = [
         path: "/control-zoom",
         component: () => import("./views/ControlZoomDemo.vue"),
     },
-    { path: "/geo-json", component: () => import("./views/GeoJsonDemo.vue") },*/
+    /*{ path: "/geo-json", component: () => import("./views/GeoJsonDemo.vue") },*/
     { path: '/icon', component: () => import('./views/IconDemo.vue') },
     { path: '/marker', component: () => import('./views/MarkerDemo.vue') },
     /*{
