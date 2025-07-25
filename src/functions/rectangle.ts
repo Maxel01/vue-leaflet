@@ -1,4 +1,4 @@
-import L, { type LatLngBoundsExpression, type LatLngExpression, Rectangle } from 'leaflet'
+import { type LatLngBoundsExpression, type LatLngExpression, Rectangle } from 'leaflet'
 
 import { propsToLeafletOptions } from '../utils'
 

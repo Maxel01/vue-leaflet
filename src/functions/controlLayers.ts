@@ -4,6 +4,7 @@ import { propsToLeafletOptions } from '../utils'
 
 import { type ControlEmits, type ControlProps, controlPropsDefaults, setupControl } from './control'
 import type { Ref } from 'vue'
+import type { ILayerDefinition } from '../types/interfaces'
 
 export interface ControlLayersProps extends ControlProps<Control.LayersOptions> {
     collapsed?: boolean
@@ -32,14 +33,14 @@ export const setupControlLayers = (
     const options = propsToLeafletOptions<Control.LayersOptions>(props, controlOptions)
 
     const methods = {
-        addLayer(layer) {
+        addLayer(layer: ILayerDefinition) {
             if (layer.layerType === 'base') {
                 leafletRef.value?.addBaseLayer(layer.leafletObject, layer.name)
             } else if (layer.layerType === 'overlay') {
                 leafletRef.value?.addOverlay(layer.leafletObject, layer.name)
             }
         },
-        removeLayer(layer) {
+        removeLayer(layer: ILayerDefinition) {
             leafletRef.value?.removeLayer(layer.leafletObject)
         },
     }
