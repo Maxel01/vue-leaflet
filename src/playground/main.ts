@@ -34,11 +34,11 @@ const routes = [
         path: "/control-layers",
         component: () => import("./views/ControlLayersDemo.vue"),
     },
-    /*{
+    {
         path: "/control-scale",
         component: () => import("./views/ControlScaleDemo.vue"),
     },
-    {
+    /*{
         path: "/control-zoom",
         component: () => import("./views/ControlZoomDemo.vue"),
     },

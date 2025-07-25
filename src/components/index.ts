@@ -1,6 +1,7 @@
 export { default as LControl } from "./LControl.vue";
 export { default as LControlAttribution } from "./LControlAttribution.vue";
 export { default as LControlLayers } from "./LControlLayers.vue";
+export { default as LControlScale} from "./LControlScale.vue";
 export { default as LIcon } from "./LIcon.vue";
 export { default as LGridLayer } from "./LGridLayer.vue";
 export { default as LMap } from "./LMap.vue";
