@@ -18,6 +18,7 @@ const props = withDefaults(
 const emit = defineEmits<ControlEmits>()
 
 const { root, leafletObject } = useControl()
+defineExpose({ root, leafletObject })
 
 function useControl() {
     const leafletObject = ref<L.Control>()
@@ -48,8 +49,6 @@ function useControl() {
     })
     return { root, leafletObject }
 }
-
-defineExpose({ root, leafletObject })
 </script>
 
 <template>

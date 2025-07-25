@@ -21,12 +21,12 @@ const routes = [
     {
         path: "/circle-marker",
         component: () => import("./views/CircleMarkerDemo.vue"),
-    },
+    },*/
     {
         path: "/control-attribution",
         component: () => import("./views/ControlAttributionDemo.vue"),
     },
-    {
+    /*{
         path: "/control-custom-message",
         component: () => import("./views/ControlCustomMessageDemo.vue"),
     },
