@@ -3,6 +3,7 @@ import L, { Control } from 'leaflet'
 import { propsToLeafletOptions } from '../utils'
 
 import { type ControlEmits, type ControlProps, controlPropsDefaults, setupControl } from './control'
+import type { Ref } from 'vue'
 
 export interface ControlZoomProps extends ControlProps<Control.ZoomOptions> {
     zoomInText?: string

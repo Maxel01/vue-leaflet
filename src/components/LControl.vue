@@ -57,7 +57,7 @@ function useControl() {
 </script>
 
 <template>
-    <div style="">
+    <div ref="root" style="">
         <slot />
     </div>
 </template>

@@ -14,7 +14,7 @@ export default defineComponent({
             layer-type="base"
             name="OpenStreetMap"
         ></LTileLayer>
-        <LControl class="leaflet-control leaflet-demo-control" position="bottomright"
+        <LControl class="leaflet-control leaflet-demo-control" position="bottomleft"
             >Hello, Map!
         </LControl>
     </LMap>
