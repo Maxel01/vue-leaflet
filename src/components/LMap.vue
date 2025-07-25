@@ -45,12 +45,13 @@ import {
 import type { IMapBlueprint } from '../types/interfaces/IMapBlueprint.ts'
 import { type MapProps, mapPropsDefaults, setupMap } from '../functions/map.ts'
 
-const props = withDefaults(
-    defineProps<MapProps & { style?: Record<string, string> }>(),
-    mapPropsDefaults,
-)
+const props = withDefaults(defineProps<MapProps & { width?: string; height?: string }>(), {
+    ...mapPropsDefaults,
+    width: '100%',
+    height: '100%',
+})
 
-const { root, mapStyle, blueprint, leafletObject, ready } = useMap()
+const { root, blueprint, leafletObject, ready } = useMap()
 const { zoomPanOptions, fitBoundsOptions } = useOptions()
 const methods = useMethods()
 const { listeners, attrs, eventHandlers } = useEvents()
@@ -67,11 +68,6 @@ defineExpose({ root, ready, leafletObject, attrs, ...methods })
 
 function useMap() {
     const root = ref<HTMLElement>()
-    const mapStyle = computed(() => ({
-        width: props.style?.width ?? '100%',
-        height: props.style?.height ?? '100%',
-        ...props.style,
-    }))
 
     const blueprint = reactive<IMapBlueprint>({
         ready: false,
@@ -116,7 +112,7 @@ function useMap() {
         blueprint.leafletRef?.remove()
     })
 
-    return { root, mapStyle, blueprint, leafletObject, ready }
+    return { root, blueprint, leafletObject, ready }
 }
 
 function useOptions() {
@@ -305,7 +301,7 @@ function useProvideFunctions() {
 </script>
 
 <template>
-    <div ref="root" :style="mapStyle">
+    <div ref="root" :style="{width: props.width, height: props.height}">
         <slot v-if="ready" />
     </div>
 </template>
