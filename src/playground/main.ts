@@ -26,11 +26,11 @@ const routes = [
         path: "/control-attribution",
         component: () => import("./views/ControlAttributionDemo.vue"),
     },
-    /*{
+    {
         path: "/control-custom-message",
         component: () => import("./views/ControlCustomMessageDemo.vue"),
     },
-    {
+    /*{
         path: "/control-layers",
         component: () => import("./views/ControlLayersDemo.vue"),
     },

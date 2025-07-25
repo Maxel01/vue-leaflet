@@ -5,7 +5,7 @@ import { propsToLeafletOptions } from '../utils'
 
 import { type ComponentProps, componentPropsDefaults, setupComponent } from './component'
 
-export interface ControlProps extends ComponentProps {
+export interface ControlProps<T extends ControlOptions = ControlOptions> extends ComponentProps<T> {
     position?: ControlPosition
 }
 

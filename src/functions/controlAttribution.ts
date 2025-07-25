@@ -5,8 +5,8 @@ import { propsToLeafletOptions } from '../utils'
 import { type ControlEmits, type ControlProps, controlPropsDefaults, setupControl } from './control.ts'
 import type { Ref } from 'vue'
 
-export interface ControlAttributionProps extends ControlProps {
-    prefix?: string
+export interface ControlAttributionProps extends ControlProps<Control.AttributionOptions> {
+    prefix?: string | false
 }
 
 export const controlAttributionPropsDefaults = {
@@ -26,7 +26,7 @@ export const setupControlAttribution = (
 
     const methods = {
         ...controlMethods,
-        setPrefix(prefix: string) {
+        setPrefix(prefix: string | false) {
             leafletRef.value?.setPrefix(prefix)
         },
     }
