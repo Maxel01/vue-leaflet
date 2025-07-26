@@ -16,12 +16,12 @@ const routes = [
     /* {
         path: "/feature-group",
         component: () => import("./views/FeatureGroupDemo.vue"),
-    },
+    },*/
     { path: "/circle", component: () => import("./views/CircleDemo.vue") },
     {
         path: "/circle-marker",
         component: () => import("./views/CircleMarkerDemo.vue"),
-    },*/
+    },
     {
         path: "/control-attribution",
         component: () => import("./views/ControlAttributionDemo.vue"),

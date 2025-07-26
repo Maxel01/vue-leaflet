@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import {
+    LCircle,
+    LCircleMarker,
     LIcon,
     LMap,
     LMarker,
-    LTileLayer,
-    LTooltip,
     LPolygon,
     LPolyline,
     LRectangle,
+    LTileLayer,
+    LTooltip,
 } from '../../components'
 import type { LatLngExpression } from 'leaflet'
 import { ref } from 'vue'
@@ -82,13 +84,13 @@ const coordinates = ref<LatLngExpression>([41.75, -87.65])
             <LTooltip> Good day! Rectangle is my name!</LTooltip>
         </LRectangle>
 
-        <!--LCircle :lat-lng="[41.4329, -87.7327]" :radius="10000" color="green">
-        <LTooltip> Hi! I'm a green Circle!</LTooltip>
-    </LCircle-->
+        <LCircle :lat-lng="[41.4329, -87.7327]" :radius="10000" color="green">
+            <LTooltip> Hi! I'm a green Circle!</LTooltip>
+        </LCircle>
 
-        <!--LCircleMarker :lat-lng="[41.4329, -87.95]" :radius="20">
-        <LTooltip> Hi! You can call me Circle Marker!</LTooltip>
-    </LCircleMarker-->
+        <LCircleMarker :lat-lng="[41.4329, -87.95]" :radius="20">
+            <LTooltip> Hi! You can call me Circle Marker!</LTooltip>
+        </LCircleMarker>
     </LMap>
 </template>
 
