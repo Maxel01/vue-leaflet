@@ -1,4 +1,4 @@
-import { type InteractiveLayerOptions, LayerGroup } from 'leaflet'
+import { type InteractiveLayerOptions, LayerGroup, type LayerOptions } from 'leaflet'
 import { provide, type Ref } from 'vue'
 
 import { AddLayerInjection, RemoveLayerInjection } from '../types/injectionKeys'
@@ -7,7 +7,7 @@ import { propsToLeafletOptions } from '../utils'
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
 import type { ILayerDefinition } from '../types/interfaces'
 
-export type LayerGroupProps = LayerProps
+export type LayerGroupProps<T extends LayerOptions = LayerOptions> = LayerProps<T>
 
 export const layerGroupPropsDefaults = layerPropsDefaults
 
@@ -15,7 +15,7 @@ export type LayerGroupEmits<T extends LayerGroup = LayerGroup> = LayerEmits & {
     (event: 'ready', layer: T): void
 }
 
-export const setupLayerGroup= <T extends LayerGroup = LayerGroup> (
+export const setupLayerGroup = <T extends LayerGroup = LayerGroup>(
     props: LayerGroupProps,
     leafletRef: Ref<LayerGroup | undefined>,
     emit: LayerGroupEmits<T>,
