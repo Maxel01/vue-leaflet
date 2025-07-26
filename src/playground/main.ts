@@ -45,13 +45,13 @@ const routes = [
     /*{ path: "/geo-json", component: () => import("./views/GeoJsonDemo.vue") },*/
     { path: '/icon', component: () => import('./views/IconDemo.vue') },
     { path: '/marker', component: () => import('./views/MarkerDemo.vue') },
-    /*{
-        path: "/image-overlay",
-        component: () => import("./views/ImageOverlayDemo.vue"),
-    },*/
+    {
+        path: '/image-overlay',
+        component: () => import('./views/ImageOverlayDemo.vue'),
+    },
     { path: '/polygon', component: () => import('./views/PolygonDemo.vue') },
     { path: '/polyline', component: () => import('./views/PolylineDemo.vue') },
-    /*{ path: "/popups", component: () => import("./views/PopupsDemo.vue") },*/
+    { path: "/popup", component: () => import("./views/PopupDemo.vue") },
     { path: '/rectangle', component: () => import('./views/RectangleDemo.vue') },
     { path: '/tooltip', component: () => import('./views/TooltipDemo.vue') },
 ]
