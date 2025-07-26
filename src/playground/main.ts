@@ -13,34 +13,34 @@ const routes = [
         path: '/wms-tile-layer',
         component: () => import('./views/WmsTileLayerDemo.vue'),
     },
-    /* {
-        path: "/feature-group",
-        component: () => import("./views/FeatureGroupDemo.vue"),
-    },*/
-    { path: "/circle", component: () => import("./views/CircleDemo.vue") },
     {
-        path: "/circle-marker",
-        component: () => import("./views/CircleMarkerDemo.vue"),
+        path: '/feature-group',
+        component: () => import('./views/FeatureGroupDemo.vue'),
+    },
+    { path: '/circle', component: () => import('./views/CircleDemo.vue') },
+    {
+        path: '/circle-marker',
+        component: () => import('./views/CircleMarkerDemo.vue'),
     },
     {
-        path: "/control-attribution",
-        component: () => import("./views/ControlAttributionDemo.vue"),
+        path: '/control-attribution',
+        component: () => import('./views/ControlAttributionDemo.vue'),
     },
     {
-        path: "/control-custom-message",
-        component: () => import("./views/ControlCustomMessageDemo.vue"),
+        path: '/control-custom-message',
+        component: () => import('./views/ControlCustomMessageDemo.vue'),
     },
     {
-        path: "/control-layers",
-        component: () => import("./views/ControlLayersDemo.vue"),
+        path: '/control-layers',
+        component: () => import('./views/ControlLayersDemo.vue'),
     },
     {
-        path: "/control-scale",
-        component: () => import("./views/ControlScaleDemo.vue"),
+        path: '/control-scale',
+        component: () => import('./views/ControlScaleDemo.vue'),
     },
     {
-        path: "/control-zoom",
-        component: () => import("./views/ControlZoomDemo.vue"),
+        path: '/control-zoom',
+        component: () => import('./views/ControlZoomDemo.vue'),
     },
     /*{ path: "/geo-json", component: () => import("./views/GeoJsonDemo.vue") },*/
     { path: '/icon', component: () => import('./views/IconDemo.vue') },
