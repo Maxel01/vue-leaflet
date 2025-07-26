@@ -45,7 +45,11 @@ import {
 import type { IMapBlueprint } from '../types/interfaces/IMapBlueprint.ts'
 import { type MapProps, mapPropsDefaults, setupMap } from '../functions/map.ts'
 
-const props = withDefaults(defineProps<MapProps>(), mapPropsDefaults)
+const props = withDefaults(defineProps<MapProps & { width?: string; height?: string }>(), {
+    ...mapPropsDefaults,
+    width: '100%',
+    height: '100%',
+})
 
 const { root, blueprint, leafletObject, ready } = useMap()
 const { zoomPanOptions, fitBoundsOptions } = useOptions()
@@ -297,14 +301,9 @@ function useProvideFunctions() {
 </script>
 
 <template>
-    <div ref="root" class="fill">
+    <div ref="root" :style="{width: props.width, height: props.height}">
         <slot v-if="ready" />
     </div>
 </template>
 
-<style scoped>
-.fill {
-    width: 100%;
-    height: 100%;
-}
-</style>
+<style scoped></style>

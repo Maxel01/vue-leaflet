@@ -1,5 +1,5 @@
 // REWRITE DONE
-import { Evented, type LeafletEventHandlerFnMap } from 'leaflet'
+import { type Evented, type LeafletEventHandlerFnMap } from 'leaflet'
 import { inject, type InjectionKey, provide, ref, watch } from 'vue'
 import type { ComponentProps } from './functions/component.ts'
 
