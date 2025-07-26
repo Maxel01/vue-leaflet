@@ -42,7 +42,7 @@ const routes = [
         path: '/control-zoom',
         component: () => import('./views/ControlZoomDemo.vue'),
     },
-    /*{ path: "/geo-json", component: () => import("./views/GeoJsonDemo.vue") },*/
+    { path: '/geo-json', component: () => import('./views/GeoJsonDemo.vue') },
     { path: '/icon', component: () => import('./views/IconDemo.vue') },
     { path: '/marker', component: () => import('./views/MarkerDemo.vue') },
     {
@@ -51,7 +51,7 @@ const routes = [
     },
     { path: '/polygon', component: () => import('./views/PolygonDemo.vue') },
     { path: '/polyline', component: () => import('./views/PolylineDemo.vue') },
-    { path: "/popup", component: () => import("./views/PopupDemo.vue") },
+    { path: '/popup', component: () => import('./views/PopupDemo.vue') },
     { path: '/rectangle', component: () => import('./views/RectangleDemo.vue') },
     { path: '/tooltip', component: () => import('./views/TooltipDemo.vue') },
 ]
