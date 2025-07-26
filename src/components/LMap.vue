@@ -10,6 +10,7 @@ import {
     useAttrs,
 } from 'vue'
 import {
+    Control,
     type CRS,
     type FitBoundsOptions,
     Icon,
@@ -174,7 +175,7 @@ function useMethods() {
         if (layer.leafletObject) blueprint.leafletRef!.removeLayer(layer.leafletObject)
     }
 
-    function registerLayerControl(lControlLayer: IControlDefinition<L.Control.Layers>) {
+    function registerLayerControl(lControlLayer: IControlDefinition<Control.Layers>) {
         blueprint.layerControl = lControlLayer
         blueprint.layersToAdd.forEach((layer) => {
             blueprint.layerControl!.addLayer(layer)

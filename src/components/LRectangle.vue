@@ -18,7 +18,7 @@ const { ready, leafletObject } = useRectangle()
 defineExpose({ ready, leafletObject })
 
 function useRectangle() {
-    const leafletObject = ref<L.Rectangle>()
+    const leafletObject = ref<Rectangle>()
     const ready = ref(false)
 
     const addLayer = assertInject(AddLayerInjection)

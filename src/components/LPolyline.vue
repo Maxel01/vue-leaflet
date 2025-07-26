@@ -17,7 +17,7 @@ const { ready, leafletObject } = usePolyline()
 defineExpose({ ready, leafletObject })
 
 function usePolyline() {
-    const leafletObject = ref<L.Polyline>()
+    const leafletObject = ref<Polyline>()
     const ready = ref(false)
 
     const addLayer = assertInject(AddLayerInjection)

@@ -25,7 +25,7 @@ function useControlZoom() {
     const { options, methods } = setupControlZoom(props, leafletObject)
 
     onMounted(async () => {
-        leafletObject.value = markRaw<L.Control.Scale>(new Control.Zoom(options))
+        leafletObject.value = markRaw<Control.Scale>(new Control.Zoom(options))
         propsBinder(methods, leafletObject.value, props)
         registerControl({ leafletObject: leafletObject.value })
         nextTick(() => emit('ready', leafletObject.value!))

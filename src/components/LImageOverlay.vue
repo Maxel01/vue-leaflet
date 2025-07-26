@@ -18,7 +18,7 @@ const { ready, leafletObject } = useImageOverlay()
 defineExpose({ ready, leafletObject })
 
 function useImageOverlay() {
-    const leafletObject = ref<L.ImageOverlay>()
+    const leafletObject = ref<ImageOverlay>()
     const ready = ref(false)
 
     const addLayer = assertInject(AddLayerInjection)

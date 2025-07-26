@@ -1,4 +1,4 @@
-import type { ImageOverlay, LatLngBounds, LatLngBoundsExpression } from 'leaflet'
+import type { ImageOverlay, ImageOverlayOptions, LatLngBounds, LatLngBoundsExpression } from 'leaflet'
 import type { Ref } from 'vue'
 
 import { propsToLeafletOptions } from '../utils'
@@ -34,7 +34,7 @@ export const setupImageOverlay = (
 ) => {
     const { options: layerOptions, methods: layerMethods } = setupLayer(props, leafletRef, emit)
 
-    const options = propsToLeafletOptions<L.ImageOverlayOptions>(props, layerOptions)
+    const options = propsToLeafletOptions<ImageOverlayOptions>(props, layerOptions)
 
     const methods = {
         ...layerMethods,

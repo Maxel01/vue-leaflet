@@ -1,4 +1,4 @@
-import { type LatLngBoundsExpression, type LatLngExpression, Rectangle } from 'leaflet'
+import { type LatLngBoundsExpression, type LatLngExpression, type PolylineOptions, Rectangle } from 'leaflet'
 
 import { propsToLeafletOptions } from '../utils'
 
@@ -27,7 +27,7 @@ export const setupRectangle = (
         emit,
     )
 
-    const options = propsToLeafletOptions<L.PolylineOptions>(props, polygonOptions)
+    const options = propsToLeafletOptions<PolylineOptions>(props, polygonOptions)
 
     const methods = {
         ...polygonMethods,

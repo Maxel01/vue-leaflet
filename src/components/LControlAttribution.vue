@@ -18,14 +18,14 @@ const { leafletObject } = useControlAttribution()
 defineExpose({ leafletObject })
 
 function useControlAttribution() {
-    const leafletObject = ref<L.Control.Attribution>()
+    const leafletObject = ref<Control.Attribution>()
 
     const registerControl = assertInject(RegisterControlInjection)
 
     const { options, methods } = setupControlAttribution(props, leafletObject)
 
     onMounted(async () => {
-        leafletObject.value = markRaw<L.Control.Attribution>(new Control.Attribution(options))
+        leafletObject.value = markRaw<Control.Attribution>(new Control.Attribution(options))
         propsBinder(methods, leafletObject.value, props)
         registerControl({ leafletObject: leafletObject.value })
         nextTick(() => emit('ready', leafletObject.value!))

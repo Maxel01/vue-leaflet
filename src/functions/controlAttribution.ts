@@ -22,7 +22,7 @@ export const setupControlAttribution = (
 ) => {
     const { options: controlOptions, methods: controlMethods } = setupControl(props, leafletRef)
 
-    const options = propsToLeafletOptions<L.Control.AttributionOptions>(props, controlOptions)
+    const options = propsToLeafletOptions<Control.AttributionOptions>(props, controlOptions)
 
     const methods = {
         ...controlMethods,

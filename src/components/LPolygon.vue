@@ -17,7 +17,7 @@ const { ready, leafletObject } = usePolygon()
 defineExpose({ ready, leafletObject })
 
 function usePolygon() {
-    const leafletObject = ref<L.Polygon>()
+    const leafletObject = ref<Polygon>()
     const ready = ref(false)
 
     const addLayer = assertInject(AddLayerInjection)

@@ -24,7 +24,7 @@ export const setupControlZoom = (
 ) => {
     const { options: controlOptions, methods: controlMethods } = setupControl(props, leafletRef)
 
-    const options = propsToLeafletOptions<L.Control.ZoomOptions>(props, controlOptions)
+    const options = propsToLeafletOptions<Control.ZoomOptions>(props, controlOptions)
 
     return { options, methods: controlMethods }
 }
