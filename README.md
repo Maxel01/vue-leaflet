@@ -11,6 +11,25 @@ This is an Alpha version! And may yet be unstable! If you want to help, please r
 
 ### What's new?
 
+- uses leaflet v2-alpha
+- rewrite with composition api
+- SSR compatible without useGlobalLeaflet
+
+### What's planned?
+#### Leaflet plugins
+This leaflet wrapper can't be used to add leaflet plugins as most of the plugins do not support v2 yet. This wrapper drops the L object support without a legacy version. Use the previous wrapper instead.
+
+I am therefore planning on porting the leaflet plugins to v2 and create a leaflet-plugins-wrapper. So create an issue if a plugin is not yet supported.
+
+#### Docs
+Nuxt-leaflet already provides good documentation for the leaflet-wrapper. However, these docs will be customized and added to this repo too.
+
+#### Tests
+The previous leaflet-wrapper did not really have tests. These will be added soon to provide a stable and reliable wrapper.
+
+#### What else?
+Let me now what you need!
+
 ## What works?
 - ✅ Fully working
 - ☑️ Works in playground
