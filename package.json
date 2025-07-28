@@ -1,6 +1,6 @@
 {
-  "name": "@vue-leaflet/vue-leaflet",
-  "version": "0.0.0",
+  "name": "@maxel01/vue-leaflet",
+  "version": "1.0.0",
   "license": "MIT",
   "private": "false",
   "type": "module",
@@ -8,13 +8,13 @@
   "main": "dist/vue-leaflet.cjs.js",
   "unpkg": "dist/vue-leaflet.umd.js",
   "module": "dist/vue-leaflet.es.js",
+  "types": "./dist/src/lib.d.ts",
   "files": [
     "dist/"
   ],
-  "types": "./dist/src/lib.d.ts",
   "repository": {
     "type": "git",
-    "url": "git@github.com:vue-leaflet/vue-leaflet.git"
+    "url": "git@github.com:maxel01/vue-leaflet.git"
   },
   "scripts": {
     "dev": "vite",
