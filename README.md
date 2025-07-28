@@ -1,30 +1,140 @@
 # vue-leaflet
 
-Vue-leaflet, written and compatible with Vue 3!
+Vue-leaflet wrapper supporting leaflet v2 (based on [vue-leaflet/vue-leaflet](https://github.com/vue-leaflet/vue-leaflet)).
 
-This branch will be used to rewrite the library to use the composition API and to migrate to leaflet v2. New components will be added soon. See the list below which components have been added already.
+This is an Alpha version! And may yet be unstable! If you want to help, please reach out in an [issue](https://github.com/Maxel01/vue-leaflet/issues) or join the [discussions](https://github.com/Maxel01/vue-leaflet/discussions).
 
-## What works
+> This wrapper is fully compatible with SSR.
 
-❌ LCircle \
-❌ LCircleMarker \
-❌ LControl\
-❌LControlAttribution\
-❌LControlLayers\
-❌LControlScale\
-❌LControlZoom\
-❌LFeatureGroup\
-❌LGeoJson\
-❌LIcon\
-❌LImageOverlay\
-❌LMap\
-❌LMarker\
-❌LPolygon\
-❌LPolyline\
-❌LPopup\
-❌LRectangle\
-❌LTileLayer\
-❌LTooltip\
-❌LWmsTileLayer
+> [!NOTE]
+> All SSR tests were performed in Nuxt using the playground.
 
-> This library will be fully compatible with SSR.
+### What's new?
+
+## What works?
+- ✅ Fully working
+- ☑️ Works in playground
+- 🔧 Support planned
+- ❌ Not implemented
+
+☑️ LCircle \
+☑️ LCircleMarker \
+☑️ LControl\
+☑️ LControlAttribution\
+☑️ LControlLayers\
+☑️ LControlScale\
+☑️ LControlZoom\
+❌ LDivOverlay\
+☑️ LFeatureGroup\
+☑️ LGeoJson\
+☑️ LIcon\
+☑️ LImageOverlay\
+☑️ LMap\
+☑️ LMarker\
+☑️ LPolygon\
+☑️ LPolyline\
+☑️ LPopup\
+☑️ LRectangle\
+❌ LSVGOverlay\
+☑️ LTileLayer\
+☑️ LTooltip\
+❌ LVideoOverlay\
+☑️ LWmsTileLayer
+
+## Installation
+
+```bash
+pnpm add @maxel01/vue-leaflet leaflet
+```
+
+or
+
+```bash
+yarn add @maxel01/vue-leaflet leaflet
+```
+
+or
+
+```bash
+npm i -D @maxel01/vue-leaflet leaflet
+```
+
+## Usage
+
+Until the complete documentation is ready, please check the
+[component playground](https://github.com/vue-leaflet/vue-leaflet/tree/master/src/playground/views) examples for usage with Vue 3.
+Most component props mimic the vanilla [Leaflet options](https://leafletjs.com/reference-1.7.1.html) as closely as
+possible.
+
+### Quickstart
+
+```vue
+<script setup>
+  import 'leaflet/dist/leaflet.css'
+  import { LMap, LTileLayer } from '@maxel01/vue-leaflet'
+  import ref from "vue"
+
+  const zoom = ref<number>(2)
+</script>
+
+<template>
+  <div style="height:600px; width:800px">
+    <LMap ref="map" v-model:zoom="zoom" :center="[47.41322, -1.219482]">
+      <LTileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        layer-type="base"
+        name="OpenStreetMap"
+      ></LTileLayer>
+    </LMap>
+  </div>
+</template>
+
+<style></style>
+```
+
+### Component playground
+
+To see the [component playground](https://github.com/vue-leaflet/vue-leaflet/tree/master/src/playground/views) in action,
+clone this repo and run the local dev server, then visit http://127.0.0.1:5173,
+```bash
+git clone https://github.com/maxel01/vue-leaflet.git
+cd vue-leaflet
+pnpm install
+pnpm run dev
+```
+
+### Server-side rendering (SSR)
+
+Leaflet v2 now supports ES modules and can be imported directly. So far there were no issues with SSR.
+
+```vue
+<script setup>
+import "leaflet/dist/leaflet.css"
+import { LMap, LGeoJson } from "@maxel01/vue-leaflet";
+import CircleMarker from "leaflet"
+
+const geojson = { 
+  type: "FeatureCollection",
+  features: [
+    // ...
+  ],
+}
+const geojsonOptions = {
+  pointToLayer: (feature, latLng) => new CircleMarker(latLng, { radius: 8 }),
+  // ...
+}
+</script>
+
+<template>
+  <div style="height:600px; width:800px">
+    <p>vue-leaflet SSR Demo</p>
+    <LMap :zoom="2" :center="[47.41322, -1.219482]">
+      <LGeoJson :geojson="geojson" :options="geojsonOptions" />
+    </LMap>
+  </div>
+</template>
+```
+
+## Credits
+
+[vue-leaflet/vue-leaflet](https://github.com/vue-leaflet/vue-leaflet)
