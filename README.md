@@ -78,6 +78,9 @@ or
 npm i -D @maxel01/vue-leaflet leaflet
 ```
 
+> [!IMPORTANT]
+> For package maintainers: PNPM must be globally installed to build this package. ([How do I install PNPM?](https://pnpm.io/installation))
+
 ## Usage
 
 Until the complete documentation is ready, please check the
