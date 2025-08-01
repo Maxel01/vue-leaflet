@@ -19,7 +19,7 @@
   "scripts": {
     "dev": "vite",
     "test": "vitest --coverage",
-    "build": "pnpm run type-check && pnpm run build-only",
+    "build": "vue-tsc --noEmit && vite build",
     "build-only": "vite build",
     "preview": "vite preview",
     "type-check": "vue-tsc --noEmit",
