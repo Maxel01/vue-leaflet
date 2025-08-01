@@ -154,6 +154,15 @@ const geojsonOptions = {
 </template>
 ```
 
+## For Maintainers
+
+This repo uses pnpm for building the package.
+
+Add the pnpm-lock.json to the commit only if necessary.
+
+> [!NOTE]
+> ([How do I install PNPM?](https://pnpm.io/installation))
+
 ## Credits
 
 [vue-leaflet/vue-leaflet](https://github.com/vue-leaflet/vue-leaflet)
