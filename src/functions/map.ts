@@ -22,7 +22,7 @@ export interface MapProps extends ComponentProps<MapOptions> {
     padding?: PointExpression
     worldCopyJump?: boolean
     // BREAKING CHANGES: crs value needs to be a value of CRS class
-    crs?: CRS | typeof CRS.EPSG3857
+    crs?: CRS | typeof CRS.EPSG3857 // typeof only necessary to remove the runtime warning
     maxBoundsViscosity?: number
     inertia?: boolean
     inertiaDeceleration?: number
