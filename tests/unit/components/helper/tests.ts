@@ -1,4 +1,4 @@
-import { expect, vi, it, describe } from 'vitest'
+import { expect, it, vi } from 'vitest'
 import type { VueWrapper } from '@vue/test-utils'
 
 export const testEmitsReady = (getWrapper: () => Promise<VueWrapper<any>>) => {
@@ -21,7 +21,7 @@ export const testRemovesOnUnmount = (getWrapper: () => Promise<VueWrapper<any>>)
     })
 }
 
-export function testComponentPropBindings(getWrapper: () => Promise<VueWrapper<unknown>>) {
+export function testComponentPropBindings(getWrapper: () => Promise<VueWrapper<any>>) {
     it('registers watch for each prop with matching setter', async () => {
         const consoleWarnMock = vi.spyOn(console, 'warn').mockImplementation(() => {})
         await getWrapper()

@@ -4,7 +4,6 @@ import LControlAttribution from '../../../src/components/LControlAttribution.vue
 import { RegisterControlInjection } from '../../../src/types/injectionKeys'
 import { Control } from 'leaflet'
 import { testComponentPropBindings, testEmitsReady, testRemovesOnUnmount } from './helper/tests'
-import { testComponentWatchBindings } from './helper/tststst'
 
 const mockRegisterControl = vi.fn()
 
@@ -13,7 +12,6 @@ const createWrapper = async (props = {}) => {
         propsData: {
             position: 'topright',
             prefix: 'Hello there',
-            someProp: undefined,
             ...props,
         },
         global: {
@@ -33,31 +31,37 @@ describe('LControlAttribution.vue', () => {
     })
 
     testEmitsReady(createWrapper)
+    testComponentPropBindings(createWrapper)
+    testRemovesOnUnmount(createWrapper)
 
+    testCorrectInitialisation(createWrapper)
+    testControlRegistration(createWrapper)
+    testReactivePrefix(createWrapper)
+    testReactivePosition(createWrapper)
+})
+
+const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {
     it('creates a Leaflet Attribution control with correct options', async () => {
-        const wrapper = await createWrapper()
+        const wrapper = await getWrapper()
         const obj = wrapper.vm.leafletObject as Control.Attribution
 
         expect(obj).toBeDefined()
         expect(obj.options.prefix).toBe('Hello there')
         expect(obj.options.position).toBe('topright')
     })
+}
 
+const testControlRegistration = (getWrapper: () => Promise<VueWrapper<any>>) => {
     it('registers the control via injection', async () => {
-        const wrapper = await createWrapper()
+        const wrapper = await getWrapper()
         expect(mockRegisterControl).toHaveBeenCalledTimes(1)
         expect(mockRegisterControl).toHaveBeenCalledWith({
             leafletObject: wrapper.vm.leafletObject,
         })
     })
+}
 
-    testReactivePrefix(createWrapper)
-    testReactivePosition(createWrapper)
-    testRemovesOnUnmount(createWrapper)
-    testComponentPropBindings(createWrapper)
-})
-
-const testReactivePrefix = (getWrapper: () => Promise<VueWrapper<unknown>>) => {
+const testReactivePrefix = (getWrapper: () => Promise<VueWrapper<any>>) => {
     it('reactively updates "prefix"', async () => {
         const wrapper = await getWrapper()
         await wrapper.setProps({ prefix: 'new prefix' })
@@ -67,7 +71,7 @@ const testReactivePrefix = (getWrapper: () => Promise<VueWrapper<unknown>>) => {
     })
 }
 
-const testReactivePosition = (getWrapper: () => Promise<VueWrapper<unknown>>) => {
+const testReactivePosition = (getWrapper: () => Promise<VueWrapper<any>>) => {
     it('reactively updates "position"', async () => {
         const wrapper = await getWrapper()
         await wrapper.setProps({ position: 'bottomleft' })
