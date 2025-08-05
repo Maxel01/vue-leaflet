@@ -30,6 +30,7 @@
     "release": "release-it"
   },
   "dependencies": {
+    "@vue/test-utils": "^2.4.6",
     "ts-debounce": "^4.0.0"
   },
   "peerDependencies": {
