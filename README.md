@@ -1,5 +1,11 @@
 # vue-leaflet
 
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![License][license-src]][license-href]
+[![Vue][vue-src]][vue-href]
+[![Leaflet][leaflet-src]][leaflet-href]
+
 Vue-leaflet wrapper supporting leaflet v2 (based on [vue-leaflet/vue-leaflet](https://github.com/vue-leaflet/vue-leaflet)).
 
 This is an Alpha version! And may yet be unstable! If you want to help, please reach out in an [issue](https://github.com/Maxel01/vue-leaflet/issues) or join the [discussions](https://github.com/Maxel01/vue-leaflet/discussions).
@@ -165,3 +171,19 @@ Add the pnpm-lock.json to the commit only if necessary.
 ## Credits
 
 [vue-leaflet/vue-leaflet](https://github.com/vue-leaflet/vue-leaflet)
+
+<!-- Badges -->
+[npm-version-src]: https://img.shields.io/npm/v/@maxel01/vue-leaflet/latest.svg?color=0F81C2
+[npm-version-href]: https://www.npmjs.com/package/@maxel01/vue-leaflet
+
+[npm-downloads-src]: https://img.shields.io/npm/dm/@maxel01/vue-leaflet.svg
+[npm-downloads-href]: https://www.npmjs.com/package/@maxel01/vue-leaflet
+
+[license-src]: https://img.shields.io/npm/l/@maxel01/vue-leaflet.svg
+[license-href]: https://www.npmjs.com/package/@maxel01/vue-leaflet
+
+[vue-src]: https://img.shields.io/badge/Vue-18181B?logo=vue.js
+[vue-href]: https://vuejs.org
+
+[leaflet-src]: https://img.shields.io/badge/Leaflet-18181B?logo=leaflet
+[leaflet-href]: https://leafletjs.com/
