@@ -1,85 +1,78 @@
-import { flushPromises, shallowMount } from '@vue/test-utils'
-import 'leaflet'
+import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-
 import LControlAttribution from '../../../src/components/LControlAttribution.vue'
 import { RegisterControlInjection } from '../../../src/types/injectionKeys'
+import { Control } from 'leaflet'
+import { testComponentPropBindings, testEmitsReady, testRemovesOnUnmount } from './helper/tests'
+import { testComponentWatchBindings } from './helper/tststst'
 
-describe('LControlAttribution', () => {
-    const mockRegisterControl = vi.fn()
-    const getWrapper = async () => {
-        const wrapper = shallowMount(LControlAttribution, {
-            propsData: {
-                position: 'topright',
-                prefix: 'Hello there',
+const mockRegisterControl = vi.fn()
+
+const createWrapper = async (props = {}) => {
+    const wrapper = shallowMount(LControlAttribution, {
+        propsData: {
+            position: 'topright',
+            prefix: 'Hello there',
+            someProp: undefined,
+            ...props,
+        },
+        global: {
+            provide: {
+                [RegisterControlInjection as symbol]: mockRegisterControl,
             },
-            global: {
-                provide: {
-                    [RegisterControlInjection as symbol]: mockRegisterControl,
-                },
-            },
-        })
-        await flushPromises()
+        },
+    })
 
-        return wrapper
-    }
+    await flushPromises()
+    return wrapper
+}
 
+describe('LControlAttribution.vue', () => {
     beforeEach(() => {
         mockRegisterControl.mockReset()
     })
 
-    it(`emits a ready event with the Leaflet object`, async () => {
-        const wrapper = await getWrapper()
+    testEmitsReady(createWrapper)
 
-        expect(wrapper.emitted()).to.have.property('ready')
-        const readyEvent = wrapper.emitted('ready')
-        expect(readyEvent).to.have.length(1)
-        expect(readyEvent![0]).to.deep.equal([wrapper.vm.leafletObject])
+    it('creates a Leaflet Attribution control with correct options', async () => {
+        const wrapper = await createWrapper()
+        const obj = wrapper.vm.leafletObject as Control.Attribution
+
+        expect(obj).toBeDefined()
+        expect(obj.options.prefix).toBe('Hello there')
+        expect(obj.options.position).toBe('topright')
     })
 
-    it(`creates a Leaflet object with expected properties`, async () => {
-        const wrapper = await getWrapper()
-
-        expect(wrapper.vm.leafletObject).to.exist
-        const leafletObject = wrapper.vm.leafletObject!
-        expect(leafletObject!.options.prefix).to.equal('Hello there')
-        expect(leafletObject?.options.position).to.equal('topright')
-    })
-
-    it(`registers its Leaflet object`, async () => {
-        const wrapper = await getWrapper()
-
+    it('registers the control via injection', async () => {
+        const wrapper = await createWrapper()
         expect(mockRegisterControl).toHaveBeenCalledTimes(1)
         expect(mockRegisterControl).toHaveBeenCalledWith({
             leafletObject: wrapper.vm.leafletObject,
         })
     })
 
-    it(`updates the prefixt`, async () => {
-        const wrapper = await getWrapper()
-        expect(wrapper.vm.leafletObject?.options.prefix)
-
-        wrapper.setProps({ prefix: 'new prefix' })
-
-        await flushPromises()
-        expect(wrapper.vm.leafletObject?.options.prefix).to.equal('new prefix')
-    })
-
-    it(`updates the positiont`, async () => {
-        const wrapper = await getWrapper()
-
-        wrapper.setProps({ position: 'bottomleft' })
-
-        await flushPromises()
-        expect(wrapper.vm.leafletObject?.options.position).to.equal('bottomleft')
-    })
-
-    it(`removes itself from the map on unmount`, async () => {
-        const wrapper = await getWrapper()
-        const removeSpy = vi.spyOn(wrapper.vm.leafletObject!, 'remove')
-
-        wrapper.unmount()
-
-        expect(removeSpy).toBeCalledTimes(1)
-    })
+    testReactivePrefix(createWrapper)
+    testReactivePosition(createWrapper)
+    testRemovesOnUnmount(createWrapper)
+    testComponentPropBindings(createWrapper)
 })
+
+const testReactivePrefix = (getWrapper: () => Promise<VueWrapper<unknown>>) => {
+    it('reactively updates "prefix"', async () => {
+        const wrapper = await getWrapper()
+        await wrapper.setProps({ prefix: 'new prefix' })
+        await flushPromises()
+
+        expect(wrapper.vm.leafletObject?.options.prefix).toBe('new prefix')
+    })
+}
+
+const testReactivePosition = (getWrapper: () => Promise<VueWrapper<unknown>>) => {
+    it('reactively updates "position"', async () => {
+        const wrapper = await getWrapper()
+        await wrapper.setProps({ position: 'bottomleft' })
+        await flushPromises()
+
+        expect(wrapper.vm.leafletObject?.options.position).toBe('bottomleft')
+    })
+}
