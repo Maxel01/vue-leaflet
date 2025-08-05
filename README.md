@@ -43,7 +43,7 @@ Let me now what you need!
 ☑️ LControlLayers\
 ☑️ LControlScale\
 ☑️ LControlZoom\
-❌ LDivOverlay\
+🔧 LDivOverlay\
 ☑️ LFeatureGroup\
 ☑️ LGeoJson\
 ☑️ LIcon\
@@ -54,7 +54,7 @@ Let me now what you need!
 ☑️ LPolyline\
 ☑️ LPopup\
 ☑️ LRectangle\
-❌ LSVGOverlay\
+☑️ LSVGOverlay\
 ☑️ LTileLayer\
 ☑️ LTooltip\
 ❌ LVideoOverlay\

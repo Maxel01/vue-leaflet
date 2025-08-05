@@ -23,8 +23,8 @@ export const imageOverlayPropsDefaults = {
     crossOrigin: undefined,
 }
 
-export type ImageOverlayEmits = LayerEmits & {
-    (event: 'ready', layer: ImageOverlay): void
+export type ImageOverlayEmits<T extends ImageOverlay = ImageOverlay> = LayerEmits & {
+    (event: 'ready', layer: T): void
 }
 
 export const setupImageOverlay = (

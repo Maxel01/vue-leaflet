@@ -48,6 +48,9 @@ const routes = [
     {
         path: '/image-overlay',
         component: () => import('./views/ImageOverlayDemo.vue'),
+    },{
+        path: '/svg-overlay',
+        component: () => import('./views/SVGOverlayDemo.vue'),
     },
     { path: '/polygon', component: () => import('./views/PolygonDemo.vue') },
     { path: '/polyline', component: () => import('./views/PolylineDemo.vue') },
