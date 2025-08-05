@@ -1,11 +1,17 @@
-import type { ImageOverlay, ImageOverlayOptions, LatLngBounds, LatLngBoundsExpression } from 'leaflet'
+import type {
+    ImageOverlay,
+    ImageOverlayOptions,
+    LatLngBounds,
+    LatLngBoundsExpression,
+} from 'leaflet'
 import type { Ref } from 'vue'
 
 import { propsToLeafletOptions } from '../utils'
 
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
 
-export interface ImageOverlayProps extends LayerProps {
+export interface ImageOverlayProps<T extends ImageOverlayOptions = ImageOverlayOptions>
+    extends LayerProps<T> {
     opacity?: number
     alt?: string
     interactive?: boolean

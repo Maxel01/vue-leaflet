@@ -43,7 +43,6 @@ Let me now what you need!
 ☑️ LControlLayers\
 ☑️ LControlScale\
 ☑️ LControlZoom\
-🔧 LDivOverlay\
 ☑️ LFeatureGroup\
 ☑️ LGeoJson\
 ☑️ LIcon\
@@ -57,7 +56,7 @@ Let me now what you need!
 ☑️ LSVGOverlay\
 ☑️ LTileLayer\
 ☑️ LTooltip\
-❌ LVideoOverlay\
+☑️ LVideoOverlay\
 ☑️ LWmsTileLayer
 
 ## Installation
