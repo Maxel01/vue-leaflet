@@ -10,7 +10,7 @@ import { propsToLeafletOptions } from '../utils'
 
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
 
-export interface ImageOverlayProps<T extends ImageOverlayOptions = ImageOverlayOptions>
+export interface ImageOverlayAbstractProps<T extends ImageOverlayOptions = ImageOverlayOptions>
     extends LayerProps<T> {
     opacity?: number
     alt?: string
@@ -19,8 +19,11 @@ export interface ImageOverlayProps<T extends ImageOverlayOptions = ImageOverlayO
     errorOverlayUrl?: string
     zIndex?: number
     className?: string
-    url: string
     bounds: LatLngBoundsExpression
+}
+
+export interface ImageOverlayProps extends ImageOverlayAbstractProps {
+    url: string
 }
 
 export const imageOverlayPropsDefaults = {
@@ -67,16 +70,14 @@ export const setupImageOverlay = (
         },
         /**
          * Get the bounds that this ImageOverlay covers
-         * @returns {LatLngBounds}
          */
-        getBounds() {
+        getBounds(): LatLngBounds | undefined {
             return leafletRef.value?.getBounds()
         },
         /**
          * Returns the instance of HTMLImageElement used by this overlay.
-         * @returns {HTMLElement}
          */
-        getElement() {
+        getElement(): HTMLElement | undefined {
             return leafletRef.value?.getElement()
         },
         /**

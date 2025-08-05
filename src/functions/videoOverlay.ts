@@ -1,11 +1,11 @@
-import type { LatLngBoundsExpression, VideoOverlay, VideoOverlayOptions } from 'leaflet'
+import type { VideoOverlay, VideoOverlayOptions } from 'leaflet'
 import type { Ref } from 'vue'
 
 import { propsToLeafletOptions } from '../utils'
-import type { ImageOverlayEmits, ImageOverlayProps } from './imageOverlay.ts'
+import type { ImageOverlayAbstractProps, ImageOverlayEmits } from './imageOverlay.ts'
 import { imageOverlayPropsDefaults, setupImageOverlay } from './imageOverlay.ts'
 
-export interface VideoOverlayProps extends ImageOverlayProps<VideoOverlayOptions> {
+export interface VideoOverlayProps extends ImageOverlayAbstractProps<VideoOverlayOptions> {
     video: string | string[] | HTMLVideoElement
 }
 
