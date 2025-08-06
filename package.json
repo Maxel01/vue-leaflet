@@ -25,6 +25,7 @@
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
+    "docs:generate": "node scripts/generate-docs.js",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "release": "release-it"
@@ -51,6 +52,9 @@
     "@vue/tsconfig": "^0.7.0",
     "eslint": "^9.31.0",
     "eslint-plugin-vue": "^10.3.0",
+    "fast-glob": "^3.3.3",
+    "fs-extra": "^11.3.1",
+    "gray-matter": "^4.0.3",
     "jiti": "^2.4.2",
     "jsdom": "^26.1.0",
     "prettier": "^3.6.2",
@@ -61,6 +65,7 @@
     "vitepress": "^1.6.3",
     "vitest": "^3.2.4",
     "vue": "^3.5.17",
+    "vue-docgen-api": "^4.79.2",
     "vue-router": "^4.5.1",
     "vue-tsc": "^2.2.12"
   }

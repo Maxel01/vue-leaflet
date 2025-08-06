@@ -59,6 +59,8 @@ onMounted(() => {
 
 <!--@include: ./props/path-props.md-->
 
+<!--@include: ../gen/components/LCircleMarker.md-->
+
 ## Events
 
 | Event name     | Type         | Description                                        |
