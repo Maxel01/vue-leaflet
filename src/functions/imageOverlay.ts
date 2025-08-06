@@ -1,11 +1,17 @@
-import type { ImageOverlay, ImageOverlayOptions, LatLngBounds, LatLngBoundsExpression } from 'leaflet'
+import type {
+    ImageOverlay,
+    ImageOverlayOptions,
+    LatLngBounds,
+    LatLngBoundsExpression,
+} from 'leaflet'
 import type { Ref } from 'vue'
 
 import { propsToLeafletOptions } from '../utils'
 
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
 
-export interface ImageOverlayProps extends LayerProps {
+export interface ImageOverlayAbstractProps<T extends ImageOverlayOptions = ImageOverlayOptions>
+    extends LayerProps<T> {
     opacity?: number
     alt?: string
     interactive?: boolean
@@ -13,8 +19,11 @@ export interface ImageOverlayProps extends LayerProps {
     errorOverlayUrl?: string
     zIndex?: number
     className?: string
-    url: string
     bounds: LatLngBoundsExpression
+}
+
+export interface ImageOverlayProps extends ImageOverlayAbstractProps {
+    url: string
 }
 
 export const imageOverlayPropsDefaults = {
@@ -23,8 +32,8 @@ export const imageOverlayPropsDefaults = {
     crossOrigin: undefined,
 }
 
-export type ImageOverlayEmits = LayerEmits & {
-    (event: 'ready', layer: ImageOverlay): void
+export type ImageOverlayEmits<T extends ImageOverlay = ImageOverlay> = LayerEmits & {
+    (event: 'ready', layer: T): void
 }
 
 export const setupImageOverlay = (
@@ -61,16 +70,14 @@ export const setupImageOverlay = (
         },
         /**
          * Get the bounds that this ImageOverlay covers
-         * @returns {LatLngBounds}
          */
-        getBounds() {
+        getBounds(): LatLngBounds | undefined {
             return leafletRef.value?.getBounds()
         },
         /**
          * Returns the instance of HTMLImageElement used by this overlay.
-         * @returns {HTMLElement}
          */
-        getElement() {
+        getElement(): HTMLElement | undefined {
             return leafletRef.value?.getElement()
         },
         /**
