@@ -4,20 +4,20 @@ import { RegisterLayerControlInjection } from '../../../src/types/injectionKeys'
 import { testRemovesOnUnmount } from './helper/tests'
 import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
-import { LControlLayers } from '../../../src/components'
+import LControlLayers from '../../../src/components/LControlLayers.vue'
 import { mockRegisterLayerControl, testControlLayerRegistration } from './helper/injectionsTests'
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LControlLayers, {
         propsData: {
             position: 'topright',
-            ...props,
+            ...props
         },
         global: {
             provide: {
-                [RegisterLayerControlInjection as symbol]: mockRegisterLayerControl,
-            },
-        },
+                [RegisterLayerControlInjection as symbol]: mockRegisterLayerControl
+            }
+        }
     })
 
     await flushPromises()

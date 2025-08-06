@@ -1,5 +1,5 @@
 import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import LControlAttribution from '../../../src/components/LControlAttribution.vue'
 import { RegisterControlInjection } from '../../../src/types/injectionKeys'
 import { Control } from 'leaflet'
