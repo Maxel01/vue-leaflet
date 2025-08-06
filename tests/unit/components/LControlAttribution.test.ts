@@ -3,7 +3,9 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import LControlAttribution from '../../../src/components/LControlAttribution.vue'
 import { RegisterControlInjection } from '../../../src/types/injectionKeys'
 import { Control } from 'leaflet'
-import { testComponentPropBindings, testEmitsReady, testRemovesOnUnmount } from './helper/tests'
+import { testRemovesOnUnmount } from './helper/tests'
+import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
+import { testEmitsReady } from './helper/emitTests'
 
 const mockRegisterControl = vi.fn()
 
@@ -32,12 +34,11 @@ describe('LControlAttribution.vue', () => {
 
     testEmitsReady(createWrapper)
     testComponentPropBindings(createWrapper)
+    testPropsBindingToLeaflet(createWrapper, { prefix: 'new prefix', position: 'bottomleft' })
     testRemovesOnUnmount(createWrapper)
 
     testCorrectInitialisation(createWrapper)
     testControlRegistration(createWrapper)
-    testReactivePrefix(createWrapper)
-    testReactivePosition(createWrapper)
 })
 
 const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {
@@ -58,25 +59,5 @@ const testControlRegistration = (getWrapper: () => Promise<VueWrapper<any>>) => 
         expect(mockRegisterControl).toHaveBeenCalledWith({
             leafletObject: wrapper.vm.leafletObject,
         })
-    })
-}
-
-const testReactivePrefix = (getWrapper: () => Promise<VueWrapper<any>>) => {
-    it('reactively updates "prefix"', async () => {
-        const wrapper = await getWrapper()
-        await wrapper.setProps({ prefix: 'new prefix' })
-        await flushPromises()
-
-        expect(wrapper.vm.leafletObject?.options.prefix).toBe('new prefix')
-    })
-}
-
-const testReactivePosition = (getWrapper: () => Promise<VueWrapper<any>>) => {
-    it('reactively updates "position"', async () => {
-        const wrapper = await getWrapper()
-        await wrapper.setProps({ position: 'bottomleft' })
-        await flushPromises()
-
-        expect(wrapper.vm.leafletObject?.options.position).toBe('bottomleft')
     })
 }
