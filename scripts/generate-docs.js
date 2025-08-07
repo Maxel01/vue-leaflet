@@ -1,7 +1,6 @@
 import { parse } from 'vue-docgen-api'
 import fg from 'fast-glob'
 import fse from 'fs-extra'
-import matter from 'gray-matter'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -22,19 +21,15 @@ async function generate() {
         const name = doc.displayName || path.basename(file, '.vue')
         const markdownPath = path.join(outputDir, `${name}.md`)
 
-        const frontmatter = {
-            title: name,
-            sidebar: 'auto'
-        }
-
         let markdown = `# ${name}\n\n${doc.description || ''}\n\n`
+        markdown = ''
 
         // Props
         if (doc.props?.length) {
-            markdown += '## Props\n\n| Name | Type | Default | Description |\n| --- | --- | --- | --- |\n'
+            markdown += '## Props\n\n| Prop name | Description | Type | Default |\n| --- | --- | --- | --- |\n'
             for (const prop of doc.props) {
                 const type = typeof prop.type === 'object' ? prop.type?.name || '-' : prop.type || '-'
-                markdown += `| \`${prop.name}\` | \`${type}\` | \`${prop.defaultValue?.value || '-'}\` | ${prop.description || '-'} |\n`
+                markdown += `| ${prop.name} | ${prop.description || '-'} | \`${type}\` | \`${prop.defaultValue?.value || '-'}\` |\n`
             }
             markdown += '\n'
         }
@@ -68,8 +63,7 @@ async function generate() {
             markdown += '\n'
         }
 
-        const finalMarkdown = matter.stringify(markdown, frontmatter)
-        await fse.outputFile(markdownPath, finalMarkdown, 'utf8')
+        await fse.outputFile(markdownPath, markdown, 'utf8')
         console.log(`📄 Generated: docs/gen/components/${name}.md`)
     }
 }

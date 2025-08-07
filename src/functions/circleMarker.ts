@@ -7,9 +7,12 @@ import type { Ref } from 'vue'
 export interface CircleMarkerProps<T extends CircleMarkerOptions = CircleMarkerOptions>
     extends PathProps<T> {
     /**
-     * Radius of the marker in pixels.
+     * Radius of the marker, in pixels
      */
     radius?: number
+    /**
+     * Latitude and longitude of the marker
+     */
     latLng: LatLngExpression
 }
 
