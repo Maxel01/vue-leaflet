@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@vue/test-utils':
-        specifier: ^2.4.6
-        version: 2.4.6
       leaflet:
         specifier: ^2.0.0-alpha
         version: 2.0.0-alpha
@@ -51,6 +48,9 @@ importers:
       '@vue/eslint-config-typescript':
         specifier: ^14.6.0
         version: 14.6.0(eslint-plugin-vue@10.3.0(@typescript-eslint/parser@8.37.0(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.31.0(jiti@2.4.2))(vue-eslint-parser@10.2.0(eslint@9.31.0(jiti@2.4.2))))(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3)
+      '@vue/test-utils':
+        specifier: ^2.4.6
+        version: 2.4.6
       '@vue/tsconfig':
         specifier: ^0.7.0
         version: 0.7.0(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
