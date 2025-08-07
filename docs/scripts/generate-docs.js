@@ -90,12 +90,13 @@ function writeProps(doc, markdown) {
         for (const [ifaceName, group] of sortedGroups) {
             if (group.level > 0)
                 markdown += `<details>\n<summary>from <strong>${ifaceName}</strong></summary>\n\n`
-            markdown += '| Prop name | Description | Type | Default | Required |\n'
-            markdown += '| --- | --- | --- | --- | --- |\n'
+            markdown += '| Prop name | Description | Type | Reactive | Default | Required |\n'
+            markdown += '| --- | --- | --- | --- | --- | --- |\n'
 
             for (const prop of group.props) {
+                const reactive = prop.tags?.["reactive"] ? "true" : prop.tags?.["initOnly"] ? "initOnly" : "?"
                 const type = typeof prop.type === 'object' ? prop.type?.name || '-' : prop.type || '-'
-                markdown += `| ${prop.name} | ${prop.description || '-'} | \`${type}\` | \`${prop.defaultValue?.value || '-'}\` | \`${prop.required}\` |\n`
+                markdown += `| ${prop.name} | ${prop.description || '-'} | \`${type}\` | \`${reactive}\` | \`${prop.defaultValue?.value || '-'}\` | \`${prop.required}\` |\n`
             }
             if (group.level > 0) markdown += '\n</details>\n\n'
             else markdown += '\n### Inherited props\n'
