@@ -34,8 +34,8 @@
     "ts-debounce": "^4.0.0"
   },
   "peerDependencies": {
-    "leaflet": "^2.0.0-alpha",
-    "vue": "^3.5.17"
+    "leaflet": "^2.0.0",
+    "vue": "^3.5.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
