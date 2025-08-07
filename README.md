@@ -2,7 +2,7 @@
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![License][license-src]][license-href]
+[![License][license-src]][license-href] \
 [![Vue][vue-src]][vue-href]
 [![Leaflet][leaflet-src]][leaflet-href]
 
@@ -182,8 +182,8 @@ Add the pnpm-lock.json to the commit only if necessary.
 [license-src]: https://img.shields.io/npm/l/@maxel01/vue-leaflet.svg
 [license-href]: https://www.npmjs.com/package/@maxel01/vue-leaflet
 
-[vue-src]: https://img.shields.io/badge/Vue-18181B?logo=vue.js
+[vue-src]: https://img.shields.io/npm/dependency-version/@maxel01/vue-leaflet/peer/vue?label=Vue&logo=vue.js&colorA=18181B
 [vue-href]: https://vuejs.org
 
-[leaflet-src]: https://img.shields.io/badge/Leaflet-18181B?logo=leaflet
+[leaflet-src]: https://img.shields.io/npm/dependency-version/@maxel01/vue-leaflet/peer/leaflet?label=Leaflet&logo=leaflet&colorA=18181B
 [leaflet-href]: https://leafletjs.com/
