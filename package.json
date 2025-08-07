@@ -2,7 +2,7 @@
   "name": "@maxel01/vue-leaflet",
   "version": "1.0.0-alpha.1",
   "license": "MIT",
-  "private": "false",
+  "public": "true",
   "type": "module",
   "sideEffects": false,
   "main": "dist/vue-leaflet.cjs.js",
