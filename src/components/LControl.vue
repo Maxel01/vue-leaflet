@@ -11,15 +11,7 @@ import {
 import { RegisterControlInjection } from '../types/injectionKeys'
 import { assertInject, propsBinder } from '../utils.js'
 
-const props = withDefaults(
-    defineProps<
-        ControlProps & {
-            disableClickPropagation?: boolean
-            disableScrollPropagation?: boolean
-        }
-    >(),
-    { ...controlPropsDefaults, disableClickPropagation: true, disableScrollPropagation: false },
-)
+const props = withDefaults(defineProps<ControlProps>(), controlPropsDefaults)
 const emit = defineEmits<ControlEmits>()
 
 const { root, leafletObject } = useControl()

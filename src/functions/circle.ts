@@ -12,7 +12,8 @@ import type { Ref } from 'vue'
 
 export interface CircleProps extends CircleMarkerProps<CircleOptions> {
     /**
-     * Radius of the circle in meters.
+     * Radius of the circle, in meters
+     * @reactive
      */
     radius: number
 }

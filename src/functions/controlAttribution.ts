@@ -2,15 +2,19 @@ import { Control } from 'leaflet'
 
 import { propsToLeafletOptions } from '../utils'
 
-import { type ControlEmits, type ControlProps, controlPropsDefaults, setupControl } from './control.ts'
+import { type ControlEmits, type ControlAbstractProps, controlAbstractPropsDefaults, setupControl } from './control.ts'
 import type { Ref } from 'vue'
 
-export interface ControlAttributionProps extends ControlProps<Control.AttributionOptions> {
+export interface ControlAttributionProps extends ControlAbstractProps<Control.AttributionOptions> {
+    /**
+     * The HTML text shown before the attributions. Pass `false` to disable.
+     * @reactive
+     */
     prefix?: string | false
 }
 
 export const controlAttributionPropsDefaults = {
-    ...controlPropsDefaults,
+    ...controlAbstractPropsDefaults,
 }
 
 export type ControlAttributionEmits = ControlEmits<Control.Attribution>

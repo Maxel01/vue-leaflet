@@ -8,10 +8,12 @@ export interface CircleMarkerProps<T extends CircleMarkerOptions = CircleMarkerO
     extends PathProps<T> {
     /**
      * Radius of the marker, in pixels
+     * @reactive
      */
     radius?: number
     /**
      * Latitude and longitude of the marker
+     * @initOnly
      */
     latLng: LatLngExpression
 }

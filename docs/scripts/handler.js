@@ -37,6 +37,12 @@ export default function propOriginHandler(
     }
     for (const prop of doc.props) {
         prop['interface'] = result.get(prop.name)
+        const typeInfo = prop.type
+
+        if (typeInfo?.name === 'union' && Array.isArray(typeInfo.elements)) {
+            prop.type.name = typeInfo.elements.map((el) => el.name).join(' \\| ')
+        }
+
     }
 }
 

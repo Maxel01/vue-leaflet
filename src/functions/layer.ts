@@ -15,10 +15,30 @@ import { type ComponentProps, componentPropsDefaults, setupComponent } from './c
 import type { Layer, LayerOptions, Popup, Tooltip } from 'leaflet'
 
 export interface LayerProps<T extends LayerOptions = LayerOptions> extends ComponentProps<T> {
+    /**
+     * By default, the layer will be added to the map's [overlay pane](https://leafletjs.com/reference.html#map-overlaypane). Overriding this option will cause the layer to be placed on another pane by default. Not effective if the renderer option is set (the renderer option will override the pane option).
+     * @initOnly
+     */
     pane?: string
+    /**
+     * String to be shown in the attribution control, e.g. "© OpenStreetMap contributors". It describes the layer data and is often a legal obligation towards copyright holders and tile providers.
+     * @reactive
+     */
     attribution?: string
+    /**
+     *
+     * @reactive
+     */
     name?: string
+    /**
+     *
+     * @reactive
+     */
     layerType?: LayerType
+    /**
+     *
+     * @reactive
+     */
     visible?: boolean
 }
 
