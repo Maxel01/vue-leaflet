@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.0.0-alpha.1](https://github.com/maxel01/vue-leaflet/compare/v1.0.0-alpha.0...v1.0.0-alpha.1) (2025-08-07)
+
+
+### ✨ Features
+
+* **core:** add LSVGOverlay component ([#31](https://github.com/maxel01/vue-leaflet/issues/31)) ([2ac948f](https://github.com/maxel01/vue-leaflet/commit/2ac948f46afb25a5f3375eb0630be3b6b7b21e6a))
+* **core:** add LVideoOverlay component ([#33](https://github.com/maxel01/vue-leaflet/issues/33)) ([f3c76db](https://github.com/maxel01/vue-leaflet/commit/f3c76dba8d680f3a308e4335a4c8d9caf7569443))
+
+
+### 🐛 Bug Fixes
+
+* **build:** add version to installation details, and fixes [#24](https://github.com/maxel01/vue-leaflet/issues/24): the build script is now independent of the package manager ([#27](https://github.com/maxel01/vue-leaflet/issues/27)) ([5929d7d](https://github.com/maxel01/vue-leaflet/commit/5929d7daea503361c8eea38b262724574f68cb69))
+
+
+### 🚧 Chores
+
+* add badges to `README.md` ([#35](https://github.com/maxel01/vue-leaflet/issues/35)) ([c897dcc](https://github.com/maxel01/vue-leaflet/commit/c897dcc71cc0479ff4ad81efe1af6f2dd29cff08))
+* add information for maintainers. ([#28](https://github.com/maxel01/vue-leaflet/issues/28)) ([ecc75f5](https://github.com/maxel01/vue-leaflet/commit/ecc75f52b308560d580975036c0cce3b0de4d2fb))
+* change leaflet version to the correct one ([7a49142](https://github.com/maxel01/vue-leaflet/commit/7a491420ad9d006cb1d5d396d36d1b951b551be1))
+
+
+### ✅ Tests
+
+* add tests for `utils.ts` and basic tests for `LControlAttribution` ([#34](https://github.com/maxel01/vue-leaflet/issues/34)) ([6afa136](https://github.com/maxel01/vue-leaflet/commit/6afa13607e5326738b2081d7f4a69471eb28f1d5))
+
 ## 1.0.0-alpha.0 (2025-07-28)
 
 

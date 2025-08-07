@@ -1,5 +1,11 @@
 # vue-leaflet
 
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![License][license-src]][license-href] \
+[![Vue][vue-src]][vue-href]
+[![Leaflet][leaflet-src]][leaflet-href]
+
 Vue-leaflet wrapper supporting leaflet v2 (based on [vue-leaflet/vue-leaflet](https://github.com/vue-leaflet/vue-leaflet)).
 
 This is an Alpha version! And may yet be unstable! If you want to help, please reach out in an [issue](https://github.com/Maxel01/vue-leaflet/issues) or join the [discussions](https://github.com/Maxel01/vue-leaflet/discussions).
@@ -43,7 +49,6 @@ Let me now what you need!
 ☑️ LControlLayers\
 ☑️ LControlScale\
 ☑️ LControlZoom\
-❌ LDivOverlay\
 ☑️ LFeatureGroup\
 ☑️ LGeoJson\
 ☑️ LIcon\
@@ -54,28 +59,28 @@ Let me now what you need!
 ☑️ LPolyline\
 ☑️ LPopup\
 ☑️ LRectangle\
-❌ LSVGOverlay\
+☑️ LSVGOverlay\
 ☑️ LTileLayer\
 ☑️ LTooltip\
-❌ LVideoOverlay\
+☑️ LVideoOverlay\
 ☑️ LWmsTileLayer
 
 ## Installation
 
 ```bash
-pnpm add @maxel01/vue-leaflet leaflet
+pnpm add @maxel01/vue-leaflet leaflet@2.0.0-alpha
 ```
 
 or
 
 ```bash
-yarn add @maxel01/vue-leaflet leaflet
+yarn add @maxel01/vue-leaflet leaflet@2.0.0-alpha
 ```
 
 or
 
 ```bash
-npm i -D @maxel01/vue-leaflet leaflet
+npm i @maxel01/vue-leaflet leaflet@2.0.0-alpha
 ```
 
 ## Usage
@@ -154,6 +159,31 @@ const geojsonOptions = {
 </template>
 ```
 
+## For Maintainers
+
+This repo uses pnpm for building the package.
+
+Add the pnpm-lock.json to the commit only if necessary.
+
+> [!NOTE]
+> ([How do I install PNPM?](https://pnpm.io/installation))
+
 ## Credits
 
 [vue-leaflet/vue-leaflet](https://github.com/vue-leaflet/vue-leaflet)
+
+<!-- Badges -->
+[npm-version-src]: https://img.shields.io/npm/v/@maxel01/vue-leaflet/latest.svg?color=0F81C2
+[npm-version-href]: https://www.npmjs.com/package/@maxel01/vue-leaflet
+
+[npm-downloads-src]: https://img.shields.io/npm/dm/@maxel01/vue-leaflet.svg
+[npm-downloads-href]: https://www.npmjs.com/package/@maxel01/vue-leaflet
+
+[license-src]: https://img.shields.io/npm/l/@maxel01/vue-leaflet.svg
+[license-href]: https://www.npmjs.com/package/@maxel01/vue-leaflet
+
+[vue-src]: https://img.shields.io/npm/dependency-version/@maxel01/vue-leaflet/peer/vue?label=Vue&logo=vue.js&colorA=18181B
+[vue-href]: https://vuejs.org
+
+[leaflet-src]: https://img.shields.io/npm/dependency-version/@maxel01/vue-leaflet/peer/leaflet?label=Leaflet&logo=leaflet&colorA=18181B
+[leaflet-href]: https://leafletjs.com/

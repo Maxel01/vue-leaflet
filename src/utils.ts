@@ -53,6 +53,8 @@ export const propsBinder = (methods, leafletElement: Evented, props) => {
                     leafletElement[setMethodName](newVal)
                 },
             )
+        } else if (key !== 'options' && import.meta.env.vitest) {
+            console.warn(`No setter for '${key}'`)
         }
     }
 }
