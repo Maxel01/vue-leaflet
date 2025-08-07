@@ -25,7 +25,7 @@
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
-    "docs:generate": "node scripts/generate-docs.js",
+    "docs:generate": "node docs/scripts/generate-docs.js",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "release": "release-it"
@@ -58,6 +58,7 @@
     "jsdom": "^26.1.0",
     "prettier": "^3.6.2",
     "release-it": "^17.11.0",
+    "ts-morph": "^26.0.0",
     "typescript": "~5.8.3",
     "vite": "^7.0.4",
     "vite-plugin-dts": "^4.5.4",

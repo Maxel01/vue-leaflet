@@ -48,17 +48,6 @@ onMounted(() => {
 </LMap>
 ```
 
-## Props
-
-| Prop name | Description                          | Type                                                                                                                                                                 | Required |
-| --------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| radius    | Radius of the marker in pixels       | Number                                                                                                                                                               | true     |
-| latLng    | Latitude and longitude of the marker | [LatLngExpression](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/45d34da16d9556b29be0469dbb66337735690feb/types/leaflet/v0/index.d.ts#L4) | true |
-
-### Inherited props
-
-<!--@include: ./props/path-props.md-->
-
 <!--@include: ../gen/components/LCircleMarker.md-->
 
 ## Events
