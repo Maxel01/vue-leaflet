@@ -14,7 +14,18 @@ const props = withDefaults(defineProps<LayerGroupProps>(), layerGroupPropsDefaul
 const emit = defineEmits<LayerGroupEmits>()
 
 const { ready, leafletObject } = useLayerGroup()
-defineExpose({ ready, leafletObject })
+defineExpose({
+    /**
+     * Indicates whether the component and its underlying Leaflet object are fully initialized.
+     * @type {Ref<boolean>}
+     */
+    ready,
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<LayerGroup \| undefined>}
+     */
+    leafletObject
+})
 
 function useLayerGroup() {
     const leafletObject = ref<LayerGroup>()
@@ -45,6 +56,9 @@ function useLayerGroup() {
 
 <template>
     <div v-if="ready" style="display: none">
+        <!--
+        @slot ?
+        -->
         <slot />
     </div>
 </template>

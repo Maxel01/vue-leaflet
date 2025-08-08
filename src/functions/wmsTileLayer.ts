@@ -11,12 +11,40 @@ import {
 import type { Ref } from 'vue'
 
 export interface WmsTileLayerProps extends TileLayerProps<WMSOptions> {
+    /**
+     * Comma-separated list of WMS layers to show
+     * @initOnly
+     */
     layers: string
+    /**
+     * Comme-separated list of WMS styles
+     * @initOnly
+     */
     styles?: string
+    /**
+     * WMS image format (use `image/png` for layers with transparency)
+     * @initOnly
+     */
     format?: string
+    /**
+     * If `true`, the WMS service will return images with transparency
+     * @initOnly
+     */
     transparent?: boolean
+    /**
+     * Version of the WMS service to use
+     * @initOnly
+     */
     version?: string
+    /**
+     * Coordinate Reference System to use for the WMS requests, defaults to the map CRS. Don't change this if you're not sure what it means.
+     * @initOnly
+     */
     crs?: CRS
+    /**
+     * If `true`, WMS request parameter keys will be uppercase.
+     * @initOnly
+     */
     uppercase?: boolean
 }
 

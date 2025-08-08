@@ -16,7 +16,7 @@ import type { Layer, LayerOptions, Popup, Tooltip } from 'leaflet'
 
 export interface LayerProps<T extends LayerOptions = LayerOptions> extends ComponentProps<T> {
     /**
-     * By default, the layer will be added to the map's [overlay pane](https://leafletjs.com/reference.html#map-overlaypane). Overriding this option will cause the layer to be placed on another pane by default. Not effective if the renderer option is set (the renderer option will override the pane option).
+     * By default, the layer will be added to the map's [overlay pane](https://leafletjs.com/reference-2.0.0.html#map-overlaypane). Overriding this option will cause the layer to be placed on another pane by default. Not effective if the renderer option is set (the renderer option will override the pane option).
      * @initOnly
      */
     pane?: string

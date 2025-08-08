@@ -12,8 +12,8 @@ export interface CircleMarkerProps<T extends CircleMarkerOptions = CircleMarkerO
      */
     radius?: number
     /**
-     * Latitude and longitude of the marker
-     * @initOnly
+     * Position of the circle marker
+     * @reactive
      */
     latLng: LatLngExpression
 }

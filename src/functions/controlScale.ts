@@ -22,7 +22,7 @@ export interface ControlScaleProps extends ControlAbstractProps<Control.ScaleOpt
      */
     imperial?: boolean
     /**
-     * If `true`, the control is updated on [moveend](https://leafletjs.com/reference.html#map-moveend), otherwise it's always up-to-date (updated on [move](https://leafletjs.com/reference.html#map-move)).
+     * If `true`, the control is updated on [moveend](https://leafletjs.com/reference-2.0.0html#map-moveend), otherwise it's always up-to-date (updated on [move](https://leafletjs.com/reference.html#map-move)).
      * @initOnly
      */
     updateWhenIdle?: boolean

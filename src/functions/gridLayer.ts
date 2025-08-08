@@ -29,7 +29,7 @@ export interface GridLayerAbstractProps<T extends GridLayerOptions = GridLayerOp
      */
     tileSize?: number | PointExpression
     /**
-     * Whether the layer is wrapped around the antimeridian. If true, the GridLayer will only be displayed once at low zoom levels. Has no effect when the [map CRS](https://leafletjs.com/reference.html#map-crs) doesn't wrap around. Can be used in combination with `bounds` to prevent requesting tiles outside the CRS limits.
+     * Whether the layer is wrapped around the antimeridian. If true, the GridLayer will only be displayed once at low zoom levels. Has no effect when the [map CRS](https://leafletjs.com/reference-2.0.0.html#map-crs) doesn't wrap around. Can be used in combination with `bounds` to prevent requesting tiles outside the CRS limits.
      * @initOnly
      */
     noWrap?: boolean

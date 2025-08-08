@@ -18,7 +18,7 @@ export interface GeoJSONProps extends LayerGroupProps<GeoJSONOptions> {
      */
     geojson?: GeoJsonObject
     /**
-     * A Function defining the styling for GeoJSON lines and polygons. See more in [original Leaflet documentation](https://leafletjs.com/reference.html#geojson-style)
+     * A Function defining the styling for GeoJSON lines and polygons. See more in [original Leaflet documentation](https://leafletjs.com/reference-2.0.0.html#geojson-style)
      * @reactive
      */
     optionsStyle?: StyleFunction

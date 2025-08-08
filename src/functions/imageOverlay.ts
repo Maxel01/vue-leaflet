@@ -12,17 +12,53 @@ import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from
 
 export interface ImageOverlayAbstractProps<T extends ImageOverlayOptions = ImageOverlayOptions>
     extends LayerProps<T> {
+    /**
+     * The opacity of the image overlay.
+     * @reactive
+     */
     opacity?: number
+    /**
+     * Text for the alt attribute of the image (useful for accessibility).
+     * @initOnly
+     */
     alt?: string
+    /**
+     * If `true`, the image overlay will emit [mouse events](https://leafletjs.com/reference-2.0.0.html#interactive-layer) when clicked or hovered
+     * @initOnly
+     */
     interactive?: boolean
+    /**
+     * Whether the crossOrigin attribute will be added to the image. If a String is provided, the image will have its crossOrigin attribute set to the String provided. This is needed if you want to access image pixel data. Refer to [CORS Settings](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) for valid String values.
+     * @initOnly
+     */
     crossOrigin?: boolean
+    /**
+     * URL to the overlay image to show in place of the overlay that failed to load.
+     * @initOnly
+     */
     errorOverlayUrl?: string
+    /**
+     * The explicit [zIndex](https://developer.mozilla.org/docs/Web/CSS/CSS_Positioning/Understanding_z_index) of the overlay layer.
+     * @reactive
+     */
     zIndex?: number
+    /**
+     * A custom class name to assign to the image. Empty by default.
+     * @initOnly
+     */
     className?: string
+    /**
+     * The geographical bounds
+     * @reactive
+     */
     bounds: LatLngBoundsExpression
 }
 
 export interface ImageOverlayProps extends ImageOverlayAbstractProps {
+    /**
+     * Url of the image
+     * @reactive
+     */
     url: string
 }
 

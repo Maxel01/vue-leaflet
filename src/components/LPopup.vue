@@ -7,11 +7,25 @@ import { type PopupProps, popupPropsDefaults, setupPopup } from '../functions/po
 
 const props = withDefaults(defineProps<PopupProps>(), popupPropsDefaults)
 const emit = defineEmits<{
+    /**
+     * Triggers when the component is ready
+     */
     (event: 'ready', tooltip: Tooltip): void
 }>()
 
 const { root, leafletObject } = usePopup()
-defineExpose({ root, leafletObject })
+defineExpose({
+    /**
+     * The root DOM element of the Leaflet popup. This element is managed by Leaflet's `Popup` class. You can use it to directly manipulate the popup's container (e.g. styling, event listeners), or alternatively use the default slot for custom content.
+     *  @type {Ref<HTMLElement \| undefined>}
+     */
+    root,
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<Popup \| undefined>}
+     */
+    leafletObject
+})
 
 function usePopup() {
     const leafletObject = ref<Popup>()
@@ -47,6 +61,9 @@ function usePopup() {
 
 <template>
     <div ref="root">
+        <!--
+        @slot Content to be rendered inside the Leaflet popup's container. This slot replaces the default content and allows full customization of the popup's appearance. The content will be injected into the popup's root DOM element.
+        -->
         <slot />
     </div>
 </template>

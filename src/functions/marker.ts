@@ -8,9 +8,25 @@ const unrenderedContentTypes = ['Symbol(Comment)', 'Symbol(Text)']
 const unrenderedComponentNames = ['LTooltip', 'LPopup']
 
 export interface MarkerProps extends LayerProps<MarkerOptions> {
+    /**
+     * Whether the marker is draggable with mouse/touch or not.
+     * @initOnly
+     */
     draggable?: boolean
+    /**
+     * Icon instance to use for rendering the marker. See [Icon documentation](/components/l-icon.html) for details on how to customize the marker icon. If not specified, a common instance of [Icon.Default](https://leafletjs.com/reference-2.0.0.html#icon-default) is used.
+     * @reactive
+     */
     icon?: Icon
+    /**
+     * By default, marker images zIndex is set automatically based on its latitude. Use this option if you want to put the marker on top of all others (or below), specifying a high value like 1000 (or high negative value, respectively).
+     * @reactive
+     */
     zIndexOffset?: number
+    /**
+     * The position of the marker
+     * @reactive
+     */
     latLng: LatLngExpression
 }
 
@@ -19,9 +35,18 @@ export const markerPropsDefaults = {
     draggable: undefined,
 }
 
-export type MarkerEmits = LayerEmits & {
+export interface MarkerEmits extends LayerEmits {
+    /**
+     * Triggers when the component is ready
+     */
     (event: 'ready', marker: Marker): void
+    /**
+     * Triggers when the latLng prop needs to be updated
+     */
     (event: 'update:latLng', value: LatLngExpression): void
+    /**
+     * Triggers when the latLng prop needs to be updated
+     */
     (event: 'update:lat-lng', value: LatLngExpression): void
 }
 
