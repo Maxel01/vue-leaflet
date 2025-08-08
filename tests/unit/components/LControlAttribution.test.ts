@@ -28,7 +28,7 @@ const createWrapper = async (props = {}) => {
 
 describe('LControlAttribution.vue', () => {
     testEmitsReady(createWrapper)
-    testComponentPropBindings(createWrapper)
+    testComponentPropBindings(createWrapper, "LControlAttribution")
     testPropsBindingToLeaflet(createWrapper, { prefix: 'new prefix', position: 'bottomleft' })
     testRemovesOnUnmount(createWrapper)
 

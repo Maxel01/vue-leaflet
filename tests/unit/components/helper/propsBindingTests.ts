@@ -1,18 +1,21 @@
 import { flushPromises, VueWrapper } from '@vue/test-utils'
 import { expect, it, vi } from 'vitest'
+import getReactivePropCount from './props'
 
-export function testComponentPropBindings(getWrapper: () => Promise<VueWrapper<any>>) {
+export function testComponentPropBindings(getWrapper: () => Promise<VueWrapper<any>>, componentName: string) {
     it('registers watch for each prop with matching setter', async () => {
-        const consoleWarnMock = vi.spyOn(console, 'warn').mockImplementation(() => {})
+        const consoleWarnMock = vi.spyOn(console, 'warn').mockImplementation(() => {
+        })
         await getWrapper()
-        expect(consoleWarnMock).not.toHaveBeenCalled()
+        const { initOnly } = getReactivePropCount(componentName)
+        expect(consoleWarnMock).toHaveBeenCalledTimes(initOnly)
         consoleWarnMock.mockRestore()
     })
 }
 
 export function testPropsBindingToLeaflet(
     getWrapper: (initialProps?: Record<string, any>) => Promise<VueWrapper<any>>,
-    updatedProps: Record<string, any>,
+    updatedProps: Record<string, any>
 ) {
     const entries = Object.entries(updatedProps)
     it.each(entries)(
@@ -25,6 +28,6 @@ export function testPropsBindingToLeaflet(
             await flushPromises()
 
             expect(leafletObject.options[propName]).toBe(newValue)
-        },
+        }
     )
 }

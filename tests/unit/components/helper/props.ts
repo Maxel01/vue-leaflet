@@ -1,0 +1,55 @@
+import { Project, SyntaxKind } from 'ts-morph'
+
+const project = new Project({
+    tsConfigFilePath: 'tsconfig.json'
+})
+project.addSourceFilesAtPaths('src/**/*')
+
+export default function getReactivePropCount(componentName: string) {
+    const componentBase = componentName.replace(/^L/, '')
+    const interfaceName = `${componentBase}Props`
+
+    const interfaceDeclaration = project
+        .getSourceFiles()
+        .flatMap(sf => sf.getInterfaces())
+        .find(i => i.getName() === interfaceName)
+    if (!interfaceDeclaration) {
+        return { reactive: 0, initOnly: 0 }
+    }
+
+    return collectReactivePropCount(interfaceDeclaration)
+}
+
+function collectReactivePropCount(interfaceDecl) {
+    let reactiveCount = 0
+    let initOnlyCount = 0
+    // Own properties
+    for (const prop of interfaceDecl.getProperties()) {
+        const jsDocs = prop.getJsDocs()
+        const hasReactive = jsDocs.some(doc =>
+            doc.getTags().some(tag => tag.getTagName() === 'initOnly')
+        )
+        const hasInitOnly = jsDocs.some(doc =>
+            doc.getTags().some(tag => tag.getTagName() === 'initOnly')
+        )
+        if (hasReactive) reactiveCount++
+        if (hasInitOnly) initOnlyCount++
+    }
+
+    // Inherited interfaces
+    for (const clause of interfaceDecl.getHeritageClauses()) {
+        for (const typeNode of clause.getTypeNodes()) {
+            const symbol = typeNode.getType().getSymbol()
+            if (!symbol) continue
+
+            const decl = symbol.getDeclarations().find(d => d.getKind() === SyntaxKind.InterfaceDeclaration)
+            if (decl) {
+                const { reactive, initOnly } = collectReactivePropCount(decl)
+                reactiveCount += reactive
+                initOnlyCount += initOnly
+            }
+        }
+    }
+    return { reactive: reactiveCount, initOnly: initOnlyCount }
+}
+

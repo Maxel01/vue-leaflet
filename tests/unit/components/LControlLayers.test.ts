@@ -26,7 +26,7 @@ const createWrapper = async (props = {}) => {
 
 describe('LControlLayers.vue', () => {
     testEmitsReady(createWrapper)
-    testComponentPropBindings(createWrapper)
+    testComponentPropBindings(createWrapper, "LControlLayers")
     testPropsBindingToLeaflet(createWrapper, { position: 'bottomleft' })
     testRemovesOnUnmount(createWrapper)
 
