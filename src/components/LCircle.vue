@@ -1,20 +1,37 @@
 <script setup lang="ts">
 import { Circle } from 'leaflet'
-import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
+import { markRaw, nextTick, onMounted, type Ref, ref, useAttrs } from 'vue'
 
 import { AddLayerInjection } from '../types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '../utils.js'
-import { setupCircle, type CircleEmits, type CircleProps, circlePropsDefaults } from '../functions/circle.ts'
+import {
+    type CircleEmits,
+    type CircleProps,
+    circlePropsDefaults,
+    setupCircle
+} from '../functions/circle.ts'
 
 const props = withDefaults(defineProps<CircleProps>(), circlePropsDefaults)
 const emit = defineEmits<CircleEmits>()
 
 const { ready, leafletObject } = useCircleMarker()
-defineExpose({ ready, leafletObject })
+
+defineExpose({
+    /**
+     * Indicates whether the component and its underlying Leaflet object are fully initialized.
+     * @type {Ref<boolean>}
+     */
+    ready,
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<Circle>}
+     */
+    leafletObject
+})
 
 function useCircleMarker() {
     const leafletObject = ref<Circle>()
-    const ready = ref(false)
+    const ready = ref<boolean>(false)
 
     const addLayer = assertInject(AddLayerInjection)
 
@@ -31,7 +48,7 @@ function useCircleMarker() {
         addLayer({
             ...props,
             ...methods,
-            leafletObject: leafletObject.value,
+            leafletObject: leafletObject.value
         })
         ready.value = true
         nextTick(() => emit('ready', leafletObject.value!))

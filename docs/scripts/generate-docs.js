@@ -48,10 +48,10 @@ async function generate() {
         }
 
         // Exposes
-        if (doc.exposes?.length) {
+        if (doc.expose?.length) {
             markdown += '## Exposes\n\n| Name | Type | Description |\n| --- | --- | --- |\n'
-            for (const expose of doc.exposes) {
-                const type = expose.type?.raw || '-'
+            for (const expose of doc.expose) {
+                const type = expose.tags?.find(i => i.title === 'type')?.type?.name || '-'
                 markdown += `| \`${expose.name}\` | \`${type}\` | ${expose.description || '-'} |\n`
             }
             markdown += '\n'
@@ -92,7 +92,7 @@ function writeProps(doc, markdown) {
             markdown += '| --- | --- | --- | --- | --- | --- |\n'
 
             for (const prop of group.props) {
-                const reactive = prop.tags?.["reactive"] ? "true" : prop.tags?.["initOnly"] ? "initOnly" : "?"
+                const reactive = prop.tags?.['reactive'] ? 'true' : prop.tags?.['initOnly'] ? 'initOnly' : '?'
                 const type = typeof prop.type === 'object' ? prop.type?.name || '-' : prop.type || '-'
                 markdown += `| ${prop.name} | ${prop.description || '-'} | \`${type}\` | \`${reactive}\` | \`${prop.defaultValue?.value || '-'}\` | \`${prop.required}\` |\n`
             }
