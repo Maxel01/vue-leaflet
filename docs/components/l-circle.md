@@ -46,16 +46,3 @@ import { LMap, LTileLayer, LCircle } from '../../src/lib.ts';
 ```
 
 <!--@include: ../gen/components/LCircle.md-->
-
-## Events
-
-| Event name     | Type    | Description                                        |
-| -------------- | ------- | -------------------------------------------------- |
-| update:visible | boolean | Triggers when the visible prop needs to be updated |
-| ready          | object  | Triggers when the component is ready               |
-
-## Slots
-
-| Name    | Description | Bindings |
-| ------- | ----------- | -------- |
-| default |             |          |

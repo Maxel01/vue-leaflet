@@ -6,7 +6,7 @@ import {
     type CircleMarkerEmits,
     type CircleMarkerProps,
     circleMarkerPropsDefaults,
-    setupCircleMarker,
+    setupCircleMarker
 } from '../functions/circleMarker'
 import { AddLayerInjection } from '../types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '../utils.js'
@@ -36,7 +36,7 @@ function useCircleMarker() {
         addLayer({
             ...props,
             ...methods,
-            leafletObject: leafletObject.value,
+            leafletObject: leafletObject.value
         })
         ready.value = true
         nextTick(() => emit('ready', leafletObject.value!))
@@ -47,6 +47,9 @@ function useCircleMarker() {
 
 <template>
     <div v-if="ready" style="display: none">
+        <!--
+        @slot Used to inject Leaflet child components like `<LPopup>` or `<LTooltip>` into the `LCircleMarker`.
+        -->
         <slot />
     </div>
 </template>

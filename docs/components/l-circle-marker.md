@@ -11,11 +11,6 @@ outline: deep
 <script setup>
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer, LCircleMarker } from '../../src/lib.ts';
-import { onMounted } from 'vue';
-
-onMounted(() => {
-  import('leaflet')
-})
 </script>
 
 <LMap style="height: 350px" :zoom="8" :center="[47.21322, -1.559482]">
@@ -49,16 +44,3 @@ onMounted(() => {
 ```
 
 <!--@include: ../gen/components/LCircleMarker.md-->
-
-## Events
-
-| Event name     | Type         | Description                                        |
-| -------------- |--------------| -------------------------------------------------- |
-| update:visible | boolean      | Triggers when the visible prop needs to be updated |
-| ready          | [CircleMarker](https://leafletjs.com/reference-2.0.0.html#circlemarker) | Triggers when the component is ready               |
-
-## Slots
-
-| Name    | Description | Bindings |
-| ------- | ----------- | -------- |
-| default |             |          |
