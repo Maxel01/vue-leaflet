@@ -11,7 +11,10 @@ export type LayerGroupProps<T extends LayerOptions = LayerOptions> = LayerProps<
 
 export const layerGroupPropsDefaults = layerPropsDefaults
 
-export type LayerGroupEmits<T extends LayerGroup = LayerGroup> = LayerEmits & {
+export interface LayerGroupEmits<T extends LayerGroup = LayerGroup> extends LayerEmits {
+    /**
+     * Triggers when the component is ready
+     */
     (event: 'ready', layer: T): void
 }
 

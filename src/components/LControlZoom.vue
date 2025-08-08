@@ -15,7 +15,12 @@ const props = withDefaults(defineProps<ControlZoomProps>(), controlZoomPropsDefa
 const emit = defineEmits<ControlZoomEmits>()
 
 const { leafletObject } = useControlZoom()
-defineExpose({ leafletObject })
+defineExpose({
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<Control.Zoom \| undefined>}
+     */
+    leafletObject })
 
 function useControlZoom() {
     const leafletObject = ref<Control.Scale>()

@@ -11,30 +11,70 @@ import {
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer.ts'
 import { propsToLeafletOptions } from '../utils.ts'
 
-export interface GridLayerProps<T extends GridLayerOptions = GridLayerOptions>
+export interface GridLayerAbstractProps<T extends GridLayerOptions = GridLayerOptions>
     extends LayerProps<T> {
+    /**
+     * Opacity of the tiles. Can be used in the createTile() function.
+     * @reactive
+     */
     opacity?: number
+    /**
+     * The explicit zIndex of the tile layer
+     * @reactive
+     */
     zIndex?: number
+    /**
+     * Width and height of tiles in the grid. Use a number if width and height are equal, or `Point(width, height)` otherwise.
+     * @initOnly
+     */
     tileSize?: number | PointExpression
+    /**
+     * Whether the layer is wrapped around the antimeridian. If true, the GridLayer will only be displayed once at low zoom levels. Has no effect when the [map CRS](https://leafletjs.com/reference.html#map-crs) doesn't wrap around. Can be used in combination with `bounds` to prevent requesting tiles outside the CRS limits.
+     * @initOnly
+     */
     noWrap?: boolean
+    /**
+     * The minimum zoom level down to which this layer will be displayed (inclusive)
+     * @initOnly
+     */
     minZoom?: number
+    /**
+     * The maximum zoom level up to which this layer will be displayed (inclusive)
+     * @initOnly
+     */
     maxZoom?: number
+    /**
+     * A custom class name to assign to the tile layer. Empty by default.
+     * @initOnly
+     */
     className?: string
 }
 
-export const gridLayerPropsDefaults = {
+export interface GridLayerProps extends GridLayerAbstractProps {
+    /**
+     * @initOnly
+     */
+    childRender: VueGridLayerTileRenderer
+}
+
+export const gridLayerAbstractPropsDefaults = {
     ...layerPropsDefaults,
     noWrap: undefined,
 }
 
-export type GridLayerEmits<T extends GridLayer = GridLayer> = LayerEmits & {
+export const gridLayerPropsDefaults = gridLayerAbstractPropsDefaults
+
+export interface GridLayerEmits<T extends GridLayer = GridLayer> extends LayerEmits {
+    /**
+     * Triggers when the component is ready
+     */
     (event: 'ready', layer: T): void
 }
 
 export type VueGridLayerTileRenderer = (props: { coords: Point }) => () => VNode
 
 export const setupGridLayer = <T extends GridLayer>(
-    props: GridLayerProps,
+    props: GridLayerAbstractProps,
     leafletRef: Ref<T | undefined>,
     emit: GridLayerEmits<T>,
 ) => {

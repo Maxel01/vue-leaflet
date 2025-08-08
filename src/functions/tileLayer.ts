@@ -1,14 +1,14 @@
 import {
     type GridLayerEmits,
-    type GridLayerProps,
-    gridLayerPropsDefaults,
+    type GridLayerAbstractProps,
+    gridLayerAbstractPropsDefaults,
     setupGridLayer,
 } from './gridLayer'
 import type { Ref } from 'vue'
 import { type TileLayer, type TileLayerOptions } from 'leaflet'
 import { propsToLeafletOptions } from '../utils.ts'
 
-export interface TileLayerProps<T extends TileLayerOptions = TileLayerOptions> extends GridLayerProps<T> {
+export interface TileLayerProps<T extends TileLayerOptions = TileLayerOptions> extends GridLayerAbstractProps<T> {
     tms?: boolean
     subdomains?: string | string[]
     detectRetina?: boolean
@@ -16,7 +16,7 @@ export interface TileLayerProps<T extends TileLayerOptions = TileLayerOptions> e
 }
 
 export const tileLayerPropsDefaults = {
-    ...gridLayerPropsDefaults,
+    ...gridLayerAbstractPropsDefaults,
     tms: undefined,
     detectRetina: undefined,
 }

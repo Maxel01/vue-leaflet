@@ -36,9 +36,3 @@ import { LMap, LTileLayer, LControlScale } from '../../src/lib.ts';
 ```
 
 <!--@include: ../gen/components/LControlScale.md-->
-
-## Events
-
-| Event name | Type   | Description                          |
-| ---------- | ------ | ------------------------------------ |
-| ready      | object | Triggers when the component is ready |

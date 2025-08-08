@@ -37,7 +37,10 @@ export const controlPropsDefaults = {
     disableScrollPropagation: false,
 }
 
-export type ControlEmits<T extends Control = Control> = {
+export interface ControlEmits<T extends Control = Control> {
+    /**
+     * Triggers when the component is ready
+     */
     (event: 'ready', layer: T): void
 }
 

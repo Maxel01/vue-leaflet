@@ -36,9 +36,3 @@ import { LMap, LTileLayer, LControlZoom } from '../../src/lib.ts';
 ```
 
 <!--@include: ../gen/components/LControlZoom.md-->
-
-## Events
-
-| Event name | Type   | Description                          |
-| ---------- | ------ | ------------------------------------ |
-| ready      | object | Triggers when the component is ready |

@@ -15,7 +15,18 @@ const props = withDefaults(defineProps<FeatureGroupProps>(), featureGroupPropsDe
 const emit = defineEmits<FeatureGroupEmits>()
 
 const { ready, leafletObject } = useFeatureGroup()
-defineExpose({ ready, leafletObject })
+defineExpose({
+    /**
+     * Indicates whether the component and its underlying Leaflet object are fully initialized.
+     * @type {Ref<boolean>}
+     */
+    ready,
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<FeatureGroup \| undefined>}
+     */
+    leafletObject
+})
 
 function useFeatureGroup() {
     const leafletObject = ref<FeatureGroup>()
@@ -47,6 +58,9 @@ function useFeatureGroup() {
 
 <template>
     <div v-if="ready" style="display: none">
+        <!--
+        @slot ?
+        -->
         <slot />
     </div>
 </template>

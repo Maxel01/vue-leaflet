@@ -1,29 +1,38 @@
 <script setup lang="ts">
 import {
-  CreateVueGridLayer, type GridLayerEmits,
-  type GridLayerProps,
-  gridLayerPropsDefaults,
-  setupGridLayer,
-  type VueGridLayerTileRenderer,
+    CreateVueGridLayer,
+    type GridLayerEmits,
+    type GridLayerProps,
+    gridLayerPropsDefaults,
+    setupGridLayer
 } from '../functions/gridLayer.ts'
 import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 import { AddLayerInjection } from '../types/injectionKeys.ts'
 import { assertInject, propsBinder, remapEvents } from '../utils.ts'
 import { GridLayer } from 'leaflet'
 
-const props = withDefaults(
-    defineProps<
-        GridLayerProps & {
-            childRender: VueGridLayerTileRenderer
-        }
-    >(),
-    gridLayerPropsDefaults,
-)
+const props = withDefaults(defineProps<GridLayerProps>(), gridLayerPropsDefaults)
 
 const emit = defineEmits<GridLayerEmits>()
 const {leafletObject, root, ready} = useGridLayer()
 
-defineExpose({ root, ready, leafletObject })
+defineExpose({
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<GridLayer \| undefined>}
+     */
+    leafletObject,
+    /**
+     * The root DOM element. ?
+     * @type {Ref<HTMLElement \| undefined>}
+     */
+    root,
+    /**
+     * Indicates whether the component and its underlying Leaflet object are fully initialized.
+     * @type {Ref<boolean>}
+     */
+    ready
+})
 
 function useGridLayer() {
     const leafletObject = ref<GridLayer>()

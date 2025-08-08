@@ -2,15 +2,19 @@
 outline: deep
 ---
 
-# LControlAttribution
+# LFeatureGroup
 
-> The attribution control allows you to display attribution data in a small text bos on a map.
+> Extended [LLayerGroup](/components/l-layer-group.html) that makes it easier to do the same thing to all its member layers.
+
+::: warning
+This still needs better documentation and examples.
+:::
 
 ## Demo
 
 <script setup>
 import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer, LControlAttribution } from '../../src/lib.ts';
+import { LMap, LTileLayer, LFeatureGroup, LMarker } from '../../src/lib.ts';
 </script>
 
 <LMap style="height: 350px" :zoom="8" :center="[47.21322, -1.559482]">
@@ -20,10 +24,12 @@ import { LMap, LTileLayer, LControlAttribution } from '../../src/lib.ts';
     layer-type="base"
     name="OpenStreetMap"
   />
-  <LControlAttribution position="topright" prefix="A custom prefix" />
+  <LFeatureGroup>
+    <LMarker :lat-lng="[47.21322, -1.559482]" />
+  </LFeatureGroup>
 </LMap>
 
-```vue{8}
+```vue
 <LMap style="height: 350px" :zoom="8" :center="[47.21322, -1.559482]">
   <LTileLayer
     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -31,8 +37,10 @@ import { LMap, LTileLayer, LControlAttribution } from '../../src/lib.ts';
     layer-type="base"
     name="OpenStreetMap"
   />
-  <LControlAttribution position="topright" prefix="A custom prefix" />
+  <LFeatureGroup>
+    <LMarker :lat-lng="[47.21322, -1.559482]" />
+  </LFeatureGroup>
 </LMap>
 ```
 
-<!--@include: ../gen/components/LControlAttribution.md-->
+<!--@include: ../gen/components/LFeatureGroup.md-->

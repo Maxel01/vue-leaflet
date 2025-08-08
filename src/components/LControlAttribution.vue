@@ -15,7 +15,13 @@ const props = withDefaults(defineProps<ControlAttributionProps>(), controlAttrib
 const emit = defineEmits<ControlAttributionEmits>()
 
 const { leafletObject } = useControlAttribution()
-defineExpose({ leafletObject })
+defineExpose({
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<Control.Attribution \| undefined>}
+     */
+    leafletObject,
+})
 
 function useControlAttribution() {
     const leafletObject = ref<Control.Attribution>()

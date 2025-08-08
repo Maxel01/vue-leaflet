@@ -56,15 +56,3 @@ const clickHandler = () => {
 ```
 
 <!--@include: ../gen/components/LControl.md-->
-
-## Events
-
-| Event name | Type   | Description                          |
-| ---------- | ------ | ------------------------------------ |
-| ready      | object | Triggers when the component is ready |
-
-## Slots
-
-| Name    | Description | Bindings |
-| ------- | ----------- | -------- |
-| default |             |          |

@@ -36,9 +36,3 @@ import { LMap, LTileLayer, LControlLayers } from '../../src/lib.ts';
 ```
 
 <!--@include: ../gen/components/LControlLayers.md-->
-
-## Events
-
-| Event name | Type   | Description                          |
-| ---------- | ------ | ------------------------------------ |
-| ready      | object | Triggers when the component is ready |
