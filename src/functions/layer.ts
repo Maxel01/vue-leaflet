@@ -47,7 +47,10 @@ export const layerPropsDefaults = {
     visible: true,
 }
 
-export type LayerEmits = {
+export interface LayerEmits {
+    /**
+     * Triggers when the visible prop needs to be updated
+     */
     (event: 'update:visible', value: boolean): void
 }
 

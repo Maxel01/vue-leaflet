@@ -28,13 +28,12 @@ async function generate() {
 
         markdown = writeProps(doc, markdown)
 
-        /*
         // Emits
         if (doc.events?.length) {
             markdown += '## Emits\n\n| Event | Arguments | Description |\n| --- | --- | --- |\n'
             for (const event of doc.events) {
-                const args = event.properties?.map(p => p.name).join(', ') || '-'
-                markdown += `| \`${event.name}\` | ${args} | ${event.description || '-'} |\n`
+                const args = event.type?.names?.join(', ') || '-'
+                markdown += `| \`${event.name}\` | \`${args}\` | ${event.description || '-'} |\n`
             }
             markdown += '\n'
         }
@@ -57,7 +56,6 @@ async function generate() {
             }
             markdown += '\n'
         }
-        */
 
         await fse.outputFile(markdownPath, markdown, 'utf8')
         console.log(`📄 Generated: docs/gen/components/${name}.md`)

@@ -24,7 +24,10 @@ export const circleMarkerPropsDefaults = {
     options: () => ({ radius: 10 }),
 }
 
-export type CircleMarkerEmits<T extends CircleMarker = CircleMarker> = PathEmits & {
+export interface CircleMarkerEmits<T extends CircleMarker = CircleMarker> extends PathEmits {
+    /**
+     * Triggers when the component is ready
+     */
     (event: 'ready', layer: T): void
 }
 
