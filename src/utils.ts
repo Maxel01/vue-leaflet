@@ -13,16 +13,15 @@ export const bindEventHandlers = (
     leafletObject: Evented,
     eventHandlers: LeafletEventHandlerFnMap,
 ): void => {
-    for (const eventName of Object.keys(eventHandlers)) {
-        leafletObject.on(eventName, eventHandlers[eventName])
+    for (const [eventName, eventHandler] of Object.entries(eventHandlers)) {
+        leafletObject.on(eventName, eventHandler)
     }
 }
 
 export const cancelDebounces = (handlerMethods: LeafletEventHandlerFnMap) => {
-    for (const name of Object.keys(handlerMethods)) {
-        const handler = handlerMethods[name]
-        if (handler && isFunction(handler.cancel)) {
-            handler.cancel()
+    for (const [, eventHandler] of Object.entries(handlerMethods)) {
+        if (eventHandler && isFunction(eventHandler.cancel)) {
+            eventHandler.cancel()
         }
     }
 }
