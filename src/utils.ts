@@ -47,6 +47,12 @@ export const capitalizeFirstLetter = (s: string) => {
 
 export const isFunction = (x: unknown) => typeof x === 'function'
 
+/**
+ * Sets up listeners for Vue component prop changes, so that we may correctly call the correct Leaflet on-change event handlers.
+ * @param methods
+ * @param leafletElement
+ * @param props the relevant Vue component props
+ */
 export const propsBinder = (methods: Readonly<FunctionMap>, leafletElement: Evented, props: Readonly<PropertyMap>) => {
     const leafletElementPropMap = leafletElement as PropertyMap;
     for (const key in props) {
