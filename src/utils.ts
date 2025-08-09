@@ -9,6 +9,14 @@ export declare type ListenersAndAttrs = {
     attrs: Record<string, unknown>
 }
 
+/**
+ * A generalized interface/type to type-hint whatever may be defined in a class/object.
+ */
+export declare type PropertyMap = {
+    // note: it seems TypeScript does not have syntactic sugar for this
+    [propertyName: string]: any,
+}
+
 export const bindEventHandlers = (
     leafletObject: Evented,
     eventHandlers: LeafletEventHandlerFnMap,
@@ -35,21 +43,26 @@ export const capitalizeFirstLetter = (s: string) => {
 
 export const isFunction = (x: unknown) => typeof x === 'function'
 
-export const propsBinder = (methods, leafletElement: Evented, props) => {
+export const propsBinder = (methods: PropertyMap, leafletElement: Evented, props) => {
+    const leafletElementPropMap = leafletElement as PropertyMap;
     for (const key in props) {
         const setMethodName = 'set' + capitalizeFirstLetter(key)
-        if (methods[setMethodName]) {
+        const setterMethod = methods[setMethodName];
+        if (isFunction(setterMethod)) {
             watch(
                 () => props[key],
                 (newVal, oldVal) => {
-                    methods[setMethodName](newVal, oldVal)
+                    setterMethod(newVal, oldVal)
                 },
             )
-        } else if (leafletElement[setMethodName]) {
+            continue
+        }
+        const leafletElementSetter = leafletElementPropMap[setMethodName];
+        if (isFunction(leafletElementSetter)) {
             watch(
                 () => props[key],
                 (newVal) => {
-                    leafletElement[setMethodName](newVal)
+                    leafletElementSetter(newVal)
                 },
             )
         } else if (key !== 'options' && import.meta.env.vitest) {
