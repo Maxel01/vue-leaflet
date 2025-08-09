@@ -9,20 +9,31 @@ export declare type ListenersAndAttrs = {
     attrs: Record<string, unknown>
 }
 
+/**
+ * A generalized interface/type to type-hint whatever may be defined in a class/object.
+ */
+export declare type PropertyMap = {
+    // note: it seems TypeScript does not have syntactic sugar for this
+    [propertyName: string]: any,
+}
+
+declare type FunctionMap = {
+    [functionName: string]: Function | undefined,
+}
+
 export const bindEventHandlers = (
     leafletObject: Evented,
     eventHandlers: LeafletEventHandlerFnMap,
 ): void => {
-    for (const eventName of Object.keys(eventHandlers)) {
-        leafletObject.on(eventName, eventHandlers[eventName])
+    for (const [eventName, eventHandler] of Object.entries(eventHandlers)) {
+        leafletObject.on(eventName, eventHandler)
     }
 }
 
 export const cancelDebounces = (handlerMethods: LeafletEventHandlerFnMap) => {
-    for (const name of Object.keys(handlerMethods)) {
-        const handler = handlerMethods[name]
-        if (handler && isFunction(handler.cancel)) {
-            handler.cancel()
+    for (const [, eventHandler] of Object.entries(handlerMethods)) {
+        if (isFunction(eventHandler?.cancel)) {
+            eventHandler.cancel()
         }
     }
 }
@@ -36,21 +47,32 @@ export const capitalizeFirstLetter = (s: string) => {
 
 export const isFunction = (x: unknown) => typeof x === 'function'
 
-export const propsBinder = (methods, leafletElement: Evented, props) => {
+/**
+ * Sets up listeners for Vue component prop changes, so that we may correctly call the correct Leaflet on-change event handlers.
+ * @param methods
+ * @param leafletElement
+ * @param props the relevant Vue component props
+ */
+export const propsBinder = (methods: Readonly<FunctionMap>, leafletElement: Evented, props: Readonly<PropertyMap>) => {
+    const leafletElementPropMap = leafletElement as PropertyMap;
     for (const key in props) {
         const setMethodName = 'set' + capitalizeFirstLetter(key)
-        if (methods[setMethodName]) {
+        const setterMethod = methods[setMethodName];
+        if (isFunction(setterMethod)) {
             watch(
                 () => props[key],
                 (newVal, oldVal) => {
-                    methods[setMethodName](newVal, oldVal)
+                    setterMethod(newVal, oldVal)
                 },
             )
-        } else if (leafletElement[setMethodName]) {
+            continue
+        }
+        const leafletElementSetter = leafletElementPropMap[setMethodName];
+        if (isFunction(leafletElementSetter)) {
             watch(
                 () => props[key],
                 (newVal) => {
-                    leafletElement[setMethodName](newVal)
+                    leafletElementSetter(newVal)
                 },
             )
         } else if (key !== 'options' && import.meta.env.vitest) {
