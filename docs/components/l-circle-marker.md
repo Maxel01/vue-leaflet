@@ -8,27 +8,16 @@ outline: deep
 
 ## Demo
 
-<script>
+<script setup>
 import "leaflet/dist/leaflet.css";
 </script>
 
-<div style="height:350px; width: 100%">
+<div class="demo">
     <CircleMarkerDemo />
 </div>
 
-```html{7-11}
-<LMap ref="map" v-model:zoom="zoom" :center="[41.89026, 12.49238]">
-    <LTileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        layer-type="base"
-        name="OpenStreetMap"
-    />
-    <LCircleMarker 
-        :lat-lng="[41.89026, 12.49238]" 
-        :radius="50" 
-        color="red"
-    />
-</LMap>
+```vue{15-19}
+<!--@include: ../../src/playground/views/CircleMarkerDemo.vue -->
 ```
 
 <!--@include: ../gen/components/LCircleMarker.md-->
