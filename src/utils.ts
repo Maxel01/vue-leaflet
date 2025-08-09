@@ -17,6 +17,10 @@ export declare type PropertyMap = {
     [propertyName: string]: any,
 }
 
+declare type FunctionMap = {
+    [functionName: string]: Function | undefined,
+}
+
 export const bindEventHandlers = (
     leafletObject: Evented,
     eventHandlers: LeafletEventHandlerFnMap,
@@ -43,7 +47,7 @@ export const capitalizeFirstLetter = (s: string) => {
 
 export const isFunction = (x: unknown) => typeof x === 'function'
 
-export const propsBinder = (methods: PropertyMap, leafletElement: Evented, props) => {
+export const propsBinder = (methods: Readonly<FunctionMap>, leafletElement: Evented, props: Readonly<PropertyMap>) => {
     const leafletElementPropMap = leafletElement as PropertyMap;
     for (const key in props) {
         const setMethodName = 'set' + capitalizeFirstLetter(key)
