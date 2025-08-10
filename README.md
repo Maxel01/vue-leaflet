@@ -71,13 +71,9 @@ Let me now what you need!
 pnpm add @maxel01/vue-leaflet leaflet@2.0.0-alpha
 ```
 
-or
-
 ```bash
 yarn add @maxel01/vue-leaflet leaflet@2.0.0-alpha
 ```
-
-or
 
 ```bash
 npm i @maxel01/vue-leaflet leaflet@2.0.0-alpha

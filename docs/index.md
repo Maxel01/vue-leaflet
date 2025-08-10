@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "Nuxt Leaflet"
+  name: "Vue Leaflet"
   text: "Maps without the hassle"
   image:
     src: /nuxt-leaflet-logo.png
@@ -17,10 +17,10 @@ hero:
       link: /components/introduction
 
 features:
-  - title: No configuration needed ⚙️
-    details: Everything is set up for you out of the box.
+  - title: Fully SSR compatible ⚙️
+    details: SSR works out of the box.
+  - title: Efficient Tree shaking 🚀
+    details: Load only the components that you need
   - title: Typescript support 🦺
     details: Full typescript support.
-  - title: Auto import components 🚀
-    details: Components are automatically imported for you.
 ---

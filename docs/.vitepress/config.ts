@@ -2,8 +2,8 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-    title: "Nuxt Leaflet",
-    description: "Documentation for the Nuxt Leaflet module",
+    title: "Vue Leaflet",
+    description: "Documentation for the Vue Leaflet module",
     head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
     base: '/',
     themeConfig: {
@@ -27,8 +27,7 @@ export default defineConfig({
                 items: [
                     { text: 'Using L', link: '/guide/using-l' },
                     { text: 'Accessing a map instance', link: '/guide/accessing-map-instance' },
-                    { text: 'Leaflet.markercluster', link: '/guide/marker-cluster' },
-                    { text: 'Leaflet.heat', link: '/guide/heat' }
+                    { text: 'Reactivity in vue-leaflet', link: '/guide/reactivity-leaflet' }
                 ]
             },
             {
@@ -71,8 +70,8 @@ export default defineConfig({
         ],
 
         socialLinks: [
-            { icon: 'github', link: 'https://github.com/nuxt-modules/leaflet' },
-            { icon: 'npm', link: 'https://www.npmjs.com/package/@nuxtjs/leaflet' }
+            { icon: 'github', link: 'https://github.com/maxel01/vue-leaflet' },
+            { icon: 'npm', link: 'https://www.npmjs.com/package/@maxel01/vue-leaflet' }
         ],
 
         search: {
