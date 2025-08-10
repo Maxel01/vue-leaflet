@@ -18,6 +18,12 @@ export declare type PropertyMap = {
 
 export declare type FunctionMap = Record<string, ((...args: unknown[]) => unknown) | undefined>
 
+export type LeafletWrapper = {
+    (...args: unknown[]): unknown
+    wrapped: Ref<(...args: unknown[]) => unknown>
+};
+
+
 export const bindEventHandlers = (
     leafletObject: Evented,
     eventHandlers: LeafletEventHandlerFnMap
@@ -139,12 +145,6 @@ export const resetWebpackIcon = async (Icon) => {
         shadowUrl: modules[2].default
     })
 }
-
-type LeafletWrapper = {
-    (...args: unknown[]): unknown;
-    wrapped: Ref<(...args: unknown[]) => unknown>;
-};
-
 
 /**
  * Wrap a placeholder function and provide it with the given name.
