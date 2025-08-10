@@ -17,9 +17,7 @@ export declare type PropertyMap = {
     [propertyName: string]: any,
 }
 
-declare type FunctionMap = {
-    [functionName: string]: Function | undefined,
-}
+export declare type FunctionMap = Record<string, Function | undefined>;
 
 export const bindEventHandlers = (
     leafletObject: Evented,
