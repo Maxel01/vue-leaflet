@@ -6,8 +6,8 @@ hero:
   name: "Vue Leaflet"
   text: "Maps without the hassle"
   image:
-    src: /nuxt-leaflet-logo.png
-    alt: Nuxt Leaflet Logo
+    src: /logo.png
+    alt: Vue Leaflet Logo
   actions:
     - theme: brand
       text: Quick start
