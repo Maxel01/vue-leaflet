@@ -55,8 +55,10 @@ export default defineConfig({
                     { text: 'LPolyline', link: '/components/l-polyline' },
                     { text: 'LPopup', link: '/components/l-popup' },
                     { text: 'LRectangle', link: '/components/l-rectangle' },
+                    { text: 'LSVGOverlay', link: '/components/l-svg-overlay' },
                     { text: 'LTileLayer', link: '/components/l-tile-layer' },
                     { text: 'LTooltip', link: '/components/l-tooltip' },
+                    { text: 'LVideoOverlay', link: '/components/l-video-overlay' },
                     { text: 'LWmsTileLayer', link: '/components/l-wms-tile-layer' },
                 ]
             },

@@ -61,5 +61,3 @@ const crs = CRS.Simple
         </ul>
     </div>
 </template>
-
-<style></style>

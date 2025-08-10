@@ -50,9 +50,5 @@
 /* Leaflet specific style */
 .leaflet-container {
     z-index: 0 !important;
-}
-
-.demo {
-    width: 100%;
-    height: 350px;
+    height: 350px !important;
 }
