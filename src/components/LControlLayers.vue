@@ -10,11 +10,17 @@ import {
 } from '../functions/controlLayers.ts'
 import { assertInject, propsBinder } from '../utils.ts'
 
-const props = withDefaults(defineProps<ControlLayersProps>(), { ...controlLayersPropsDefaults })
+const props = withDefaults(defineProps<ControlLayersProps>(), controlLayersPropsDefaults)
 const emit = defineEmits<ControlLayersEmits>()
 
 const { leafletObject } = useControlLayers()
-defineExpose({ leafletObject })
+defineExpose({
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<Control.Layers \| undefined>}
+     */
+    leafletObject,
+})
 
 function useControlLayers() {
     const leafletObject = ref<Control.Layers>()

@@ -4,7 +4,11 @@ import { type ComponentProps, componentPropsDefaults, setupComponent } from './c
 import { type DivOverlay } from 'leaflet'
 
 export interface PopperProps<T extends object> extends ComponentProps<T> {
-    content?: string
+    /**
+     * Sets the HTML content of the overlay while initializing. If a function is passed the source layer will be passed to the function. The function should return a String or HTMLElement to be used in the overlay.
+     * @reactive
+     */
+    content?: string | HTMLElement
 }
 
 export const popperPropsDefaults = {

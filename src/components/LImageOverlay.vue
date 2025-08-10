@@ -15,7 +15,18 @@ const props = withDefaults(defineProps<ImageOverlayProps>(), imageOverlayPropsDe
 const emit = defineEmits<ImageOverlayEmits>()
 
 const { ready, leafletObject } = useImageOverlay()
-defineExpose({ ready, leafletObject })
+defineExpose({
+    /**
+     * Indicates whether the component and its underlying Leaflet object are fully initialized.
+     * @type {Ref<boolean>}
+     */
+    ready,
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<ImageOverlay \| undefined>}
+     */
+    leafletObject
+})
 
 function useImageOverlay() {
     const leafletObject = ref<ImageOverlay>()
@@ -48,6 +59,9 @@ function useImageOverlay() {
 
 <template>
     <div v-if="ready" style="display: none">
+        <!--
+        @slot Used to inject Leaflet child components like `<LPopup>` or `<LTooltip>` into the `LCircleMarker`.
+        -->
         <slot />
     </div>
 </template>

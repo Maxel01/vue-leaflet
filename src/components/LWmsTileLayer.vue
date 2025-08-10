@@ -15,7 +15,13 @@ const props = withDefaults(defineProps<WmsTileLayerProps>(), wmsTileLayerPropsDe
 const emit = defineEmits<WmsTileLayerEmits>()
 
 const { leafletObject } = useWmsTileLayer()
-defineExpose({ leafletObject })
+defineExpose({
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<TileLayer.WMS \| undefined>}
+     */
+    leafletObject
+})
 
 function useWmsTileLayer() {
     const leafletObject = ref<TileLayer.WMS>()

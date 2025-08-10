@@ -13,7 +13,13 @@ import { setupComponent } from '../functions/component.ts'
 const props = withDefaults(defineProps<IconProps>(), iconPropsDefaults)
 
 const { root } = useIcon()
-defineExpose({ root })
+defineExpose({
+    /**
+     * The root DOM element.
+     * @type {Ref<HTMLElement \| undefined>}
+     */
+    root
+})
 
 function useIcon() {
     const root = ref<HTMLElement>()
@@ -99,6 +105,9 @@ function useCreateIcon() {
 
 <template>
     <div ref="root">
+        <!--
+        @slot Slot content will be rendered inside the Leaflet icon container. Use this slot to inject custom HTML or Vue components into the icon, such as labels, SVGs, or interactive elements.
+        -->
         <slot />
     </div>
 </template>

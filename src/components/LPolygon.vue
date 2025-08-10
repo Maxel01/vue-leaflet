@@ -14,7 +14,18 @@ const props = withDefaults(defineProps<PolygonProps>(), polygonPropsDefaults)
 const emit = defineEmits<PolygonEmits>()
 
 const { ready, leafletObject } = usePolygon()
-defineExpose({ ready, leafletObject })
+defineExpose({
+    /**
+     * Indicates whether the component and its underlying Leaflet object are fully initialized.
+     * @type {Ref<boolean>}
+     */
+    ready,
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<Polygon \| undefined>}
+     */
+    leafletObject
+})
 
 function usePolygon() {
     const leafletObject = ref<Polygon>()
@@ -46,6 +57,9 @@ function usePolygon() {
 
 <template>
     <div v-if="ready" style="display: none">
+        <!--
+        @slot Used to inject Leaflet child components like `<LPopup>` or `<LTooltip>` into the `LPolygon`.
+        -->
         <slot />
     </div>
 </template>

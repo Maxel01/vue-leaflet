@@ -46,11 +46,7 @@ import {
 import type { IMapBlueprint } from '../types/interfaces/IMapBlueprint.ts'
 import { type MapProps, mapPropsDefaults, setupMap } from '../functions/map.ts'
 
-const props = withDefaults(defineProps<MapProps & { width?: string; height?: string }>(), {
-    ...mapPropsDefaults,
-    width: '100%',
-    height: '100%',
-})
+const props = withDefaults(defineProps<MapProps>(), mapPropsDefaults)
 
 const { root, blueprint, leafletObject, ready } = useMap()
 const { zoomPanOptions, fitBoundsOptions } = useOptions()
@@ -59,13 +55,43 @@ const { listeners, attrs, eventHandlers } = useEvents()
 useProvideFunctions()
 
 const emit = defineEmits<{
+    /**
+     * Triggers when the component is ready
+     */
     (event: 'ready', map: Map): void
+    /**
+     * Triggers when the map's zoom level changes.
+     */
     (event: 'update:zoom', zoom: number): void
+    /**
+     * Triggers when the map's center coordinates are updated.
+     */
     (event: 'update:center', center: LatLng): void
+    /**
+     * Triggers when the map's visible bounds are updated.
+     */
     (event: 'update:bounds', center: LatLngBounds): void
 }>()
 
-defineExpose({ root, ready, leafletObject, attrs, ...methods })
+defineExpose({
+    /**
+     * The root DOM element of the Leaflet map. This element is used to create the Leaflet's `Map` class. You can use it to directly manipulate the map's container (e.g. styling, event listeners).
+     *  @type {Ref<HTMLElement \| undefined>}
+     */
+    root,
+    /**
+     * Indicates whether the component and its underlying Leaflet object are fully initialized.
+     * @type {Ref<boolean>}
+     */
+    ready,
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<Map \| undefined>}
+     */
+    leafletObject,
+    attrs,
+    ...methods
+})
 
 function useMap() {
     const root = ref<HTMLElement>()
@@ -302,7 +328,10 @@ function useProvideFunctions() {
 </script>
 
 <template>
-    <div ref="root" :style="{width: props.width, height: props.height}">
+    <div ref="root" :style="{ width: props.width, height: props.height }">
+        <!--
+        @slot The default slot is rendered inside the map container and is used to embed layer components, controls, or any custom Vue components. Common usage includes placing `LTileLayer`, `LMarker`, `LPopup`, `LFeatureGroup`, or other Leaflet-related elements that interact with the map.
+        -->
         <slot v-if="ready" />
     </div>
 </template>

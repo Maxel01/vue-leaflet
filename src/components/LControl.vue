@@ -11,23 +11,26 @@ import {
 import { RegisterControlInjection } from '../types/injectionKeys'
 import { assertInject, propsBinder } from '../utils.js'
 
-const props = withDefaults(
-    defineProps<
-        ControlProps & {
-            disableClickPropagation?: boolean
-            disableScrollPropagation?: boolean
-        }
-    >(),
-    { ...controlPropsDefaults, disableClickPropagation: true, disableScrollPropagation: false },
-)
+const props = withDefaults(defineProps<ControlProps>(), controlPropsDefaults)
 const emit = defineEmits<ControlEmits>()
 
 const { root, leafletObject } = useControl()
-defineExpose({ root, leafletObject })
+defineExpose({
+    /**
+     * The root DOM element of the Leaflet control. This element is managed by Leaflet's `Control` class. You can use it to directly manipulate the control's container (e.g. styling, event listeners), or alternatively use the default slot for custom content.
+     *  @type {Ref<HTMLElement \| undefined>}
+     */
+    root,
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<Control \| undefined>}
+     */
+    leafletObject,
+})
 
 function useControl() {
     const leafletObject = ref<Control>()
-    const root = ref<HTMLInputElement>()
+    const root = ref<HTMLElement>()
 
     const registerControl = assertInject(RegisterControlInjection)
 
@@ -57,7 +60,10 @@ function useControl() {
 </script>
 
 <template>
-    <div ref="root" style="">
+    <div ref="root">
+        <!--
+        @slot Content to be rendered inside the Leaflet control's container. This slot replaces the default content and allows full customization of the control's appearance. The content will be injected into the control's root DOM element.
+        -->
         <slot />
     </div>
 </template>

@@ -22,5 +22,3 @@ const videoBounds = [
         <LVideoOverlay :video="videoUrl" :bounds="videoBounds"></LVideoOverlay>
     </LMap>
 </template>
-
-<style scoped></style>

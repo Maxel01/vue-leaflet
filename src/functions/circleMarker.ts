@@ -7,9 +7,14 @@ import type { Ref } from 'vue'
 export interface CircleMarkerProps<T extends CircleMarkerOptions = CircleMarkerOptions>
     extends PathProps<T> {
     /**
-     * Radius of the marker in pixels.
+     * Radius of the marker, in pixels
+     * @reactive
      */
     radius?: number
+    /**
+     * Position of the circle marker
+     * @reactive
+     */
     latLng: LatLngExpression
 }
 
@@ -19,7 +24,10 @@ export const circleMarkerPropsDefaults = {
     options: () => ({ radius: 10 }),
 }
 
-export type CircleMarkerEmits<T extends CircleMarker = CircleMarker> = PathEmits & {
+export interface CircleMarkerEmits<T extends CircleMarker = CircleMarker> extends PathEmits {
+    /**
+     * Triggers when the component is ready
+     */
     (event: 'ready', layer: T): void
 }
 

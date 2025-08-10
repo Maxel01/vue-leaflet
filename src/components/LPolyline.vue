@@ -14,7 +14,18 @@ const props = withDefaults(defineProps<PolylineProps>(), polylinePropsDefaults)
 const emit = defineEmits<PolylineEmits>()
 
 const { ready, leafletObject } = usePolyline()
-defineExpose({ ready, leafletObject })
+defineExpose({
+    /**
+     * Indicates whether the component and its underlying Leaflet object are fully initialized.
+     * @type {Ref<boolean>}
+     */
+    ready,
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<Polyline \| undefined>}
+     */
+    leafletObject
+})
 
 function usePolyline() {
     const leafletObject = ref<Polyline>()
@@ -46,6 +57,9 @@ function usePolyline() {
 
 <template>
     <div v-if="ready" style="display: none">
+        <!--
+        @slot Used to inject Leaflet child components like `<LPopup>` or `<LTooltip>` into the `LPolyline`.
+        -->
         <slot />
     </div>
 </template>

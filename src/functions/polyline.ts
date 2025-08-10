@@ -6,8 +6,20 @@ import { type PathEmits, type PathProps, pathPropsDefaults, setupPath } from './
 import type { Ref } from 'vue'
 
 export interface PolylineProps<T extends PolylineOptions = PolylineOptions> extends PathProps<T> {
+    /**
+     * How much to simplify the polyline on each zoom level. More means better performance and smoother looks, and less means more accurate representation.
+     * @reactive
+     */
     smoothFactor?: number
+    /**
+     * Disable polyline clipping.
+     * @reactive
+     */
     noClip?: boolean
+    /**
+     * Array of coordinates objects that represent the polyline.
+     * @reactive
+     */
     latLngs: LatLngExpression[]
 }
 
@@ -16,7 +28,10 @@ export const polylinePropsDefaults = {
     noClip: undefined,
 }
 
-export type PolylineEmits<T extends Polyline = Polyline> = PathEmits & {
+export interface PolylineEmits<T extends Polyline = Polyline> extends PathEmits {
+    /**
+     * Triggers when the component is ready
+     */
     (event: 'ready', layer: T): void
 }
 

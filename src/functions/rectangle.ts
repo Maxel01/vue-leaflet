@@ -6,7 +6,15 @@ import { type PolygonEmits, type PolygonProps, polygonPropsDefaults, setupPolygo
 import type { Ref } from 'vue'
 
 export interface RectangleProps extends PolygonProps {
+    /**
+     * Array of coordinates objects that represent the rectangle
+     * @reactive
+     */
     latLngs?: LatLngExpression[]
+    /**
+     * The rectangle geographical bounds
+     * @reactive
+     */
     bounds?: LatLngExpression[]
 }
 

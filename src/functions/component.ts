@@ -1,4 +1,8 @@
 export interface ComponentProps<T extends object = object> {
+    /**
+     * Leaflet options to pass to the component constructor.
+     * @initOnly
+     */
     options?: T
 }
 

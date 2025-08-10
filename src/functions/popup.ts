@@ -4,6 +4,10 @@ import type { Ref } from 'vue'
 import { type PopperProps, popperPropsDefaults, setupPopper } from './popper'
 
 export interface PopupProps extends PopperProps<PopupOptions> {
+    /**
+     * The position of the popup
+     * @reactive
+     */
     latLng?: LatLngExpression
 }
 

@@ -12,7 +12,15 @@ import {
 } from './layerGroup'
 
 export interface GeoJSONProps extends LayerGroupProps<GeoJSONOptions> {
+    /**
+     * An object in GeoJSON format to display on the map (you can alternatively add it later with addData method).
+     * @reactive
+     */
     geojson?: GeoJsonObject
+    /**
+     * A Function defining the styling for GeoJSON lines and polygons. See more in [original Leaflet documentation](https://leafletjs.com/reference-2.0.0.html#geojson-style)
+     * @reactive
+     */
     optionsStyle?: StyleFunction
 }
 

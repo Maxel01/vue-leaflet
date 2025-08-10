@@ -2,20 +2,40 @@ import { Control, Layer } from 'leaflet'
 
 import { propsToLeafletOptions } from '../utils'
 
-import { type ControlEmits, type ControlProps, controlPropsDefaults, setupControl } from './control'
+import { type ControlEmits, type ControlAbstractProps, controlAbstractPropsDefaults, setupControl } from './control'
 import type { Ref } from 'vue'
 import type { ILayerDefinition } from '../types/interfaces'
 
-export interface ControlLayersProps extends ControlProps<Control.LayersOptions> {
+export interface ControlLayersProps extends ControlAbstractProps<Control.LayersOptions> {
+    /**
+     * If `true`, the control will be collapsed into an icon and expanded on mouse hover, touch, or keyboard activation.
+     * @initOnly
+     */
     collapsed?: boolean
+    /**
+     * If `true`, the control will assign zIndexes in increasing order to all of its layers so that the order is preserved when switching them on/off.
+     * @initOnly
+     */
     autoZIndex?: boolean
+    /**
+     * If `true`, the base layers in the control will be hidden when there is only one.
+     * @initOnly
+     */
     hideSingleBase?: boolean
+    /**
+     * Whether to sort the layers. When `false`, layers will keep the order in which they were added to the control.
+     * @initOnly
+     */
     sortLayers?: boolean
-    sortFunction?: ((layerA: Layer, layerB: Layer, nameA: string, nameB: string) => number)
+    /**
+     * A [compare function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) that will be used for sorting the layers, when `sortLayers` is `true`. The function receives both the [L.Layer](https://leafletjs.com/reference-2.0.0.html#layer) instances and their names, as in `sortFunction(layerA, layerB, nameA, nameB)`. By default, it sorts layers alphabetically by their name.
+     * @initOnly
+     */
+    sortFunction?: (layerA: Layer, layerB: Layer, nameA: string, nameB: string) => number
 }
 
 export const controlLayersPropsDefaults = {
-    ...controlPropsDefaults,
+    ...controlAbstractPropsDefaults,
     collapsed: undefined,
     autoZIndex: undefined,
     hideSingleBase: undefined,

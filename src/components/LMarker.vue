@@ -39,7 +39,18 @@ const emit = defineEmits<MarkerEmits>()
 const { leafletObject, ready } = useMarker()
 
 useProvideFunctions()
-defineExpose({ ready, leafletObject })
+defineExpose({
+    /**
+     * Indicates whether the component and its underlying Leaflet object are fully initialized.
+     * @type {Ref<boolean>}
+     */
+    ready,
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<Marker \| undefined>}
+     */
+    leafletObject
+})
 
 function useMarker() {
     const leafletObject = ref<Marker>()
@@ -93,6 +104,9 @@ function useProvideFunctions() {
 
 <template>
     <div v-if="ready" style="display: none">
+        <!--
+        @slot Used to inject Leaflet child components like `<LPopup>` or `<LTooltip>` into the `LMarker`.
+        -->
         <slot />
     </div>
 </template>

@@ -5,19 +5,46 @@ import { propsToLeafletOptions } from '../utils'
 
 import { type ComponentProps, componentPropsDefaults, setupComponent } from './component'
 
-export interface ControlProps<T extends ControlOptions = ControlOptions> extends ComponentProps<T> {
+export interface ControlAbstractProps<T extends ControlOptions = ControlOptions>
+    extends ComponentProps<T> {
+    /**
+     * The position of the control (one of the map corners). Possible values are `topleft`, `topright`, `bottomleft` or `bottomright`.
+     * @reactive
+     */
     position?: ControlPosition
 }
 
-export const controlPropsDefaults = {
+export interface ControlProps extends ControlAbstractProps {
+    /**
+     * Adds stopPropagation to the element's `click`, `dblclick`, `contextmenu` and `pointerdown` events (plus browser variants).
+     * @initOnly
+     */
+    disableClickPropagation?: boolean
+    /**
+     * Adds stopPropagation to the element's `wheel` events (plus browser variants).
+     * @initOnly
+     */
+    disableScrollPropagation?: boolean
+}
+
+export const controlAbstractPropsDefaults = {
     ...componentPropsDefaults,
 }
 
-export type ControlEmits<T extends Control = Control> = {
+export const controlPropsDefaults = {
+    ...controlAbstractPropsDefaults,
+    disableClickPropagation: true,
+    disableScrollPropagation: false,
+}
+
+export interface ControlEmits<T extends Control = Control> {
+    /**
+     * Triggers when the component is ready
+     */
     (event: 'ready', layer: T): void
 }
 
-export const setupControl = (props: ControlProps, leafletRef: Ref<Control | undefined>) => {
+export const setupControl = (props: ControlAbstractProps, leafletRef: Ref<Control | undefined>) => {
     const { options: componentOptions, methods: componentMethods } = setupComponent(props)
 
     const options = propsToLeafletOptions<ControlOptions>(props, componentOptions)

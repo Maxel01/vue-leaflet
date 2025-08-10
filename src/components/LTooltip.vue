@@ -11,11 +11,22 @@ const emit = defineEmits<{
     (event: 'ready', tooltip: Tooltip): void
 }>()
 const { root, leafletObject } = useTooltip()
-defineExpose({ root, leafletObject })
+defineExpose({
+    /**
+     * The root DOM element of the Leaflet tooltip. This element is managed by Leaflet's `Tooltip` class. You can use it to directly manipulate the tooltip's container (e.g. styling, event listeners), or alternatively use the default slot for custom content.
+     *  @type {Ref<HTMLElement \| undefined>}
+     */
+    root,
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<Tooltip \| undefined>}
+     */
+    leafletObject
+})
 
 function useTooltip() {
     const leafletObject = ref<Tooltip>()
-    const root = ref(null)
+    const root = ref<HTMLElement>()
 
     const bindTooltip = assertInject(BindTooltipInjection)
 
@@ -37,6 +48,9 @@ function useTooltip() {
 
 <template>
     <div ref="root">
+        <!--
+        @slot Content to be rendered inside the Leaflet tooltip's container. This slot replaces the default content and allows full customization of the tooltip's appearance. The content will be injected into the tooltip's root DOM element.
+        -->
         <slot />
     </div>
 </template>

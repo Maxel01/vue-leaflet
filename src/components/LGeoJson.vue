@@ -10,11 +10,22 @@ const props = withDefaults(defineProps<GeoJSONProps>(), geoJSONPropsDefaults)
 const emit = defineEmits<GeoJSONEmits>()
 
 const { ready, leafletObject } = useGeoJson()
-defineExpose({ ready, leafletObject })
+defineExpose({
+    /**
+     * Indicates whether the component and its underlying Leaflet object are fully initialized.
+     * @type {Ref<boolean>}
+     */
+    ready,
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<GeoJSON \| undefined>}
+     */
+    leafletObject
+})
 
 function useGeoJson() {
     const leafletObject = ref<GeoJSON>()
-    const ready = ref(false)
+    const ready = ref<boolean>(false)
 
     const addLayer = assertInject(AddLayerInjection)
 

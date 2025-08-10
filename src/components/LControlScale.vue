@@ -15,7 +15,13 @@ const props = withDefaults(defineProps<ControlScaleProps>(), controlScalePropsDe
 const emit = defineEmits<ControlScaleEmits>()
 
 const { leafletObject } = useControlScale()
-defineExpose({ leafletObject })
+defineExpose({
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<Control.Scale \| undefined>}
+     */
+    leafletObject
+})
 
 function useControlScale() {
     const leafletObject = ref<Control.Scale>()

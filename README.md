@@ -71,13 +71,9 @@ Let me now what you need!
 pnpm add @maxel01/vue-leaflet leaflet@2.0.0-alpha
 ```
 
-or
-
 ```bash
 yarn add @maxel01/vue-leaflet leaflet@2.0.0-alpha
 ```
-
-or
 
 ```bash
 npm i @maxel01/vue-leaflet leaflet@2.0.0-alpha
@@ -87,7 +83,7 @@ npm i @maxel01/vue-leaflet leaflet@2.0.0-alpha
 
 Until the complete documentation is ready, please check the
 [component playground](https://github.com/vue-leaflet/vue-leaflet/tree/master/src/playground/views) examples for usage with Vue 3.
-Most component props mimic the vanilla [Leaflet options](https://leafletjs.com/reference-1.7.1.html) as closely as
+Most component props mimic the vanilla [Leaflet options](https://leafletjs.com/reference-2.0.0.html) as closely as
 possible.
 
 ### Quickstart
