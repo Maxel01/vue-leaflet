@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Circle } from 'leaflet'
-import { markRaw, nextTick, onMounted, type Ref, ref, useAttrs } from 'vue'
+import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 
 import { AddLayerInjection } from '../types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '../utils.js'
