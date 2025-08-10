@@ -1,6 +1,6 @@
 // REWRITE DONE
 import { type Evented, type LeafletEventHandlerFnMap } from 'leaflet'
-import { inject, type InjectionKey, provide, ref, watch } from 'vue'
+import { inject, type InjectionKey, provide, type Ref, ref, watch } from 'vue'
 import type { ComponentProps } from './functions/component.ts'
 
 // BREAKING CHANGES: remove type Data
@@ -13,15 +13,14 @@ export declare type ListenersAndAttrs = {
  * A generalized interface/type to type-hint whatever may be defined in a class/object.
  */
 export declare type PropertyMap = {
-    // note: it seems TypeScript does not have syntactic sugar for this
-    [propertyName: string]: any,
+    [propertyName: string]: unknown,
 }
 
-export declare type FunctionMap = Record<string, Function | undefined>;
+export declare type FunctionMap = Record<string, ((...args: unknown[]) => unknown) | undefined>
 
 export const bindEventHandlers = (
     leafletObject: Evented,
-    eventHandlers: LeafletEventHandlerFnMap,
+    eventHandlers: LeafletEventHandlerFnMap
 ): void => {
     for (const [eventName, eventHandler] of Object.entries(eventHandlers)) {
         leafletObject.on(eventName, eventHandler)
@@ -51,27 +50,26 @@ export const isFunction = (x: unknown) => typeof x === 'function'
  * @param leafletElement
  * @param props the relevant Vue component props
  */
-export const propsBinder = (methods: Readonly<FunctionMap>, leafletElement: Evented, props: Readonly<PropertyMap>) => {
-    const leafletElementPropMap = leafletElement as PropertyMap;
+export const propsBinder = (methods: Readonly<FunctionMap>, leafletElement: PropertyMap, props: Readonly<PropertyMap>) => {
     for (const key in props) {
         const setMethodName = 'set' + capitalizeFirstLetter(key)
-        const setterMethod = methods[setMethodName];
+        const setterMethod = methods[setMethodName]
         if (isFunction(setterMethod)) {
             watch(
                 () => props[key],
                 (newVal, oldVal) => {
                     setterMethod(newVal, oldVal)
-                },
+                }
             )
             continue
         }
-        const leafletElementSetter = leafletElementPropMap[setMethodName];
+        const leafletElementSetter = leafletElement[setMethodName]
         if (isFunction(leafletElementSetter)) {
             watch(
                 () => props[key],
                 (newVal) => {
                     leafletElementSetter(newVal)
-                },
+                }
             )
         } else if (key !== 'options' && import.meta.env.vitest) {
             console.warn(`No setter for '${key}'`)
@@ -81,7 +79,7 @@ export const propsBinder = (methods: Readonly<FunctionMap>, leafletElement: Even
 
 export const propsToLeafletOptions = <T extends object>(
     props: ComponentProps,
-    baseOptions: Partial<T> = {},
+    baseOptions: Partial<T> = {}
 ): T => {
     const output = { ...baseOptions }
 
@@ -113,7 +111,7 @@ export const remapEvents = (contextAttrs: Record<string, unknown>): ListenersAnd
             const eventHandler = contextAttrs[attrName]
             if (isFunction(eventHandler)) {
                 // note: if handler is undefined, then might as well don't tell Leaflet about it
-                listeners[eventName] = eventHandler
+                listeners[eventName] = eventHandler as (...args: unknown[]) => unknown
             }
         } else {
             attrs[attrName] = contextAttrs[attrName]
@@ -123,21 +121,30 @@ export const remapEvents = (contextAttrs: Record<string, unknown>): ListenersAnd
     return { listeners, attrs }
 }
 
+// TODO It seems like Icon.Default is now IconDefault in leaflet v2
 export const resetWebpackIcon = async (Icon) => {
+//export const resetWebpackIcon = async (Icon: typeof IconDefault) => {
     const modules = await Promise.all([
         import('leaflet/dist/images/marker-icon-2x.png'),
         import('leaflet/dist/images/marker-icon.png'),
-        import('leaflet/dist/images/marker-shadow.png'),
+        import('leaflet/dist/images/marker-shadow.png')
     ])
 
+    //delete IconDefault.prototype._getIconUrl
     delete Icon.Default.prototype._getIconUrl
 
     Icon.Default.mergeOptions({
         iconRetinaUrl: modules[0].default,
         iconUrl: modules[1].default,
-        shadowUrl: modules[2].default,
+        shadowUrl: modules[2].default
     })
 }
+
+type LeafletWrapper = {
+    (...args: unknown[]): unknown;
+    wrapped: Ref<(...args: unknown[]) => unknown>;
+};
+
 
 /**
  * Wrap a placeholder function and provide it with the given name.
@@ -146,11 +153,11 @@ export const resetWebpackIcon = async (Icon) => {
  *
  * @param {String} methodName Key used to provide the wrapper function
  */
-export const provideLeafletWrapper = (methodName: InjectionKey<unknown>) => {
-    const wrapped = ref((..._args: any[]) =>
-        console.warn(`Method ${String(methodName)} has been invoked without being replaced`),
+export const provideLeafletWrapper = (methodName: InjectionKey<unknown>): LeafletWrapper => {
+    const wrapped = ref((..._args: unknown[]) =>
+        console.warn(`Method ${String(methodName)} has been invoked without being replaced`)
     )
-    const wrapper = (...args: any[]) => wrapped.value(...args)
+    const wrapper = (...args: unknown[]) => wrapped.value(...args)
     wrapper.wrapped = wrapped
     provide(methodName, wrapper)
 
@@ -164,7 +171,7 @@ export const provideLeafletWrapper = (methodName: InjectionKey<unknown>) => {
  * @param {*} wrapper Provided wrapper whose wrapped function is to be updated
  * @param {function} leafletMethod New method to be wrapped by the wrapper
  */
-export const updateLeafletWrapper = (wrapper, leafletMethod: Function) =>
+export const updateLeafletWrapper = (wrapper: LeafletWrapper, leafletMethod: (...args: unknown[]) => unknown) =>
     (wrapper.wrapped.value = leafletMethod)
 
 // BREAKING CHANGES: remove WINDOW_OR_GLOBAL
