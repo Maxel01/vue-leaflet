@@ -31,6 +31,8 @@ The module provides the following components:
 - `LPolyline`
 - `LPopup`
 - `LRectangle`
+- `LSVGOverlay`
 - `LTileLayer`
 - `LTooltip`
+- `LVideoOverlay`
 - `LWmsTileLayer`
