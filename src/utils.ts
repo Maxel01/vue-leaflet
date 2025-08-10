@@ -100,7 +100,8 @@ export const propsToLeafletOptions = <T extends object>(
 }
 
 export const remapEvents = (contextAttrs: Record<string, unknown>): ListenersAndAttrs => {
-    const listeners: LeafletEventHandlerFnMap = {}
+    // note: additional Leaflet extensions may have their custom event handlers, so we will be general here and type-hint it as FunctionMap
+    const listeners: FunctionMap = {}
     const attrs: Record<string, unknown> = {}
     for (const attrName in contextAttrs) {
         if (
@@ -109,7 +110,11 @@ export const remapEvents = (contextAttrs: Record<string, unknown>): ListenersAnd
             attrName !== 'onReady'
         ) {
             const eventName = attrName.slice(2).toLocaleLowerCase()
-            listeners[eventName] = contextAttrs[attrName]
+            const eventHandler = contextAttrs[attrName]
+            if (isFunction(eventHandler)) {
+                // note: if handler is undefined, then might as well don't tell Leaflet about it
+                listeners[eventName] = eventHandler
+            }
         } else {
             attrs[attrName] = contextAttrs[attrName]
         }
