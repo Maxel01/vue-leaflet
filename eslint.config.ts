@@ -17,11 +17,11 @@ export default defineConfigWithVueTs(
                 'error',
                 {
                     argsIgnorePattern: '^_',
-                    varsIgnorePattern: '^_',
-                },
-            ],
+                    varsIgnorePattern: '^_'
+                }
+            ]
         },
-        files: ['**/*.{ts,mts,tsx,vue}'],
+        files: ['**/*.{ts,mts,tsx,vue}']
     },
 
     globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
@@ -29,19 +29,17 @@ export default defineConfigWithVueTs(
     pluginVue.configs['flat/essential'],
     vueTsConfigs.recommended,
 
-
     {
-
         ...pluginVitest.configs.recommended,
         rules: {
             '@typescript-eslint/no-unused-vars': [
                 'error',
                 {
                     argsIgnorePattern: '^_',
-                    varsIgnorePattern: '^_',
-                },
+                    varsIgnorePattern: '^_'
+                }
             ],
-            '@typescript-eslint/no-explicit-any': 'off',
+            '@typescript-eslint/no-explicit-any': 'off'
         },
         files: [
             'tests/**/*',
@@ -49,8 +47,8 @@ export default defineConfigWithVueTs(
             '**/*.test.tsx',
             '**/*.spec.ts',
             '**/*.spec.tsx',
-            'src/**/__tests__/*',
-        ],
+            'src/**/__tests__/*'
+        ]
     },
-    skipFormatting,
+    skipFormatting
 )
