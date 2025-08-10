@@ -13,7 +13,6 @@ svgElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
 svgElement.setAttribute('viewBox', '0 0 200 200')
 svgElement.innerHTML = '<rect width="200" height="200"/><rect x="75" y="23" width="50" height="50" style="fill:red"/><rect x="75" y="123" width="50" height="50" style="fill:#0013ff"/>'
 
-
 const markers = ref([
     { coordinates: { lng: 0, lat: 0 } },
     { coordinates: { lng: 100, lat: 0 } },

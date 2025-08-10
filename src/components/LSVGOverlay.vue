@@ -14,7 +14,18 @@ const props = withDefaults(defineProps<SVGOverlayProps>(), svgOverlayPropsDefaul
 const emit = defineEmits<SVGOverlayEmits>()
 
 const { ready, leafletObject } = useSVGOverlay()
-defineExpose({ ready, leafletObject })
+defineExpose({
+    /**
+     * Indicates whether the component and its underlying Leaflet object are fully initialized.
+     * @type {Ref<boolean>}
+     */
+    ready,
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<SVGOverlay \| undefined>}
+     */
+    leafletObject
+})
 
 function useSVGOverlay() {
     const leafletObject = ref<SVGOverlay>()
@@ -47,5 +58,9 @@ function useSVGOverlay() {
 
 <template>
     <div v-if="ready" style="display: none">
+        <!--
+       @slot Used to inject Leaflet child components like `<LPopup>` or `<LTooltip>` into the `LCircleMarker`.
+       -->
+        <slot />
     </div>
 </template>

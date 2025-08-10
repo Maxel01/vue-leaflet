@@ -16,7 +16,7 @@ import "leaflet/dist/leaflet.css";
     <SVGOverlayDemo />
 </div>
 
-```vue{11-14,40}
+```vue{11-14,39}
 <!--@include: ../../src/playground/views/SVGOverlayDemo.vue -->
 ```
 

@@ -7,8 +7,11 @@ import type { ImageOverlayAbstractProps, ImageOverlayEmits } from './imageOverla
 import { imageOverlayPropsDefaults, setupImageOverlay } from './imageOverlay.ts'
 
 export interface SVGOverlayProps extends ImageOverlayAbstractProps {
-    url?: string
-    svg: SVGElement
+    /**
+     * Url of the svg or the SVGElement
+     * @initOnly
+     */
+    svg: string | SVGElement
 }
 
 export const svgOverlayPropsDefaults = {
