@@ -8,8 +8,7 @@ import { LCircle, LMap, LTileLayer } from '../../components'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             layer-type="base"
             name="OpenStreetMap"
-        ></LTileLayer>
-
+        />
         <LCircle :lat-lng="[44.48865, 11.3317]" :radius="5000" color="green" />
     </LMap>
 </template>

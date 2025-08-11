@@ -15,7 +15,7 @@ import {
  * > Draw a path in the shape of a circle around a center positioned at `latLng` coordinates.
  *
  * > It's an approximation and starts to diverge from a real circle closer to the poles (due to projection distortion).
- * @demo CircleDemo {13}
+ * @demo CircleDemo {12}
  */
 defineOptions({})
 const props = withDefaults(defineProps<CircleProps>(), circlePropsDefaults)

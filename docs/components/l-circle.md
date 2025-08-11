@@ -18,7 +18,7 @@ import "leaflet/dist/leaflet.css";
     <CircleDemo />
 </div>
 
-```vue{13}
+```vue{12}
 <!--@include: ../../src/playground/views/CircleDemo.vue -->
 ```
 

@@ -11,7 +11,7 @@ const zoom = ref<number>(16)
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             layer-type="base"
             name="OpenStreetMap"
-        ></LTileLayer>
+        />
         <LCircleMarker
             :lat-lng="[41.89026, 12.49238]"
             :radius="50"

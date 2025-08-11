@@ -11,7 +11,7 @@ const customAttributionPrefix = ref<string>('<strong>Custom bottom left attribut
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             layer-type="base"
             name="OpenStreetMap"
-        ></LTileLayer>
+        />
         <LControlAttribution position="bottomleft" :prefix="customAttributionPrefix" />
     </LMap>
 </template>
