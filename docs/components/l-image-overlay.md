@@ -25,12 +25,6 @@ import "leaflet/dist/leaflet.css";
 | Prop name | Description | Type | Reactive | Default | Required |
 | --- | --- | --- | --- | --- | --- |
 | url | Url of the image | `string` | `true` | `-` | `true` |
-
-### Inherited props
-<details>
-<summary>from <strong>ImageOverlayAbstractProps</strong></summary>
-
-| Prop name | Description | Type | Reactive | Default | Required |
 | --- | --- | --- | --- | --- | --- |
 | bounds | The geographical bounds | `LatLngBoundsExpression` | `true` | `-` | `true` |
 | className | A custom class name to assign to the image. Empty by default. | `string` | `initOnly` | `-` | `false` |
@@ -41,8 +35,7 @@ import "leaflet/dist/leaflet.css";
 | alt | Text for the alt attribute of the image (useful for accessibility). | `string` | `initOnly` | `-` | `false` |
 | opacity | The opacity of the image overlay. | `number` | `true` | `-` | `false` |
 
-</details>
-
+### Inherited props
 <details>
 <summary>from <strong>LayerProps</strong></summary>
 

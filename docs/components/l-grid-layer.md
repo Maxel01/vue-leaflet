@@ -41,12 +41,6 @@ import "leaflet/dist/leaflet.css";
 | Prop name | Description | Type | Reactive | Default | Required |
 | --- | --- | --- | --- | --- | --- |
 | childRender | - | `VueGridLayerTileRenderer` | `initOnly` | `-` | `true` |
-
-### Inherited props
-<details>
-<summary>from <strong>GridLayerAbstractProps</strong></summary>
-
-| Prop name | Description | Type | Reactive | Default | Required |
 | --- | --- | --- | --- | --- | --- |
 | className | A custom class name to assign to the tile layer. Empty by default. | `string` | `initOnly` | `-` | `false` |
 | maxZoom | The maximum zoom level up to which this layer will be displayed (inclusive) | `number` | `initOnly` | `-` | `false` |
@@ -56,8 +50,7 @@ import "leaflet/dist/leaflet.css";
 | zIndex | The explicit zIndex of the tile layer | `number` | `true` | `-` | `false` |
 | opacity | Opacity of the tiles. Can be used in the createTile() function. | `number` | `true` | `-` | `false` |
 
-</details>
-
+### Inherited props
 <details>
 <summary>from <strong>LayerProps</strong></summary>
 

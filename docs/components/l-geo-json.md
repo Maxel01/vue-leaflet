@@ -22,19 +22,31 @@ import "leaflet/dist/leaflet.css";
 
 ## Props
 
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| geojson | An object in GeoJSON format to display on the map (you can alternatively add it later with addData method). | `GeoJsonObject` | `true` | `-` | `false` |
+| optionsStyle | A Function defining the styling for GeoJSON lines and polygons. See more in [original Leaflet documentation](https://leafletjs.com/reference-2.0.0.html#geojson-style) | `StyleFunction` | `true` | `-` | `false` |
+
+### Inherited props
 <details>
-<summary>from <strong>Unknown</strong></summary>
+<summary>from <strong>LayerProps</strong></summary>
 
 | Prop name | Description | Type | Reactive | Default | Required |
 | --- | --- | --- | --- | --- | --- |
-| visible | - | `boolean` | `true` | `-` | `false` |
-| layerType | - | `LayerType` | `true` | `-` | `false` |
-| name | - | `string` | `true` | `-` | `false` |
-| attribution | String to be shown in the attribution control, e.g. "© OpenStreetMap contributors". It describes the layer data and is often a legal obligation towards copyright holders and tile providers. | `string` | `true` | `-` | `false` |
 | pane | By default, the layer will be added to the map's [overlay pane](https://leafletjs.com/reference-2.0.0.html#map-overlaypane). Overriding this option will cause the layer to be placed on another pane by default. Not effective if the renderer option is set (the renderer option will override the pane option). | `string` | `initOnly` | `-` | `false` |
+| attribution | String to be shown in the attribution control, e.g. "© OpenStreetMap contributors". It describes the layer data and is often a legal obligation towards copyright holders and tile providers. | `string` | `true` | `-` | `false` |
+| name | - | `string` | `true` | `-` | `false` |
+| layerType | - | `LayerType` | `true` | `-` | `false` |
+| visible | - | `boolean` | `true` | `-` | `false` |
+
+</details>
+
+<details>
+<summary>from <strong>ComponentProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
 | options | Leaflet options to pass to the component constructor. | `T` | `initOnly` | `-` | `false` |
-| geojson | An object in GeoJSON format to display on the map (you can alternatively add it later with addData method). | `GeoJsonObject` | `true` | `-` | `false` |
-| optionsStyle | A Function defining the styling for GeoJSON lines and polygons. See more in [original Leaflet documentation](https://leafletjs.com/reference-2.0.0.html#geojson-style) | `StyleFunction` | `true` | `-` | `false` |
 
 </details>
 

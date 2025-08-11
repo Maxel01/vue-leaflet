@@ -26,17 +26,28 @@ import "leaflet/dist/leaflet.css";
 
 ## Props
 
+This component does not have any specific props.
+
+### Inherited props
 <details>
-<summary>from <strong>Unknown</strong></summary>
+<summary>from <strong>LayerProps</strong></summary>
 
 | Prop name | Description | Type | Reactive | Default | Required |
 | --- | --- | --- | --- | --- | --- |
-| options | Leaflet options to pass to the component constructor. | `T` | `initOnly` | `-` | `false` |
 | pane | By default, the layer will be added to the map's [overlay pane](https://leafletjs.com/reference-2.0.0.html#map-overlaypane). Overriding this option will cause the layer to be placed on another pane by default. Not effective if the renderer option is set (the renderer option will override the pane option). | `string` | `initOnly` | `-` | `false` |
 | attribution | String to be shown in the attribution control, e.g. "© OpenStreetMap contributors". It describes the layer data and is often a legal obligation towards copyright holders and tile providers. | `string` | `true` | `-` | `false` |
 | name | - | `string` | `true` | `-` | `false` |
 | layerType | - | `LayerType` | `true` | `-` | `false` |
 | visible | - | `boolean` | `true` | `-` | `false` |
+
+</details>
+
+<details>
+<summary>from <strong>ComponentProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| options | Leaflet options to pass to the component constructor. | `T` | `initOnly` | `-` | `false` |
 
 </details>
 

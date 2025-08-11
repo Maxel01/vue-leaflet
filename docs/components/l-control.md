@@ -26,17 +26,10 @@ import "leaflet/dist/leaflet.css";
 | --- | --- | --- | --- | --- | --- |
 | disableClickPropagation | Adds stopPropagation to the element's `click`, `dblclick`, `contextmenu` and `pointerdown` events (plus browser variants). | `boolean` | `initOnly` | `-` | `false` |
 | disableScrollPropagation | Adds stopPropagation to the element's `wheel` events (plus browser variants). | `boolean` | `initOnly` | `-` | `false` |
-
-### Inherited props
-<details>
-<summary>from <strong>ControlAbstractProps</strong></summary>
-
-| Prop name | Description | Type | Reactive | Default | Required |
 | --- | --- | --- | --- | --- | --- |
 | position | The position of the control (one of the map corners). Possible values are `topleft`, `topright`, `bottomleft` or `bottomright`. | `ControlPosition` | `true` | `-` | `false` |
 
-</details>
-
+### Inherited props
 <details>
 <summary>from <strong>ComponentProps</strong></summary>
 

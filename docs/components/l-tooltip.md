@@ -26,13 +26,24 @@ import "leaflet/dist/leaflet.css";
 
 ## Props
 
+This component does not have any specific props.
+
+### Inherited props
 <details>
-<summary>from <strong>Unknown</strong></summary>
+<summary>from <strong>PopperProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| content | Sets the HTML content of the overlay while initializing. If a function is passed the source layer will be passed to the function. The function should return a String or HTMLElement to be used in the overlay. | `string \| HTMLElement` | `true` | `-` | `false` |
+
+</details>
+
+<details>
+<summary>from <strong>ComponentProps</strong></summary>
 
 | Prop name | Description | Type | Reactive | Default | Required |
 | --- | --- | --- | --- | --- | --- |
 | options | Leaflet options to pass to the component constructor. | `T` | `initOnly` | `-` | `false` |
-| content | Sets the HTML content of the overlay while initializing. If a function is passed the source layer will be passed to the function. The function should return a String or HTMLElement to be used in the overlay. | `union` | `true` | `-` | `false` |
 
 </details>
 
