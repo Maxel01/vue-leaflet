@@ -12,11 +12,11 @@ export declare type ListenersAndAttrs = {
 /**
  * A generalized interface/type to type-hint whatever may be defined in a class/object.
  */
-export declare type PropertyMap = {
+export type PropertyMap = {
     [propertyName: string]: unknown,
 }
 
-export declare type FunctionMap = Record<string, ((...args: unknown[]) => unknown) | undefined>
+export type FunctionMap = Record<string, ((...args: unknown[]) => unknown) | undefined>
 
 export type LeafletWrapper = {
     (...args: unknown[]): unknown
