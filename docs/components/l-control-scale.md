@@ -8,31 +8,55 @@ outline: deep
 
 ## Demo
 
-<script setup>
+<script>
 import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer, LControlScale } from '../../src/lib.ts';
 </script>
 
-<LMap style="height: 350px" :zoom="8" :center="[47.21322, -1.559482]">
-  <LTileLayer
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
-    layer-type="base"
-    name="OpenStreetMap"
-  />
-  <LControlScale position="topright" :imperial="true" :metric="false" />
-</LMap>
+<div class="demo">
+    <ControlScaleDemo />
+</div>
 
-```vue{8}
-<LMap style="height: 350px" :zoom="8" :center="[47.21322, -1.559482]">
-  <LTileLayer
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
-    layer-type="base"
-    name="OpenStreetMap"
-  />
-  <LControlScale position="topright" :imperial="true" :metric="false" />
-</LMap>
+```vue{12}
+<!--@include: ../../src/playground/views/ControlScaleDemo.vue -->
 ```
 
-<!--@include: ../gen/components/LControlScale.md-->
+## Props
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| maxWidth | Maximum width of the control in pixels. The width is set dynamically to show round values (eg. 100, 200, 500). | `number` | `initOnly` | `-` | `false` |
+| metric | Whether to show the metric scale line (m/km). | `boolean` | `initOnly` | `-` | `false` |
+| imperial | Whether to show the imperial scale line (mi/ft). | `boolean` | `initOnly` | `-` | `false` |
+| updateWhenIdle | If `true`, the control is updated on [moveend](https://leafletjs.com/reference-2.0.0html#map-moveend), otherwise it's always up-to-date (updated on [move](https://leafletjs.com/reference.html#map-move)). | `boolean` | `initOnly` | `-` | `false` |
+
+### Inherited props
+<details>
+<summary>from <strong>ControlAbstractProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| position | The position of the control (one of the map corners). Possible values are `topleft`, `topright`, `bottomleft` or `bottomright`. | `ControlPosition` | `true` | `-` | `false` |
+
+</details>
+
+<details>
+<summary>from <strong>ComponentProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| options | Leaflet options to pass to the component constructor. | `T` | `initOnly` | `-` | `false` |
+
+</details>
+
+## Emits
+
+| Event | Arguments | Description |
+| --- | --- | --- |
+| `ready` | `T` | Triggers when the component is ready |
+
+## Exposes
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `leafletObject` | `Ref<Control.Scale \| undefined>` | The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state). |
+

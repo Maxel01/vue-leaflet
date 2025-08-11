@@ -11,10 +11,31 @@ import { AddLayerInjection } from '../types/injectionKeys.ts'
 import { assertInject, propsBinder, remapEvents } from '../utils.ts'
 import { GridLayer } from 'leaflet'
 
+/**
+ * > Creates a map layer where each tile is an instantiated Vue component.
+ * > Each tile component is given `coords` props by `LGridLayer` to indicate
+ * > the zoom level and position of the tile
+ * > (see https://leafletjs.com/examples/extending/extending-2-layers.html#lgridlayer-and-dom-elements).
+ *
+ * ::: warning
+ *
+ * From [Vue Leaflet legacy v1](https://github.com/vue-leaflet/vue-leaflet/blob/master/src/playground/views/GridLayerDemo.vue) :
+ *
+ * TODO NEXT: While sorting out type errors in LGridLayer.vue, I realized I'm not sure
+ * how or even if its infrastructure is particularly used well. In Vue2Leaflet,
+ * you could pass an arbitrary Vue component to the LGridLayer, to be rendered
+ * for each tile with its coords passed as props. But that doesn't seem set up here.
+ * Should we replicate V2L exactly here? Set things up so that the LGridLayer's $slot
+ * can be where/how the component is setup/configured/passed/added? Simply stick with
+ * the `childRender` prop and simplify some of the logic in LGridLayer.vue?
+ * :::
+ * @demo GridLayerDemo {5-11,17}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<GridLayerProps>(), gridLayerPropsDefaults)
 
 const emit = defineEmits<GridLayerEmits>()
-const {leafletObject, root, ready} = useGridLayer()
+const { leafletObject, root, ready } = useGridLayer()
 
 defineExpose({
     /**
@@ -53,12 +74,12 @@ function useGridLayer() {
         addLayer({
             ...props,
             ...methods,
-            leafletObject: leafletObject.value,
+            leafletObject: leafletObject.value
         })
         ready.value = true
         nextTick(() => emit('ready', leafletObject.value!))
     })
-    return {leafletObject, root, ready}
+    return { leafletObject, root, ready }
 }
 </script>
 

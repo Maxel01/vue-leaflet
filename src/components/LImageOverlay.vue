@@ -6,11 +6,16 @@ import {
     type ImageOverlayEmits,
     type ImageOverlayProps,
     imageOverlayPropsDefaults,
-    setupImageOverlay,
+    setupImageOverlay
 } from '../functions/imageOverlay'
 import { AddLayerInjection } from '../types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '../utils.js'
 
+/**
+ * > Used to load and display a single image over specific bounds of the map.
+ * @demo ImageOverlayDemo {7-19,35}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<ImageOverlayProps>(), imageOverlayPropsDefaults)
 const emit = defineEmits<ImageOverlayEmits>()
 
@@ -38,7 +43,7 @@ function useImageOverlay() {
 
     onMounted(async () => {
         leafletObject.value = markRaw<ImageOverlay>(
-            new ImageOverlay(props.url, props.bounds, options),
+            new ImageOverlay(props.url, props.bounds, options)
         )
 
         const { listeners } = remapEvents(useAttrs())
@@ -47,7 +52,7 @@ function useImageOverlay() {
         addLayer({
             ...props,
             ...methods,
-            leafletObject: leafletObject.value,
+            leafletObject: leafletObject.value
         })
         ready.value = true
         nextTick(() => emit('ready', leafletObject.value!))

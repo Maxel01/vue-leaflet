@@ -8,9 +8,7 @@ import { LControlScale, LMap, LTileLayer } from '../../components'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             layer-type="base"
             name="OpenStreetMap"
-        ></LTileLayer>
+        />
         <LControlScale position="bottomleft" />
     </LMap>
 </template>
-
-<style></style>

@@ -5,12 +5,17 @@ import {
     setupWMSTileLayer,
     type WmsTileLayerEmits,
     type WmsTileLayerProps,
-    wmsTileLayerPropsDefaults,
+    wmsTileLayerPropsDefaults
 } from '../functions/wmsTileLayer'
 import { AddLayerInjection } from '../types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '../utils.js'
 import { TileLayer } from 'leaflet'
 
+/**
+ * > Display [WMS](https://en.wikipedia.org/wiki/Web_Map_Service) services as tile layers on the map.
+ * @demo WmsTileLayerDemo {7-17}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<WmsTileLayerProps>(), wmsTileLayerPropsDefaults)
 const emit = defineEmits<WmsTileLayerEmits>()
 
@@ -40,7 +45,7 @@ function useWmsTileLayer() {
         addLayer({
             ...props,
             ...methods,
-            leafletObject: leafletObject.value,
+            leafletObject: leafletObject.value
         })
         nextTick(() => emit('ready', leafletObject.value!))
     })

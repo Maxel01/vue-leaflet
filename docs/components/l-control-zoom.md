@@ -8,31 +8,55 @@ outline: deep
 
 ## Demo
 
-<script setup>
+<script>
 import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer, LControlZoom } from '../../src/lib.ts';
 </script>
 
-<LMap style="height: 350px" :zoom="8" :center="[47.21322, -1.559482]">
-  <LTileLayer
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
-    layer-type="base"
-    name="OpenStreetMap"
-  />
-  <LControlZoom position="bottomright" />
-</LMap>
+<div class="demo">
+    <ControlZoomDemo />
+</div>
 
-```vue{8}
-<LMap style="height: 350px" :zoom="8" :center="[47.21322, -1.559482]">
-  <LTileLayer
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
-    layer-type="base"
-    name="OpenStreetMap"
-  />
-  <LControlZoom position="bottomright" />
-</LMap>
+```vue{12}
+<!--@include: ../../src/playground/views/ControlZoomDemo.vue -->
 ```
 
-<!--@include: ../gen/components/LControlZoom.md-->
+## Props
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| zoomInText | The text set on the 'zoom in' button | `string` | `initOnly` | `-` | `false` |
+| zoomInTitle | The title set on the 'zoom in' button | `string` | `initOnly` | `-` | `false` |
+| zoomOutText | The text set on the 'zoom out' button | `string` | `initOnly` | `-` | `false` |
+| zoomOutTitle | The title set on the 'zoom out' button | `string` | `initOnly` | `-` | `false` |
+
+### Inherited props
+<details>
+<summary>from <strong>ControlAbstractProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| position | The position of the control (one of the map corners). Possible values are `topleft`, `topright`, `bottomleft` or `bottomright`. | `ControlPosition` | `true` | `-` | `false` |
+
+</details>
+
+<details>
+<summary>from <strong>ComponentProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| options | Leaflet options to pass to the component constructor. | `T` | `initOnly` | `-` | `false` |
+
+</details>
+
+## Emits
+
+| Event | Arguments | Description |
+| --- | --- | --- |
+| `ready` | `T` | Triggers when the component is ready |
+
+## Exposes
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `leafletObject` | `Ref<Control.Zoom \| undefined>` | The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state). |
+

@@ -8,51 +8,60 @@ outline: deep
 
 ## Demo
 
-<script setup>
+<script>
 import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer, LControl } from '../../src/lib.ts';
-
-const clickHandler = () => {
-  alert('and mischievous');
-}
 </script>
 
-<LMap style="height: 350px" :zoom="8" :center="[47.21322, -1.559482]">
-  <LTileLayer
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
-    layer-type="base"
-    name="OpenStreetMap"
-  />
-  <LControl position="bottomleft">
-    <button
-      style="background: white; color: black; padding: 2px; border-radius: 5px;"
-      @click="clickHandler"
-    >I am a useless button!</button>
-  </LControl>
-</LMap>
+<div class="demo">
+    <ControlDemo />
+</div>
 
-```vue{8-13}
-<LMap style="height: 350px" :zoom="8" :center="[47.21322, -1.559482]">
-  <LTileLayer
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
-    layer-type="base"
-    name="OpenStreetMap"
-  />
-  <LControl position="bottomleft">
-    <button
-      style="background: white; color: black; padding: 2px; border-radius: 5px;"
-      @click="clickHandler"
-    >I am a useless button!</button>
-  </LControl>
-</LMap>
-
-<script setup>
-const clickHandler = () => {
-  alert('and mischievous');
-}
-</script>
+```vue{4-6,17-23}
+<!--@include: ../../src/playground/views/ControlDemo.vue -->
 ```
 
-<!--@include: ../gen/components/LControl.md-->
+## Props
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| disableClickPropagation | Adds stopPropagation to the element's `click`, `dblclick`, `contextmenu` and `pointerdown` events (plus browser variants). | `boolean` | `initOnly` | `-` | `false` |
+| disableScrollPropagation | Adds stopPropagation to the element's `wheel` events (plus browser variants). | `boolean` | `initOnly` | `-` | `false` |
+
+### Inherited props
+<details>
+<summary>from <strong>ControlAbstractProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| position | The position of the control (one of the map corners). Possible values are `topleft`, `topright`, `bottomleft` or `bottomright`. | `ControlPosition` | `true` | `-` | `false` |
+
+</details>
+
+<details>
+<summary>from <strong>ComponentProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| options | Leaflet options to pass to the component constructor. | `T` | `initOnly` | `-` | `false` |
+
+</details>
+
+## Emits
+
+| Event | Arguments | Description |
+| --- | --- | --- |
+| `ready` | `T` | Triggers when the component is ready |
+
+## Slots
+
+| Name | Description |
+| --- | --- |
+| `default` | Content to be rendered inside the Leaflet control's container. This slot replaces the default content and allows full customization of the control's appearance. The content will be injected into the control's root DOM element. |
+
+## Exposes
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `root` | `Ref<HTMLElement \| undefined>` | The root DOM element of the Leaflet control. This element is managed by Leaflet's `Control` class. You can use it to directly manipulate the control's container (e.g. styling, event listeners), or alternatively use the default slot for custom content. |
+| `leafletObject` | `Ref<Control \| undefined>` | The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state). |
+

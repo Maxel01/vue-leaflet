@@ -4,12 +4,17 @@ import {
     type PolygonEmits,
     type PolygonProps,
     polygonPropsDefaults,
-    setupPolygon,
+    setupPolygon
 } from '../functions/polygon'
 import { AddLayerInjection } from '../types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '../utils.js'
 import { Polygon } from 'leaflet'
 
+/**
+ * > Easily draw a polygon on the map
+ * @demo PolygonDemo {12-23}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<PolygonProps>(), polygonPropsDefaults)
 const emit = defineEmits<PolygonEmits>()
 
@@ -46,7 +51,7 @@ function usePolygon() {
         addLayer({
             ...props,
             ...methods,
-            leafletObject: leafletObject.value,
+            leafletObject: leafletObject.value
         })
         ready.value = true
         nextTick(() => emit('ready', leafletObject.value!))

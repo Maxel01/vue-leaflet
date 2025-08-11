@@ -7,9 +7,14 @@ import {
     setupTileLayer,
     type TileLayerEmits,
     type TileLayerProps,
-    tileLayerPropsDefaults,
+    tileLayerPropsDefaults
 } from '../functions/tileLayer.ts'
 
+/**
+ * > Load tiles from a map server and display them accordingly to map zoom, center and size.
+ * @demo TileLayerDemo {7-19}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<TileLayerProps>(), tileLayerPropsDefaults)
 const emit = defineEmits<TileLayerEmits>()
 
@@ -39,7 +44,7 @@ function useTileLayer() {
         addLayer({
             ...props,
             ...methods,
-            leafletObject: leafletObject.value,
+            leafletObject: leafletObject.value
         })
         nextTick(() => emit('ready', leafletObject.value!))
     })

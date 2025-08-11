@@ -11,7 +11,7 @@ outline: deep
 
 ::: warning
 
-From [Vue Leaflet](https://github.com/vue-leaflet/vue-leaflet/blob/master/src/playground/views/GridLayerDemo.vue) :
+From [Vue Leaflet legacy v1](https://github.com/vue-leaflet/vue-leaflet/blob/master/src/playground/views/GridLayerDemo.vue) :
 
 TODO NEXT: While sorting out type errors in LGridLayer.vue, I realized I'm not sure
 how or even if its infrastructure is particularly used well. In Vue2Leaflet,
@@ -24,56 +24,74 @@ the `childRender` prop and simplify some of the logic in LGridLayer.vue?
 
 ## Demo
 
-<script setup>
+<script>
 import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer, LGridLayer } from '../../src/lib.ts';
-import { h } from 'vue';
-
-const childRender = (props) => () => {
-  return h(
-    "div",
-    { style: "border: 1px solid grey; height: 100%;" },
-    `x: ${props.coords.x} y: ${props.coords.y} z: ${props.coords.z}`
-  );
-}
 </script>
 
-<LMap style="height: 350px" :zoom="8" :center="[47.21322, -1.559482]">
-  <LTileLayer
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
-    layer-type="base"
-    name="OpenStreetMap"
-  />
-  <LGridLayer
-    :child-render="childRender"
-  />
-</LMap>
+<div class="demo">
+    <GridLayerDemo />
+</div>
 
-```vue{8-10,13-28}
-<LMap style="height: 350px" :zoom="8" :center="[47.21322, -1.559482]">
-  <LTileLayer
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
-    layer-type="base"
-    name="OpenStreetMap"
-  />
-  <LGridLayer
-    :child-render="childRender"
-  />
-</LMap>
-
-<script setup>
-import { h } from 'vue'
-
-const childRender = (props) => () => {
-  return h(
-    "div",
-    { style: "border: 1px solid grey; height: 100%;" },
-    `x: ${props.coords.x} y: ${props.coords.y} z: ${props.coords.z}`
-  );
-}
-</script>
+```vue{5-11,17}
+<!--@include: ../../src/playground/views/GridLayerDemo.vue -->
 ```
 
-<!--@include: ../gen/components/LGridLayer.md-->
+## Props
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| childRender | - | `VueGridLayerTileRenderer` | `initOnly` | `-` | `true` |
+
+### Inherited props
+<details>
+<summary>from <strong>GridLayerAbstractProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| className | A custom class name to assign to the tile layer. Empty by default. | `string` | `initOnly` | `-` | `false` |
+| maxZoom | The maximum zoom level up to which this layer will be displayed (inclusive) | `number` | `initOnly` | `-` | `false` |
+| minZoom | The minimum zoom level down to which this layer will be displayed (inclusive) | `number` | `initOnly` | `-` | `false` |
+| noWrap | Whether the layer is wrapped around the antimeridian. If true, the GridLayer will only be displayed once at low zoom levels. Has no effect when the [map CRS](https://leafletjs.com/reference-2.0.0.html#map-crs) doesn't wrap around. Can be used in combination with `bounds` to prevent requesting tiles outside the CRS limits. | `boolean` | `initOnly` | `-` | `false` |
+| tileSize | Width and height of tiles in the grid. Use a number if width and height are equal, or `Point(width, height)` otherwise. | `number \| PointExpression` | `initOnly` | `-` | `false` |
+| zIndex | The explicit zIndex of the tile layer | `number` | `true` | `-` | `false` |
+| opacity | Opacity of the tiles. Can be used in the createTile() function. | `number` | `true` | `-` | `false` |
+
+</details>
+
+<details>
+<summary>from <strong>LayerProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| pane | By default, the layer will be added to the map's [overlay pane](https://leafletjs.com/reference-2.0.0.html#map-overlaypane). Overriding this option will cause the layer to be placed on another pane by default. Not effective if the renderer option is set (the renderer option will override the pane option). | `string` | `initOnly` | `-` | `false` |
+| attribution | String to be shown in the attribution control, e.g. "© OpenStreetMap contributors". It describes the layer data and is often a legal obligation towards copyright holders and tile providers. | `string` | `true` | `-` | `false` |
+| name | - | `string` | `true` | `-` | `false` |
+| layerType | - | `LayerType` | `true` | `-` | `false` |
+| visible | - | `boolean` | `true` | `-` | `false` |
+
+</details>
+
+<details>
+<summary>from <strong>ComponentProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| options | Leaflet options to pass to the component constructor. | `T` | `initOnly` | `-` | `false` |
+
+</details>
+
+## Emits
+
+| Event | Arguments | Description |
+| --- | --- | --- |
+| `update:visible` | `boolean` | Triggers when the visible prop needs to be updated |
+| `ready` | `T` | Triggers when the component is ready |
+
+## Exposes
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `leafletObject` | `Ref<GridLayer \| undefined>` | The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state). |
+| `root` | `Ref<HTMLElement \| undefined>` | The root DOM element. ? |
+| `ready` | `Ref<boolean>` | Indicates whether the component and its underlying Leaflet object are fully initialized. |
+

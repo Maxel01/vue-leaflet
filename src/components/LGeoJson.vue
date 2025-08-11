@@ -3,9 +3,19 @@ import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 
 import { AddLayerInjection } from '../types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '../utils.js'
-import { type GeoJSONEmits, type GeoJSONProps, geoJSONPropsDefaults, setupGeoJSON } from '../functions/geoJSON.ts'
+import {
+    type GeoJSONEmits,
+    type GeoJSONProps,
+    geoJSONPropsDefaults,
+    setupGeoJSON
+} from '../functions/geoJSON.ts'
 import { GeoJSON } from 'leaflet'
 
+/**
+ * > Represents a GeoJSON object or an array of GeoJSON objects.
+ * @demo GeoJsonDemo {5-8,11-14,25}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<GeoJSONProps>(), geoJSONPropsDefaults)
 const emit = defineEmits<GeoJSONEmits>()
 
@@ -41,7 +51,7 @@ function useGeoJson() {
         addLayer({
             ...props,
             ...methods,
-            leafletObject: leafletObject.value,
+            leafletObject: leafletObject.value
         })
         ready.value = true
         nextTick(() => emit('ready', leafletObject.value!))

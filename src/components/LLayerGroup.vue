@@ -7,9 +7,18 @@ import {
     type LayerGroupEmits,
     type LayerGroupProps,
     layerGroupPropsDefaults,
-    setupLayerGroup,
+    setupLayerGroup
 } from '../functions/layerGroup.ts'
 
+/**
+ * > Use to group several layers and handle them as one. If you add it to the map, any layers added or removed from the group will be added/removed on the map as well.
+ *
+ * ::: warning
+ * This still needs better documentation and examples.
+ * :::
+ * @demo LayerGroupDemo {13-16}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<LayerGroupProps>(), layerGroupPropsDefaults)
 const emit = defineEmits<LayerGroupEmits>()
 
@@ -45,7 +54,7 @@ function useLayerGroup() {
         addLayer({
             ...props,
             ...methods,
-            leafletObject: leafletObject.value,
+            leafletObject: leafletObject.value
         })
         ready.value = true
         nextTick(() => emit('ready', leafletObject.value!))

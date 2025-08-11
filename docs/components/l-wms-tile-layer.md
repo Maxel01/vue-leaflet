@@ -8,39 +8,90 @@ outline: deep
 
 ## Demo
 
-<script setup>
+<script>
 import "leaflet/dist/leaflet.css";
-import { LMap, LWmsTileLayer } from '../../src/lib.ts';
 </script>
 
-<LMap style="height: 350px" :zoom="2" :center="[47.21322, -1.559482]">
-  <LWmsTileLayer
-    url="https://ows.mundialis.de/services/service?"
-    attribution="Mundialis"
-    layer-type="base"
-    name="mundialis.de"
-    :max-zoom="10"
-    version="1.3.0"
-    format="image/png"
-    :transparent="true"
-    :layers="'TOPO-WMS,OSM-Overlay-WMS'"
-  />
-</LMap>
+<div class="demo">
+    <WmsTileLayerDemo />
+</div>
 
-```vue
-<LMap style="height: 350px" :zoom="2" :center="[47.21322, -1.559482]">
-  <LWmsTileLayer
-    url="https://ows.mundialis.de/services/service?"
-    attribution="Mundialis"
-    layer-type="base"
-    name="mundialis.de"
-    :max-zoom="10"
-    version="1.3.0"
-    format="image/png"
-    :transparent="true"
-    :layers="'TOPO-WMS,OSM-Overlay-WMS'"
-  />
-</LMap>
+```vue{7-17}
+<!--@include: ../../src/playground/views/WmsTileLayerDemo.vue -->
 ```
 
-<!--@include: ../gen/components/LWmsTileLayer.md-->
+## Props
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| layers | Comma-separated list of WMS layers to show | `string` | `initOnly` | `-` | `true` |
+| styles | Comme-separated list of WMS styles | `string` | `initOnly` | `-` | `false` |
+| format | WMS image format (use `image/png` for layers with transparency) | `string` | `initOnly` | `-` | `false` |
+| transparent | If `true`, the WMS service will return images with transparency | `boolean` | `initOnly` | `-` | `false` |
+| version | Version of the WMS service to use | `string` | `initOnly` | `-` | `false` |
+| crs | Coordinate Reference System to use for the WMS requests, defaults to the map CRS. Don't change this if you're not sure what it means. | `CRS` | `initOnly` | `-` | `false` |
+| uppercase | If `true`, WMS request parameter keys will be uppercase. | `boolean` | `initOnly` | `-` | `false` |
+
+### Inherited props
+<details>
+<summary>from <strong>TileLayerProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| url | A string of the form `'https://{s}.somedomain.com/blabla/{z}/{x}/{y}{r}.png'`. See more in the [original Leaflet documentation](https://leafletjs.com/reference-2.0.0.html#tilelayer) | `string` | `true` | `-` | `true` |
+| detectRetina | If `true` and user is on a retina display, it will request four tiles of half the specified size and a bigger zoom level in place of one to utilize the high resolution. | `boolean` | `initOnly` | `-` | `false` |
+| subdomains | Subdomains of the tile service. Can be passed in the form of one string (where each letter is a subdomain name) or an array of strings. | `string \| Array` | `?` | `-` | `false` |
+| tms | If `true`, inverses Y axis numbering for tiles (turn this on for TMS services) | `boolean` | `?` | `-` | `false` |
+
+</details>
+
+<details>
+<summary>from <strong>GridLayerAbstractProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| opacity | Opacity of the tiles. Can be used in the createTile() function. | `number` | `true` | `-` | `false` |
+| zIndex | The explicit zIndex of the tile layer | `number` | `true` | `-` | `false` |
+| tileSize | Width and height of tiles in the grid. Use a number if width and height are equal, or `Point(width, height)` otherwise. | `number \| PointExpression` | `initOnly` | `-` | `false` |
+| noWrap | Whether the layer is wrapped around the antimeridian. If true, the GridLayer will only be displayed once at low zoom levels. Has no effect when the [map CRS](https://leafletjs.com/reference-2.0.0.html#map-crs) doesn't wrap around. Can be used in combination with `bounds` to prevent requesting tiles outside the CRS limits. | `boolean` | `initOnly` | `-` | `false` |
+| minZoom | The minimum zoom level down to which this layer will be displayed (inclusive) | `number` | `initOnly` | `-` | `false` |
+| maxZoom | The maximum zoom level up to which this layer will be displayed (inclusive) | `number` | `initOnly` | `-` | `false` |
+| className | A custom class name to assign to the tile layer. Empty by default. | `string` | `initOnly` | `-` | `false` |
+
+</details>
+
+<details>
+<summary>from <strong>LayerProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| visible | - | `boolean` | `true` | `-` | `false` |
+| layerType | - | `LayerType` | `true` | `-` | `false` |
+| name | - | `string` | `true` | `-` | `false` |
+| attribution | String to be shown in the attribution control, e.g. "© OpenStreetMap contributors". It describes the layer data and is often a legal obligation towards copyright holders and tile providers. | `string` | `true` | `-` | `false` |
+| pane | By default, the layer will be added to the map's [overlay pane](https://leafletjs.com/reference-2.0.0.html#map-overlaypane). Overriding this option will cause the layer to be placed on another pane by default. Not effective if the renderer option is set (the renderer option will override the pane option). | `string` | `initOnly` | `-` | `false` |
+
+</details>
+
+<details>
+<summary>from <strong>ComponentProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| options | Leaflet options to pass to the component constructor. | `T` | `initOnly` | `-` | `false` |
+
+</details>
+
+## Emits
+
+| Event | Arguments | Description |
+| --- | --- | --- |
+| `update:visible` | `boolean` | Triggers when the visible prop needs to be updated |
+| `ready` | `T` | Triggers when the component is ready |
+
+## Exposes
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `leafletObject` | `Ref<TileLayer.WMS \| undefined>` | The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state). |
+

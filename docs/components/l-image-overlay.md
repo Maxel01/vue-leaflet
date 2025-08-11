@@ -8,167 +8,80 @@ outline: deep
 
 ## Demo
 
-::: warning
-The demo still needs to be fixed.
-:::
-
-<script setup lang="ts">
+<script>
 import "leaflet/dist/leaflet.css";
-import { computed, ref } from "vue";
-import { CRS, LatLngBoundsLiteral } from "leaflet";
-import { LMap, LImageOverlay, LMarker, LPopup } from "../../src/lib.ts";
-
-const imageOverlayUrl = ref(
-  "https://www.printablee.com/postpic/2011/06/blank-100-square-grid-paper_405041.jpg"
-);
-const width = ref(100);
-const height = ref(100);
-
-const markers = ref([
-  { coordinates: { lng: 0, lat: 0 } },
-  { coordinates: { lng: 100, lat: 0 } },
-  { coordinates: { lng: 0, lat: 100 } },
-  { coordinates: { lng: 100, lat: 100 } },
-  { coordinates: { lng: 0, lat: 50 } },
-  { coordinates: { lng: 50, lat: 0 } },
-  { coordinates: { lng: 50, lat: 100 } },
-  { coordinates: { lng: 100, lat: 50 } },
-]);
-
-const bounds = computed(
-  () =>
-    [
-      [0, 0],
-      [height.value, width.value],
-    ] as LatLngBoundsLiteral
-);
-const crs = CRS.Simple;
 </script>
 
-<div>
-    <LMap
-        ref="map"
-        style="height: 350px"
-        :zoom="1"
-        :crs="crs"
-        :center="[height / 2, width / 2]"
-        :minZoom="-5"
-    >
-        <LImageOverlay :url="imageOverlayUrl" :bounds="bounds"></LImageOverlay>
-        <LMarker
-            v-for="(marker, idx) in markers"
-            :key="idx"
-            :lat-lng="marker.coordinates"
-        >
-            <LPopup>{{ idx }}</LPopup>
-        </LMarker>
-    </LMap>
-    <!-- Map Settings -->
-    <label for="imageOverlayUrl">Url to render: </label>
-    <input
-        type="text"
-        id="imageOverlayUrl"
-        placeholder="Url for image overlay"
-        v-model="imageOverlayUrl"
-    />
-    <!-- Bounds settings -->
-    <label for="width">Width: </label>
-    <input type="number" id="width" placeholder="Width" v-model="width" />
-    <label for="height">Height: </label>
-    <input type="number" id="height" placeholder="Height" v-model="height" />
-    <!-- Marker settings -->
-    <div class="markers-list">
-        <h4>Markers</h4>
-        <ul>
-            <li v-for="(marker, idx) in markers" :key="idx">
-                {{ idx }} - lng (X): {{ marker.coordinates.lng }} - lat (Y):
-                {{ marker.coordinates.lat }}
-            </li>
-        </ul>
-    </div>
+<div class="demo">
+    <ImageOverlayDemo />
 </div>
 
-```vue
-<template>
-  <LMap
-    style="height: 350px"
-    :zoom="1"
-    :crs="crs"
-    :center="[height / 2, width / 2]"
-    :minZoom="-5"
-  >
-    <LTileLayer
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
-      layer-type="base"
-      name="OpenStreetMap"
-    />
-    <LImageOverlay :url="imageOverlayUrl" :bounds="bounds" />
-
-    <LMarker
-      v-for="(marker, idx) in markers"
-      :key="idx"
-      :lat-lng="marker.coordinates"
-      ><LPopup>{{ idx }}</LPopup></LMarker
-    >
-  </LMap>
-
-  <!-- Map Settings -->
-  <label for="imageOverlayUrl">Url to render: </label>
-  <input
-    type="text"
-    id="imageOverlayUrl"
-    placeholder="Url for image overlay"
-    v-model="imageOverlayUrl"
-  />
-  <!-- Bounds settings -->
-  <label for="width">Width: </label>
-  <input type="number" id="width" placeholder="Width" v-model="width" />
-  <label for="height">Height: </label>
-  <input type="number" id="height" placeholder="Height" v-model="height" />
-
-  <!-- Marker settings -->
-  <div class="markers-list">
-    <h4>Markers</h4>
-    <ul>
-      <li v-for="(marker, idx) in markers" :key="idx">
-        {{ idx }} - lng (X): {{ marker.coordinates.lng }} - lat (Y):
-        {{ marker.coordinates.lat }}
-      </li>
-    </ul>
-  </div>
-</template>
-
-<script setup lang="ts">
-import { CRS } from "leaflet/dist/leaflet-src.esm";
-import { computed, ref } from "vue";
-
-const imageOverlayUrl = ref(
-  "https://www.printablee.com/postpic/2011/06/blank-100-square-grid-paper_405041.jpg"
-);
-const width = ref(100);
-const height = ref(100);
-
-const markers = ref([
-  { coordinates: { lng: 0, lat: 0 } },
-  { coordinates: { lng: 100, lat: 0 } },
-  { coordinates: { lng: 0, lat: 100 } },
-  { coordinates: { lng: 100, lat: 100 } },
-  { coordinates: { lng: 0, lat: 50 } },
-  { coordinates: { lng: 50, lat: 0 } },
-  { coordinates: { lng: 50, lat: 100 } },
-  { coordinates: { lng: 100, lat: 50 } },
-]);
-
-const bounds = computed(
-  () =>
-    [
-      [0, 0],
-      [height.value, width.value],
-    ] as L.LatLngBoundsLiteral
-);
-const crs = CRS.Simple;
-</script>
+```vue{7-19,35}
+<!--@include: ../../src/playground/views/ImageOverlayDemo.vue -->
 ```
 
-<!--@include: ../gen/components/LImageOverlay.md-->
+## Props
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| url | Url of the image | `string` | `true` | `-` | `true` |
+
+### Inherited props
+<details>
+<summary>from <strong>ImageOverlayAbstractProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| bounds | The geographical bounds | `LatLngBoundsExpression` | `true` | `-` | `true` |
+| className | A custom class name to assign to the image. Empty by default. | `string` | `initOnly` | `-` | `false` |
+| zIndex | The explicit [zIndex](https://developer.mozilla.org/docs/Web/CSS/CSS_Positioning/Understanding_z_index) of the overlay layer. | `number` | `true` | `-` | `false` |
+| errorOverlayUrl | URL to the overlay image to show in place of the overlay that failed to load. | `string` | `initOnly` | `-` | `false` |
+| crossOrigin | Whether the crossOrigin attribute will be added to the image. If a String is provided, the image will have its crossOrigin attribute set to the String provided. This is needed if you want to access image pixel data. Refer to [CORS Settings](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) for valid String values. | `boolean` | `initOnly` | `-` | `false` |
+| interactive | If `true`, the image overlay will emit [mouse events](https://leafletjs.com/reference-2.0.0.html#interactive-layer) when clicked or hovered | `boolean` | `initOnly` | `-` | `false` |
+| alt | Text for the alt attribute of the image (useful for accessibility). | `string` | `initOnly` | `-` | `false` |
+| opacity | The opacity of the image overlay. | `number` | `true` | `-` | `false` |
+
+</details>
+
+<details>
+<summary>from <strong>LayerProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| pane | By default, the layer will be added to the map's [overlay pane](https://leafletjs.com/reference-2.0.0.html#map-overlaypane). Overriding this option will cause the layer to be placed on another pane by default. Not effective if the renderer option is set (the renderer option will override the pane option). | `string` | `initOnly` | `-` | `false` |
+| attribution | String to be shown in the attribution control, e.g. "© OpenStreetMap contributors". It describes the layer data and is often a legal obligation towards copyright holders and tile providers. | `string` | `true` | `-` | `false` |
+| name | - | `string` | `true` | `-` | `false` |
+| layerType | - | `LayerType` | `true` | `-` | `false` |
+| visible | - | `boolean` | `true` | `-` | `false` |
+
+</details>
+
+<details>
+<summary>from <strong>ComponentProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| options | Leaflet options to pass to the component constructor. | `T` | `initOnly` | `-` | `false` |
+
+</details>
+
+## Emits
+
+| Event | Arguments | Description |
+| --- | --- | --- |
+| `update:visible` | `boolean` | Triggers when the visible prop needs to be updated |
+| `ready` | `T` | Triggers when the component is ready |
+
+## Slots
+
+| Name | Description |
+| --- | --- |
+| `default` | Used to inject Leaflet child components like `<LPopup>` or `<LTooltip>` into the `LCircleMarker`. |
+
+## Exposes
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `ready` | `Ref<boolean>` | Indicates whether the component and its underlying Leaflet object are fully initialized. |
+| `leafletObject` | `Ref<ImageOverlay \| undefined>` | The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state). |
+

@@ -6,11 +6,16 @@ import {
     type ControlEmits,
     type ControlProps,
     controlPropsDefaults,
-    setupControl,
+    setupControl
 } from '../functions/control'
 import { RegisterControlInjection } from '../types/injectionKeys'
 import { assertInject, propsBinder } from '../utils.js'
 
+/**
+ * > Base component for implementing map controls. Handles positioning. All other controls extend from this component.
+ * @demo ControlDemo {4-6,17-23}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<ControlProps>(), controlPropsDefaults)
 const emit = defineEmits<ControlEmits>()
 
@@ -25,7 +30,7 @@ defineExpose({
      * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
      * @type {Ref<Control \| undefined>}
      */
-    leafletObject,
+    leafletObject
 })
 
 function useControl() {

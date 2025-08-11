@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import { LMap, LWmsTileLayer } from '../../components'
-import { ref } from 'vue'
-
-const zoom = ref<number>(2)
 </script>
 
 <template>
-    <LMap ref="map" v-model:zoom="zoom" :center="[47.41322, -1.219482]">
+    <LMap :zoom="2" :center="[47.41322, -1.219482]">
         <LWmsTileLayer
             url="https://ows.mundialis.de/services/service?"
             attribution="Mundialis"
@@ -20,5 +17,3 @@ const zoom = ref<number>(2)
         />
     </LMap>
 </template>
-
-<style></style>

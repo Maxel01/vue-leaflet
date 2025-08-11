@@ -11,8 +11,8 @@ const __dirname = path.dirname(__filename)
 
 async function generate() {
     const componentFiles = await fg('src/components/**/*.vue')
-    const outputDir = path.resolve(__dirname, '../gen/components')
-    await fse.emptyDir(outputDir)
+    const outputDir = path.resolve(__dirname, '../components')
+    await emptyLFilesOnly(outputDir)
 
     for (const file of componentFiles) {
         const doc = await parse(file, {
@@ -21,7 +21,7 @@ async function generate() {
         })
 
         const name = doc.displayName || path.basename(file, '.vue')
-        const markdownPath = path.join(outputDir, `${name}.md`)
+        const markdownPath = path.join(outputDir, `${toKebabCase(name)}.md`)
 
         let markdown = `# ${name}\n\n${doc.description || ''}\n\n`
         markdown = '---\noutline: deep\n---\n\n'
@@ -61,7 +61,7 @@ async function generate() {
         }
 
         await fse.outputFile(markdownPath, markdown, 'utf8')
-        console.log(`📄 Generated: docs/gen/components/${name}.md`)
+        console.log(`📄 Generated: ${path.relative(path.resolve(__dirname, "../../"), markdownPath)}`)
     }
 }
 
@@ -77,7 +77,7 @@ function writeDemo(doc, markdown) {
             `    <${demoName} />\n` +
             '</div>\n\n' +
             `\`\`\`vue${highlight}\n` +
-            '<!--@include: ../../../src/playground/views/CircleMarkerDemo.vue -->\n' +
+            `<!--@include: ../../src/playground/views/${demoName}.vue -->\n` +
             '```\n\n'
     }
     return markdown
@@ -145,6 +145,30 @@ function writePropsTable(group, markdown) {
     }
     return markdown
 }
+
+function toKebabCase(name) {
+    if (name === 'LSVGOverlay') return 'l-svg-overlay';
+    return name
+        .replace(/^L/, 'l')
+        .replace(/([a-z])([A-Z])/g, '$1-$2')
+        .toLowerCase()
+}
+
+async function emptyLFilesOnly(dir) {
+    const files = await fse.readdir(dir);
+
+    for (const file of files) {
+        if (file.startsWith('l-')) {
+            const filePath = path.join(dir, file);
+            const stat = await fse.stat(filePath);
+
+            if (stat.isFile()) {
+                await fse.remove(filePath);
+            }
+        }
+    }
+}
+
 
 generate().catch(error => {
     console.error(error)

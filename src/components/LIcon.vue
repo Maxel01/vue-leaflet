@@ -5,11 +5,16 @@ import { assertInject, propsBinder, propsToLeafletOptions, remapEvents } from '.
 import {
     CanSetParentHtmlInjection,
     SetIconInjection,
-    SetParentHtmlInjection,
+    SetParentHtmlInjection
 } from '../types/injectionKeys.ts'
 import { DivIcon, type DivIconOptions, DomEvent, Icon } from 'leaflet'
 import { setupComponent } from '../functions/component.ts'
 
+/**
+ * > Easy and reactive way to configure the icon of a marker
+ * @demo IconDemo {6-21,34,39,44,49}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<IconProps>(), iconPropsDefaults)
 
 const { root } = useIcon()
@@ -37,7 +42,7 @@ function useIcon() {
         setShadowAnchor: scheduleCreateIcon,
         setBgPos: scheduleCreateIcon,
         setClassName: scheduleCreateIcon,
-        setHtml: scheduleCreateIcon,
+        setHtml: scheduleCreateIcon
     }
 
     onMounted(async () => {
@@ -48,7 +53,7 @@ function useIcon() {
             attributes: true,
             childList: true,
             characterData: true,
-            subtree: true,
+            subtree: true
         })
         scheduleCreateIcon()
     })

@@ -12,145 +12,59 @@ Popup placed inside a marker will by default appear on marker click.
 
 ## Demo
 
-<script setup>
+<script>
 import "leaflet/dist/leaflet.css";
-import {
-  LCircle,
-  LCircleMarker,
-  LLayerGroup,
-  LMap,
-  LMarker,
-  LPolygon,
-  LPolyline,
-  LPopup,
-  LRectangle,
-  LTileLayer
-} from '../../src/lib.ts';
 </script>
 
-<LMap style="height: 350px" :zoom="9" :center="[41.8329, -87.7327]">
-    <LTileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
-        layer-type="base"
-        name="OpenStreetMap"
-    />
-    <LMarker :lat-lng="[41.8329, -87.7327]">
-        <LPopup> Hi! I'm staying here on this location! </LPopup>
-    </LMarker>
-    <LLayerGroup>
-        <LMarker :lat-lng="[41.75, -87.65]" draggable>
-            <LPopup> Hi! You can drag me around! </LPopup>
-        </LMarker>
-    </LLayerGroup>
-    <LPolygon
-        :lat-lngs="[
-            [41.6329, -87.5327],
-            [41.5329, -87.2327],
-            [41.3329, -87.3327],
-            [41.6329, -87.5327],
-        ]"
-        color="#41b782"
-        :fill="true"
-        :fillOpacity="0.5"
-        fillColor="#41b782"
-    >
-        <LPopup> Hi! I'm a polygon, nice to meet you! </LPopup>
-    </LPolygon>
-    <LPolyline
-        :lat-lngs="[
-            [41.9329, -87.9327],
-            [41.8329, -87.8327],
-        ]"
-        color="green"
-    >
-        <LPopup> Hey! Polyline here, at your service! </LPopup>
-    </LPolyline>
-    <LRectangle
-        :lat-lngs="[
-            [41.734852, -86.809485],
-            [41.742596, -86.628731],
-            [41.641487, -86.590568],
-            [41.634787, -86.658337],
-        ]"
-        :fill="true"
-        color="#35495d"
-    >
-        <LPopup> Good day! Rectangle is my name! </LPopup>
-    </LRectangle>
-    <LCircle :lat-lng="[41.4329, -87.7327]" :radius="10000" color="green">
-        <LPopup> Hi! I'm a green Circle! </LPopup>
-    </LCircle>
-    <LCircleMarker :lat-lng="[41.4329, -87.95]" :radius="20">
-        <LPopup> Hi! You can call me Circle Marker! </LPopup>
-    </LCircleMarker>
-</LMap>
+<div class="demo">
+    <PopupDemo />
+</div>
 
-```vue
-<LMap style="height: 350px" :zoom="9" :center="[41.8329, -87.7327]">
-  <LTileLayer
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
-    layer-type="base"
-    name="OpenStreetMap"
-  />
-
-  <LMarker :lat-lng="[41.8329, -87.7327]">
-    <LPopup> Hi! I'm staying here on this location! </LPopup>
-  </LMarker>
-
-  <LLayerGroup>
-    <LMarker :lat-lng="[41.75, -87.65]" draggable>
-      <LPopup> Hi! You can drag me around! </LPopup>
-    </LMarker>
-  </LLayerGroup>
-
-  <LPolygon
-    :lat-lngs="[
-      [41.6329, -87.5327],
-      [41.5329, -87.2327],
-      [41.3329, -87.3327],
-      [41.6329, -87.5327],
-    ]"
-    color="#41b782"
-    :fill="true"
-    :fillOpacity="0.5"
-    fillColor="#41b782"
-  >
-    <LPopup> Hi! I'm a polygon, nice to meet you! </LPopup>
-  </LPolygon>
-
-  <LPolyline
-    :lat-lngs="[
-      [41.9329, -87.9327],
-      [41.8329, -87.8327],
-    ]"
-    color="green"
-  >
-    <LPopup> Hey! Polyline here, at your service! </LPopup>
-  </LPolyline>
-
-  <LRectangle
-    :lat-lngs="[
-      [41.734852, -86.809485],
-      [41.742596, -86.628731],
-      [41.641487, -86.590568],
-      [41.634787, -86.658337],
-    ]"
-    :fill="true"
-    color="#35495d"
-  >
-    <LPopup> Good day! Rectangle is my name! </LPopup>
-  </LRectangle>
-
-  <LCircle :lat-lng="[41.4329, -87.7327]" :radius="10000" color="green">
-    <LPopup> Hi! I'm a green Circle! </LPopup>
-  </LCircle>
-
-  <LCircleMarker :lat-lng="[41.4329, -87.95]" :radius="20">
-    <LPopup> Hi! You can call me Circle Marker! </LPopup>
-  </LCircleMarker>
-</LMap>
+```vue{25,30,46,56,69,77}
+<!--@include: ../../src/playground/views/PopupDemo.vue -->
 ```
 
-<!--@include: ../gen/components/LPopup.md-->
+## Props
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| latLng | The position of the popup | `LatLngExpression` | `true` | `-` | `false` |
+
+### Inherited props
+<details>
+<summary>from <strong>PopperProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| content | Sets the HTML content of the overlay while initializing. If a function is passed the source layer will be passed to the function. The function should return a String or HTMLElement to be used in the overlay. | `string \| HTMLElement` | `true` | `-` | `false` |
+
+</details>
+
+<details>
+<summary>from <strong>ComponentProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| options | Leaflet options to pass to the component constructor. | `T` | `initOnly` | `-` | `false` |
+
+</details>
+
+## Emits
+
+| Event | Arguments | Description |
+| --- | --- | --- |
+| `ready` | `Tooltip` | Triggers when the component is ready |
+
+## Slots
+
+| Name | Description |
+| --- | --- |
+| `default` | Content to be rendered inside the Leaflet popup's container. This slot replaces the default content and allows full customization of the popup's appearance. The content will be injected into the popup's root DOM element. |
+
+## Exposes
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `root` | `Ref<HTMLElement \| undefined>` | The root DOM element of the Leaflet popup. This element is managed by Leaflet's `Popup` class. You can use it to directly manipulate the popup's container (e.g. styling, event listeners), or alternatively use the default slot for custom content. |
+| `leafletObject` | `Ref<Popup \| undefined>` | The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state). |
+

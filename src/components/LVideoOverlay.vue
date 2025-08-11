@@ -11,6 +11,11 @@ import {
     videoOverlayPropsDefaults
 } from '../functions/videoOverlay.ts'
 
+/**
+ * > Used to load and display a video over specific bounds of the map.
+ * @demo VideoOverlayDemo {4-8,13-18}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<VideoOverlayProps>(), videoOverlayPropsDefaults)
 const emit = defineEmits<VideoOverlayEmits>()
 

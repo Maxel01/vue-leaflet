@@ -8,31 +8,52 @@ outline: deep
 
 ## Demo
 
-<script setup>
+<script>
 import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer, LControlAttribution } from '../../src/lib.ts';
 </script>
 
-<LMap style="height: 350px" :zoom="8" :center="[47.21322, -1.559482]">
-  <LTileLayer
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
-    layer-type="base"
-    name="OpenStreetMap"
-  />
-  <LControlAttribution position="topright" prefix="A custom prefix" />
-</LMap>
+<div class="demo">
+    <ControlAttributionDemo />
+</div>
 
-```vue{8}
-<LMap style="height: 350px" :zoom="8" :center="[47.21322, -1.559482]">
-  <LTileLayer
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
-    layer-type="base"
-    name="OpenStreetMap"
-  />
-  <LControlAttribution position="topright" prefix="A custom prefix" />
-</LMap>
+```vue{5,15}
+<!--@include: ../../src/playground/views/ControlAttributionDemo.vue -->
 ```
 
-<!--@include: ../gen/components/LControlAttribution.md-->
+## Props
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| prefix | The HTML text shown before the attributions. Pass `false` to disable. | `string \| false` | `true` | `-` | `false` |
+
+### Inherited props
+<details>
+<summary>from <strong>ControlAbstractProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| position | The position of the control (one of the map corners). Possible values are `topleft`, `topright`, `bottomleft` or `bottomright`. | `ControlPosition` | `true` | `-` | `false` |
+
+</details>
+
+<details>
+<summary>from <strong>ComponentProps</strong></summary>
+
+| Prop name | Description | Type | Reactive | Default | Required |
+| --- | --- | --- | --- | --- | --- |
+| options | Leaflet options to pass to the component constructor. | `T` | `initOnly` | `-` | `false` |
+
+</details>
+
+## Emits
+
+| Event | Arguments | Description |
+| --- | --- | --- |
+| `ready` | `T` | Triggers when the component is ready |
+
+## Exposes
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `leafletObject` | `Ref<Control.Attribution \| undefined>` | The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state). |
+

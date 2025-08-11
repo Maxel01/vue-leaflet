@@ -11,6 +11,11 @@ import {
     setupControlScale
 } from '../functions/controlScale.ts'
 
+/**
+ * > A simple scale control that shows the scale of the current center of screen in metric (m/km) and imperial (mi/ft) systems.
+ * @demo ControlScaleDemo {12}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<ControlScaleProps>(), controlScalePropsDefaults)
 const emit = defineEmits<ControlScaleEmits>()
 
@@ -31,7 +36,6 @@ function useControlScale() {
     const { options, methods } = setupControlScale(props, leafletObject)
 
     onMounted(async () => {
-
         leafletObject.value = markRaw<Control.Scale>(new Control.Scale(options))
         propsBinder(methods, leafletObject.value, props)
         registerControl({ leafletObject: leafletObject.value })

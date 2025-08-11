@@ -15,5 +15,3 @@ const customAttributionPrefix = ref<string>('<strong>Custom bottom left attribut
         <LControlAttribution position="bottomleft" :prefix="customAttributionPrefix" />
     </LMap>
 </template>
-
-<style></style>

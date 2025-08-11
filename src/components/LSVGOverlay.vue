@@ -10,6 +10,11 @@ import {
     svgOverlayPropsDefaults
 } from '../functions/svgOverlay.ts'
 
+/**
+ * > Used to load and display a single svg over specific bounds of the map.
+ * @demo SVGOverlayDemo {7-21,37}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<SVGOverlayProps>(), svgOverlayPropsDefaults)
 const emit = defineEmits<SVGOverlayEmits>()
 
@@ -36,9 +41,7 @@ function useSVGOverlay() {
     const { options, methods } = setupSVGOverlay(props, leafletObject, emit)
 
     onMounted(async () => {
-        leafletObject.value = markRaw<SVGOverlay>(
-            new SVGOverlay(props.svg, props.bounds, options)
-        )
+        leafletObject.value = markRaw<SVGOverlay>(new SVGOverlay(props.svg, props.bounds, options))
 
         const { listeners } = remapEvents(useAttrs())
         leafletObject.value.on(listeners)
