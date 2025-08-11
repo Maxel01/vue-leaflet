@@ -24,8 +24,11 @@ async function generate() {
         const markdownPath = path.join(outputDir, `${name}.md`)
 
         let markdown = `# ${name}\n\n${doc.description || ''}\n\n`
-        markdown = ''
+        markdown = '---\noutline: deep\n---\n\n'
+        markdown += `# ${doc.displayName}\n\n`
+        markdown += `${doc.description}\n\n`
 
+        markdown = writeDemo(doc, markdown)
         markdown = writeProps(doc, markdown)
 
         // Emits
@@ -62,6 +65,23 @@ async function generate() {
     }
 }
 
+function writeDemo(doc, markdown) {
+    if (doc.tags.demo) {
+        const demo = doc.tags.demo[0]
+        const [demoName, highlight] = demo.description.split(' ')
+        markdown += '## Demo\n\n' +
+            '<script>\n' +
+            'import "leaflet/dist/leaflet.css";\n' +
+            '</script>\n\n' +
+            '<div class="demo">\n' +
+            `    <${demoName} />\n` +
+            '</div>\n\n' +
+            `\`\`\`vue${highlight}\n` +
+            '<!--@include: ../../../src/playground/views/CircleMarkerDemo.vue -->\n' +
+            '```\n\n'
+    }
+    return markdown
+}
 function writeProps(doc, markdown) {
     // Props
     if (doc.props?.length) {
