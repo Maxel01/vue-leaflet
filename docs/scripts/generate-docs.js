@@ -82,6 +82,7 @@ function writeDemo(doc, markdown) {
     }
     return markdown
 }
+
 function writeProps(doc, markdown) {
     // Props
     if (doc.props?.length) {
@@ -105,20 +106,39 @@ function writeProps(doc, markdown) {
 
         markdown += '## Props\n\n'
 
-        for (const [ifaceName, group] of sortedGroups) {
+        let skip = false
+        for (let i = 0; i < sortedGroups.length; i++) {
+            if (skip) {
+                skip = false
+                continue
+            }
+            const [ifaceName, group] = sortedGroups[i]
             if (group.level > 0)
                 markdown += `<details>\n<summary>from <strong>${ifaceName}</strong></summary>\n\n`
             markdown += '| Prop name | Description | Type | Reactive | Default | Required |\n'
-            markdown += '| --- | --- | --- | --- | --- | --- |\n'
+            markdown = writePropsTable(group, markdown)
 
-            for (const prop of group.props) {
-                const reactive = prop.tags?.['reactive'] ? 'true' : prop.tags?.['initOnly'] ? 'initOnly' : '?'
-                const type = typeof prop.type === 'object' ? prop.type?.name || '-' : prop.type || '-'
-                markdown += `| ${prop.name} | ${prop.description || '-'} | \`${type}\` | \`${reactive}\` | \`${prop.defaultValue?.value || '-'}\` | \`${prop.required}\` |\n`
+            if (i + 1 < sortedGroups.length) {
+                const [nextIfaceName, nextGroup] = sortedGroups[i + 1]
+                if (ifaceName === nextIfaceName.replace('Abstract', '')) {
+                    markdown = writePropsTable(nextGroup, markdown)
+                    skip = true
+                }
             }
             if (group.level > 0) markdown += '\n</details>\n\n'
             else markdown += '\n### Inherited props\n'
         }
+    }
+    return markdown
+}
+
+function writePropsTable(group, markdown) {
+    markdown += '| --- | --- | --- | --- | --- | --- |\n'
+
+    for (const prop of group.props) {
+        const reactive = prop.tags?.['reactive'] ? 'true' : prop.tags?.['initOnly'] ? 'initOnly' : '?'
+        const type = typeof prop.type === 'object' ? prop.type?.name || '-' : prop.type || '-'
+        markdown += `| ${prop.name} | ${prop.description || '-'} | \`${type}\` | \`${reactive}\` | \`${prop.defaultValue?.value || '-'}\` | \`${prop.required}\` |\n`
     }
     return markdown
 }
