@@ -16,7 +16,7 @@ import "leaflet/dist/leaflet.css";
     <VideoOverlayDemo />
 </div>
 
-```vue{4-8,13-18}
+```vue{7-11,16-21}
 <!--@include: ../../src/playground/views/VideoOverlayDemo.vue -->
 ```
 
