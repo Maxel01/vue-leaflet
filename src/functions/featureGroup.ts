@@ -10,7 +10,9 @@ import {
 } from './layerGroup'
 import type { Ref } from 'vue'
 
-export type FeatureGroupProps = LayerGroupProps
+/* eslint-disable @typescript-eslint/no-empty-object-type */
+export interface FeatureGroupProps extends LayerGroupProps {
+}
 
 export const featureGroupPropsDefaults = layerGroupPropsDefaults
 

@@ -107,6 +107,9 @@ function writeProps(doc, markdown) {
         markdown += '## Props\n\n'
 
         let skip = false
+        if (sortedGroups.length > 0 && sortedGroups[0][1].level > 0){
+            markdown += 'This component does not have any specific props.\n\n### Inherited props\n'
+        }
         for (let i = 0; i < sortedGroups.length; i++) {
             if (skip) {
                 skip = false
