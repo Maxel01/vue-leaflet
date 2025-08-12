@@ -8,7 +8,7 @@ import {
     setupRectangle
 } from '../functions/rectangle'
 import { AddLayerInjection } from '../types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '../utils.js'
+import { assertInject, propsBinder, remapEvents } from '../utils'
 import { LatLngBounds, Rectangle } from 'leaflet'
 
 /**

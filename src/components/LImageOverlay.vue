@@ -9,7 +9,7 @@ import {
     setupImageOverlay
 } from '../functions/imageOverlay'
 import { AddLayerInjection } from '../types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '../utils.js'
+import { assertInject, propsBinder, remapEvents } from '../utils'
 
 /**
  * > Used to load and display a single image over specific bounds of the map.

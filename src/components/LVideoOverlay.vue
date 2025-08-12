@@ -3,13 +3,13 @@ import { VideoOverlay } from 'leaflet'
 import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 
 import { AddLayerInjection } from '../types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '../utils.js'
+import { assertInject, propsBinder, remapEvents } from '../utils'
 import {
     setupVideoOverlay,
     type VideoOverlayEmits,
     type VideoOverlayProps,
     videoOverlayPropsDefaults
-} from '../functions/videoOverlay.ts'
+} from '../functions/videoOverlay'
 
 /**
  * > Used to load and display a video over specific bounds of the map.

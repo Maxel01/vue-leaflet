@@ -35,16 +35,16 @@ import {
     remapEvents,
     resetWebpackIcon,
     updateLeafletWrapper
-} from '../utils.ts'
+} from '../utils'
 import type { IControlDefinition, ILayerDefinition } from '../types/interfaces'
 import {
     AddLayerInjection,
     RegisterControlInjection,
     RegisterLayerControlInjection,
     RemoveLayerInjection
-} from '../types/injectionKeys.ts'
-import type { IMapBlueprint } from '../types/interfaces/IMapBlueprint.ts'
-import { type MapProps, mapPropsDefaults, setupMap } from '../functions/map.ts'
+} from '../types/injectionKeys'
+import type { IMapBlueprint } from '../types/interfaces/IMapBlueprint'
+import { type MapProps, mapPropsDefaults, setupMap } from '../functions/map'
 
 /**
  * > Base component, contains and wraps all the other components.

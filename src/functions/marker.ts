@@ -2,7 +2,7 @@ import type { Icon, LatLngExpression, LeafletEvent, Marker, MarkerOptions } from
 import type { Ref, Slots, VNode } from 'vue'
 
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
-import { propsToLeafletOptions } from '../utils.ts'
+import { propsToLeafletOptions } from '../utils'
 
 const unrenderedContentTypes = ['Symbol(Comment)', 'Symbol(Text)']
 const unrenderedComponentNames = ['LTooltip', 'LPopup']

@@ -8,8 +8,8 @@ import {
     type PointExpression,
     type TileEvent,
 } from 'leaflet'
-import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer.ts'
-import { propsToLeafletOptions } from '../utils.ts'
+import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
+import { propsToLeafletOptions } from '../utils'
 
 export interface GridLayerAbstractProps<T extends GridLayerOptions = GridLayerOptions>
     extends LayerProps<T> {

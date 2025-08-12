@@ -6,7 +6,7 @@ import {
 } from './gridLayer'
 import type { Ref } from 'vue'
 import { type TileLayer, type TileLayerOptions } from 'leaflet'
-import { propsToLeafletOptions } from '../utils.ts'
+import { propsToLeafletOptions } from '../utils'
 
 export interface TileLayerProps<T extends TileLayerOptions = TileLayerOptions> extends GridLayerAbstractProps<T> {
     /**

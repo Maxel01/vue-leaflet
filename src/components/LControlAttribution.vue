@@ -9,7 +9,7 @@ import {
     setupControlAttribution
 } from '../functions/controlAttribution'
 import { RegisterControlInjection } from '../types/injectionKeys'
-import { assertInject, propsBinder } from '../utils.js'
+import { assertInject, propsBinder } from '../utils'
 
 /**
  * > The attribution control allows you to display attribution data in a small text bos on a map.

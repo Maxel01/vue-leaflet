@@ -1,5 +1,5 @@
 import type { DivIconOptions, PointExpression } from 'leaflet'
-import { type ComponentProps, componentPropsDefaults } from './component.ts'
+import { type ComponentProps, componentPropsDefaults } from './component'
 
 export interface IconProps extends ComponentProps<DivIconOptions> {
     /**

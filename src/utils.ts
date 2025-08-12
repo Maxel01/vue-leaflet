@@ -1,7 +1,7 @@
 // REWRITE DONE
 import { type Evented, type LeafletEventHandlerFnMap } from 'leaflet'
 import { inject, type InjectionKey, provide, type Ref, ref, watch } from 'vue'
-import type { ComponentProps } from './functions/component.ts'
+import type { ComponentProps } from './functions/component'
 
 // BREAKING CHANGES: remove type Data
 export declare type ListenersAndAttrs = {

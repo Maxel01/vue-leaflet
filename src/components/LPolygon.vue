@@ -7,7 +7,7 @@ import {
     setupPolygon
 } from '../functions/polygon'
 import { AddLayerInjection } from '../types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '../utils.js'
+import { assertInject, propsBinder, remapEvents } from '../utils'
 import { Polygon } from 'leaflet'
 
 /**

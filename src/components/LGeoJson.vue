@@ -2,13 +2,13 @@
 import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 
 import { AddLayerInjection } from '../types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '../utils.js'
+import { assertInject, propsBinder, remapEvents } from '../utils'
 import {
     type GeoJSONEmits,
     type GeoJSONProps,
     geoJSONPropsDefaults,
     setupGeoJSON
-} from '../functions/geoJSON.ts'
+} from '../functions/geoJSON'
 import { GeoJSON } from 'leaflet'
 
 /**

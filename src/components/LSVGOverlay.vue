@@ -2,13 +2,13 @@
 import { SVGOverlay } from 'leaflet'
 import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 import { AddLayerInjection } from '../types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '../utils.js'
+import { assertInject, propsBinder, remapEvents } from '../utils'
 import {
     setupSVGOverlay,
     type SVGOverlayEmits,
     type SVGOverlayProps,
     svgOverlayPropsDefaults
-} from '../functions/svgOverlay.ts'
+} from '../functions/svgOverlay'
 
 /**
  * > Used to load and display a single svg over specific bounds of the map.

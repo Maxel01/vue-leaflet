@@ -7,7 +7,7 @@ import {
     setupPolyline
 } from '../functions/polyline'
 import { AddLayerInjection } from '../types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '../utils.js'
+import { assertInject, propsBinder, remapEvents } from '../utils'
 import { Polyline } from 'leaflet'
 
 /**
