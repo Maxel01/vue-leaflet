@@ -8,9 +8,7 @@ import { LControlZoom, LMap, LTileLayer } from '../../components'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             layer-type="base"
             name="OpenStreetMap"
-        ></LTileLayer>
+        />
         <LControlZoom position="bottomright" zoom-in-text="*" zoom-out-text="/" />
     </LMap>
 </template>
-
-<style></style>

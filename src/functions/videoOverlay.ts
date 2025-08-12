@@ -6,6 +6,10 @@ import type { ImageOverlayAbstractProps, ImageOverlayEmits } from './imageOverla
 import { imageOverlayPropsDefaults, setupImageOverlay } from './imageOverlay.ts'
 
 export interface VideoOverlayProps extends ImageOverlayAbstractProps<VideoOverlayOptions> {
+    /**
+     * Url of the video, urls of the videos or a video Element
+     * @initOnly
+     */
     video: string | string[] | HTMLVideoElement
 }
 

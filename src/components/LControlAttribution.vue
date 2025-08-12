@@ -6,11 +6,16 @@ import {
     type ControlAttributionEmits,
     type ControlAttributionProps,
     controlAttributionPropsDefaults,
-    setupControlAttribution,
+    setupControlAttribution
 } from '../functions/controlAttribution'
 import { RegisterControlInjection } from '../types/injectionKeys'
 import { assertInject, propsBinder } from '../utils.js'
 
+/**
+ * > The attribution control allows you to display attribution data in a small text bos on a map.
+ * @demo ControlAttributionDemo {5,15}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<ControlAttributionProps>(), controlAttributionPropsDefaults)
 const emit = defineEmits<ControlAttributionEmits>()
 
@@ -20,7 +25,7 @@ defineExpose({
      * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
      * @type {Ref<Control.Attribution \| undefined>}
      */
-    leafletObject,
+    leafletObject
 })
 
 function useControlAttribution() {

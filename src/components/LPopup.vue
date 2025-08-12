@@ -5,6 +5,15 @@ import { assertInject, propsBinder, remapEvents } from '../utils.js'
 import { Popup, Tooltip } from 'leaflet'
 import { type PopupProps, popupPropsDefaults, setupPopup } from '../functions/popup.ts'
 
+/**
+ * > Display a popup on the map
+ *
+ * ::: tip
+ * Popup placed inside a marker will by default appear on marker click.
+ * :::
+ * @demo PopupDemo {25,30,46,56,69,77}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<PopupProps>(), popupPropsDefaults)
 const emit = defineEmits<{
     /**

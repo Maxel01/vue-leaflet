@@ -16,7 +16,7 @@ export default function propOriginHandler(
     const fileName = path.basename(filePath, '.vue')
 
     const componentBase = fileName.replace(/^L/, '')
-    const interfaceName = `${componentBase}Props`
+    const interfaceName = `${componentBase}Props`.replace('Json', 'JSON')
 
     const interfaceDeclaration = project
         .getSourceFiles()

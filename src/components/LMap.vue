@@ -7,7 +7,7 @@ import {
     onMounted,
     reactive,
     ref,
-    useAttrs,
+    useAttrs
 } from 'vue'
 import {
     Control,
@@ -23,7 +23,7 @@ import {
     Map,
     type MapOptions,
     Util,
-    type ZoomPanOptions,
+    type ZoomPanOptions
 } from 'leaflet'
 import { debounce } from 'ts-debounce'
 import {
@@ -34,18 +34,23 @@ import {
     provideLeafletWrapper,
     remapEvents,
     resetWebpackIcon,
-    updateLeafletWrapper,
+    updateLeafletWrapper
 } from '../utils.ts'
 import type { IControlDefinition, ILayerDefinition } from '../types/interfaces'
 import {
     AddLayerInjection,
     RegisterControlInjection,
     RegisterLayerControlInjection,
-    RemoveLayerInjection,
+    RemoveLayerInjection
 } from '../types/injectionKeys.ts'
 import type { IMapBlueprint } from '../types/interfaces/IMapBlueprint.ts'
 import { type MapProps, mapPropsDefaults, setupMap } from '../functions/map.ts'
 
+/**
+ * > Base component, contains and wraps all the other components.
+ * @demo DemoHome {5,9-15}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<MapProps>(), mapPropsDefaults)
 
 const { root, blueprint, leafletObject, ready } = useMap()
@@ -99,7 +104,7 @@ function useMap() {
     const blueprint = reactive<IMapBlueprint>({
         ready: false,
         layersToAdd: [],
-        layersInControl: [],
+        layersInControl: []
     })
 
     const { options: componentOptions } = setupMap(props)
@@ -117,7 +122,7 @@ function useMap() {
             }
         } catch (error: any) {
             console.error(
-                `The following error occurred running the provided beforeMapMount hook ${error.message}`,
+                `The following error occurred running the provided beforeMapMount hook ${error.message}`
             )
         }
         await resetWebpackIcon(Icon)
@@ -174,7 +179,7 @@ function useMethods() {
                 blueprint.layersToAdd.push(layer)
             } else {
                 const exist = blueprint.layersInControl.find(
-                    (l) => Util.stamp(l.leafletObject) === Util.stamp(layer.leafletObject),
+                    (l) => Util.stamp(l.leafletObject) === Util.stamp(layer.leafletObject)
                 )
                 if (!exist) {
                     blueprint.layerControl.addLayer(layer)
@@ -194,7 +199,7 @@ function useMethods() {
             } else {
                 blueprint.layerControl.removeLayer(layer.leafletObject)
                 blueprint.layersInControl = blueprint.layersInControl.filter(
-                    (l) => Util.stamp(l.leafletObject) !== Util.stamp(layer.leafletObject),
+                    (l) => Util.stamp(l.leafletObject) !== Util.stamp(layer.leafletObject)
                 )
             }
         }
@@ -227,7 +232,7 @@ function useMethods() {
         blueprint.leafletRef!.options.crs = crs
         blueprint.leafletRef!.fitBounds(prevBounds, {
             animate: false,
-            padding: [0, 0],
+            padding: [0, 0]
         })
     }
 
@@ -273,7 +278,7 @@ function useMethods() {
         setCrs,
         fitBounds,
         setBounds,
-        setCenter,
+        setCenter
     }
 }
 
@@ -306,7 +311,7 @@ function useEvents() {
         overlayremove(ev) {
             const layer = blueprint.layersInControl.find((l) => l.name === ev.name)
             layer?.updateVisibleProp(false)
-        },
+        }
     }
 
     return { listeners, attrs, eventHandlers }

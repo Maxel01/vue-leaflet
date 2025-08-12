@@ -9,10 +9,11 @@
             <router-link to="/wms-tile-layer">WmsTileLayer</router-link>
             <router-link to="/image-overlay">ImageOverlay</router-link>
             <router-link to="/svg-overlay">SVGOverlay</router-link>
-            <router-link to="/video-overlay">SVGOverlay</router-link>
+            <router-link to="/video-overlay">VideoOverlay</router-link>
             <router-link to="/feature-group">Feature Group</router-link>
             <router-link to="/circle">Circle</router-link>
             <router-link to="/circle-marker">CircleMarker</router-link>
+            <router-link to="/control">Control</router-link>
             <router-link to="/control-attribution">Attribution</router-link>
             <router-link to="/control-custom-message">Custom Message</router-link>
             <router-link to="/control-layers">Layers</router-link>

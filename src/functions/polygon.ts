@@ -10,7 +10,9 @@ import {
 } from './polyline'
 import type { Ref } from 'vue'
 
-export type PolygonProps = PolylineProps
+/* eslint-disable @typescript-eslint/no-empty-object-type */
+export interface PolygonProps extends PolylineProps {
+}
 
 export const polygonPropsDefaults = {
     ...polylinePropsDefaults,

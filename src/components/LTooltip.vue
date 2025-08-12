@@ -6,8 +6,20 @@ import { BindTooltipInjection } from '../types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '../utils.js'
 import { type TooltipProps, tooltipPropsDefaults } from '../functions/tooltip.ts'
 
+/**
+ * > Display a tooltip on the map
+ *
+ * ::: tip
+ * Tooltip placed inside a marker will by default appear on marker hover.
+ * :::
+ * @demo TooltipDemo {25,29,34,41,56,66,79,87}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<TooltipProps>(), tooltipPropsDefaults)
 const emit = defineEmits<{
+    /**
+     * Triggers when the component is ready
+     */
     (event: 'ready', tooltip: Tooltip): void
 }>()
 const { root, leafletObject } = useTooltip()

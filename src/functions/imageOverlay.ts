@@ -68,7 +68,10 @@ export const imageOverlayPropsDefaults = {
     crossOrigin: undefined,
 }
 
-export type ImageOverlayEmits<T extends ImageOverlay = ImageOverlay> = LayerEmits & {
+export interface ImageOverlayEmits<T extends ImageOverlay = ImageOverlay> extends LayerEmits {
+    /**
+     * Triggers when the component is ready
+     */
     (event: 'ready', layer: T): void
 }
 

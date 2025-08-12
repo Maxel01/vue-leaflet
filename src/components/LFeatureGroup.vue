@@ -8,9 +8,18 @@ import {
     type FeatureGroupEmits,
     type FeatureGroupProps,
     featureGroupPropsDefaults,
-    setupFeatureGroup,
+    setupFeatureGroup
 } from '../functions/featureGroup.ts'
 
+/**
+ * > Extended [LLayerGroup](/components/l-layer-group.html) that makes it easier to do the same thing to all its member layers.
+ *
+ * ::: warning
+ * This still needs better documentation and examples.
+ * :::
+ * @demo FeatureGroupDemo {12-14}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<FeatureGroupProps>(), featureGroupPropsDefaults)
 const emit = defineEmits<FeatureGroupEmits>()
 
@@ -46,7 +55,7 @@ function useFeatureGroup() {
         addLayer({
             ...props,
             ...methods,
-            leafletObject: leafletObject.value,
+            leafletObject: leafletObject.value
         })
         ready.value = true
         nextTick(() => emit('ready', leafletObject.value!))

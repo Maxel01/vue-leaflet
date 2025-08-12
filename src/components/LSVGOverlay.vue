@@ -10,11 +10,27 @@ import {
     svgOverlayPropsDefaults
 } from '../functions/svgOverlay.ts'
 
+/**
+ * > Used to load and display a single svg over specific bounds of the map.
+ * @demo SVGOverlayDemo {7-21,37}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<SVGOverlayProps>(), svgOverlayPropsDefaults)
 const emit = defineEmits<SVGOverlayEmits>()
 
 const { ready, leafletObject } = useSVGOverlay()
-defineExpose({ ready, leafletObject })
+defineExpose({
+    /**
+     * Indicates whether the component and its underlying Leaflet object are fully initialized.
+     * @type {Ref<boolean>}
+     */
+    ready,
+    /**
+     * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
+     * @type {Ref<SVGOverlay \| undefined>}
+     */
+    leafletObject
+})
 
 function useSVGOverlay() {
     const leafletObject = ref<SVGOverlay>()
@@ -25,9 +41,7 @@ function useSVGOverlay() {
     const { options, methods } = setupSVGOverlay(props, leafletObject, emit)
 
     onMounted(async () => {
-        leafletObject.value = markRaw<SVGOverlay>(
-            new SVGOverlay(props.svg, props.bounds, options)
-        )
+        leafletObject.value = markRaw<SVGOverlay>(new SVGOverlay(props.svg, props.bounds, options))
 
         const { listeners } = remapEvents(useAttrs())
         leafletObject.value.on(listeners)
@@ -47,5 +61,9 @@ function useSVGOverlay() {
 
 <template>
     <div v-if="ready" style="display: none">
+        <!--
+       @slot Used to inject Leaflet child components like `<LPopup>` or `<LTooltip>` into the `LCircleMarker`.
+       -->
+        <slot />
     </div>
 </template>

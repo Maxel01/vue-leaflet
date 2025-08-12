@@ -5,17 +5,23 @@ import {
     type RectangleEmits,
     type RectangleProps,
     rectanglePropsDefaults,
-    setupRectangle,
+    setupRectangle
 } from '../functions/rectangle'
 import { AddLayerInjection } from '../types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '../utils.js'
 import { LatLngBounds, Rectangle } from 'leaflet'
 
+/**
+ * > Easily draw a rectangle on the map
+ * @demo RectangleDemo {13-29}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<RectangleProps>(), rectanglePropsDefaults)
 const emit = defineEmits<RectangleEmits>()
 
 const { ready, leafletObject } = useRectangle()
-defineExpose({ /**
+defineExpose({
+    /**
      * Indicates whether the component and its underlying Leaflet object are fully initialized.
      * @type {Ref<boolean>}
      */
@@ -24,7 +30,8 @@ defineExpose({ /**
      * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
      * @type {Ref<Rectangle \| undefined>}
      */
-    leafletObject })
+    leafletObject
+})
 
 function useRectangle() {
     const leafletObject = ref<Rectangle>()
@@ -48,7 +55,7 @@ function useRectangle() {
         addLayer({
             ...props,
             ...methods,
-            leafletObject: leafletObject.value,
+            leafletObject: leafletObject.value
         })
         ready.value = true
         nextTick(() => emit('ready', leafletObject.value!))

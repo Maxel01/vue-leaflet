@@ -8,7 +8,7 @@ import { LControl, LMap, LTileLayer } from '../../components'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             layer-type="base"
             name="OpenStreetMap"
-        ></LTileLayer>
+        />
         <LControl class="leaflet-control leaflet-demo-control" position="bottomleft"
             >Hello, Map!
         </LControl>

@@ -4,12 +4,17 @@ import {
     type PolylineEmits,
     type PolylineProps,
     polylinePropsDefaults,
-    setupPolyline,
+    setupPolyline
 } from '../functions/polyline'
 import { AddLayerInjection } from '../types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '../utils.js'
 import { Polyline } from 'leaflet'
 
+/**
+ * > Easily draw a polyline on the map
+ * @demo PolylineDemo {12-20}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<PolylineProps>(), polylinePropsDefaults)
 const emit = defineEmits<PolylineEmits>()
 
@@ -46,7 +51,7 @@ function usePolyline() {
         addLayer({
             ...props,
             ...methods,
-            leafletObject: leafletObject.value,
+            leafletObject: leafletObject.value
         })
         ready.value = true
         nextTick(() => emit('ready', leafletObject.value!))

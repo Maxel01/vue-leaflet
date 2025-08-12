@@ -9,28 +9,24 @@ import {
     LPolyline,
     LPopup,
     LRectangle,
-    LTileLayer,
+    LTileLayer
 } from '../../components'
-import { ref } from 'vue'
-
-const zoom = ref<number>(9)
-const coordinates = ref({ lat: 41.75, lng: -87.65 })
 </script>
 
 <template>
-    <LMap ref="map" v-model:zoom="zoom" :center="[41.8329, -87.7327]">
+    <LMap :zoom="9" :center="[41.6329, -87.3327]">
         <LTileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             layer-type="base"
             name="OpenStreetMap"
-        ></LTileLayer>
+        />
 
         <LMarker :lat-lng="[41.8329, -87.7327]">
             <LPopup> Hi! I'm staying here on this location!</LPopup>
         </LMarker>
 
         <LLayerGroup>
-            <LMarker :lat-lng="coordinates" draggable>
+            <LMarker :lat-lng="{ lat: 41.75, lng: -87.65 }" draggable>
                 <LPopup> Hi! You can drag me around!</LPopup>
             </LMarker>
         </LLayerGroup>
@@ -40,7 +36,7 @@ const coordinates = ref({ lat: 41.75, lng: -87.65 })
                 [41.6329, -87.5327],
                 [41.5329, -87.2327],
                 [41.3329, -87.3327],
-                [41.6329, -87.5327],
+                [41.6329, -87.5327]
             ]"
             color="#41b782"
             :fill="true"
@@ -53,11 +49,11 @@ const coordinates = ref({ lat: 41.75, lng: -87.65 })
         <LPolyline
             :lat-lngs="[
                 [41.9329, -87.9327],
-                [41.8329, -87.8327],
+                [41.8329, -87.8327]
             ]"
             color="green"
         >
-            <l-popup> Hey! Polyline here, at your service!</l-popup>
+            <LPopup> Hey! Polyline here, at your service!</LPopup>
         </LPolyline>
 
         <LRectangle
@@ -65,7 +61,7 @@ const coordinates = ref({ lat: 41.75, lng: -87.65 })
                 [41.734852, -86.809485],
                 [41.742596, -86.628731],
                 [41.641487, -86.590568],
-                [41.634787, -86.658337],
+                [41.634787, -86.658337]
             ]"
             :fill="true"
             color="#35495d"
@@ -82,5 +78,3 @@ const coordinates = ref({ lat: 41.75, lng: -87.65 })
         </LCircleMarker>
     </LMap>
 </template>
-
-<style></style>

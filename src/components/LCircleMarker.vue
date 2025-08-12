@@ -11,6 +11,11 @@ import {
 import { AddLayerInjection } from '../types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '../utils.js'
 
+/**
+ * > A circle of a fixed size with radius specified in pixels.
+ * @demo CircleMarkerDemo {15-19}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<CircleMarkerProps>(), circleMarkerPropsDefaults)
 const emit = defineEmits<CircleMarkerEmits>()
 

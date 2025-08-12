@@ -7,10 +7,15 @@ import {
     type ControlZoomEmits,
     type ControlZoomProps,
     controlZoomPropsDefaults,
-    setupControlZoom,
+    setupControlZoom
 } from '../functions/controlZoom.ts'
 import { Control } from 'leaflet'
 
+/**
+ * > A basic zoom control with two buttons (zoom in and zoom out).
+ * @demo ControlZoomDemo {12}
+ */
+defineOptions({})
 const props = withDefaults(defineProps<ControlZoomProps>(), controlZoomPropsDefaults)
 const emit = defineEmits<ControlZoomEmits>()
 
@@ -20,7 +25,8 @@ defineExpose({
      * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
      * @type {Ref<Control.Zoom \| undefined>}
      */
-    leafletObject })
+    leafletObject
+})
 
 function useControlZoom() {
     const leafletObject = ref<Control.Scale>()

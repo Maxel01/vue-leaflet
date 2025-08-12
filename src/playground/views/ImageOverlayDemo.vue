@@ -9,7 +9,14 @@ const imageOverlayUrl = ref(
 )
 const width = ref(100)
 const height = ref(100)
-const zoom = ref(1)
+
+const bounds = computed(
+    () =>
+        [
+            [0, 0],
+            [height.value, width.value]
+        ] as LatLngBoundsLiteral
+)
 
 const markers = ref([
     { coordinates: { lng: 0, lat: 0 } },
@@ -21,19 +28,10 @@ const markers = ref([
     { coordinates: { lng: 50, lat: 100 } },
     { coordinates: { lng: 100, lat: 50 } }
 ])
-
-const bounds = computed(
-    () =>
-        [
-            [0, 0],
-            [height.value, width.value]
-        ] as LatLngBoundsLiteral
-)
-const crs = CRS.Simple
 </script>
 
 <template>
-    <LMap ref="map" v-model:zoom="zoom" :crs="crs" :center="[height / 2, width / 2]" :minZoom="-5">
+    <LMap :zoom="1" :crs="CRS.Simple" :center="[height / 2, width / 2]" :minZoom="-5">
         <LImageOverlay :url="imageOverlayUrl" :bounds="bounds"></LImageOverlay>
 
         <LMarker v-for="(marker, idx) in markers" :key="idx" :lat-lng="marker.coordinates">
@@ -49,6 +47,7 @@ const crs = CRS.Simple
         placeholder="Url for image overlay"
         v-model="imageOverlayUrl"
     />
+    <br>
     <!-- Bounds settings -->
     <label for="width">Width: </label>
     <input type="number" id="width" placeholder="Width" v-model="width" />
@@ -67,4 +66,8 @@ const crs = CRS.Simple
     </div>
 </template>
 
-<style></style>
+<style scoped>
+input {
+    border: 1px solid;
+}
+</style>
