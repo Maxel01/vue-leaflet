@@ -1,4 +1,4 @@
-import { Control, Layer } from 'leaflet'
+import type { Control, Layer } from 'leaflet'
 
 import { propsToLeafletOptions } from '../utils'
 
