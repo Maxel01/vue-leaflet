@@ -6,9 +6,9 @@ import {
     type WmsTileLayerEmits,
     type WmsTileLayerProps,
     wmsTileLayerPropsDefaults
-} from '../functions/wmsTileLayer'
-import { AddLayerInjection } from '../types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '../utils.js'
+} from '@/functions/wmsTileLayer'
+import { AddLayerInjection } from '@/types/injectionKeys'
+import { assertInject, propsBinder, remapEvents } from '@/utils'
 import { TileLayer } from 'leaflet'
 
 /**

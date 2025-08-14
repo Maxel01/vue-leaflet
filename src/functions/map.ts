@@ -1,5 +1,5 @@
 import { type CRS, LatLngBounds, type MapOptions, type PointExpression } from 'leaflet'
-import { type ComponentProps, componentPropsDefaults, setupComponent } from './component.ts'
+import { type ComponentProps, componentPropsDefaults, setupComponent } from '@/functions/component'
 
 export interface MapProps extends ComponentProps<MapOptions> {
     /**

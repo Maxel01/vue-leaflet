@@ -1,6 +1,6 @@
 import { type LatLngBoundsExpression, type LatLngExpression, type PolylineOptions, Rectangle } from 'leaflet'
 
-import { propsToLeafletOptions } from '../utils'
+import { propsToLeafletOptions } from '@/utils'
 
 import { type PolygonEmits, type PolygonProps, polygonPropsDefaults, setupPolygon } from './polygon'
 import type { Ref } from 'vue'

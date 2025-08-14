@@ -1,6 +1,6 @@
 import { FeatureGroup, type InteractiveLayerOptions } from 'leaflet'
 
-import { propsToLeafletOptions } from '../utils'
+import { propsToLeafletOptions } from '@/utils'
 
 import {
     type LayerGroupEmits,

@@ -1,9 +1,9 @@
 import type { Control, ControlOptions, ControlPosition } from 'leaflet'
 import { onUnmounted, type Ref } from 'vue'
 
-import { propsToLeafletOptions } from '../utils'
+import { propsToLeafletOptions } from '@/utils'
 
-import { type ComponentProps, componentPropsDefaults, setupComponent } from './component'
+import { type ComponentProps, componentPropsDefaults, setupComponent } from '@/functions/component'
 
 export interface ControlAbstractProps<T extends ControlOptions = ControlOptions>
     extends ComponentProps<T> {

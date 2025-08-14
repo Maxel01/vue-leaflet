@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 import { TileLayer } from 'leaflet'
-import { assertInject, propsBinder, remapEvents } from '../utils.ts'
-import { AddLayerInjection } from '../types/injectionKeys.ts'
+import { assertInject, propsBinder, remapEvents } from '@/utils'
+import { AddLayerInjection } from '@/types/injectionKeys'
 import {
     setupTileLayer,
     type TileLayerEmits,
     type TileLayerProps,
     tileLayerPropsDefaults
-} from '../functions/tileLayer.ts'
+} from '@/functions/tileLayer'
 
 /**
  * > Load tiles from a map server and display them accordingly to map zoom, center and size.

@@ -1,6 +1,6 @@
 import type { CRS, TileLayer, WMSOptions } from 'leaflet'
 
-import { propsToLeafletOptions } from '../utils'
+import { propsToLeafletOptions } from '@/utils'
 
 import {
     setupTileLayer,

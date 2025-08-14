@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LMap, LTileLayer } from '../../components'
+import { LMap, LTileLayer } from '@/maxel01/vue-leaflet'
 import { ref } from 'vue'
 
 const zoom = ref<number>(2)

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
-import { LMap, LMarker, LPopup, LSVGOverlay } from '../../components'
+import { LMap, LMarker, LPopup, LSVGOverlay } from '@/maxel01/vue-leaflet'
 import { CRS, type LatLngBoundsLiteral } from 'leaflet'
 
 const width = ref(100)

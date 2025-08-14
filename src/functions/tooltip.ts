@@ -1,7 +1,7 @@
 import { onBeforeUnmount, type Ref } from 'vue'
 
-import { UnbindTooltipInjection } from '../types/injectionKeys'
-import { assertInject } from '../utils'
+import { UnbindTooltipInjection } from '@/types/injectionKeys'
+import { assertInject } from '@/utils'
 
 import { type PopperProps, popperPropsDefaults, setupPopper } from './popper'
 import type { Tooltip, TooltipOptions } from 'leaflet'

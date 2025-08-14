@@ -1,8 +1,8 @@
 import type { FillRule, LineCapShape, LineJoinShape, Path, PathOptions } from 'leaflet'
 import { onBeforeUnmount, type Ref } from 'vue'
 
-import { RemoveLayerInjection } from '../types/injectionKeys'
-import { assertInject, propsToLeafletOptions } from '../utils'
+import { RemoveLayerInjection } from '@/types/injectionKeys'
+import { assertInject, propsToLeafletOptions } from '@/utils'
 
 import {
     type InteractiveLayerEmits,

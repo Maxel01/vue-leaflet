@@ -2,9 +2,9 @@ import type { ImageOverlayOptions } from 'leaflet'
 import { SVGOverlay } from 'leaflet'
 import type { Ref } from 'vue'
 
-import { propsToLeafletOptions } from '../utils'
-import type { ImageOverlayAbstractProps, ImageOverlayEmits } from './imageOverlay.ts'
-import { imageOverlayPropsDefaults, setupImageOverlay } from './imageOverlay.ts'
+import { propsToLeafletOptions } from '@/utils'
+import type { ImageOverlayAbstractProps, ImageOverlayEmits } from './imageOverlay'
+import { imageOverlayPropsDefaults, setupImageOverlay } from './imageOverlay'
 
 export interface SVGOverlayProps extends ImageOverlayAbstractProps {
     /**

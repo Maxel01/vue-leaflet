@@ -10,7 +10,7 @@ import {
     LRectangle,
     LTileLayer,
     LTooltip
-} from '../../components'
+} from '@/maxel01/vue-leaflet'
 </script>
 
 <template>

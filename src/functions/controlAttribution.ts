@@ -1,8 +1,8 @@
 import { Control } from 'leaflet'
 
-import { propsToLeafletOptions } from '../utils'
+import { propsToLeafletOptions } from '@/utils'
 
-import { type ControlEmits, type ControlAbstractProps, controlAbstractPropsDefaults, setupControl } from './control.ts'
+import { type ControlEmits, type ControlAbstractProps, controlAbstractPropsDefaults, setupControl } from './control'
 import type { Ref } from 'vue'
 
 export interface ControlAttributionProps extends ControlAbstractProps<Control.AttributionOptions> {

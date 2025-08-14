@@ -16,13 +16,13 @@ import {
     isFunction,
     propsBinder,
     remapEvents,
-} from '../utils.ts'
+} from '@/utils'
 import {
     AddLayerInjection,
     CanSetParentHtmlInjection,
     SetIconInjection,
     SetParentHtmlInjection,
-} from '../types/injectionKeys.ts'
+} from '@/types/injectionKeys'
 import { DivIcon, Icon, type LeafletEventHandlerFnMap, Marker } from 'leaflet'
 import { debounce } from 'ts-debounce'
 import {
@@ -31,7 +31,7 @@ import {
     markerPropsDefaults,
     setupMarker,
     shouldBlankIcon,
-} from '../functions/marker.ts'
+} from '@/functions/marker'
 
 /**
  * > Used to display clickable/draggable markers on the map.

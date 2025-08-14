@@ -10,7 +10,7 @@ import {
     LPopup,
     LRectangle,
     LTileLayer
-} from '../../components'
+} from '@/maxel01/vue-leaflet'
 </script>
 
 <template>

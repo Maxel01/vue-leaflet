@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LCircle, LMap, LTileLayer } from '../../components'
+import { LCircle, LMap, LTileLayer } from '@/maxel01/vue-leaflet'
 </script>
 
 <template>

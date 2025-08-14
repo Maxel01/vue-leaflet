@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LCircleMarker, LMap, LTileLayer } from '../../components'
+import { LCircleMarker, LMap, LTileLayer } from '@/maxel01/vue-leaflet'
 import { ref } from 'vue'
 
 const zoom = ref<number>(16)

@@ -4,6 +4,7 @@ import fse from 'fs-extra'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import propOriginHandler from './handler.js'
+import { alias } from '../../alias.config.js'
 
 // Reconstruct __dirname in ESM context
 const __filename = fileURLToPath(import.meta.url)
@@ -16,7 +17,7 @@ async function generate() {
 
     for (const file of componentFiles) {
         const doc = await parse(file, {
-            alias: { '@': path.resolve(__dirname, '../src') },
+            alias,
             addScriptHandlers: [propOriginHandler]
         })
 
@@ -54,14 +55,16 @@ async function generate() {
         if (doc.expose?.length) {
             markdown += '## Exposes\n\n| Name | Type | Description |\n| --- | --- | --- |\n'
             for (const expose of doc.expose) {
-                const type = expose.tags?.find(i => i.title === 'type')?.type?.name || '-'
+                const type = expose.tags?.find((i) => i.title === 'type')?.type?.name || '-'
                 markdown += `| \`${expose.name}\` | \`${type}\` | ${expose.description || '-'} |\n`
             }
             markdown += '\n'
         }
 
         await fse.outputFile(markdownPath, markdown, 'utf8')
-        console.log(`📄 Generated: ${path.relative(path.resolve(__dirname, "../../"), markdownPath)}`)
+        console.log(
+            `📄 Generated: ${path.relative(path.resolve(__dirname, '../../'), markdownPath)}`
+        )
     }
 }
 
@@ -69,7 +72,8 @@ function writeDemo(doc, markdown) {
     if (doc.tags.demo) {
         const demo = doc.tags.demo[0]
         const [demoName, highlight] = demo.description.split(' ')
-        markdown += '## Demo\n\n' +
+        markdown +=
+            '## Demo\n\n' +
             '<script>\n' +
             'import "leaflet/dist/leaflet.css";\n' +
             '</script>\n\n' +
@@ -98,16 +102,15 @@ function writeProps(doc, markdown) {
             grouped.get(iface).props.push(prop)
         }
 
-        const sortedGroups = Array.from(grouped.entries())
-            .sort((a, b) => {
-                const levelDiff = a[1].level - b[1].level
-                return levelDiff !== 0 ? levelDiff : a[0].localeCompare(b[0])
-            })
+        const sortedGroups = Array.from(grouped.entries()).sort((a, b) => {
+            const levelDiff = a[1].level - b[1].level
+            return levelDiff !== 0 ? levelDiff : a[0].localeCompare(b[0])
+        })
 
         markdown += '## Props\n\n'
 
         let skip = false
-        if (sortedGroups.length > 0 && sortedGroups[0][1].level > 0){
+        if (sortedGroups.length > 0 && sortedGroups[0][1].level > 0) {
             markdown += 'This component does not have any specific props.\n\n### Inherited props\n'
         }
         for (let i = 0; i < sortedGroups.length; i++) {
@@ -139,7 +142,11 @@ function writePropsTable(group, markdown) {
     markdown += '| --- | --- | --- | --- | --- | --- |\n'
 
     for (const prop of group.props) {
-        const reactive = prop.tags?.['reactive'] ? 'true' : prop.tags?.['initOnly'] ? 'initOnly' : '?'
+        const reactive = prop.tags?.['reactive']
+            ? 'true'
+            : prop.tags?.['initOnly']
+              ? 'initOnly'
+              : '?'
         const type = typeof prop.type === 'object' ? prop.type?.name || '-' : prop.type || '-'
         markdown += `| ${prop.name} | ${prop.description || '-'} | \`${type}\` | \`${reactive}\` | \`${prop.defaultValue?.value || '-'}\` | \`${prop.required}\` |\n`
     }
@@ -147,7 +154,7 @@ function writePropsTable(group, markdown) {
 }
 
 function toKebabCase(name) {
-    if (name === 'LSVGOverlay') return 'l-svg-overlay';
+    if (name === 'LSVGOverlay') return 'l-svg-overlay'
     return name
         .replace(/^L/, 'l')
         .replace(/([a-z])([A-Z])/g, '$1-$2')
@@ -155,22 +162,21 @@ function toKebabCase(name) {
 }
 
 async function emptyLFilesOnly(dir) {
-    const files = await fse.readdir(dir);
+    const files = await fse.readdir(dir)
 
     for (const file of files) {
         if (file.startsWith('l-')) {
-            const filePath = path.join(dir, file);
-            const stat = await fse.stat(filePath);
+            const filePath = path.join(dir, file)
+            const stat = await fse.stat(filePath)
 
             if (stat.isFile()) {
-                await fse.remove(filePath);
+                await fse.remove(filePath)
             }
         }
     }
 }
 
-
-generate().catch(error => {
+generate().catch((error) => {
     console.error(error)
     process.exit(1)
 })

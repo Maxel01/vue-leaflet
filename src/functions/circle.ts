@@ -1,6 +1,6 @@
 import { Circle, type CircleOptions } from 'leaflet'
 
-import { propsToLeafletOptions } from '../utils'
+import { propsToLeafletOptions } from '@/utils'
 
 import {
     type CircleMarkerEmits,

@@ -1,4 +1,4 @@
-import type { LayerType } from '../enums/LayerType.ts'
+import type { LayerType } from '../enums/LayerType'
 import { type Layer } from 'leaflet'
 
 export interface ILayerDefinition<T extends Layer = Layer> {

@@ -1,4 +1,4 @@
-import { propsToLeafletOptions } from '../utils'
+import { propsToLeafletOptions } from '@/utils'
 
 import { type PathEmits, type PathProps, pathPropsDefaults, setupPath as pathSetup } from './path'
 import { CircleMarker, type CircleMarkerOptions, type LatLngExpression } from 'leaflet'

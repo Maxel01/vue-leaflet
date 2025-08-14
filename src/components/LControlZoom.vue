@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { markRaw, nextTick, onMounted, ref } from 'vue'
 
-import { RegisterControlInjection } from '../types/injectionKeys'
-import { assertInject, propsBinder } from '../utils.js'
+import { RegisterControlInjection } from '@/types/injectionKeys'
+import { assertInject, propsBinder } from '@/utils'
 import {
     type ControlZoomEmits,
     type ControlZoomProps,
     controlZoomPropsDefaults,
     setupControlZoom
-} from '../functions/controlZoom.ts'
+} from '@/functions/controlZoom'
 import { Control } from 'leaflet'
 
 /**

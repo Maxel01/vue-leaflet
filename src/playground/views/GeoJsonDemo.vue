@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LGeoJson, LMap, LTileLayer } from '../../components'
+import { LGeoJson, LMap, LTileLayer } from '@/maxel01/vue-leaflet'
 import { onMounted, ref } from 'vue'
 
 const geojson = ref(undefined)

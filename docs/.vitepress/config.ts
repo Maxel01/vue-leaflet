@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { alias } from '../../alias.config'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -6,6 +7,11 @@ export default defineConfig({
     description: "Documentation for the Vue Leaflet module",
     head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
     base: '/',
+    vite: {
+        resolve: {
+            alias
+        },
+    },
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
         nav: [

@@ -7,9 +7,9 @@ import {
     type CircleMarkerProps,
     circleMarkerPropsDefaults,
     setupCircleMarker
-} from '../functions/circleMarker'
-import { AddLayerInjection } from '../types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '../utils.js'
+} from '@/functions/circleMarker'
+import { AddLayerInjection } from '@/types/injectionKeys'
+import { assertInject, propsBinder, remapEvents } from '@/utils'
 
 /**
  * > A circle of a fixed size with radius specified in pixels.

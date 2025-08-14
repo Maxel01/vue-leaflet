@@ -6,7 +6,7 @@ import type {
 } from 'leaflet'
 import type { Ref } from 'vue'
 
-import { propsToLeafletOptions } from '../utils'
+import { propsToLeafletOptions } from '@/utils'
 
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
 

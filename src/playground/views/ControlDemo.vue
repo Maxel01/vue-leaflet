@@ -1,5 +1,5 @@
 <script setup>
-import { LMap, LTileLayer, LControl } from '../../components'
+import { LMap, LTileLayer, LControl } from '@/maxel01/vue-leaflet'
 
 const clickHandler = () => {
     alert('and mischievous')

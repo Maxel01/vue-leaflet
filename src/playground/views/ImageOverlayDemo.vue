@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
-import { LImageOverlay, LMap, LMarker, LPopup } from '../../components'
+import { LImageOverlay, LMap, LMarker, LPopup } from '@/maxel01/vue-leaflet'
 import { CRS, type LatLngBoundsLiteral } from 'leaflet'
 
 const imageOverlayUrl = ref(

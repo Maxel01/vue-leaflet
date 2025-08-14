@@ -2,14 +2,14 @@
 import { FeatureGroup } from 'leaflet'
 import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 
-import { AddLayerInjection } from '../types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '../utils.js'
+import { AddLayerInjection } from '@/types/injectionKeys'
+import { assertInject, propsBinder, remapEvents } from '@/utils'
 import {
     type FeatureGroupEmits,
     type FeatureGroupProps,
     featureGroupPropsDefaults,
     setupFeatureGroup
-} from '../functions/featureGroup.ts'
+} from '@/functions/featureGroup'
 
 /**
  * > Extended [LLayerGroup](/components/l-layer-group.html) that makes it easier to do the same thing to all its member layers.

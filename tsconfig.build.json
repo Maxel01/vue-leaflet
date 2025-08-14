@@ -1,18 +1,15 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["src"],
-  "exclude": ["src/playground"],
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "src/playground"
+  ],
   "compilerOptions": {
     "declaration": true,
     "emitDeclarationOnly": true,
     "declarationDir": "dist",
-    "baseUrl": ".",
     "composite": true,
-    "module": "ESNext",
-    "target": "ESNext",
-    "moduleResolution": "Node",
-    "strict": true,
-    "skipLibCheck": true,
-    "allowImportingTsExtensions": true
   }
 }
