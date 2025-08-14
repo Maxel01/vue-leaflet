@@ -131,11 +131,8 @@ export const remapEvents = (contextAttrs: Record<string, unknown>): ListenersAnd
 export const resetWebpackIcon = async (Icon) => {
 //export const resetWebpackIcon = async (Icon: typeof IconDefault) => {
     const modules = await Promise.all([
-        // @ts-expect-error Vue: Cannot find module leaflet/dist/images/marker-icon.png or its corresponding type declarations.
         import('leaflet/dist/images/marker-icon-2x.png'),
-        // @ts-expect-error Vue: Cannot find module leaflet/dist/images/marker-icon-2x.png or its corresponding type declarations.
         import('leaflet/dist/images/marker-icon.png'),
-        // @ts-expect-error Vue: Cannot find module leaflet/dist/images/marker-shadow.png or its corresponding type declarations.
         import('leaflet/dist/images/marker-shadow.png')
     ])
 
