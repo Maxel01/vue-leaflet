@@ -36,7 +36,7 @@ describe('LControl.vue', () => {
 })
 
 const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {
-    it('creates a Leaflet Attribution control with correct options', async () => {
+    it('creates a Leaflet control with correct options', async () => {
         const wrapper = await getWrapper()
         const obj = wrapper.vm.leafletObject as Control
 
