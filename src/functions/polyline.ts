@@ -5,7 +5,8 @@ import { propsToLeafletOptions } from '@/utils'
 import { type PathEmits, type PathProps, pathPropsDefaults, setupPath } from './path'
 import type { Ref } from 'vue'
 
-export interface PolylineAbstractProps<T extends PolylineOptions = PolylineOptions> extends PathProps<T> {
+export interface PolylineAbstractProps<T extends PolylineOptions = PolylineOptions>
+    extends PathProps<T> {
     /**
      * How much to simplify the polyline on each zoom level. More means better performance and smoother looks, and less means more accurate representation.
      * @reactive
@@ -18,7 +19,8 @@ export interface PolylineAbstractProps<T extends PolylineOptions = PolylineOptio
     noClip?: boolean
 }
 
-export interface PolylineProps<T extends PolylineOptions = PolylineOptions> extends PolylineAbstractProps<T> {
+export interface PolylineProps<T extends PolylineOptions = PolylineOptions>
+    extends PolylineAbstractProps<T> {
     /**
      * Array of coordinates objects that represent the polyline.
      * @reactive
@@ -28,7 +30,7 @@ export interface PolylineProps<T extends PolylineOptions = PolylineOptions> exte
 
 export const polylinePropsDefaults = {
     ...pathPropsDefaults,
-    noClip: undefined,
+    noClip: undefined
 }
 
 export interface PolylineEmits<T extends Polyline = Polyline> extends PathEmits {
@@ -41,7 +43,7 @@ export interface PolylineEmits<T extends Polyline = Polyline> extends PathEmits 
 export const setupPolyline = (
     props: PolylineAbstractProps,
     leafletRef: Ref<Polyline | undefined>,
-    emit: PolylineEmits,
+    emit: PolylineEmits
 ) => {
     const { options: pathOptions, methods: pathMethods } = setupPath(props, leafletRef, emit)
 
@@ -50,14 +52,14 @@ export const setupPolyline = (
     const methods = {
         ...pathMethods,
         setSmoothFactor(smoothFactor: number) {
-            leafletRef.value?.setStyle({ smoothFactor })
+            leafletRef.value?.setStyle({ smoothFactor } as PolylineOptions) // TYPES remove cast
         },
         setNoClip(noClip: boolean) {
-            leafletRef.value?.setStyle({ noClip })
+            leafletRef.value?.setStyle({ noClip } as PolylineOptions) // TYPES remove cast
         },
         addLatLng(latLng: LatLngExpression) {
             leafletRef.value?.addLatLng(latLng)
-        },
+        }
     }
 
     return { options, methods }
