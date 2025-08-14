@@ -10,7 +10,7 @@ const unrenderedComponentNames = ['LTooltip', 'LPopup']
 export interface MarkerProps extends LayerProps<MarkerOptions> {
     /**
      * Whether the marker is draggable with mouse/touch or not.
-     * @initOnly
+     * @reactive
      */
     draggable?: boolean
     /**

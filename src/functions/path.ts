@@ -93,7 +93,6 @@ export const setupPath = (props: PathProps, leafletRef: Ref<Path | undefined>, e
 
     const options = propsToLeafletOptions<PathOptions>(props, interactiveLayerOptions)
 
-    const removeLayer = assertInject(RemoveLayerInjection)
     const methods = {
         ...interactiveLayerMethods,
         setStroke(stroke: boolean) {
@@ -136,10 +135,5 @@ export const setupPath = (props: PathProps, leafletRef: Ref<Path | undefined>, e
             leafletRef.value?.setStyle({ className })
         },
     }
-
-    onBeforeUnmount(() => {
-        removeLayer({ leafletObject: leafletRef.value })
-    })
-
     return { options, methods }
 }

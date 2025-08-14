@@ -1,6 +1,6 @@
 import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import LControlAttribution from '../../../src/components/LControlAttribution.vue'
+import LControlZoom from '../../../src/components/LControlZoom.vue'
 import { RegisterControlInjection } from '../../../src/types/injectionKeys'
 import { Control } from 'leaflet'
 import { testRemoveOnUnmount } from './helper/tests'
@@ -9,10 +9,9 @@ import { testEmitsReady } from './helper/emitTests'
 import { mockRegisterControl, testControlRegistration } from './helper/injectionsTests'
 
 const createWrapper = async (props = {}) => {
-    const wrapper = shallowMount(LControlAttribution, {
+    const wrapper = shallowMount(LControlZoom, {
         propsData: {
             position: 'topright',
-            prefix: 'Hello there',
             ...props,
         },
         global: {
@@ -26,10 +25,10 @@ const createWrapper = async (props = {}) => {
     return wrapper
 }
 
-describe('LControlAttribution.vue', () => {
+describe('LControlZoom.vue', () => {
     testEmitsReady(createWrapper)
-    testComponentPropBindings(createWrapper, "LControlAttribution")
-    testPropsBindingToLeaflet(createWrapper, { prefix: 'new prefix', position: 'bottomleft' })
+    testComponentPropBindings(createWrapper, "LControlZoom")
+    testPropsBindingToLeaflet(createWrapper, { position: 'bottomleft' })
     testRemoveOnUnmount(createWrapper)
 
     testCorrectInitialisation(createWrapper)
@@ -37,12 +36,11 @@ describe('LControlAttribution.vue', () => {
 })
 
 const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {
-    it('creates a Leaflet attribution control with correct options', async () => {
+    it('creates a Leaflet zoom control with correct options', async () => {
         const wrapper = await getWrapper()
-        const obj = wrapper.vm.leafletObject as Control.Attribution
+        const obj = wrapper.vm.leafletObject as Control.Zoom
 
         expect(obj).toBeDefined()
-        expect(obj.options.prefix).toBe('Hello there')
         expect(obj.options.position).toBe('topright')
     })
 }
