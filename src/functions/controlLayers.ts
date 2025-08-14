@@ -2,7 +2,12 @@ import type { Control, Layer } from 'leaflet'
 
 import { propsToLeafletOptions } from '@/utils'
 
-import { type ControlEmits, type ControlAbstractProps, controlAbstractPropsDefaults, setupControl } from './control'
+import {
+    type ControlEmits,
+    type ControlAbstractProps,
+    controlAbstractPropsDefaults,
+    setupControl
+} from './control'
 import type { Ref } from 'vue'
 import type { ILayerDefinition } from '@/types/interfaces'
 
@@ -39,14 +44,14 @@ export const controlLayersPropsDefaults = {
     collapsed: undefined,
     autoZIndex: undefined,
     hideSingleBase: undefined,
-    sortLayers: undefined,
+    sortLayers: undefined
 }
 
 export type ControlLayersEmits = ControlEmits<Control.Layers>
 
 export const setupControlLayers = (
     props: ControlLayersProps,
-    leafletRef: Ref<Control.Layers | undefined>,
+    leafletRef: Ref<Control.Layers | undefined>
 ) => {
     const { options: controlOptions } = setupControl(props, leafletRef)
 
@@ -54,15 +59,17 @@ export const setupControlLayers = (
 
     const methods = {
         addLayer(layer: ILayerDefinition) {
+            if (!layer.leafletObject) return
             if (layer.layerType === 'base') {
-                leafletRef.value?.addBaseLayer(layer.leafletObject, layer.name)
+                leafletRef.value?.addBaseLayer(layer.leafletObject, layer.name || '')
             } else if (layer.layerType === 'overlay') {
-                leafletRef.value?.addOverlay(layer.leafletObject, layer.name)
+                leafletRef.value?.addOverlay(layer.leafletObject, layer.name || '')
             }
         },
         removeLayer(layer: ILayerDefinition) {
+            if (!layer.leafletObject) return
             leafletRef.value?.removeLayer(layer.leafletObject)
-        },
+        }
     }
 
     return { options, methods }
