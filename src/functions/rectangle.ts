@@ -2,10 +2,10 @@ import { type LatLngBoundsExpression, type LatLngExpression, type PolylineOption
 
 import { propsToLeafletOptions } from '@/utils'
 
-import { type PolygonEmits, type PolygonProps, polygonPropsDefaults, setupPolygon } from './polygon'
+import { type PolygonEmits, type PolygonAbstractProps, polygonPropsDefaults, setupPolygon } from './polygon'
 import type { Ref } from 'vue'
 
-export interface RectangleProps extends PolygonProps {
+export interface RectangleProps extends PolygonAbstractProps {
     /**
      * Array of coordinates objects that represent the rectangle
      * @reactive

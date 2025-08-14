@@ -1,34 +1,42 @@
-import { Polygon, type PolylineOptions } from 'leaflet'
+import { type LatLngExpression, Polygon, type PolylineOptions } from 'leaflet'
 
 import { propsToLeafletOptions } from '@/utils'
 
 import {
+    type PolylineAbstractProps,
     type PolylineEmits,
-    type PolylineProps,
     polylinePropsDefaults,
-    setupPolyline,
+    setupPolyline
 } from './polyline'
 import type { Ref } from 'vue'
 
 /* eslint-disable @typescript-eslint/no-empty-object-type */
-export interface PolygonProps extends PolylineProps {
+export interface PolygonAbstractProps extends PolylineAbstractProps {
+}
+
+export interface PolygonProps extends PolygonAbstractProps {
+    /**
+     * Array of coordinates objects that represent the polyline.
+     * @reactive
+     */
+    latLngs: LatLngExpression[]
 }
 
 export const polygonPropsDefaults = {
-    ...polylinePropsDefaults,
+    ...polylinePropsDefaults
 }
 
 export type PolygonEmits<T extends Polygon = Polygon> = PolylineEmits<T>
 
 export const setupPolygon = (
-    props: PolygonProps,
+    props: PolygonAbstractProps,
     leafletRef: Ref<Polygon | undefined>,
-    emit: PolygonEmits,
+    emit: PolygonEmits
 ) => {
     const { options: polylineOptions, methods: polylineMethods } = setupPolyline(
         props,
         leafletRef,
-        emit,
+        emit
     )
 
     const options = propsToLeafletOptions<PolylineOptions>(props, polylineOptions)
@@ -37,7 +45,7 @@ export const setupPolygon = (
         ...polylineMethods,
         toGeoJSON(precision: number | false) {
             return leafletRef.value?.toGeoJSON(precision)
-        },
+        }
     }
 
     return { options, methods }
