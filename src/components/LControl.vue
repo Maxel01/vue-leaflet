@@ -7,9 +7,9 @@ import {
     type ControlProps,
     controlPropsDefaults,
     setupControl
-} from '../functions/control'
-import { RegisterControlInjection } from '../types/injectionKeys'
-import { assertInject, propsBinder } from '../utils'
+} from '@/functions/control'
+import { RegisterControlInjection } from '@/types/injectionKeys'
+import { assertInject, propsBinder } from '@/utils'
 
 /**
  * > Base component for implementing map controls. Handles positioning. All other controls extend from this component.

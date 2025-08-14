@@ -2,7 +2,7 @@ import type { GeoJsonObject } from 'geojson'
 import type { GeoJSON, GeoJSONOptions, PathOptions, StyleFunction } from 'leaflet'
 import type { Ref } from 'vue'
 
-import { propsToLeafletOptions } from '../utils'
+import { propsToLeafletOptions } from '@/utils'
 
 import {
     type LayerGroupEmits,

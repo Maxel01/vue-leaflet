@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LMap, LTileLayer, LVideoOverlay } from '../../components'
+import { LMap, LTileLayer, LVideoOverlay } from '@/maxel01/vue-leaflet'
 
 /**
  * TODO Video doesn't seem to work in vitepress but works in playground.

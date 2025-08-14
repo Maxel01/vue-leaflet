@@ -6,9 +6,9 @@ import {
     type RectangleProps,
     rectanglePropsDefaults,
     setupRectangle
-} from '../functions/rectangle'
-import { AddLayerInjection } from '../types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '../utils'
+} from '@/functions/rectangle'
+import { AddLayerInjection } from '@/types/injectionKeys'
+import { assertInject, propsBinder, remapEvents } from '@/utils'
 import { LatLngBounds, Rectangle } from 'leaflet'
 
 /**

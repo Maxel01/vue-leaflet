@@ -1,6 +1,6 @@
 import { type InteractiveLayerOptions, type Layer } from 'leaflet'
 
-import { propsToLeafletOptions } from '../utils'
+import { propsToLeafletOptions } from '@/utils'
 
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
 import type { Ref } from 'vue'

@@ -9,7 +9,7 @@ import {
     type TileEvent,
 } from 'leaflet'
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
-import { propsToLeafletOptions } from '../utils'
+import { propsToLeafletOptions } from '@/utils'
 
 export interface GridLayerAbstractProps<T extends GridLayerOptions = GridLayerOptions>
     extends LayerProps<T> {

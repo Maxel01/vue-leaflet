@@ -7,10 +7,10 @@ import {
     RemoveLayerInjection,
     UnbindPopupInjection,
     UnbindTooltipInjection,
-} from '../types/injectionKeys'
-import { assertInject, isFunction, propsToLeafletOptions } from '../utils'
+} from '@/types/injectionKeys'
+import { assertInject, isFunction, propsToLeafletOptions } from '@/utils'
 
-import type { LayerType } from '../types/enums/LayerType'
+import type { LayerType } from '@/types/enums/LayerType'
 import { type ComponentProps, componentPropsDefaults, setupComponent } from './component'
 import type { Layer, LayerOptions, Popup, Tooltip } from 'leaflet'
 

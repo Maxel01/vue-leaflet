@@ -1,6 +1,6 @@
 import { type LatLngExpression, Polyline, type PolylineOptions } from 'leaflet'
 
-import { propsToLeafletOptions } from '../utils'
+import { propsToLeafletOptions } from '@/utils'
 
 import { type PathEmits, type PathProps, pathPropsDefaults, setupPath } from './path'
 import type { Ref } from 'vue'

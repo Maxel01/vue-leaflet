@@ -1,6 +1,6 @@
 import { Polygon, type PolylineOptions } from 'leaflet'
 
-import { propsToLeafletOptions } from '../utils'
+import { propsToLeafletOptions } from '@/utils'
 
 import {
     type PolylineEmits,

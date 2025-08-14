@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LControlZoom, LMap, LTileLayer } from '../../components'
+import { LControlZoom, LMap, LTileLayer } from '@/maxel01/vue-leaflet'
 </script>
 
 <template>

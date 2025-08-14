@@ -4,14 +4,13 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
 import terser from '@rollup/plugin-terser'
+import { alias } from './alias.config.js'
 
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [vue(), dts({ tsconfigPath: './tsconfig.build.json' })],
     resolve: {
-        alias: {
-            '@': fileURLToPath(new URL('./src', import.meta.url))
-        }
+        alias
     },
     build: {
         lib: {

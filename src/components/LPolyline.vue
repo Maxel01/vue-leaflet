@@ -5,9 +5,9 @@ import {
     type PolylineProps,
     polylinePropsDefaults,
     setupPolyline
-} from '../functions/polyline'
-import { AddLayerInjection } from '../types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '../utils'
+} from '@/functions/polyline'
+import { AddLayerInjection } from '@/types/injectionKeys'
+import { assertInject, propsBinder, remapEvents } from '@/utils'
 import { Polyline } from 'leaflet'
 
 /**

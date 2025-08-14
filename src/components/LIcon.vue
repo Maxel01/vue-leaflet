@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { type IconProps, iconPropsDefaults } from '../functions/icon'
+import { type IconProps, iconPropsDefaults } from '@/functions/icon'
 import { nextTick, onMounted, ref, useAttrs } from 'vue'
-import { assertInject, propsBinder, propsToLeafletOptions, remapEvents } from '../utils'
+import { assertInject, propsBinder, propsToLeafletOptions, remapEvents } from '@/utils'
 import {
     CanSetParentHtmlInjection,
     SetIconInjection,
     SetParentHtmlInjection
-} from '../types/injectionKeys'
+} from '@/types/injectionKeys'
 import { DivIcon, type DivIconOptions, DomEvent, Icon } from 'leaflet'
-import { setupComponent } from '../functions/component'
+import { setupComponent } from '@/functions/component'
 
 /**
  * > Easy and reactive way to configure the icon of a marker

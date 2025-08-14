@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { h } from 'vue'
-import { LGridLayer, LMap, LTileLayer } from '../../components'
+import { LGridLayer, LMap, LTileLayer } from '@/maxel01/vue-leaflet'
 
 const childRender = (props) => () => {
     return h(

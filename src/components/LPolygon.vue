@@ -5,9 +5,9 @@ import {
     type PolygonProps,
     polygonPropsDefaults,
     setupPolygon
-} from '../functions/polygon'
-import { AddLayerInjection } from '../types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '../utils'
+} from '@/functions/polygon'
+import { AddLayerInjection } from '@/types/injectionKeys'
+import { assertInject, propsBinder, remapEvents } from '@/utils'
 import { Polygon } from 'leaflet'
 
 /**

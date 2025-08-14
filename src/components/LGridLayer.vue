@@ -5,10 +5,10 @@ import {
     type GridLayerProps,
     gridLayerPropsDefaults,
     setupGridLayer
-} from '../functions/gridLayer'
+} from '@/functions/gridLayer'
 import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
-import { AddLayerInjection } from '../types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '../utils'
+import { AddLayerInjection } from '@/types/injectionKeys'
+import { assertInject, propsBinder, remapEvents } from '@/utils'
 import { GridLayer } from 'leaflet'
 
 /**
