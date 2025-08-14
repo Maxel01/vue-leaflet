@@ -39,7 +39,7 @@ export function testPropsBindingToLeaflet(
 }
 
 const layerProps = {
-    attribution: "attribution",
+    attribution: 'attribution'
     // TEST name: "name",
     // TEST layerType: "base",
     // TEST visible: false,
@@ -82,6 +82,44 @@ export const markerProps = {
     // TEST draggable: true,
     // TEST icon: ?,
     // TEST zIndexOffset: 5,
-    latLng: new LatLng(44.5, 11.5),
+    latLng: new LatLng(44.5, 11.5)
+}
 
+export const polylineProps = {
+    ...pathProps,
+    smoothFactor: 0.9,
+    noClip: true,
+    /* TEST latLngs: [
+        [47.4, -1.51],
+        [47.34, -1.3],
+        [47.24, -1.2],
+        [47.23, -1.36]
+    ]*/
+}
+
+export const polygonProps = {
+    ...polylineProps,
+    /* TEST latLngs: [
+        [26.774, -81.19],
+        [19.466, -67.118],
+        [33.321, -65.757],
+        [26.774, -81.19]
+    ]*/
+}
+
+
+export const rectangleProps = {
+    ...polygonProps,
+    /* TEST bounds: [
+        new LatLng(46.2, -1.5),
+        new LatLng(46.3, -1.5),
+        new LatLng(46.3, -1.1),
+        new LatLng(46.2, -1.1)
+    ]*/
+    /* TEST latLngs: [
+        [26.774, -81.19],
+        [19.466, -67.118],
+        [33.321, -65.757],
+        [26.774, -81.19]
+    ]*/
 }
