@@ -1,4 +1,4 @@
-import { Project, SyntaxKind } from 'ts-morph'
+import { InterfaceDeclaration, Project, SyntaxKind } from 'ts-morph'
 
 const project = new Project({
     tsConfigFilePath: 'tsconfig.json'
@@ -11,8 +11,8 @@ export default function getReactivePropCount(componentName: string) {
 
     const interfaceDeclaration = project
         .getSourceFiles()
-        .flatMap(sf => sf.getInterfaces())
-        .find(i => i.getName() === interfaceName)
+        .flatMap((sf) => sf.getInterfaces())
+        .find((i) => i.getName() === interfaceName)
     if (!interfaceDeclaration) {
         return { reactive: 0, initOnly: 0 }
     }
@@ -20,17 +20,20 @@ export default function getReactivePropCount(componentName: string) {
     return collectReactivePropCount(interfaceDeclaration)
 }
 
-function collectReactivePropCount(interfaceDecl) {
+function collectReactivePropCount(interfaceDecl: InterfaceDeclaration) {
     let reactiveCount = 0
     let initOnlyCount = 0
     // Own properties
     for (const prop of interfaceDecl.getProperties()) {
+        if (prop.getName() === 'options') {
+            continue
+        }
         const jsDocs = prop.getJsDocs()
-        const hasReactive = jsDocs.some(doc =>
-            doc.getTags().some(tag => tag.getTagName() === 'initOnly')
+        const hasReactive = jsDocs.some((doc) =>
+            doc.getTags().some((tag) => tag.getTagName() === 'initOnly')
         )
-        const hasInitOnly = jsDocs.some(doc =>
-            doc.getTags().some(tag => tag.getTagName() === 'initOnly')
+        const hasInitOnly = jsDocs.some((doc) =>
+            doc.getTags().some((tag) => tag.getTagName() === 'initOnly')
         )
         if (hasReactive) reactiveCount++
         if (hasInitOnly) initOnlyCount++
@@ -42,7 +45,9 @@ function collectReactivePropCount(interfaceDecl) {
             const symbol = typeNode.getType().getSymbol()
             if (!symbol) continue
 
-            const decl = symbol.getDeclarations().find(d => d.getKind() === SyntaxKind.InterfaceDeclaration)
+            const decl = symbol
+                .getDeclarations()
+                .find((d) => d.getKind() === SyntaxKind.InterfaceDeclaration)
             if (decl) {
                 const { reactive, initOnly } = collectReactivePropCount(decl)
                 reactiveCount += reactive
@@ -52,4 +57,3 @@ function collectReactivePropCount(interfaceDecl) {
     }
     return { reactive: reactiveCount, initOnly: initOnlyCount }
 }
-
