@@ -11,7 +11,7 @@ import {
 import { assertInject, isFunction, propsToLeafletOptions } from '@/utils'
 
 import type { LayerType } from '@/types/enums/LayerType'
-import { type ComponentProps, componentPropsDefaults, setupComponent } from './component'
+import { type ComponentProps, componentPropsDefaults, setupComponent } from '@/functions/component'
 import type { Layer, LayerOptions, Popup, Tooltip } from 'leaflet'
 
 export interface LayerProps<T extends LayerOptions = LayerOptions> extends ComponentProps<T> {

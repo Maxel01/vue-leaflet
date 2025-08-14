@@ -1,6 +1,6 @@
 import { type Ref } from 'vue'
 
-import { type ComponentProps, componentPropsDefaults, setupComponent } from './component'
+import { type ComponentProps, componentPropsDefaults, setupComponent } from '@/functions/component'
 import { type DivOverlay } from 'leaflet'
 
 export interface PopperProps<T extends object> extends ComponentProps<T> {
