@@ -2,7 +2,7 @@ import { flushPromises, shallowMount } from '@vue/test-utils'
 import { describe } from 'vitest'
 import { RegisterLayerControlInjection } from '../../../src/types/injectionKeys'
 import { testRemovesOnUnmount } from './helper/tests'
-import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
+import { testComponentPropBindings } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import LControlLayers from '../../../src/components/LControlLayers.vue'
 import { mockRegisterLayerControl, testControlLayerRegistration } from './helper/injectionsTests'
@@ -26,8 +26,9 @@ const createWrapper = async (props = {}) => {
 
 describe('LControlLayers.vue', () => {
     testEmitsReady(createWrapper)
-    testComponentPropBindings(createWrapper, "LControlLayers")
-    testPropsBindingToLeaflet(createWrapper, { position: 'bottomleft' })
+    testComponentPropBindings(createWrapper, 'LControlLayers')
+    // TODO requires DOM env
+    //testPropsBindingToLeaflet(createWrapper, { position: 'bottomleft' })
     testRemovesOnUnmount(createWrapper)
 
     testControlLayerRegistration(createWrapper)
