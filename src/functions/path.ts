@@ -1,14 +1,12 @@
 import type { FillRule, LineCapShape, LineJoinShape, Path, PathOptions } from 'leaflet'
-import { onBeforeUnmount, type Ref } from 'vue'
-
-import { RemoveLayerInjection } from '@/types/injectionKeys'
-import { assertInject, propsToLeafletOptions } from '@/utils'
+import { type Ref } from 'vue'
+import { propsToLeafletOptions } from '@/utils'
 
 import {
     type InteractiveLayerEmits,
     type InteractiveLayerProps,
     interactiveLayerPropsDefaults,
-    setupInteractiveLayer,
+    setupInteractiveLayer
 } from './interactiveLayer'
 
 export interface PathProps<T extends PathOptions = PathOptions> extends InteractiveLayerProps<T> {
@@ -82,7 +80,7 @@ export interface PathProps<T extends PathOptions = PathOptions> extends Interact
 export const pathPropsDefaults = {
     ...interactiveLayerPropsDefaults,
     stroke: undefined,
-    fill: undefined,
+    fill: undefined
 }
 
 export type PathEmits = InteractiveLayerEmits
@@ -133,7 +131,7 @@ export const setupPath = (props: PathProps, leafletRef: Ref<Path | undefined>, e
         },
         setClassName(className: string) {
             leafletRef.value?.setStyle({ className })
-        },
+        }
     }
     return { options, methods }
 }
