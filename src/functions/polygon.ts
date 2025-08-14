@@ -10,7 +10,7 @@ import {
 } from './polyline'
 import type { Ref } from 'vue'
 
-/* eslint-disable @typescript-eslint/no-empty-object-type */
+/* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
 export interface PolygonAbstractProps extends PolylineAbstractProps {
 }
 
