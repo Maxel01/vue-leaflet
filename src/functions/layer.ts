@@ -6,7 +6,7 @@ import {
     BindTooltipInjection,
     RemoveLayerInjection,
     UnbindPopupInjection,
-    UnbindTooltipInjection,
+    UnbindTooltipInjection
 } from '@/types/injectionKeys'
 import { assertInject, isFunction, propsToLeafletOptions } from '@/utils'
 
@@ -44,7 +44,7 @@ export interface LayerProps<T extends LayerOptions = LayerOptions> extends Compo
 
 export const layerPropsDefaults = {
     ...componentPropsDefaults,
-    visible: true,
+    visible: true
 }
 
 export interface LayerEmits {
@@ -57,7 +57,7 @@ export interface LayerEmits {
 export const setupLayer = <T extends Layer>(
     props: LayerProps,
     leafletRef: Ref<T | undefined>,
-    emit: LayerEmits,
+    emit: LayerEmits
 ) => {
     const addLayer = assertInject(AddLayerInjection)
     const removeLayer = assertInject(RemoveLayerInjection)
@@ -98,24 +98,20 @@ export const setupLayer = <T extends Layer>(
                 }
             }
         },
-        bindPopup(leafletObject: Popup) {
+        bindPopup(leafletObject: Popup | undefined) {
             if (!leafletRef.value || !isFunction(leafletRef.value.bindPopup)) {
                 console.warn('Attempt to bind popup before bindPopup method available on layer.')
-
                 return
             }
-
+            if (!leafletObject) return
             leafletRef.value.bindPopup(leafletObject)
         },
-        bindTooltip(leafletObject: Tooltip) {
+        bindTooltip(leafletObject: Tooltip | undefined) {
             if (!leafletRef.value || !isFunction(leafletRef.value.bindTooltip)) {
-                console.warn(
-                    'Attempt to bind tooltip before bindTooltip method available on layer.',
-                )
-
+                console.warn('Attempt to bind tooltip before bindTooltip method available on layer.')
                 return
             }
-
+            if (!leafletObject) return
             leafletRef.value.bindTooltip(leafletObject)
         },
         unbindTooltip() {
@@ -145,7 +141,7 @@ export const setupLayer = <T extends Layer>(
              * @property {boolean} value - value of the visible property
              */
             emit('update:visible', value)
-        },
+        }
     }
 
     provide(BindPopupInjection, methods.bindPopup)

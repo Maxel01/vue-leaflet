@@ -1,7 +1,7 @@
 import type { InjectionKey } from 'vue'
 
 import type { IControlDefinition, ILayerDefinition } from './interfaces'
-import type { Control, DivIcon, Icon, Layer, Marker } from 'leaflet'
+import type { Control, DivIcon, Icon, Layer, Marker, Popup, Tooltip } from 'leaflet'
 
 export const AddLayerInjection = Symbol('addLayer') as InjectionKey<
     (layer: ILayerDefinition) => void
@@ -30,11 +30,11 @@ export const SetIconInjection = Symbol('setIcon') as InjectionKey<
 >
 
 export const BindPopupInjection = Symbol('bindPopup') as InjectionKey<
-    (leafletObject: Layer | undefined) => void
+    (leafletObject: Popup | undefined) => void
 >
 
 export const BindTooltipInjection = Symbol('bindTooltip') as InjectionKey<
-    (leafletObject: Layer | undefined) => void
+    (leafletObject: Tooltip | undefined) => void
 >
 
 export const UnbindPopupInjection = Symbol('unbindPopup') as InjectionKey<() => void>
