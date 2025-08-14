@@ -131,8 +131,11 @@ export const remapEvents = (contextAttrs: Record<string, unknown>): ListenersAnd
 export const resetWebpackIcon = async (Icon) => {
 //export const resetWebpackIcon = async (Icon: typeof IconDefault) => {
     const modules = await Promise.all([
+        // @ts-ignore
         import('leaflet/dist/images/marker-icon-2x.png'),
+        // @ts-ignore
         import('leaflet/dist/images/marker-icon.png'),
+        // @ts-ignore
         import('leaflet/dist/images/marker-shadow.png')
     ])
 
