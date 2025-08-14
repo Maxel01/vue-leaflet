@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import LControlAttribution from '../../../src/components/LControlAttribution.vue'
 import { RegisterControlInjection } from '../../../src/types/injectionKeys'
 import { Control } from 'leaflet'
-import { testRemovesOnUnmount } from './helper/tests'
+import { testRemoveOnUnmount } from './helper/tests'
 import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockRegisterControl, testControlRegistration } from './helper/injectionsTests'
@@ -30,7 +30,7 @@ describe('LControlAttribution.vue', () => {
     testEmitsReady(createWrapper)
     testComponentPropBindings(createWrapper, "LControlAttribution")
     testPropsBindingToLeaflet(createWrapper, { prefix: 'new prefix', position: 'bottomleft' })
-    testRemovesOnUnmount(createWrapper)
+    testRemoveOnUnmount(createWrapper)
 
     testCorrectInitialisation(createWrapper)
     testControlRegistration(createWrapper)

@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import LControlScale from '../../../src/components/LControlScale.vue'
 import { RegisterControlInjection } from '../../../src/types/injectionKeys'
 import { Control } from 'leaflet'
-import { testRemovesOnUnmount } from './helper/tests'
+import { testRemoveOnUnmount } from './helper/tests'
 import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockRegisterControl, testControlRegistration } from './helper/injectionsTests'
@@ -29,7 +29,7 @@ describe('LControlScale.vue', () => {
     testEmitsReady(createWrapper)
     testComponentPropBindings(createWrapper, "LControlScale")
     testPropsBindingToLeaflet(createWrapper, { position: 'bottomleft' })
-    testRemovesOnUnmount(createWrapper)
+    testRemoveOnUnmount(createWrapper)
 
     testCorrectInitialisation(createWrapper)
     testControlRegistration(createWrapper)
