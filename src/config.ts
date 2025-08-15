@@ -16,7 +16,7 @@ export interface LeafletConfig {
 export const vueLeafletConfig: LeafletConfig = {
     experimental: {
         useResetWebpackIcon: true,
-        skipUndefinedProps: true
+        skipUndefinedProps: false
     }
 }
 

@@ -51,6 +51,7 @@ export const capitalizeFirstLetter = (s: string) => {
 
 export const isFunction = (x: unknown) => typeof x === 'function'
 
+// const propsBinderScope = effectScope()
 /**
  * Sets up listeners for Vue component prop changes, so that we may correctly call the correct Leaflet on-change event handlers.
  * @param methods
@@ -58,6 +59,7 @@ export const isFunction = (x: unknown) => typeof x === 'function'
  * @param props the relevant Vue component props
  */
 export const propsBinder = (methods: Readonly<FunctionMap>, leafletElement: PropertyMap, props: Readonly<PropertyMap>) => {
+    //propsBinderScope.run(() => {
     for (const key in props) {
         if (vueLeafletConfig.experimental.skipUndefinedProps && props[key] === undefined) continue
         const setMethodName = 'set' + capitalizeFirstLetter(key)
@@ -83,6 +85,8 @@ export const propsBinder = (methods: Readonly<FunctionMap>, leafletElement: Prop
             console.warn(`No setter for '${key}'`)
         }
     }
+    //})
+    // propsBinderScope.log('Active watchers:', devScope.effects.length)
 }
 
 export const propsToLeafletOptions = <T extends object>(
