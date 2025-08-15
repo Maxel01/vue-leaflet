@@ -14,6 +14,7 @@ bun.lock
 
 node_modules
 .nuxt
+.output
 dist
 dist-ssr
 coverage
