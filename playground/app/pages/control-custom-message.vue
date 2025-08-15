@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LControl, LMap, LTileLayer } from '@/maxel01/vue-leaflet'
+import { LControl, LMap, LTileLayer } from '@maxel01/vue-leaflet'
 </script>
 
 <template>
@@ -10,7 +10,7 @@ import { LControl, LMap, LTileLayer } from '@/maxel01/vue-leaflet'
             name="OpenStreetMap"
         />
         <LControl class="leaflet-control leaflet-demo-control" position="bottomleft"
-            >Hello, Map!
+        >Hello, Map!
         </LControl>
     </LMap>
 </template>

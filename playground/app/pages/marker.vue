@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { LFeatureGroup, LMap, LMarker, LTileLayer } from '@/maxel01/vue-leaflet'
+import { LMap, LMarker, LTileLayer } from '@maxel01/vue-leaflet'
+import type { LatLngTuple } from 'leaflet'
+
+const coordinates: LatLngTuple = [50, 50]
 </script>
 
 <template>
@@ -9,8 +12,6 @@ import { LFeatureGroup, LMap, LMarker, LTileLayer } from '@/maxel01/vue-leaflet'
             layer-type="base"
             name="OpenStreetMap"
         />
-        <LFeatureGroup>
-            <LMarker :lat-lng="[50, 50]" />
-        </LFeatureGroup>
+        <LMarker :lat-lng="coordinates" draggable />
     </LMap>
 </template>

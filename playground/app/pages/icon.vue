@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LIcon, LMap, LMarker, LTileLayer } from '@/maxel01/vue-leaflet'
+import { LIcon, LMap, LMarker, LTileLayer } from '@maxel01/vue-leaflet'
 import { computed, ref } from 'vue'
 import type { PointExpression } from 'leaflet'
 

@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { LControlAttribution, LMap, LTileLayer } from '@/maxel01/vue-leaflet'
-import { ref } from 'vue'
-
-const customAttributionPrefix = ref<string>('<strong>Custom bottom left attribution</strong>')
+import { LControlScale, LMap, LTileLayer } from '@maxel01/vue-leaflet'
 </script>
 
 <template>
@@ -12,6 +9,6 @@ const customAttributionPrefix = ref<string>('<strong>Custom bottom left attribut
             layer-type="base"
             name="OpenStreetMap"
         />
-        <LControlAttribution position="bottomleft" :prefix="customAttributionPrefix" />
+        <LControlScale position="bottomleft" />
     </LMap>
 </template>
