@@ -2,6 +2,7 @@
 import { type Evented, type LeafletEventHandlerFnMap } from 'leaflet'
 import { inject, type InjectionKey, provide, type Ref, ref, watch } from 'vue'
 import type { ComponentProps } from './functions/component'
+import { vueLeafletConfig } from '@/config'
 
 // BREAKING CHANGES: remove type Data
 export declare type ListenersAndAttrs = {
@@ -50,6 +51,7 @@ export const capitalizeFirstLetter = (s: string) => {
 
 export const isFunction = (x: unknown) => typeof x === 'function'
 
+// const propsBinderScope = effectScope()
 /**
  * Sets up listeners for Vue component prop changes, so that we may correctly call the correct Leaflet on-change event handlers.
  * @param methods
@@ -57,7 +59,9 @@ export const isFunction = (x: unknown) => typeof x === 'function'
  * @param props the relevant Vue component props
  */
 export const propsBinder = (methods: Readonly<FunctionMap>, leafletElement: PropertyMap, props: Readonly<PropertyMap>) => {
+    //propsBinderScope.run(() => {
     for (const key in props) {
+        if (vueLeafletConfig.experimental.skipUndefinedProps && props[key] === undefined) continue
         const setMethodName = 'set' + capitalizeFirstLetter(key)
         const setterMethod = methods[setMethodName]
         if (isFunction(setterMethod)) {
@@ -81,6 +85,8 @@ export const propsBinder = (methods: Readonly<FunctionMap>, leafletElement: Prop
             console.warn(`No setter for '${key}'`)
         }
     }
+    //})
+    // propsBinderScope.log('Active watchers:', devScope.effects.length)
 }
 
 export const propsToLeafletOptions = <T extends object>(
@@ -130,6 +136,7 @@ export const remapEvents = (contextAttrs: Record<string, unknown>): ListenersAnd
 // TODO It seems like Icon.Default is now IconDefault in leaflet v2
 export const resetWebpackIcon = async (Icon) => {
 //export const resetWebpackIcon = async (Icon: typeof IconDefault) => {
+    if (!vueLeafletConfig.experimental.useResetWebpackIcon) return
     const modules = await Promise.all([
         import('leaflet/dist/images/marker-icon-2x.png'),
         import('leaflet/dist/images/marker-icon.png'),

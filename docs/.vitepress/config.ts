@@ -3,20 +3,21 @@ import { alias } from '../../alias.config'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-    title: "Vue Leaflet",
-    description: "Documentation for the Vue Leaflet module",
+    title: 'Vue Leaflet',
+    description: 'Documentation for the Vue Leaflet module',
     head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
     base: '/',
     vite: {
         resolve: {
             alias
-        },
+        }
     },
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
         nav: [
             { text: 'Home', link: '/' },
             { text: 'Quick Start', link: '/getting-started/installation' },
+            { text: 'Guide', link: '/guide/using-l' },
             { text: 'Components', link: '/components/introduction' }
         ],
 
@@ -33,7 +34,8 @@ export default defineConfig({
                 items: [
                     { text: 'Using L', link: '/guide/using-l' },
                     { text: 'Accessing a map instance', link: '/guide/accessing-map-instance' },
-                    { text: 'Reactivity in vue-leaflet', link: '/guide/reactivity-leaflet' }
+                    { text: 'Reactivity in vue-leaflet', link: '/guide/reactivity-leaflet' },
+                    { text: 'Experimental Features', link: '/guide/experimental' }
                 ]
             },
             {
@@ -64,15 +66,15 @@ export default defineConfig({
                     { text: 'LTileLayer', link: '/components/l-tile-layer' },
                     { text: 'LTooltip', link: '/components/l-tooltip' },
                     { text: 'LVideoOverlay', link: '/components/l-video-overlay' },
-                    { text: 'LWmsTileLayer', link: '/components/l-wms-tile-layer' },
+                    { text: 'LWmsTileLayer', link: '/components/l-wms-tile-layer' }
                 ]
             },
             {
                 text: 'About',
                 items: [
-                    { text: 'Q&A', link: '/about/q&a' },
+                    { text: 'Q&A', link: '/about/q&a' }
                 ]
-            },
+            }
         ],
 
         socialLinks: [
@@ -81,7 +83,7 @@ export default defineConfig({
         ],
 
         search: {
-            provider: 'local',
+            provider: 'local'
         }
     },
     ignoreDeadLinks: true
