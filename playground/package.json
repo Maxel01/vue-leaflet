@@ -8,7 +8,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "analyze": "nuxt analyze"
   },
   "dependencies": {
     "@maxel01/vue-leaflet": "1.0.0-alpha.1",
