@@ -1,0 +1,22 @@
+{
+  "name": "playground",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "@maxel01/vue-leaflet": "1.0.0-alpha.1",
+    "@vue-leaflet/vue-leaflet": "^0.10.1",
+    "leaflet": "2.0.0-alpha",
+    "nuxt": "^4.0.3",
+    "vue": "^3.5.17",
+    "vue-leaflet-v2": "link:..\\",
+    "vue-router": "^4.5.1"
+  }
+}
