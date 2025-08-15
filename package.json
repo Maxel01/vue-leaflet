@@ -17,7 +17,7 @@
     "url": "git@github.com:maxel01/vue-leaflet.git"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "pnpm --filter playground dev",
     "test": "vitest --coverage",
     "build": "vue-tsc --noEmit && vite build",
     "build-only": "vite build",
