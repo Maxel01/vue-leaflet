@@ -77,4 +77,4 @@ When using multiple components, the effect is even more significant: `TooltipDem
 
 ### useResetWebpackIcon
 
-Automatically resets Webpack icons (used for Leaflet's default markers). This was required in Leaflet v1, but it may no longer be necessary in v2. **If you use it, please create an issue or discussion to report whether it still works**.                                                 |
+Automatically resets Webpack icons (used for Leaflet's default markers). This was required in Leaflet v1, but it may no longer be necessary in v2. **If you use it, please create an issue or discussion to report whether it still works**.
