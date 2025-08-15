@@ -2,6 +2,7 @@
 import { type Evented, type LeafletEventHandlerFnMap } from 'leaflet'
 import { inject, type InjectionKey, provide, type Ref, ref, watch } from 'vue'
 import type { ComponentProps } from './functions/component'
+import { vueLeafletConfig } from '@/config'
 
 // BREAKING CHANGES: remove type Data
 export declare type ListenersAndAttrs = {
@@ -58,6 +59,7 @@ export const isFunction = (x: unknown) => typeof x === 'function'
  */
 export const propsBinder = (methods: Readonly<FunctionMap>, leafletElement: PropertyMap, props: Readonly<PropertyMap>) => {
     for (const key in props) {
+        if (vueLeafletConfig.experimental.skipUndefinedProps && props[key] === undefined) continue
         const setMethodName = 'set' + capitalizeFirstLetter(key)
         const setterMethod = methods[setMethodName]
         if (isFunction(setterMethod)) {
@@ -130,6 +132,7 @@ export const remapEvents = (contextAttrs: Record<string, unknown>): ListenersAnd
 // TODO It seems like Icon.Default is now IconDefault in leaflet v2
 export const resetWebpackIcon = async (Icon) => {
 //export const resetWebpackIcon = async (Icon: typeof IconDefault) => {
+    if (!vueLeafletConfig.experimental.useResetWebpackIcon) return
     const modules = await Promise.all([
         import('leaflet/dist/images/marker-icon-2x.png'),
         import('leaflet/dist/images/marker-icon.png'),
