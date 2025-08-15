@@ -13,7 +13,7 @@ import { assertInject, propsBinder, remapEvents } from '@/utils'
 
 /**
  * > A circle of a fixed size with radius specified in pixels.
- * @demo CircleMarkerDemo {15-19}
+ * @demo circle-marker {15-19}
  */
 defineOptions({})
 const props = withDefaults(defineProps<CircleMarkerProps>(), circleMarkerPropsDefaults)

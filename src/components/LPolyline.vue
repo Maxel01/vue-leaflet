@@ -12,7 +12,7 @@ import { Polyline } from 'leaflet'
 
 /**
  * > Easily draw a polyline on the map
- * @demo PolylineDemo {12-20}
+ * @demo polyline {12-20}
  */
 defineOptions({})
 const props = withDefaults(defineProps<PolylineProps>(), polylinePropsDefaults)

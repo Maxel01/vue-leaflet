@@ -13,7 +13,7 @@ import { assertInject, propsBinder, remapEvents } from '@/utils'
 
 /**
  * > Used to load and display a single image over specific bounds of the map.
- * @demo ImageOverlayDemo {7-19,35}
+ * @demo image-overlay {7-19,35}
  */
 defineOptions({})
 const props = withDefaults(defineProps<ImageOverlayProps>(), imageOverlayPropsDefaults)

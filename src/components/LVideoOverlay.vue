@@ -13,7 +13,7 @@ import {
 
 /**
  * > Used to load and display a video over specific bounds of the map.
- * @demo VideoOverlayDemo {7-11,16-21}
+ * @demo video-overlay {7-11,16-21}
  */
 defineOptions({})
 const props = withDefaults(defineProps<VideoOverlayProps>(), videoOverlayPropsDefaults)

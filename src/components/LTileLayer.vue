@@ -12,7 +12,7 @@ import {
 
 /**
  * > Load tiles from a map server and display them accordingly to map zoom, center and size.
- * @demo TileLayerDemo {7-19}
+ * @demo tile-layer {7-19}
  */
 defineOptions({})
 const props = withDefaults(defineProps<TileLayerProps>(), tileLayerPropsDefaults)

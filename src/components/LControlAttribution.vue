@@ -13,7 +13,7 @@ import { assertInject, propsBinder } from '@/utils'
 
 /**
  * > The attribution control allows you to display attribution data in a small text bos on a map.
- * @demo ControlAttributionDemo {5,15}
+ * @demo control-attribution {5,15}
  */
 defineOptions({})
 const props = withDefaults(defineProps<ControlAttributionProps>(), controlAttributionPropsDefaults)

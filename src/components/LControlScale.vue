@@ -13,7 +13,7 @@ import {
 
 /**
  * > A simple scale control that shows the scale of the current center of screen in metric (m/km) and imperial (mi/ft) systems.
- * @demo ControlScaleDemo {12}
+ * @demo control-scale {12}
  */
 defineOptions({})
 const props = withDefaults(defineProps<ControlScaleProps>(), controlScalePropsDefaults)

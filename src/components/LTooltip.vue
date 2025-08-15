@@ -12,7 +12,7 @@ import { type TooltipProps, tooltipPropsDefaults } from '@/functions/tooltip'
  * ::: tip
  * Tooltip placed inside a marker will by default appear on marker hover.
  * :::
- * @demo TooltipDemo {25,29,34,41,56,66,79,87}
+ * @demo tooltip {25,29,34,41,56,66,79,87}
  */
 defineOptions({})
 const props = withDefaults(defineProps<TooltipProps>(), tooltipPropsDefaults)

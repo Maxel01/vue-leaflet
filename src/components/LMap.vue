@@ -48,7 +48,7 @@ import { type MapProps, mapPropsDefaults, setupMap } from '@/functions/map'
 
 /**
  * > Base component, contains and wraps all the other components.
- * @demo DemoHome {5,9-15}
+ * @demo index {5,9-15}
  */
 defineOptions({})
 const props = withDefaults(defineProps<MapProps>(), mapPropsDefaults)
