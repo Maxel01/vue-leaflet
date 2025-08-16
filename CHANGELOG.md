@@ -1,5 +1,32 @@
 # Changelog
 
+## [1.0.0-alpha.2](https://github.com/maxel01/vue-leaflet/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2025-08-16)
+
+
+### ✨ Features
+
+* add experimental flags and two new experimental features ([#48](https://github.com/maxel01/vue-leaflet/issues/48)) ([6775c99](https://github.com/maxel01/vue-leaflet/commit/6775c995ad72877ab26a0173fa5d931f26176852))
+* add playground in vue and in nuxt ([#49](https://github.com/maxel01/vue-leaflet/issues/49)) ([ed29667](https://github.com/maxel01/vue-leaflet/commit/ed2966788af10addb21f4ad645b6670734301be4))
+
+
+### 🐛 Bug Fixes
+
+* **tests:** fix failing tests ([#44](https://github.com/maxel01/vue-leaflet/issues/44)) ([67f7503](https://github.com/maxel01/vue-leaflet/commit/67f75032aa0989c6f581e7033b9c91d02ea98237))
+
+
+### 📝 Documentation
+
+* add documentation to the components and create the vitepress app ([#38](https://github.com/maxel01/vue-leaflet/issues/38)) ([24f055b](https://github.com/maxel01/vue-leaflet/commit/24f055b39e9e6db9fff62eb32b25a2c313c74dfa))
+* auto-generate docs using jsdoc comments ([#40](https://github.com/maxel01/vue-leaflet/issues/40)) ([1a794aa](https://github.com/maxel01/vue-leaflet/commit/1a794aaaa99e02ac39856aaa1f76b37a64010a6f))
+
+
+### 🚧 Chores
+
+* fix TypeScript-related errors ([#47](https://github.com/maxel01/vue-leaflet/issues/47)) ([3f8d455](https://github.com/maxel01/vue-leaflet/commit/3f8d455f0afb4d9de758f46b13edb059bf87d8e7))
+* fix TypeScript-related errors in utils.ts ([#37](https://github.com/maxel01/vue-leaflet/issues/37)) ([74c0cd5](https://github.com/maxel01/vue-leaflet/commit/74c0cd5ced2f574f144529eba777b7ba49dcaf05))
+* improve build and publishing ([#36](https://github.com/maxel01/vue-leaflet/issues/36)) ([0b7dc6d](https://github.com/maxel01/vue-leaflet/commit/0b7dc6dd75e2493d4fa2d81f993a222cc650e56b))
+* use alias imports ([#42](https://github.com/maxel01/vue-leaflet/issues/42)) ([21c2376](https://github.com/maxel01/vue-leaflet/commit/21c2376d76ebee9ee91f7f1e27510841ce12b28b))
+
 ## [1.0.0-alpha.1](https://github.com/maxel01/vue-leaflet/compare/v1.0.0-alpha.0...v1.0.0-alpha.1) (2025-08-07)
 
 
