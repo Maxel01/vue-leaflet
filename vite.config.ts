@@ -3,7 +3,6 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
-import terser from '@rollup/plugin-terser'
 import { alias } from './alias.config.js'
 
 // https://vite.dev/config/
@@ -28,7 +27,6 @@ export default defineConfig({
                     leaflet: 'L'
                 }
             },
-            plugins: [terser()]
         }
     }
 })
