@@ -7,7 +7,7 @@ import { propsToLeafletOptions } from '@/utils'
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
 import type { ILayerDefinition } from '@/types/interfaces'
 
-/* eslint-disable @typescript-eslint/no-empty-object-type */
+/* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
 export interface LayerGroupProps<T extends LayerOptions = LayerOptions> extends LayerProps<T> {
 }
 

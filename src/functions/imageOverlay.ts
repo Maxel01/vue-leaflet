@@ -76,7 +76,7 @@ export interface ImageOverlayEmits<T extends ImageOverlay = ImageOverlay> extend
 }
 
 export const setupImageOverlay = (
-    props: ImageOverlayProps,
+    props: ImageOverlayAbstractProps,
     leafletRef: Ref<ImageOverlay | undefined>,
     emit: ImageOverlayEmits,
 ) => {

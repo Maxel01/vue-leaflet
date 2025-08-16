@@ -11,5 +11,6 @@
     "emitDeclarationOnly": true,
     "declarationDir": "dist",
     "composite": true,
+    "module": "ESNext"
   }
 }

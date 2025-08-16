@@ -2,7 +2,7 @@
 import { markRaw, nextTick, onBeforeUnmount, onMounted, ref, useAttrs } from 'vue'
 import { BindPopupInjection, UnbindPopupInjection } from '@/types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '@/utils'
-import { Popup, Tooltip } from 'leaflet'
+import { Popup } from 'leaflet'
 import { type PopupProps, popupPropsDefaults, setupPopup } from '@/functions/popup'
 
 /**
@@ -19,7 +19,7 @@ const emit = defineEmits<{
     /**
      * Triggers when the component is ready
      */
-    (event: 'ready', tooltip: Tooltip): void
+    (event: 'ready', popup: Popup): void
 }>()
 
 const { root, leafletObject } = usePopup()

@@ -13,11 +13,11 @@ export declare type ListenersAndAttrs = {
 /**
  * A generalized interface/type to type-hint whatever may be defined in a class/object.
  */
-export type PropertyMap = {
-    [propertyName: string]: unknown,
-}
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+export type PropertyMap = Record<string, any>
 
-export type FunctionMap = Record<string, ((...args: unknown[]) => unknown) | undefined>
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+export type FunctionMap = Record<string, ((...args: any[]) => any) | undefined>
 
 export type LeafletWrapper = {
     (...args: unknown[]): unknown
