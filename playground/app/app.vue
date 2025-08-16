@@ -51,7 +51,7 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.menu .NuxtLink-exact-active {
+.menu .router-link-exact-active {
   background-color: lightgray;
 }
 
