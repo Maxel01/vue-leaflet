@@ -18,7 +18,7 @@
   },
   "scripts": {
     "dev": "pnpm --filter playground dev",
-    "dev-vue": "pnpm --filter playground-vue dev",
+    "dev:vue": "pnpm --filter playground-vue dev",
     "test": "vitest --coverage",
     "build": "vue-tsc --noEmit && vite build",
     "build-only": "vite build",
