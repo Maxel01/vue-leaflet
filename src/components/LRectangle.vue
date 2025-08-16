@@ -13,7 +13,7 @@ import { LatLngBounds, Rectangle } from 'leaflet'
 
 /**
  * > Easily draw a rectangle on the map
- * @demo RectangleDemo {13-29}
+ * @demo rectangle {13-29}
  */
 defineOptions({})
 const props = withDefaults(defineProps<RectangleProps>(), rectanglePropsDefaults)

@@ -11,7 +11,7 @@ import { type PopupProps, popupPropsDefaults, setupPopup } from '@/functions/pop
  * ::: tip
  * Popup placed inside a marker will by default appear on marker click.
  * :::
- * @demo PopupDemo {25,30,46,56,69,77}
+ * @demo popup {25,30,46,56,69,77}
  */
 defineOptions({})
 const props = withDefaults(defineProps<PopupProps>(), popupPropsDefaults)

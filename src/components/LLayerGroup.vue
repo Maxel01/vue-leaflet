@@ -16,7 +16,7 @@ import {
  * ::: warning
  * This still needs better documentation and examples.
  * :::
- * @demo LayerGroupDemo {13-16}
+ * @demo layer-group {13-16}
  */
 defineOptions({})
 const props = withDefaults(defineProps<LayerGroupProps>(), layerGroupPropsDefaults)

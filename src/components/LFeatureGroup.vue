@@ -17,7 +17,7 @@ import {
  * ::: warning
  * This still needs better documentation and examples.
  * :::
- * @demo FeatureGroupDemo {12-14}
+ * @demo feature-group {12-14}
  */
 defineOptions({})
 const props = withDefaults(defineProps<FeatureGroupProps>(), featureGroupPropsDefaults)

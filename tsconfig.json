@@ -11,8 +11,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/maxel01/vue-leaflet": [
-        "src/lib"
+      "@/playground/*": [
+        "./playground/*"
       ],
       "@/*": [
         "src/*"

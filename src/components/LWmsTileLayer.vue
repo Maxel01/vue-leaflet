@@ -13,7 +13,7 @@ import { TileLayer } from 'leaflet'
 
 /**
  * > Display [WMS](https://en.wikipedia.org/wiki/Web_Map_Service) services as tile layers on the map.
- * @demo WmsTileLayerDemo {7-17}
+ * @demo wms-tile-layer {7-17}
  */
 defineOptions({})
 const props = withDefaults(defineProps<WmsTileLayerProps>(), wmsTileLayerPropsDefaults)

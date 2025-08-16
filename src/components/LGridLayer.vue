@@ -29,7 +29,7 @@ import { GridLayer } from 'leaflet'
  * can be where/how the component is setup/configured/passed/added? Simply stick with
  * the `childRender` prop and simplify some of the logic in LGridLayer.vue?
  * :::
- * @demo GridLayerDemo {5-11,17}
+ * @demo grid-layer {5-11,17}
  */
 defineOptions({})
 const props = withDefaults(defineProps<GridLayerProps>(), gridLayerPropsDefaults)

@@ -12,7 +12,7 @@ import { Polygon } from 'leaflet'
 
 /**
  * > Easily draw a polygon on the map
- * @demo PolygonDemo {12-23}
+ * @demo polygon {12-23}
  */
 defineOptions({})
 const props = withDefaults(defineProps<PolygonProps>(), polygonPropsDefaults)

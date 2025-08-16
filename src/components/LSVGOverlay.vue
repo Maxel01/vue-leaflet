@@ -12,7 +12,7 @@ import {
 
 /**
  * > Used to load and display a single svg over specific bounds of the map.
- * @demo SVGOverlayDemo {7-21,37}
+ * @demo svg-overlay {7-21,37}
  */
 defineOptions({})
 const props = withDefaults(defineProps<SVGOverlayProps>(), svgOverlayPropsDefaults)
