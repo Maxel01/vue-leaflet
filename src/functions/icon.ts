@@ -44,7 +44,7 @@ export interface IconProps extends ComponentProps<DivIconOptions> {
     shadowRetinaUrl?: string
     /**
      * Size of the shadow image in pixels
-     * @reactive
+     * @initOnly
      */
     shadowSize?: PointExpression
     /**
