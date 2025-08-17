@@ -28,7 +28,8 @@ This leaflet wrapper can't be used to add leaflet plugins as most of the plugins
 I am therefore planning on porting the leaflet plugins to v2 and create a leaflet-plugins-wrapper. So create an issue if a plugin is not yet supported.
 
 #### Docs
-Nuxt-leaflet already provides good documentation for the leaflet-wrapper. However, these docs will be customized and added to this repo too.
+Nuxt-leaflet already provides good documentation for the leaflet-wrapper. However, these docs have been customized and added to this repo: [vue-leaflet-docs](https://maxel01.github.io/vue-leaflet/). \
+The docs also contains the playground demo components.
 
 #### Tests
 The previous leaflet-wrapper did not really have tests. These will be added soon to provide a stable and reliable wrapper.
@@ -81,8 +82,8 @@ npm i @maxel01/vue-leaflet leaflet@2.0.0-alpha
 
 ## Usage
 
-Until the complete documentation is ready, please check the
-[component playground](https://github.com/vue-leaflet/vue-leaflet/tree/master/src/playground/views) examples for usage with Vue 3.
+The documentation is ready, please check the
+[vue-leaflet docs](https://maxel01.github.io/vue-leaflet/) for examples and the usage with Vue 3 or check the [playground](https://github.com/Maxel01/vue-leaflet/tree/master/playground/app/pages).
 Most component props mimic the vanilla [Leaflet options](https://leafletjs.com/reference-2.0.0.html) as closely as
 possible.
 
@@ -114,7 +115,7 @@ possible.
 
 ### Component playground
 
-To see the [component playground](https://github.com/vue-leaflet/vue-leaflet/tree/master/src/playground/views) in action,
+To see the [component playground](https://github.com/Maxel01/vue-leaflet/tree/master/playground/app/pages) in action,
 clone this repo and run the local dev server, then visit http://127.0.0.1:5173,
 ```bash
 git clone https://github.com/maxel01/vue-leaflet.git
