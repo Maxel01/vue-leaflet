@@ -24,9 +24,6 @@ importers:
       '@release-it/conventional-changelog':
         specifier: ^8.0.2
         version: 8.0.2(release-it@17.11.0(typescript@5.8.3))
-      '@rollup/plugin-terser':
-        specifier: ^0.4.4
-        version: 0.4.4(rollup@4.45.0)
       '@types/geojson':
         specifier: ^7946.0.16
         version: 7946.0.16

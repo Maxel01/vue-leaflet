@@ -42,7 +42,6 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@release-it/conventional-changelog": "^8.0.2",
-    "@rollup/plugin-terser": "^0.4.4",
     "@types/geojson": "^7946.0.16",
     "@types/leaflet": "^1.9.20",
     "@types/node": "^24.0.14",
