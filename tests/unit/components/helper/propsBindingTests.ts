@@ -2,7 +2,7 @@ import { flushPromises, VueWrapper } from '@vue/test-utils'
 import { expect, it, vi } from 'vitest'
 import getReactivePropCount from './props'
 import { capitalizeFirstLetter, isFunction } from '../../../../src/utils'
-import { LatLng } from 'leaflet'
+import { LatLng, LatLngBounds } from 'leaflet'
 
 export function testComponentPropBindings(
     getWrapper: () => Promise<VueWrapper<any>>,
@@ -114,6 +114,29 @@ export const gridLayerProps = {
 export const iconProps = {
     ...componentProps
     // TODO add props
+}
+
+export const imageOverlayAbstractProps = {
+    ...layerProps,
+    opacity: 0.5,
+    zIndex: 50,
+    bounds: new LatLngBounds([0, 0], [50, 50])
+}
+
+export const imageOverlayProps = {
+    ...imageOverlayAbstractProps,
+    url: 'https://www.printablee.com/postpic/2011/06/blank-100-square-grid-paper_405041.jpg'
+}
+
+export const svgOverlayProps = {
+    ...imageOverlayAbstractProps,
+    // TODO use svg url
+    svg: 'https://www.printablee.com/postpic/2011/06/blank-100-square-grid-paper_405041.jpg'
+}
+
+export const videoOverlayProps = {
+    ...imageOverlayAbstractProps,
+    video: 'https://www.mapbox.com/bites/00188/patricia_nasa.webm'
 }
 
 export const polylineProps = {
