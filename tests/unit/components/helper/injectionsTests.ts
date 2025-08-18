@@ -9,6 +9,10 @@ export const mockRemoveLayer = vi.fn()
 export const mockCanSetParentHtmlInjection = vi.fn()
 export const mockSetParentHtmlInjection = vi.fn()
 export const mockSetIconInjection = vi.fn()
+export const mockBindPopup = vi.fn()
+export const mockUnbindPopup = vi.fn()
+export const mockBindTooltip = vi.fn()
+export const mockUnbindTooltip = vi.fn()
 
 export const testRegistration = (
     getWrapper: () => Promise<VueWrapper<any>>,

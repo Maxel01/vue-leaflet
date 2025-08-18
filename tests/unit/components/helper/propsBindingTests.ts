@@ -161,6 +161,20 @@ export const polygonProps = {
     ]*/
 }
 
+export const popperProps = {
+    ...componentProps
+    // TEST content
+}
+
+export const popupProps = {
+    ...popperProps
+    // TEST latLng: new LatLng(44.5, 11.5)
+}
+
+export const tooltipProps = {
+    ...popperProps
+}
+
 export const rectangleProps = {
     ...polygonProps
     /* TEST bounds: [
