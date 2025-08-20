@@ -20,6 +20,8 @@ global.ResizeObserver = ResizeObserver
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LMap, {
         propsData: {
+            width: '300px',
+            height: '300px',
             center: [45, 10],
             zoom: 8,
             ...props
