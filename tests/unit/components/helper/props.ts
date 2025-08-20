@@ -14,7 +14,7 @@ export default function getReactivePropCount(componentName: string) {
         .flatMap((sf) => sf.getInterfaces())
         .find((i) => i.getName() === interfaceName)
     if (!interfaceDeclaration) {
-        return { reactive: 0, initOnly: 0 }
+        return { reactive: 0, reactiveNative: 0, initOnly: 0 }
     }
 
     return collectReactivePropCount(interfaceDeclaration)
@@ -22,6 +22,7 @@ export default function getReactivePropCount(componentName: string) {
 
 function collectReactivePropCount(interfaceDecl: InterfaceDeclaration) {
     let reactiveCount = 0
+    let reactiveNativeCount = 0
     let initOnlyCount = 0
     // Own properties
     for (const prop of interfaceDecl.getProperties()) {
@@ -30,12 +31,16 @@ function collectReactivePropCount(interfaceDecl: InterfaceDeclaration) {
         }
         const jsDocs = prop.getJsDocs()
         const hasReactive = jsDocs.some((doc) =>
-            doc.getTags().some((tag) => tag.getTagName() === 'initOnly')
+            doc.getTags().some((tag) => tag.getTagName() === 'reactive')
+        )
+        const hasReactiveNative = jsDocs.some((doc) =>
+            doc.getTags().some((tag) => tag.getTagName() === 'reactive' && tag.getCommentText() === "native")
         )
         const hasInitOnly = jsDocs.some((doc) =>
             doc.getTags().some((tag) => tag.getTagName() === 'initOnly')
         )
         if (hasReactive) reactiveCount++
+        if (hasReactiveNative) reactiveNativeCount++
         if (hasInitOnly) initOnlyCount++
     }
 
@@ -49,11 +54,12 @@ function collectReactivePropCount(interfaceDecl: InterfaceDeclaration) {
                 .getDeclarations()
                 .find((d) => d.getKind() === SyntaxKind.InterfaceDeclaration)
             if (decl) {
-                const { reactive, initOnly } = collectReactivePropCount(decl)
+                const { reactive, reactiveNative, initOnly } = collectReactivePropCount(decl)
                 reactiveCount += reactive
+                reactiveNativeCount += reactiveNative
                 initOnlyCount += initOnly
             }
         }
     }
-    return { reactive: reactiveCount, initOnly: initOnlyCount }
+    return { reactive: reactiveCount, reactiveNative: reactiveNativeCount, initOnly: initOnlyCount }
 }

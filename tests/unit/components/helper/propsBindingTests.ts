@@ -8,11 +8,11 @@ export function testComponentPropBindings(
     getWrapper: () => Promise<VueWrapper<any>>,
     componentName: string
 ) {
-    const { initOnly } = getReactivePropCount(componentName)
+    const { initOnly, reactiveNative } = getReactivePropCount(componentName)
     it('registers watch for each prop with matching setter', async () => {
         const consoleWarnMock = vi.spyOn(console, 'warn').mockImplementation(() => {})
         await getWrapper()
-        expect(consoleWarnMock).toHaveBeenCalledTimes(initOnly)
+        expect(consoleWarnMock).toHaveBeenCalledTimes(initOnly + reactiveNative)
         consoleWarnMock.mockRestore()
     })
 }
@@ -40,6 +40,11 @@ export function testPropsBindingToLeaflet(
 }
 
 const componentProps = {}
+
+export const mapProps = {
+    ...componentProps,
+
+}
 
 const layerProps = {
     ...componentProps,
@@ -189,4 +194,16 @@ export const rectangleProps = {
         [33.321, -65.757],
         [26.774, -81.19]
     ]*/
+}
+
+export const tileLayerProps = {
+    ...gridLayerProps,
+    // TODO change url
+    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+}
+
+export const wmsTileLayerProps = {
+    ...tileLayerProps,
+    // TODO change url
+    url: 'https://ows.mundialis.de/services/service?'
 }

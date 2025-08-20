@@ -11,10 +11,12 @@ import { propsToLeafletOptions } from '@/utils'
 export interface TileLayerProps<T extends TileLayerOptions = TileLayerOptions> extends GridLayerAbstractProps<T> {
     /**
      * If `true`, inverses Y axis numbering for tiles (turn this on for TMS services)
+     * @initOnly
      */
     tms?: boolean
     /**
      * Subdomains of the tile service. Can be passed in the form of one string (where each letter is a subdomain name) or an array of strings.
+     * @initOnly
      */
     subdomains?: string | string[]
     /**
