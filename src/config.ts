@@ -20,10 +20,14 @@ export const vueLeafletConfig: LeafletConfig = {
     }
 }
 
-export function setVueLeafletConfig(config: Partial<LeafletConfig>) {
-    Object.assign(vueLeafletConfig, config)
-    vueLeafletConfig.experimental = {
+type DeepPartial<T> = {
+    [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P]
+}
+
+export function setVueLeafletConfig(config: DeepPartial<LeafletConfig>) {
+    config.experimental = {
         ...vueLeafletConfig.experimental,
-        ...config.experimental,
+        ...config.experimental
     }
+    Object.assign(vueLeafletConfig, config)
 }

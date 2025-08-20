@@ -4,12 +4,12 @@ import { type ComponentProps, componentPropsDefaults, setupComponent } from '@/f
 export interface MapProps extends ComponentProps<MapOptions> {
     /**
      * The width of the map
-     * @reactive
+     * @reactive native
      */
     width?: string
     /**
      * The height of the map
-     * @reactive
+     * @reactive native
      */
     height?: string
     /**
@@ -44,17 +44,17 @@ export interface MapProps extends ComponentProps<MapOptions> {
     maxZoom?: number
     /**
      * The paddingBottomRight of the map
-     * @reactive
+     * @reactive native
      */
     paddingBottomRight?: PointExpression
     /**
      * The paddingTopLeft of the map
-     * @reactive
+     * @reactive native
      */
     paddingTopLeft?: PointExpression
     /**
      * The padding of the map
-     * @reactive
+     * @reactive native
      */
     padding?: PointExpression
     /**

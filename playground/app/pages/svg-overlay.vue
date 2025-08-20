@@ -37,7 +37,7 @@ const markers = ref([
 
 <template>
     <LMap :zoom="1" :crs="CRS.Simple" :center="[height / 2, width / 2]" :minZoom="-5">
-        <LSVGOverlay v-if="svgElement" :svg="svgElement" :bounds="bounds"/>
+        <LSVGOverlay v-if="svgElement" :svg="svgElement" :bounds="bounds" />
 
         <LMarker v-for="(marker, idx) in markers" :key="idx" :lat-lng="marker.coordinates">
             <LPopup>{{ idx }}</LPopup>
