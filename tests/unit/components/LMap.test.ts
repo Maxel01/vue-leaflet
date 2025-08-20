@@ -1,5 +1,5 @@
 import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import {
     mapProps,
     testComponentPropBindings,
@@ -25,8 +25,8 @@ const createWrapper = async (props = {}) => {
             ...props
         }
     })
-
     await flushPromises()
+    await vi.waitFor(() => expect(wrapper.emitted('ready')).toBeTruthy())
     return wrapper
 }
 
