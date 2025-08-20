@@ -100,9 +100,10 @@ defineExpose({
 
 function useMap() {
     const root = ref<HTMLElement>()
+    const leafletObject = ref<Map>()
+    const ready = ref<boolean>(false)
 
     const blueprint = reactive<IMapBlueprint>({
-        ready: false,
         layersToAdd: [],
         layersInControl: []
     })
@@ -110,9 +111,6 @@ function useMap() {
     const { options: componentOptions } = setupMap(props)
 
     const options: MapOptions = propsToLeafletOptions<MapOptions>(props, componentOptions)
-
-    const leafletObject = computed(() => blueprint.leafletRef)
-    const ready = computed(() => blueprint.ready)
 
     onMounted(async () => {
         try {
@@ -127,21 +125,21 @@ function useMap() {
         }
         await resetWebpackIcon(Icon)
 
-        blueprint.leafletRef = markRaw(new Map(root.value!, options))
+        leafletObject.value = markRaw(new Map(root.value!, options))
 
-        propsBinder(methods, blueprint.leafletRef, props)
+        propsBinder(methods, leafletObject, props)
 
-        bindEventHandlers(blueprint.leafletRef, eventHandlers)
-        bindEventHandlers(blueprint.leafletRef, listeners)
+        bindEventHandlers(leafletObject.value, eventHandlers)
+        bindEventHandlers(leafletObject.value, listeners)
 
-        blueprint.ready = true
-        nextTick(() => emit('ready', blueprint.leafletRef as Map))
+        ready.value = true
+        nextTick(() => emit('ready', leafletObject.value!))
     })
 
     onBeforeUnmount(() => {
         cancelDebounces(eventHandlers)
-        blueprint.leafletRef?.off()
-        blueprint.leafletRef?.remove()
+        leafletObject.value?.off()
+        leafletObject.value?.remove()
     })
 
     return { root, blueprint, leafletObject, ready }
@@ -188,7 +186,7 @@ function useMethods() {
             }
         }
         if (layer.leafletObject && layer.visible !== false) {
-            blueprint.leafletRef!.addLayer(layer.leafletObject)
+            leafletObject.value!.addLayer(layer.leafletObject)
         }
     }
 
@@ -203,7 +201,7 @@ function useMethods() {
                 )
             }
         }
-        if (layer.leafletObject) blueprint.leafletRef!.removeLayer(layer.leafletObject)
+        if (layer.leafletObject) leafletObject.value!.removeLayer(layer.leafletObject)
     }
 
     function registerLayerControl(lControlLayer: IControlDefinition<Control.Layers>) {
@@ -217,27 +215,27 @@ function useMethods() {
     }
 
     function registerControl(lControl: IControlDefinition) {
-        blueprint.leafletRef!.addControl(lControl.leafletObject)
+        leafletObject.value!.addControl(lControl.leafletObject)
     }
 
     function setZoom(zoom: number) {
-        const currentZoom = blueprint.leafletRef!.getZoom()
+        const currentZoom = leafletObject.value!.getZoom()
         if (zoom !== currentZoom) {
-            blueprint.leafletRef!.setZoom(zoom, zoomPanOptions.value)
+            leafletObject.value!.setZoom(zoom, zoomPanOptions.value)
         }
     }
 
     function setCrs(crs: CRS) {
-        const prevBounds = blueprint.leafletRef!.getBounds()
-        blueprint.leafletRef!.options.crs = crs
-        blueprint.leafletRef!.fitBounds(prevBounds, {
+        const prevBounds = leafletObject.value!.getBounds()
+        leafletObject.value!.options.crs = crs
+        leafletObject.value!.fitBounds(prevBounds, {
             animate: false,
             padding: [0, 0]
         })
     }
 
     function fitBounds(bounds: LatLngBoundsExpression) {
-        ;(blueprint.leafletRef! as Map).fitBounds(bounds, fitBoundsOptions.value)
+        leafletObject.value!.fitBounds(bounds, fitBoundsOptions.value)
     }
 
     function setBounds(bounds: LatLngExpression[]) {
@@ -248,11 +246,11 @@ function useMethods() {
         if (!newBounds.isValid()) {
             return
         }
-        const oldBounds = blueprint.lastSetBounds || blueprint.leafletRef!.getBounds()
+        const oldBounds = blueprint.lastSetBounds || leafletObject.value!.getBounds()
         const boundsChanged = !oldBounds.equals(newBounds, 0) // set maxMargin to 0 - check exact equals
         if (boundsChanged) {
             blueprint.lastSetBounds = newBounds
-            blueprint.leafletRef!.fitBounds(newBounds)
+            leafletObject.value!.fitBounds(newBounds)
         }
     }
 
@@ -261,11 +259,11 @@ function useMethods() {
             return
         }
         const newCenter = new LatLng(...center)
-        const oldCenter = blueprint.lastSetCenter || blueprint.leafletRef!.getCenter()
+        const oldCenter = blueprint.lastSetCenter || leafletObject.value!.getCenter()
         if (oldCenter.lat !== newCenter.lat || oldCenter.lng !== newCenter.lng) {
             blueprint.lastSetCenter = newCenter
 
-            blueprint.leafletRef!.panTo(newCenter, zoomPanOptions.value)
+            leafletObject.value!.panTo(newCenter, zoomPanOptions.value)
         }
     }
 
@@ -286,22 +284,10 @@ function useEvents() {
     const { listeners, attrs } = remapEvents(useAttrs())
     const eventHandlers: LeafletEventHandlerFnMap = {
         moveend: debounce((_ev: LeafletEvent) => {
-            if (!blueprint.leafletRef) return
-            /**
-             * Triggers when zoom is updated
-             * @type {number,string}
-             */
-            emit('update:zoom', blueprint.leafletRef.getZoom())
-            /**
-             * Triggers when center is updated
-             * @type {object,array}
-             */
-            emit('update:center', blueprint.leafletRef.getCenter())
-            /**
-             * Triggers when bounds are updated
-             * @type {object}
-             */
-            emit('update:bounds', blueprint.leafletRef.getBounds())
+            if (!leafletObject.value) return
+            emit('update:zoom', leafletObject.value.getZoom())
+            emit('update:center', leafletObject.value.getCenter())
+            emit('update:bounds', leafletObject.value.getBounds())
         }),
         overlayadd(ev) {
             const layer = blueprint.layersInControl.find((l) => l.name === ev.name)
