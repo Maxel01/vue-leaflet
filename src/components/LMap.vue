@@ -120,9 +120,9 @@ function useMap() {
             if (props.beforeMapMount) {
                 await props.beforeMapMount()
             }
-        } catch (error: any) {
+        } catch (error) {
             console.error(
-                `The following error occurred running the provided beforeMapMount hook ${error.message}`
+                `The following error occurred running the provided beforeMapMount hook ${error}`
             )
         }
         await resetWebpackIcon(Icon)
