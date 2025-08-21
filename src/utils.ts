@@ -73,12 +73,11 @@ export const propsBinder = (methods: Readonly<FunctionMap>, leafletElement: Prop
             )
             continue
         }
-        const leafletElementSetter = leafletElement[setMethodName]
-        if (isFunction(leafletElementSetter)) {
+        if (isFunction(leafletElement[setMethodName])) {
             watch(
                 () => props[key],
                 (newVal) => {
-                    leafletElementSetter(newVal)
+                    leafletElement[setMethodName](newVal)
                 }
             )
         } else if (key !== 'options' && import.meta.env.vitest) {

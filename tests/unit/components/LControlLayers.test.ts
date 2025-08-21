@@ -2,7 +2,7 @@ import { flushPromises, shallowMount } from '@vue/test-utils'
 import { describe } from 'vitest'
 import { RegisterLayerControlInjection } from '../../../src/types/injectionKeys'
 import { testRemoveOnUnmount } from './helper/tests'
-import { testComponentPropBindings } from './helper/propsBindingTests'
+import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import LControlLayers from '../../../src/components/LControlLayers.vue'
 import { mockRegisterLayerControl, testControlLayerRegistration } from './helper/injectionsTests'
@@ -32,8 +32,7 @@ const createWrapper = async (props = {}) => {
 describe('LControlLayers.vue', () => {
     testEmitsReady(createWrapper)
     testComponentPropBindings(createWrapper, 'LControlLayers')
-    // TODO requires _map, I don't unterstand why _map is not available
-    // testPropsBindingToLeaflet(createWrapper, controlLayersProps)
+    testPropsBindingToLeaflet(createWrapper, controlLayersProps)
     testRemoveOnUnmount(createWrapper)
 
     testControlLayerRegistration(createWrapper)

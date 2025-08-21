@@ -14,9 +14,9 @@ import { GridLayer } from 'leaflet'
 import LGridLayer from '../../../src/components/LGridLayer.vue'
 
 export const gridLayerProps = {
-    ...layerProps
-    // TEST opacity: 0.5,
-    // TEST zIndex: 50
+    ...layerProps,
+    opacity: 0.5,
+    zIndex: 50
 }
 
 const createWrapper = async (props = {}) => {
