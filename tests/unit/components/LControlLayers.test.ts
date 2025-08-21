@@ -32,7 +32,7 @@ const createWrapper = async (props = {}) => {
 describe('LControlLayers.vue', () => {
     testEmitsReady(createWrapper)
     testComponentPropBindings(createWrapper, 'LControlLayers')
-    // TODO requires DOM env
+    // TODO requires _map, I don't unterstand why _map is not available
     // testPropsBindingToLeaflet(createWrapper, controlLayersProps)
     testRemoveOnUnmount(createWrapper)
 
