@@ -5,25 +5,26 @@ import {
     SetIconInjection,
     SetParentHtmlInjection
 } from '../../../src/types/injectionKeys'
-import { testRemoveLayerOnUnmount } from './helper/tests'
 import {
-    iconProps,
+    componentProps,
     testComponentPropBindings,
     testPropsBindingToLeaflet
 } from './helper/propsBindingTests'
-import { testEmitsReady } from './helper/emitTests'
 import {
     mockCanSetParentHtmlInjection,
     mockSetIconInjection,
     mockSetParentHtmlInjection,
-    testCanSetParentHtml,
-    testSetIcon,
-    testSetParentHtml
+    testSetIcon
 } from './helper/injectionsTests'
 import { Icon } from 'leaflet'
 import LIcon from '../../../src/components/LIcon.vue'
 
 // TODO incomplete testing
+
+const iconProps = {
+    ...componentProps
+    // TODO add props
+}
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LIcon, {

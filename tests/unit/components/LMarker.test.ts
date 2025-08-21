@@ -5,12 +5,20 @@ import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/inje
 import { Circle, LatLng } from 'leaflet'
 import { testRemoveLayerOnUnmount } from './helper/tests'
 import {
-    markerProps,
+    layerProps,
     testComponentPropBindings,
     testPropsBindingToLeaflet
 } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
+
+const markerProps = {
+    ...layerProps,
+    // TEST draggable: true,
+    // TEST icon: ?,
+    // TEST zIndexOffset: 5,
+    latLng: new LatLng(44.5, 11.5)
+}
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LMarker, {

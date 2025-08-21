@@ -2,15 +2,17 @@ import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
 import { testRemoveLayerOnUnmount } from './helper/tests'
-import {
-    testComponentPropBindings,
-    testPropsBindingToLeaflet,
-    videoOverlayProps
-} from './helper/propsBindingTests'
+import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
 import { type LatLngBoundsLiteral, VideoOverlay } from 'leaflet'
 import LVideoOverlay from '../../../src/components/LVideoOverlay.vue'
+import { imageOverlayAbstractProps } from './LImageOverlay.test'
+
+const videoOverlayProps = {
+    ...imageOverlayAbstractProps,
+    video: 'https://www.mapbox.com/bites/00188/patricia_nasa.webm'
+}
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LVideoOverlay, {

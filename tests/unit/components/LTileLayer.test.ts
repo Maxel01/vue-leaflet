@@ -12,6 +12,12 @@ import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injections
 import { TileLayer } from 'leaflet'
 import LTileLayer from '../../../src/components/LTileLayer.vue'
 
+export const tileLayerProps = {
+    ...gridLayerProps,
+    // TODO change url
+    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+}
+
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LTileLayer, {
         propsData: {
@@ -36,7 +42,7 @@ const createWrapper = async (props = {}) => {
 describe('LTileLayer.vue', () => {
     testEmitsReady(createWrapper)
     testComponentPropBindings(createWrapper, 'LTileLayer')
-    testPropsBindingToLeaflet(createWrapper, gridLayerProps)
+    testPropsBindingToLeaflet(createWrapper, tileLayerProps)
     testRemoveLayerOnUnmount(createWrapper)
 
     testCorrectInitialisation(createWrapper)

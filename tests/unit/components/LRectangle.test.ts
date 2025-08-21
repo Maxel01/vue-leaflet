@@ -4,13 +4,26 @@ import LRectangle from '../../../src/components/LRectangle.vue'
 import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
 import { LatLng, Rectangle } from 'leaflet'
 import { testRemoveLayerOnUnmount } from './helper/tests'
-import {
-    rectangleProps,
-    testComponentPropBindings,
-    testPropsBindingToLeaflet
-} from './helper/propsBindingTests'
+import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
+import { polygonProps } from './LPolygon.test'
+
+const rectangleProps = {
+    ...polygonProps
+    /* TEST bounds: [
+        new LatLng(46.2, -1.5),
+        new LatLng(46.3, -1.5),
+        new LatLng(46.3, -1.1),
+        new LatLng(46.2, -1.1)
+    ]*/
+    /* TEST latLngs: [
+        [26.774, -81.19],
+        [19.466, -67.118],
+        [33.321, -65.757],
+        [26.774, -81.19]
+    ]*/
+}
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LRectangle, {
@@ -52,11 +65,13 @@ const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) =
         const obj = wrapper.vm.leafletObject as Rectangle
 
         expect(obj).toBeDefined()
-        expect(obj.getLatLngs()).toStrictEqual([[
-            new LatLng(46.234787, -1.509485),
-            new LatLng(46.342596, -1.509485),
-            new LatLng(46.342596, -1.190568),
-            new LatLng(46.234787, -1.190568)
-        ]])
+        expect(obj.getLatLngs()).toStrictEqual([
+            [
+                new LatLng(46.234787, -1.509485),
+                new LatLng(46.342596, -1.509485),
+                new LatLng(46.342596, -1.190568),
+                new LatLng(46.234787, -1.190568)
+            ]
+        ])
     })
 }

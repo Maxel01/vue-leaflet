@@ -4,12 +4,17 @@ import LPopup from '../../../src/components/LPopup.vue'
 import { BindPopupInjection, UnbindPopupInjection } from '../../../src/types/injectionKeys'
 import { Popup } from 'leaflet'
 import {
-    popupProps,
+    popperProps,
     testComponentPropBindings,
     testPropsBindingToLeaflet
 } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockBindPopup, mockUnbindPopup } from './helper/injectionsTests'
+
+const popupProps = {
+    ...popperProps
+    // TEST latLng: new LatLng(44.5, 11.5)
+}
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LPopup, {

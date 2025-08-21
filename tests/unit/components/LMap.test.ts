@@ -1,13 +1,29 @@
 import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
 import {
-    mapProps,
+    componentProps,
     testComponentPropBindings,
     testPropsBindingToLeaflet
 } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { Map } from 'leaflet'
 import LMap from '../../../src/components/LMap.vue'
+
+const mapProps = {
+    ...componentProps
+    // TEST width: '300px',
+    // TEST height: '300px',
+    // TEST center: [44.5, 10.5],
+    // TEST bounds: new LatLngBounds([44.5, 10.5], [47.5, 11.5]),
+    // TEST maxBounds: new LatLngBounds([44.5, 10.5], [47.5, 11.5]),
+    // TEST zoom: 10,
+    // TEST minZoom: 3,
+    // TEST maxZoom: 15,
+    // TEST paddingBottomRight: [20, 20],
+    // TEST paddingTopLeft: [20, 20],
+    // TEST padding: [20, 20],
+    // TEST crs: CRS.Simple,
+}
 
 class ResizeObserver {
     observe() {}

@@ -5,12 +5,24 @@ import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/inje
 import { LatLng, Polyline } from 'leaflet'
 import { testRemoveLayerOnUnmount } from './helper/tests'
 import {
-    polygonProps,
+    pathProps,
     testComponentPropBindings,
     testPropsBindingToLeaflet
 } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
+
+export const polylineProps = {
+    ...pathProps,
+    smoothFactor: 0.9,
+    noClip: true
+    /* TEST latLngs: [
+        [47.4, -1.51],
+        [47.34, -1.3],
+        [47.24, -1.2],
+        [47.23, -1.36]
+    ]*/
+}
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LPolyline, {
@@ -38,7 +50,7 @@ const createWrapper = async (props = {}) => {
 describe('LPolyline.vue', () => {
     testEmitsReady(createWrapper)
     testComponentPropBindings(createWrapper, 'LPolyline')
-    testPropsBindingToLeaflet(createWrapper, polygonProps)
+    testPropsBindingToLeaflet(createWrapper, polylineProps)
     testRemoveLayerOnUnmount(createWrapper)
 
     testCorrectInitialisation(createWrapper)
