@@ -7,18 +7,23 @@ import { testRemoveOnUnmount } from './helper/tests'
 import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockRegisterControl, testControlRegistration } from './helper/injectionsTests'
+import { controlAbstractProps } from './LControl.test'
+
+const controlScaleProps = {
+    ...controlAbstractProps
+}
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LControlScale, {
         propsData: {
             position: 'topright',
-            ...props,
+            ...props
         },
         global: {
             provide: {
-                [RegisterControlInjection as symbol]: mockRegisterControl,
-            },
-        },
+                [RegisterControlInjection as symbol]: mockRegisterControl
+            }
+        }
     })
 
     await flushPromises()
@@ -27,8 +32,8 @@ const createWrapper = async (props = {}) => {
 
 describe('LControlScale.vue', () => {
     testEmitsReady(createWrapper)
-    testComponentPropBindings(createWrapper, "LControlScale")
-    testPropsBindingToLeaflet(createWrapper, { position: 'bottomleft' })
+    testComponentPropBindings(createWrapper, 'LControlScale')
+    testPropsBindingToLeaflet(createWrapper, controlScaleProps)
     testRemoveOnUnmount(createWrapper)
 
     testCorrectInitialisation(createWrapper)

@@ -7,6 +7,11 @@ import { testRemoveOnUnmount } from './helper/tests'
 import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockRegisterControl, testControlRegistration } from './helper/injectionsTests'
+import { controlAbstractProps } from './LControl.test'
+
+const controlZoomProps = {
+    ...controlAbstractProps,
+}
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LControlZoom, {
@@ -28,7 +33,7 @@ const createWrapper = async (props = {}) => {
 describe('LControlZoom.vue', () => {
     testEmitsReady(createWrapper)
     testComponentPropBindings(createWrapper, "LControlZoom")
-    testPropsBindingToLeaflet(createWrapper, { position: 'bottomleft' })
+    testPropsBindingToLeaflet(createWrapper, controlZoomProps)
     testRemoveOnUnmount(createWrapper)
 
     testCorrectInitialisation(createWrapper)

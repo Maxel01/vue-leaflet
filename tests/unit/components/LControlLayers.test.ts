@@ -6,6 +6,11 @@ import { testComponentPropBindings } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import LControlLayers from '../../../src/components/LControlLayers.vue'
 import { mockRegisterLayerControl, testControlLayerRegistration } from './helper/injectionsTests'
+import { controlAbstractProps } from './LControl.test'
+
+const controlLayersProps = {
+    ...controlAbstractProps
+}
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LControlLayers, {
@@ -28,7 +33,7 @@ describe('LControlLayers.vue', () => {
     testEmitsReady(createWrapper)
     testComponentPropBindings(createWrapper, 'LControlLayers')
     // TODO requires DOM env
-    //testPropsBindingToLeaflet(createWrapper, { position: 'bottomleft' })
+    // testPropsBindingToLeaflet(createWrapper, controlLayersProps)
     testRemoveOnUnmount(createWrapper)
 
     testControlLayerRegistration(createWrapper)

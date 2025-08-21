@@ -7,19 +7,25 @@ import { testRemoveOnUnmount } from './helper/tests'
 import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockRegisterControl, testControlRegistration } from './helper/injectionsTests'
+import { controlAbstractProps } from './LControl.test'
+
+const controlAttributionProps = {
+    ...controlAbstractProps,
+    prefix: 'new prefix'
+}
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LControlAttribution, {
         propsData: {
             position: 'topright',
             prefix: 'Hello there',
-            ...props,
+            ...props
         },
         global: {
             provide: {
-                [RegisterControlInjection as symbol]: mockRegisterControl,
-            },
-        },
+                [RegisterControlInjection as symbol]: mockRegisterControl
+            }
+        }
     })
 
     await flushPromises()
@@ -28,8 +34,8 @@ const createWrapper = async (props = {}) => {
 
 describe('LControlAttribution.vue', () => {
     testEmitsReady(createWrapper)
-    testComponentPropBindings(createWrapper, "LControlAttribution")
-    testPropsBindingToLeaflet(createWrapper, { prefix: 'new prefix', position: 'bottomleft' })
+    testComponentPropBindings(createWrapper, 'LControlAttribution')
+    testPropsBindingToLeaflet(createWrapper, controlAttributionProps)
     testRemoveOnUnmount(createWrapper)
 
     testCorrectInitialisation(createWrapper)

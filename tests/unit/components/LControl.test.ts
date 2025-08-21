@@ -4,21 +4,34 @@ import LControl from '../../../src/components/LControl.vue'
 import { RegisterControlInjection } from '../../../src/types/injectionKeys'
 import { Control } from 'leaflet'
 import { testRemoveOnUnmount } from './helper/tests'
-import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
+import {
+    componentProps,
+    testComponentPropBindings,
+    testPropsBindingToLeaflet
+} from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockRegisterControl, testControlRegistration } from './helper/injectionsTests'
+
+export const controlAbstractProps = {
+    ...componentProps,
+    position: 'bottomleft'
+}
+
+export const controlProps = {
+    ...controlAbstractProps
+}
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LControl, {
         propsData: {
             position: 'topright',
-            ...props,
+            ...props
         },
         global: {
             provide: {
-                [RegisterControlInjection as symbol]: mockRegisterControl,
-            },
-        },
+                [RegisterControlInjection as symbol]: mockRegisterControl
+            }
+        }
     })
 
     await flushPromises()
@@ -27,8 +40,8 @@ const createWrapper = async (props = {}) => {
 
 describe('LControl.vue', () => {
     testEmitsReady(createWrapper)
-    testComponentPropBindings(createWrapper, "LControl")
-    testPropsBindingToLeaflet(createWrapper, { position: 'bottomleft' })
+    testComponentPropBindings(createWrapper, 'LControl')
+    testPropsBindingToLeaflet(createWrapper, controlProps)
     testRemoveOnUnmount(createWrapper)
 
     testCorrectInitialisation(createWrapper)
