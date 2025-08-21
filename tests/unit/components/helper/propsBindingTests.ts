@@ -2,7 +2,6 @@ import { flushPromises, VueWrapper } from '@vue/test-utils'
 import { expect, it, vi } from 'vitest'
 import getReactivePropCount from './props'
 import { capitalizeFirstLetter, isFunction } from '../../../../src/utils'
-import { LatLngBounds } from 'leaflet'
 
 export function testComponentPropBindings(
     getWrapper: () => Promise<VueWrapper<any>>,
@@ -21,7 +20,7 @@ export function testPropsBindingToLeaflet(
     getWrapper: (initialProps?: Record<string, any>) => Promise<VueWrapper<any>>,
     updatedProps: Record<string, any>
 ) {
-    const entries = Object.entries(updatedProps)
+    const entries = Object.entries(updatedProps).filter(([key]) => key !== 'expecting')
     it.each(entries)(
         'updates Leaflet object when prop "%s" changes',
         async (propName, newValue) => {
@@ -31,6 +30,10 @@ export function testPropsBindingToLeaflet(
             await wrapper.setProps({ [propName]: newValue })
             await flushPromises()
 
+            if (updatedProps['expecting']?.[propName]) {
+                updatedProps['expecting']?.[propName](leafletObject)
+                return
+            }
             const getter = 'get' + capitalizeFirstLetter(propName)
             if (isFunction(leafletObject[getter]))
                 expect(leafletObject[getter]()).toStrictEqual(newValue)

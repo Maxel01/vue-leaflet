@@ -5,21 +5,34 @@ import { testRemoveLayerOnUnmount } from './helper/tests'
 import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
-import { GeoJSON } from 'leaflet'
+import { GeoJSON, Layer } from 'leaflet'
 import LGeoJson from '../../../src/components/LGeoJson.vue'
 import { layerGroupProps } from './LLayerGroup.test'
+import geoJson from './geo.json'
+import geoJsonReplace from './geo.json'
 
 const geoJsonProps = {
-    ...layerGroupProps
-    // TEST geojson: await import("../geo.json"),
-    /* TEST optionsStyle: (feature) => ({
-        opacity: feature.properties.code / 100000
-    })*/
+    ...layerGroupProps,
+    geojson: geoJsonReplace,
+    optionsStyle: () => ({
+        opacity: 0.35
+    }),
+    expecting: {
+        geojson: (leafletObject: GeoJSON) => {
+            expect(leafletObject.toGeoJSON()).toStrictEqual(geoJsonReplace)
+        },
+        optionsStyle: (leafletObject: GeoJSON) => {
+            leafletObject.eachLayer((layer: Layer) => {
+                expect(layer.options).toStrictEqual({ opacity: 0.35 })
+            })
+        }
+    }
 }
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LGeoJson, {
         propsData: {
+            geojson: geoJson,
             ...props
         },
         global: {
