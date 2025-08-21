@@ -15,13 +15,20 @@ import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injections
 export const polylineProps = {
     ...pathProps,
     smoothFactor: 0.9,
-    noClip: true
-    /* TEST latLngs: [
+    noClip: true,
+    latLngs: [
         [47.4, -1.51],
         [47.34, -1.3],
         [47.24, -1.2],
         [47.23, -1.36]
-    ]*/
+    ],
+    expecting: {
+        latLngs: (leafletObject: Polyline) => {
+            expect(leafletObject.getLatLngs()).toStrictEqual(
+                polylineProps.latLngs.map(([lat, lng]) => new LatLng(lat, lng))
+            )
+        }
+    }
 }
 
 const createWrapper = async (props = {}) => {

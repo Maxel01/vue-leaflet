@@ -32,7 +32,7 @@ export interface MarkerProps extends LayerProps<MarkerOptions> {
 
 export const markerPropsDefaults = {
     ...layerPropsDefaults,
-    draggable: undefined,
+    draggable: undefined
 }
 
 export interface MarkerEmits extends LayerEmits {
@@ -53,7 +53,7 @@ export interface MarkerEmits extends LayerEmits {
 export const setupMarker = (
     props: MarkerProps,
     leafletRef: Ref<Marker | undefined>,
-    emit: MarkerEmits,
+    emit: MarkerEmits
 ) => {
     const { options: layerOptions, methods: layerMethods } = setupLayer(props, leafletRef, emit)
 
@@ -62,11 +62,12 @@ export const setupMarker = (
     const methods = {
         ...layerMethods,
         setDraggable(value: boolean) {
+            console.log('setDraggable', leafletRef.value?.dragging, value)
             if (value) leafletRef.value?.dragging?.enable()
             else leafletRef.value?.dragging?.disable()
         },
         latLngSync(
-            event: LeafletEvent & { latlng?: LatLngExpression; oldLatLng?: LatLngExpression },
+            event: LeafletEvent & { latlng?: LatLngExpression; oldLatLng?: LatLngExpression }
         ) {
             if (event.latlng) {
                 emit('update:latLng', event.latlng)
@@ -80,7 +81,7 @@ export const setupMarker = (
                     leafletRef.value.setLatLng(newVal)
                 }
             }
-        },
+        }
     }
 
     return { options, methods }
