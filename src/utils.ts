@@ -17,11 +17,13 @@ export declare type ListenersAndAttrs = {
 export type PropertyMap = Record<string, any>
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-export type FunctionMap = Record<string, ((...args: any[]) => any) | undefined>
+type Function = (...args: any[]) => any
+
+export type FunctionMap = Record<string, Function>
 
 export type LeafletWrapper = {
     (...args: unknown[]): unknown
-    wrapped: Ref<(...args: unknown[]) => unknown>
+    wrapped: Ref<Function>
 };
 
 
@@ -177,7 +179,7 @@ export const provideLeafletWrapper = (methodName: InjectionKey<unknown>): Leafle
  * @param {*} wrapper Provided wrapper whose wrapped function is to be updated
  * @param {function} leafletMethod New method to be wrapped by the wrapper
  */
-export const updateLeafletWrapper = (wrapper: LeafletWrapper, leafletMethod: (...args: unknown[]) => unknown) =>
+export const updateLeafletWrapper = (wrapper: LeafletWrapper, leafletMethod: Function) =>
     (wrapper.wrapped.value = leafletMethod)
 
 // BREAKING CHANGES: remove WINDOW_OR_GLOBAL

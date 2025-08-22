@@ -65,8 +65,12 @@ export const setupLayer = <T extends Layer>(
 
     const options = propsToLeafletOptions<LayerOptions>(props, componentOptions)
 
-    const addThisLayer = () => addLayer({ leafletObject: leafletRef.value })
-    const removeThisLayer = () => removeLayer({ leafletObject: leafletRef.value })
+    function updateVisibleProp(value: boolean) {
+        emit('update:visible', value)
+    }
+    const addThisLayer = () => addLayer({ leafletObject: leafletRef.value, updateVisibleProp })
+    const removeThisLayer = () =>
+        removeLayer({ leafletObject: leafletRef.value, updateVisibleProp })
 
     const methods = {
         ...componentMethods,
@@ -108,7 +112,9 @@ export const setupLayer = <T extends Layer>(
         },
         bindTooltip(leafletObject: Tooltip | undefined) {
             if (!leafletRef.value || !isFunction(leafletRef.value.bindTooltip)) {
-                console.warn('Attempt to bind tooltip before bindTooltip method available on layer.')
+                console.warn(
+                    'Attempt to bind tooltip before bindTooltip method available on layer.'
+                )
                 return
             }
             if (!leafletObject) return
@@ -134,14 +140,7 @@ export const setupLayer = <T extends Layer>(
                 }
             }
         },
-        updateVisibleProp(value: boolean) {
-            /**
-             * Triggers when the visible prop needs to be updated
-             * @type {boolean}
-             * @property {boolean} value - value of the visible property
-             */
-            emit('update:visible', value)
-        }
+        updateVisibleProp
     }
 
     provide(BindPopupInjection, methods.bindPopup)

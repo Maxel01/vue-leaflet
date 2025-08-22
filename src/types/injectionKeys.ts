@@ -1,7 +1,7 @@
 import type { InjectionKey } from 'vue'
 
 import type { IControlDefinition, ILayerDefinition } from './interfaces'
-import type { Control, DivIcon, Icon, Layer, Marker, Popup, Tooltip } from 'leaflet'
+import type { Control, DivIcon, Icon, Marker, Popup, Tooltip } from 'leaflet'
 
 export const AddLayerInjection = Symbol('addLayer') as InjectionKey<
     (layer: ILayerDefinition) => void
@@ -26,7 +26,7 @@ export const SetParentHtmlInjection = Symbol('setParentHtml') as InjectionKey<
 >
 
 export const SetIconInjection = Symbol('setIcon') as InjectionKey<
-    (newIcon: DivIcon | Icon | undefined) => Marker<any> | undefined
+    (newIcon: DivIcon | Icon | undefined) => Marker | undefined
 >
 
 export const BindPopupInjection = Symbol('bindPopup') as InjectionKey<
