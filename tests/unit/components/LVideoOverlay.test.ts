@@ -8,11 +8,11 @@ import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injections
 import { type LatLngBoundsLiteral, VideoOverlay } from 'leaflet'
 import LVideoOverlay from '../../../src/components/LVideoOverlay.vue'
 import { imageOverlayAbstractProps } from './LImageOverlay.test'
+import { mergeReactiveProps } from './helper/props'
 
-const videoOverlayProps = {
-    ...imageOverlayAbstractProps,
+const videoOverlayProps = mergeReactiveProps(imageOverlayAbstractProps, {
     video: 'https://www.mapbox.com/bites/00188/patricia_nasa.webm'
-}
+})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LVideoOverlay, {

@@ -11,10 +11,9 @@ import {
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
 import { LayerGroup } from 'leaflet'
+import { mergeReactiveProps } from './helper/props'
 
-export const layerGroupProps = {
-    ...layerProps
-}
+export const layerGroupProps = mergeReactiveProps(layerProps, {})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LLayerGroup, {

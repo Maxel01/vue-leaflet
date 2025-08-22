@@ -8,9 +8,9 @@ import {
 import { testEmitsReady } from './helper/emitTests'
 import { LatLng, Map } from 'leaflet'
 import LMap from '../../../src/components/LMap.vue'
+import { mergeReactiveProps } from './helper/props'
 
-const mapProps = {
-    ...componentProps,
+const mapProps = mergeReactiveProps(componentProps, {
     width: '400px',
     height: '400px',
     center: [44.5, 10.5],
@@ -34,7 +34,7 @@ const mapProps = {
             expect(leafletObject.getCenter()).toEqual(new LatLng(44.5, 10.5))
         }
     }
-}
+})
 
 class ResizeObserver {
     observe() {}

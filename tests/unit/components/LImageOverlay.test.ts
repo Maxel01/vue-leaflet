@@ -11,18 +11,17 @@ import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
 import { ImageOverlay, LatLngBounds, type LatLngBoundsLiteral } from 'leaflet'
 import LImageOverlay from '../../../src/components/LImageOverlay.vue'
+import { mergeReactiveProps } from './helper/props'
 
-export const imageOverlayAbstractProps = {
-    ...layerProps,
+export const imageOverlayAbstractProps = mergeReactiveProps(layerProps, {
     opacity: 0.5,
     zIndex: 50,
     bounds: new LatLngBounds([0, 0], [50, 50])
-}
+})
 
-const imageOverlayProps = {
-    ...imageOverlayAbstractProps,
+const imageOverlayProps = mergeReactiveProps(imageOverlayAbstractProps, {
     url: 'https://www.printablee.com/postpic/2011/06/blank-100-square-grid-paper_405041.jpg'
-}
+})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LImageOverlay, {

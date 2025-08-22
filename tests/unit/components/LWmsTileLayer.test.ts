@@ -8,12 +8,12 @@ import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injections
 import { TileLayer } from 'leaflet'
 import LWmsTileLayer from '../../../src/components/LWmsTileLayer.vue'
 import { tileLayerProps } from './LTileLayer.test'
+import { mergeReactiveProps } from './helper/props'
 
-const wmsTileLayerProps = {
-    ...tileLayerProps,
+const wmsTileLayerProps = mergeReactiveProps(tileLayerProps, {
     // TODO change url
     url: 'https://ows.mundialis.de/services/service?'
-}
+})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LWmsTileLayer, {

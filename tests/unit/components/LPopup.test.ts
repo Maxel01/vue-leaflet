@@ -10,11 +10,11 @@ import {
 } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockBindPopup, mockUnbindPopup } from './helper/injectionsTests'
+import { mergeReactiveProps } from './helper/props'
 
-const popupProps = {
-    ...popperProps
+const popupProps = mergeReactiveProps(popperProps, {
     // TEST latLng: new LatLng(44.5, 11.5)
-}
+})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LPopup, {

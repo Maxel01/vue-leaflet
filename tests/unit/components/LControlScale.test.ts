@@ -8,10 +8,9 @@ import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/p
 import { testEmitsReady } from './helper/emitTests'
 import { mockRegisterControl, testControlRegistration } from './helper/injectionsTests'
 import { controlAbstractProps } from './LControl.test'
+import { mergeReactiveProps } from './helper/props'
 
-const controlScaleProps = {
-    ...controlAbstractProps
-}
+const controlScaleProps = mergeReactiveProps(controlAbstractProps, {})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LControlScale, {

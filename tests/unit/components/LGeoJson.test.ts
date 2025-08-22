@@ -10,14 +10,15 @@ import LGeoJson from '../../../src/components/LGeoJson.vue'
 import { layerGroupProps } from './LLayerGroup.test'
 import geoJson from './geo.json'
 import geoJsonReplace from './geo.json'
+import { mergeReactiveProps } from './helper/props'
 
-const geoJsonProps = {
-    ...layerGroupProps,
+const geoJsonProps = mergeReactiveProps(layerGroupProps, {
     geojson: geoJsonReplace,
     optionsStyle: () => ({
         opacity: 0.35
     }),
     expecting: {
+        ...layerGroupProps.expecting,
         geojson: (leafletObject: GeoJSON) => {
             expect(leafletObject.toGeoJSON()).toStrictEqual(geoJsonReplace)
         },
@@ -27,7 +28,7 @@ const geoJsonProps = {
             })
         }
     }
-}
+})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LGeoJson, {

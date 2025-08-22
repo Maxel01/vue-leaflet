@@ -10,10 +10,9 @@ import {
 import { testEmitsReady } from './helper/emitTests'
 import { mockBindTooltip, mockUnbindTooltip } from './helper/injectionsTests'
 import { Tooltip } from 'leaflet'
+import { mergeReactiveProps } from './helper/props'
 
-const tooltipProps = {
-    ...popperProps
-}
+const tooltipProps = mergeReactiveProps(popperProps, {})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LTooltip, {

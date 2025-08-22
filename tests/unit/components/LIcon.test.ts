@@ -18,13 +18,13 @@ import {
 } from './helper/injectionsTests'
 import { Icon } from 'leaflet'
 import LIcon from '../../../src/components/LIcon.vue'
+import { mergeReactiveProps } from './helper/props'
 
 // TODO incomplete testing
 
-const iconProps = {
-    ...componentProps
+const iconProps = mergeReactiveProps(componentProps, {
     // TODO add props
-}
+})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LIcon, {

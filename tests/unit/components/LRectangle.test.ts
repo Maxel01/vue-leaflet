@@ -8,9 +8,9 @@ import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/p
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
 import { polygonProps } from './LPolygon.test'
+import { mergeReactiveProps } from './helper/props'
 
-const rectangleProps = {
-    ...polygonProps,
+const rectangleProps = mergeReactiveProps(polygonProps, {
     bounds: [
         new LatLng(46.2, -1.5),
         new LatLng(46.3, -1.5),
@@ -40,7 +40,7 @@ const rectangleProps = {
             ])
         }
     }
-}
+})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LRectangle, {

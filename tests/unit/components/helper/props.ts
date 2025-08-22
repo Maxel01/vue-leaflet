@@ -34,7 +34,9 @@ function collectReactivePropCount(interfaceDecl: InterfaceDeclaration) {
             doc.getTags().some((tag) => tag.getTagName() === 'reactive')
         )
         const hasReactiveNative = jsDocs.some((doc) =>
-            doc.getTags().some((tag) => tag.getTagName() === 'reactive' && tag.getCommentText() === "native")
+            doc
+                .getTags()
+                .some((tag) => tag.getTagName() === 'reactive' && tag.getCommentText() === 'native')
         )
         const hasInitOnly = jsDocs.some((doc) =>
             doc.getTags().some((tag) => tag.getTagName() === 'initOnly')
@@ -62,4 +64,26 @@ function collectReactivePropCount(interfaceDecl: InterfaceDeclaration) {
         }
     }
     return { reactive: reactiveCount, reactiveNative: reactiveNativeCount, initOnly: initOnlyCount }
+}
+
+type ReactiveProps = {
+    expecting?: Record<string, (leafletObject: any) => void>
+    [key: string]: any
+}
+
+export function mergeReactiveProps<
+    P extends ReactiveProps,
+    C extends ReactiveProps
+>(
+    parentProps: P,
+    childProps: C
+): P & C {
+    return {
+        ...parentProps,
+        ...childProps,
+        expecting: {
+            ...parentProps.expecting,
+            ...childProps.expecting
+        }
+    }
 }

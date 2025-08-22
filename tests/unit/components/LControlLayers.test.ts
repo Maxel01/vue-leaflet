@@ -7,10 +7,9 @@ import { testEmitsReady } from './helper/emitTests'
 import LControlLayers from '../../../src/components/LControlLayers.vue'
 import { mockRegisterLayerControl, testControlLayerRegistration } from './helper/injectionsTests'
 import { controlAbstractProps } from './LControl.test'
+import { mergeReactiveProps } from './helper/props'
 
-const controlLayersProps = {
-    ...controlAbstractProps
-}
+const controlLayersProps = mergeReactiveProps(controlAbstractProps, {})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LControlLayers, {

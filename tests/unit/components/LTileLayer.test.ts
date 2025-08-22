@@ -2,21 +2,18 @@ import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
 import { testRemoveLayerOnUnmount } from './helper/tests'
-import {
-    gridLayerProps,
-    testComponentPropBindings,
-    testPropsBindingToLeaflet
-} from './helper/propsBindingTests'
+import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
 import { TileLayer } from 'leaflet'
 import LTileLayer from '../../../src/components/LTileLayer.vue'
+import { mergeReactiveProps } from './helper/props'
+import { gridLayerProps } from './LGridLayer.test'
 
-export const tileLayerProps = {
-    ...gridLayerProps,
+export const tileLayerProps = mergeReactiveProps(gridLayerProps, {
     // TODO change url
     url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-}
+})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LTileLayer, {

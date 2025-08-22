@@ -11,9 +11,9 @@ import {
 } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
+import { mergeReactiveProps } from './helper/props'
 
-const markerProps = {
-    ...layerProps,
+const markerProps = mergeReactiveProps(layerProps, {
     // TEST draggable: true,
     // TEST icon: ?,
     zIndexOffset: 5,
@@ -24,7 +24,7 @@ const markerProps = {
             expect(leafletObject.dragging.enabled()).toBeTruthy()
         }
     }
-}
+})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LMarker, {

@@ -1,6 +1,6 @@
 import { flushPromises, VueWrapper } from '@vue/test-utils'
 import { expect, it, vi } from 'vitest'
-import getReactivePropCount from './props'
+import getReactivePropCount, { mergeReactiveProps } from './props'
 import { capitalizeFirstLetter, isFunction } from '../../../../src/utils'
 
 export function testComponentPropBindings(
@@ -44,20 +44,16 @@ export function testPropsBindingToLeaflet(
 
 export const componentProps = {}
 
-export const layerProps = {
-    ...componentProps,
-    attribution: 'attribution'
+export const layerProps = mergeReactiveProps(componentProps, {
+    attribution: 'new attribution'
     // TEST name: "name",
     // TEST layerType: "base",
     // TEST visible: false,
-}
+})
 
-export const interactiveLayerProps = {
-    ...layerProps
-}
+export const interactiveLayerProps = mergeReactiveProps(layerProps, {})
 
-export const pathProps = {
-    ...interactiveLayerProps,
+export const pathProps = mergeReactiveProps(interactiveLayerProps, {
     stroke: false,
     color: 'green',
     weight: 5,
@@ -71,9 +67,8 @@ export const pathProps = {
     fillOpacity: 0.4,
     fillRule: 'nonzero',
     className: 'circleMarkerClass'
-}
+})
 
-export const popperProps = {
-    ...componentProps
+export const popperProps = mergeReactiveProps(componentProps, {
     // TEST content
-}
+})

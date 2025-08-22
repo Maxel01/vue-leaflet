@@ -12,12 +12,12 @@ import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
 import { GridLayer } from 'leaflet'
 import LGridLayer from '../../../src/components/LGridLayer.vue'
+import { mergeReactiveProps } from './helper/props'
 
-export const gridLayerProps = {
-    ...layerProps,
+export const gridLayerProps = mergeReactiveProps(layerProps, {
     opacity: 0.5,
     zIndex: 50
-}
+})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LGridLayer, {

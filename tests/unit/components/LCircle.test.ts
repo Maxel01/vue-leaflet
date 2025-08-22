@@ -8,11 +8,11 @@ import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/p
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
 import { circleMarkerProps } from './LCircleMarker.test'
+import { mergeReactiveProps } from './helper/props'
 
-const circleProps = {
-    ...circleMarkerProps,
+const circleProps = mergeReactiveProps(circleMarkerProps, {
     radius: 10000
-}
+})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LCircle, {
