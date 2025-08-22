@@ -6,7 +6,7 @@ import {
     testPropsBindingToLeaflet
 } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
-import { LatLng, Map } from 'leaflet'
+import { LatLng, LatLngBounds, Map } from 'leaflet'
 import LMap from '../../../src/components/LMap.vue'
 import { mergeReactiveProps } from './helper/props'
 
@@ -15,8 +15,8 @@ const mapProps = mergeReactiveProps(componentProps, {
     height: '400px',
     center: [44.5, 10.5],
     // TEST bounds: new LatLngBounds([44.5, 10.5], [47.5, 11.5]),
-    // TEST maxBounds: new LatLngBounds([44.5, 10.5], [47.5, 11.5]),
-    // zoom: 10,
+    maxBounds: new LatLngBounds([44.5, 10.5], [47.5, 11.5]),
+    zoom: 10,
     minZoom: 3,
     maxZoom: 15,
     // TEST paddingBottomRight: [20, 20],
@@ -32,6 +32,11 @@ const mapProps = mergeReactiveProps(componentProps, {
         },
         center: (leafletObject: Map) => {
             expect(leafletObject.getCenter()).toEqual(new LatLng(44.5, 10.5))
+        },
+        maxBounds: (leafletObject: Map) => {
+            expect(leafletObject.options.maxBounds).toStrictEqual(
+                new LatLngBounds([44.5, 10.5], [47.5, 11.5])
+            )
         }
     }
 })
@@ -51,6 +56,7 @@ const createWrapper = async (props = {}) => {
             height: '300px',
             center: [45, 10],
             zoom: 8,
+            noBlockingAnimations: true,
             ...props
         }
     })

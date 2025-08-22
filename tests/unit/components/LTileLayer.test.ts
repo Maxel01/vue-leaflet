@@ -11,8 +11,12 @@ import { mergeReactiveProps } from './helper/props'
 import { gridLayerProps } from './LGridLayer.test'
 
 export const tileLayerProps = mergeReactiveProps(gridLayerProps, {
-    // TODO change url
-    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+    url: 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+    expecting: {
+        url: (l: TileLayer & { _url: string }) => {
+            expect(l._url).toBe(tileLayerProps.url)
+        }
+    }
 })
 
 const createWrapper = async (props = {}) => {

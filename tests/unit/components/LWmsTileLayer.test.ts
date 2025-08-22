@@ -11,8 +11,12 @@ import { tileLayerProps } from './LTileLayer.test'
 import { mergeReactiveProps } from './helper/props'
 
 const wmsTileLayerProps = mergeReactiveProps(tileLayerProps, {
-    // TODO change url
-    url: 'https://ows.mundialis.de/services/service?'
+    url: 'https://ows.terrestris.de/osm/service?',
+    expecting: {
+        url: (l: TileLayer & { _url: string }) => {
+            expect(l._url).toBe(wmsTileLayerProps.url)
+        }
+    }
 })
 
 const createWrapper = async (props = {}) => {

@@ -2,6 +2,8 @@ import { flushPromises, VueWrapper } from '@vue/test-utils'
 import { expect, it, vi } from 'vitest'
 import getReactivePropCount, { mergeReactiveProps } from './props'
 import { capitalizeFirstLetter, isFunction } from '../../../../src/utils'
+import { Layer } from 'leaflet'
+import { mockAddLayer, mockRemoveLayer } from './injectionsTests'
 
 export function testComponentPropBindings(
     getWrapper: () => Promise<VueWrapper<any>>,
@@ -45,10 +47,24 @@ export function testPropsBindingToLeaflet(
 export const componentProps = {}
 
 export const layerProps = mergeReactiveProps(componentProps, {
-    attribution: 'new attribution'
-    // TEST name: "name",
-    // TEST layerType: "base",
-    // TEST visible: false,
+    attribution: 'new attribution',
+    name: 'name',
+    layerType: 'overlay',
+    visible: false,
+    expecting: {
+        name: (_leafletObject: Layer) => {
+            expect(mockRemoveLayer).toHaveBeenCalledOnce()
+            expect(mockAddLayer).toHaveBeenCalledTimes(2)
+        },
+        layerType: (_leafletObject: Layer) => {
+            expect(mockRemoveLayer).toHaveBeenCalledOnce()
+            expect(mockAddLayer).toHaveBeenCalledTimes(2)
+        },
+        visible: (_leafletObject: Layer) => {
+            expect(mockRemoveLayer).toHaveBeenCalledOnce()
+            expect(mockAddLayer).toHaveBeenCalledOnce()
+        }
+    }
 })
 
 export const interactiveLayerProps = mergeReactiveProps(layerProps, {})
@@ -70,5 +86,5 @@ export const pathProps = mergeReactiveProps(interactiveLayerProps, {
 })
 
 export const popperProps = mergeReactiveProps(componentProps, {
-    // TEST content
+    content: '<div>Hello</div>'
 })

@@ -10,16 +10,12 @@ import LSVGOverlay from '../../../src/components/LSVGOverlay.vue'
 import { imageOverlayAbstractProps } from './LImageOverlay.test'
 import { mergeReactiveProps } from './helper/props'
 
-const svgOverlayProps = mergeReactiveProps(imageOverlayAbstractProps, {
-    // TODO use svg url
-    svg: 'https://www.printablee.com/postpic/2011/06/blank-100-square-grid-paper_405041.jpg'
-})
+const svgOverlayProps = mergeReactiveProps(imageOverlayAbstractProps, {})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LSVGOverlay, {
         propsData: {
-            // TODO use svg url
-            svg: 'https://www.printablee.com/postpic/2011/06/blank-100-square-grid-paper_405041.jpg',
+            svg: './some.svg',
             bounds: [
                 [0, 0],
                 [100, 100]
