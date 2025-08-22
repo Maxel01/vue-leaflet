@@ -30,7 +30,6 @@ const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LMarker, {
         propsData: {
             latLng: [44.48865, 11.3317],
-            draggable: true,
             ...props
         },
         global: {
