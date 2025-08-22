@@ -32,7 +32,7 @@ export interface MarkerProps extends LayerProps<MarkerOptions> {
 
 export const markerPropsDefaults = {
     ...layerPropsDefaults,
-    draggable: undefined
+    draggable: undefined,
 }
 
 export interface MarkerEmits extends LayerEmits {
