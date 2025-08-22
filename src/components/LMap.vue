@@ -116,7 +116,7 @@ function useMap() {
 
         leafletObject.value = markRaw(new Map(root.value!, options))
 
-        propsBinder(methods, leafletObject, props)
+        propsBinder(methods, leafletObject.value, props)
 
         bindEventHandlers(leafletObject.value, eventHandlers)
         bindEventHandlers(leafletObject.value, listeners)
