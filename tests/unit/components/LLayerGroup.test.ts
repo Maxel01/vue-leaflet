@@ -4,13 +4,16 @@ import LLayerGroup from '../../../src/components/LLayerGroup.vue'
 import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
 import { testRemoveLayerOnUnmount } from './helper/tests'
 import {
-    layerGroupProps,
+    layerProps,
     testComponentPropBindings,
     testPropsBindingToLeaflet
 } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
 import { LayerGroup } from 'leaflet'
+import { mergeReactiveProps } from './helper/props'
+
+export const layerGroupProps = mergeReactiveProps(layerProps, {})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LLayerGroup, {

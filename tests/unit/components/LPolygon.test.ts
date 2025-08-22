@@ -4,13 +4,27 @@ import LPolygon from '../../../src/components/LPolygon.vue'
 import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
 import { LatLng, Polygon } from 'leaflet'
 import { testRemoveLayerOnUnmount } from './helper/tests'
-import {
-    polygonProps,
-    testComponentPropBindings,
-    testPropsBindingToLeaflet
-} from './helper/propsBindingTests'
+import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
+import { polylineProps } from './LPolyline.test'
+import { mergeReactiveProps } from './helper/props'
+
+export const polygonProps = mergeReactiveProps(polylineProps, {
+    latLngs: [
+        [26.774, -81.19],
+        [19.466, -67.118],
+        [33.321, -65.757],
+        [26.774, -81.19]
+    ],
+    expecting: {
+        latLngs: (leafletObject: Polygon) => {
+            expect(leafletObject.getLatLngs()).toStrictEqual([
+                polygonProps.latLngs.map(([lat, lng]) => new LatLng(lat, lng)).slice(0, -1)
+            ])
+        }
+    }
+})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LPolygon, {
@@ -51,10 +65,8 @@ const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) =
         const obj = wrapper.vm.leafletObject as Polygon
 
         expect(obj).toBeDefined()
-        expect(obj.getLatLngs()).toStrictEqual([[
-            new LatLng(25.774, -80.19),
-            new LatLng(18.466, -66.118),
-            new LatLng(32.321, -64.757)
-        ]])
+        expect(obj.getLatLngs()).toStrictEqual([
+            [new LatLng(25.774, -80.19), new LatLng(18.466, -66.118), new LatLng(32.321, -64.757)]
+        ])
     })
 }

@@ -3,13 +3,16 @@ import { describe, expect, it } from 'vitest'
 import LTooltip from '../../../src/components/LTooltip.vue'
 import { BindTooltipInjection, UnbindTooltipInjection } from '../../../src/types/injectionKeys'
 import {
+    popperProps,
     testComponentPropBindings,
-    testPropsBindingToLeaflet,
-    tooltipProps
+    testPropsBindingToLeaflet
 } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockBindTooltip, mockUnbindTooltip } from './helper/injectionsTests'
 import { Tooltip } from 'leaflet'
+import { mergeReactiveProps } from './helper/props'
+
+const tooltipProps = mergeReactiveProps(popperProps, {})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LTooltip, {

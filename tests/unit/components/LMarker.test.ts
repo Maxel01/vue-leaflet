@@ -2,15 +2,29 @@ import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import LMarker from '../../../src/components/LMarker.vue'
 import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
-import { Circle, LatLng } from 'leaflet'
+import { Circle, LatLng, Marker } from 'leaflet'
 import { testRemoveLayerOnUnmount } from './helper/tests'
 import {
-    markerProps,
+    layerProps,
     testComponentPropBindings,
     testPropsBindingToLeaflet
 } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
+import { mergeReactiveProps } from './helper/props'
+
+const markerProps = mergeReactiveProps(layerProps, {
+    // TEST draggable: true,
+    // TEST icon: ?,
+    zIndexOffset: 5,
+    latLng: new LatLng(44.5, 11.5),
+    expecting: {
+        draggable(leafletObject: Marker) {
+            // TEST leafletObject.dragging is undefined. Why?
+            expect(leafletObject.dragging.enabled()).toBeTruthy()
+        }
+    }
+})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LMarker, {

@@ -58,6 +58,7 @@ export const setupControlLayers = (
     const options = propsToLeafletOptions<Control.LayersOptions>(props, controlOptions)
 
     const methods = {
+        // TEST addLayer and removeLayer are managed by LMap via registerLayerControl
         addLayer(layer: ILayerDefinition) {
             if (!layer.leafletObject) return
             if (layer.layerType === 'base') {

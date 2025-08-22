@@ -1,13 +1,45 @@
 import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
 import {
-    mapProps,
+    componentProps,
     testComponentPropBindings,
     testPropsBindingToLeaflet
 } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
-import { Map } from 'leaflet'
+import { LatLng, LatLngBounds, Map } from 'leaflet'
 import LMap from '../../../src/components/LMap.vue'
+import { mergeReactiveProps } from './helper/props'
+
+const mapProps = mergeReactiveProps(componentProps, {
+    width: '400px',
+    height: '400px',
+    center: [44.5, 10.5],
+    // TEST bounds: new LatLngBounds([44.5, 10.5], [47.5, 11.5]),
+    maxBounds: new LatLngBounds([44.5, 10.5], [47.5, 11.5]),
+    zoom: 10,
+    minZoom: 3,
+    maxZoom: 15,
+    // TEST paddingBottomRight: [20, 20],
+    // TEST paddingTopLeft: [20, 20],
+    // TEST padding: [20, 20],
+    // TEST crs: CRS.Simple,
+    expecting: {
+        width: (leafletObject: Map) => {
+            expect(leafletObject.getContainer().style.width).toBe('400px')
+        },
+        height: (leafletObject: Map) => {
+            expect(leafletObject.getContainer().style.height).toBe('400px')
+        },
+        center: (leafletObject: Map) => {
+            expect(leafletObject.getCenter()).toEqual(new LatLng(44.5, 10.5))
+        },
+        maxBounds: (leafletObject: Map) => {
+            expect(leafletObject.options.maxBounds).toStrictEqual(
+                new LatLngBounds([44.5, 10.5], [47.5, 11.5])
+            )
+        }
+    }
+})
 
 class ResizeObserver {
     observe() {}
@@ -24,6 +56,7 @@ const createWrapper = async (props = {}) => {
             height: '300px',
             center: [45, 10],
             zoom: 8,
+            noBlockingAnimations: true,
             ...props
         }
     })

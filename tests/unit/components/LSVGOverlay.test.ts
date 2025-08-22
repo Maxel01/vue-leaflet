@@ -2,21 +2,20 @@ import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
 import { testRemoveLayerOnUnmount } from './helper/tests'
-import {
-    svgOverlayProps,
-    testComponentPropBindings,
-    testPropsBindingToLeaflet
-} from './helper/propsBindingTests'
+import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
 import { type LatLngBoundsLiteral, SVGOverlay } from 'leaflet'
 import LSVGOverlay from '../../../src/components/LSVGOverlay.vue'
+import { imageOverlayAbstractProps } from './LImageOverlay.test'
+import { mergeReactiveProps } from './helper/props'
+
+const svgOverlayProps = mergeReactiveProps(imageOverlayAbstractProps, {})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LSVGOverlay, {
         propsData: {
-            // TODO use svg url
-            svg: 'https://www.printablee.com/postpic/2011/06/blank-100-square-grid-paper_405041.jpg',
+            svg: './some.svg',
             bounds: [
                 [0, 0],
                 [100, 100]

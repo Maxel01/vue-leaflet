@@ -7,18 +7,22 @@ import { testRemoveOnUnmount } from './helper/tests'
 import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockRegisterControl, testControlRegistration } from './helper/injectionsTests'
+import { controlAbstractProps } from './LControl.test'
+import { mergeReactiveProps } from './helper/props'
+
+const controlZoomProps = mergeReactiveProps(controlAbstractProps, {})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LControlZoom, {
         propsData: {
             position: 'topright',
-            ...props,
+            ...props
         },
         global: {
             provide: {
-                [RegisterControlInjection as symbol]: mockRegisterControl,
-            },
-        },
+                [RegisterControlInjection as symbol]: mockRegisterControl
+            }
+        }
     })
 
     await flushPromises()
@@ -27,8 +31,8 @@ const createWrapper = async (props = {}) => {
 
 describe('LControlZoom.vue', () => {
     testEmitsReady(createWrapper)
-    testComponentPropBindings(createWrapper, "LControlZoom")
-    testPropsBindingToLeaflet(createWrapper, { position: 'bottomleft' })
+    testComponentPropBindings(createWrapper, 'LControlZoom')
+    testPropsBindingToLeaflet(createWrapper, controlZoomProps)
     testRemoveOnUnmount(createWrapper)
 
     testCorrectInitialisation(createWrapper)
