@@ -50,7 +50,7 @@ function useTooltip() {
         propsBinder(methods, leafletObject.value, props)
         const { listeners } = remapEvents(useAttrs())
         leafletObject.value.on(listeners)
-        leafletObject.value.setContent(props.content || root.value || '')
+        leafletObject.value.setContent(props.content || root.value!)
         bindTooltip(leafletObject.value)
         nextTick(() => emit('ready', leafletObject.value!))
     })

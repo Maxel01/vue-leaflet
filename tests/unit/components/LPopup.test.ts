@@ -11,6 +11,8 @@ import {
 import { testEmitsReady } from './helper/emitTests'
 import { mockBindPopup, mockUnbindPopup } from './helper/injectionsTests'
 import { mergeReactiveProps } from './helper/props'
+import { testUnbindPopupOnUnmount } from './helper/tests'
+import { PopupProps } from '../../../src/functions/popup'
 
 const popupProps = mergeReactiveProps(popperProps, {
     latLng: new LatLng(44.5, 11.5)
@@ -37,17 +39,24 @@ describe('LPopup.vue', () => {
     testEmitsReady(createWrapper)
     testComponentPropBindings(createWrapper, 'LPopup')
     testPropsBindingToLeaflet(createWrapper, popupProps)
-    // TEST testRemoveLayerOnUnmount(createWrapper)
+    testUnbindPopupOnUnmount(createWrapper)
 
     testCorrectInitialisation(createWrapper)
     // TEST bindPopup
 })
 
-const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {
+const testCorrectInitialisation = (getWrapper: (props?: PopupProps) => Promise<VueWrapper<any>>) => {
     it('creates a Leaflet popup with correct options', async () => {
         const wrapper = await getWrapper()
         const obj = wrapper.vm.leafletObject as Popup
 
         expect(obj).toBeDefined()
+    })
+    it('creates a Leaflet popup with latLng', async () => {
+        const wrapper = await getWrapper({ latLng: [45, 5] })
+        const obj = wrapper.vm.leafletObject as Popup
+
+        expect(obj).toBeDefined()
+        expect(obj.getLatLng()).toStrictEqual(new LatLng(45, 5))
     })
 }

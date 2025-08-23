@@ -1,4 +1,4 @@
-import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
+import { flushPromises, mount, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import LTooltip from '../../../src/components/LTooltip.vue'
 import { BindTooltipInjection, UnbindTooltipInjection } from '../../../src/types/injectionKeys'
@@ -11,6 +11,8 @@ import { testEmitsReady } from './helper/emitTests'
 import { mockBindTooltip, mockUnbindTooltip } from './helper/injectionsTests'
 import { Tooltip } from 'leaflet'
 import { mergeReactiveProps } from './helper/props'
+import { testUnbindTooltipOnUnmount } from './helper/tests'
+import { TooltipProps } from '../../../src/functions/tooltip'
 
 const tooltipProps = mergeReactiveProps(popperProps, {})
 
@@ -32,21 +34,55 @@ const createWrapper = async (props = {}) => {
     return wrapper
 }
 
+const createWrapperWithSlot = async (props = {}) => {
+    const wrapper = mount(LTooltip, {
+        propsData: {
+            ...props
+        },
+        global: {
+            provide: {
+                [BindTooltipInjection as symbol]: mockBindTooltip,
+                [UnbindTooltipInjection as symbol]: mockUnbindTooltip
+            }
+        },
+        slots: {
+            default: 'Something'
+        }
+    })
+    console.log(wrapper.html())
+
+    await flushPromises()
+    return wrapper
+}
+
 describe('LTooltip.vue', () => {
     testEmitsReady(createWrapper)
     testComponentPropBindings(createWrapper, 'LTooltip')
     testPropsBindingToLeaflet(createWrapper, tooltipProps)
-    // TEST testRemoveLayerOnUnmount(createWrapper)
+    testUnbindTooltipOnUnmount(createWrapper)
 
     testCorrectInitialisation(createWrapper)
 })
 
-const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {
+const testCorrectInitialisation = (
+    getWrapper: (props?: TooltipProps) => Promise<VueWrapper<any>>
+) => {
     it('creates a Leaflet tooltip with correct options', async () => {
         const wrapper = await getWrapper()
         const obj = wrapper.vm.leafletObject as Tooltip
 
         expect(obj).toBeDefined()
         expect(obj.getContent()).toBe('This is a tooltip.')
+    })
+    it('creates a Leaflet tooltip with correct options', async () => {
+        const wrapper = await createWrapperWithSlot()
+        const obj = wrapper.vm.leafletObject as Tooltip
+
+        expect(obj).toBeDefined()
+        expect((obj.getContent() as HTMLDivElement).outerHTML).toBe(
+            '<div><!--\n' +
+                "        @slot Content to be rendered inside the Leaflet tooltip's container. This slot replaces the default content and allows full customization of the tooltip's appearance. The content will be injected into the tooltip's root DOM element.\n" +
+                '        -->Something</div>'
+        )
     })
 }
