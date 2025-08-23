@@ -1,4 +1,4 @@
-import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
+import { config, flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import LRectangle from '../../../src/components/LRectangle.vue'
 import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
@@ -76,7 +76,7 @@ describe('LRectangle.vue', () => {
     testAddLayer(createWrapper)
 })
 
-const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {
+const testCorrectInitialisation = (getWrapper: (props?) => Promise<VueWrapper<any>>) => {
     it('creates a Leaflet rectangle with correct options', async () => {
         const wrapper = await getWrapper()
         const obj = wrapper.vm.leafletObject as Rectangle
@@ -90,5 +90,28 @@ const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) =
                 new LatLng(46.234787, -1.190568)
             ]
         ])
+    })
+    it('creates a Leaflet rectangle with undefined latLngs', async () => {
+        let caughtError: unknown = null
+        config.global.config.errorHandler = (err) => {
+            caughtError = err
+        }
+        await getWrapper({ latLngs: undefined })
+        expect(caughtError).toBeInstanceOf(Error)
+        expect((caughtError as Error).message).toMatch("Specify bounds or LatLngs for a valid rectangle.")
+
+    })
+    it('creates a Leaflet rectangle with bounds', async () => {
+        const wrapper = await getWrapper({
+            bounds: [
+                [46.234787, -1.509485],
+                [46.342596, -1.190568]
+            ]
+        })
+        const obj = wrapper.vm.leafletObject as Rectangle
+
+        expect(obj.getBounds()).toStrictEqual(
+            new LatLngBounds([46.234787, -1.509485], [46.342596, -1.190568])
+        )
     })
 }

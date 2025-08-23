@@ -42,9 +42,12 @@ function useRectangle() {
     const { options, methods } = setupRectangle(props, leafletObject, emit)
 
     onMounted(async () => {
+        if (!props.bounds && !props.latLngs) {
+            throw new Error("Specify bounds or LatLngs for a valid rectangle.")
+        }
         const bounds = props.bounds
             ? new LatLngBounds(props.bounds)
-            : new LatLngBounds(props.latLngs || [])
+            : new LatLngBounds(props.latLngs!)
         leafletObject.value = markRaw<Rectangle>(new Rectangle(bounds, options))
 
         const { listeners } = remapEvents(useAttrs())
