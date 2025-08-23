@@ -43,9 +43,15 @@ export const setupPolygon = (
 
     const methods = {
         ...polylineMethods,
+        /* v8 ignore start - unreachable code, marked for removal */
+        /**
+         * TODO remove unused code
+         * @deprecated unreachable code ?
+         */
         toGeoJSON(precision: number | false) {
             return leafletRef.value?.toGeoJSON(precision)
         }
+        /* v8 ignore stop */
     }
 
     return { options, methods }
