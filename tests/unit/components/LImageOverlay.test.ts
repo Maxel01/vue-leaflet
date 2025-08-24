@@ -20,13 +20,18 @@ export const imageOverlayAbstractProps = mergeReactiveProps(layerProps, {
 })
 
 const imageOverlayProps = mergeReactiveProps(imageOverlayAbstractProps, {
-    url: 'https://www.printablee.com/postpic/2011/06/blank-100-square-grid-paper_405041.jpg'
+    url: 'replace.jpg',
+    expecting: {
+        url: (leafletObject: ImageOverlay) => {
+            expect(leafletObject._url).toBe(imageOverlayProps.url)
+        }
+    }
 })
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LImageOverlay, {
         propsData: {
-            url: 'https://www.printablee.com/postpic/2011/06/blank-100-square-grid-paper_405041.jpg',
+            url: 'some.jpg',
             bounds: [
                 [0, 0],
                 [100, 100]
