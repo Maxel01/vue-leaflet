@@ -1,5 +1,6 @@
-import { flushPromises, shallowMount } from '@vue/test-utils'
-import { describe } from 'vitest'
+import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
+import { h } from 'vue'
+import { describe, expect, it } from 'vitest'
 import { RegisterLayerControlInjection } from '../../../src/types/injectionKeys'
 import { testRemoveOnUnmount } from './helper/tests'
 import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
@@ -8,6 +9,9 @@ import LControlLayers from '../../../src/components/LControlLayers.vue'
 import { mockRegisterLayerControl, testControlLayerRegistration } from './helper/injectionsTests'
 import { controlAbstractProps } from './LControl.test'
 import { mergeReactiveProps } from './helper/props'
+import { Control } from 'leaflet'
+import { createWrapper as createMapWrapper } from './LMap.test'
+import LTileLayer from '../../../src/components/LTileLayer.vue'
 
 const controlLayersProps = mergeReactiveProps(controlAbstractProps, {})
 
@@ -34,5 +38,32 @@ describe('LControlLayers.vue', () => {
     testPropsBindingToLeaflet(createWrapper, controlLayersProps)
     testRemoveOnUnmount(createWrapper)
 
+    testCorrectInitialisation(createWrapper)
     testControlLayerRegistration(createWrapper)
 })
+
+const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {
+    it('creates a Leaflet control layers with correct options', async () => {
+        const wrapper = await getWrapper()
+        const obj = wrapper.vm.leafletObject as Control.Layers
+
+        expect(obj).toBeDefined()
+        expect(obj.options.position).toBe('topright')
+    })
+
+    // TODO move from unit tests
+    it.each(['base', 'overlay'])(
+        'creates a Leaflet control layers with Map and a TileLayer',
+        async (layerType) => {
+            const wrapper = await createMapWrapper(
+                {},
+                { default: [h(LTileLayer, { layerType: layerType, url: '' }), LControlLayers] }
+            )
+            const lControlLayers = wrapper.findComponent(LControlLayers)
+            expect(lControlLayers.vm.leafletObject).toBeDefined()
+            expect((lControlLayers.vm.leafletObject as Control.Layers)._map).toBeDefined()
+            const lTileLayer = wrapper.findComponent(LTileLayer)
+            expect(lTileLayer.vm.leafletObject).toBeDefined()
+        }
+    )
+}

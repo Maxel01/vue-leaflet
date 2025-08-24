@@ -1,4 +1,4 @@
-import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
+import { flushPromises, mount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
 import {
     componentProps,
@@ -49,8 +49,8 @@ class ResizeObserver {
 
 global.ResizeObserver = ResizeObserver
 
-const createWrapper = async (props = {}) => {
-    const wrapper = shallowMount(LMap, {
+export const createWrapper = async (props = {}, slots = {}) => {
+    const wrapper = mount(LMap, {
         propsData: {
             width: '300px',
             height: '300px',
@@ -58,7 +58,8 @@ const createWrapper = async (props = {}) => {
             zoom: 8,
             noBlockingAnimations: true,
             ...props
-        }
+        },
+        slots: slots
     })
     await flushPromises()
     await vi.waitFor(() => expect(wrapper.emitted('ready')).toBeTruthy())
