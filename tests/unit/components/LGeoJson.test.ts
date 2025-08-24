@@ -9,7 +9,7 @@ import { GeoJSON, Layer } from 'leaflet'
 import LGeoJson from '../../../src/components/LGeoJson.vue'
 import { layerGroupProps } from './LLayerGroup.test'
 import geoJson from './geo.json'
-import geoJsonReplace from './geo.json'
+import geoJsonReplace from './geo_replace.json'
 import { mergeReactiveProps } from './helper/props'
 
 const geoJsonProps = mergeReactiveProps(layerGroupProps, {

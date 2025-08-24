@@ -1,6 +1,8 @@
-import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
+import { flushPromises, mount, type VueWrapper } from '@vue/test-utils'
+import { h } from 'vue'
 import { describe, expect, it } from 'vitest'
 import LLayerGroup from '../../../src/components/LLayerGroup.vue'
+import LTileLayer from '../../../src/components/LTileLayer.vue'
 import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
 import { testRemoveLayerOnUnmount } from './helper/tests'
 import {
@@ -15,11 +17,12 @@ import { mergeReactiveProps } from './helper/props'
 
 export const layerGroupProps = mergeReactiveProps(layerProps, {})
 
-const createWrapper = async (props = {}) => {
-    const wrapper = shallowMount(LLayerGroup, {
+const createWrapper = async (props = {}, slots = {}) => {
+    const wrapper = mount(LLayerGroup, {
         propsData: {
             ...props
         },
+        slots: slots,
         global: {
             provide: {
                 [AddLayerInjection as symbol]: mockAddLayer,
@@ -45,6 +48,12 @@ describe('LLayerGroup.vue', () => {
 const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {
     it('creates a Leaflet layer group with correct options', async () => {
         const wrapper = await getWrapper()
+        const obj = wrapper.vm.leafletObject as LayerGroup
+
+        expect(obj).toBeDefined()
+    })
+    it('creates a Leaflet layer group with layers', async () => {
+        const wrapper = await createWrapper({}, { default: h(LTileLayer, { url: '' }) })
         const obj = wrapper.vm.leafletObject as LayerGroup
 
         expect(obj).toBeDefined()

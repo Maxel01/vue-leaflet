@@ -53,12 +53,22 @@ export const setupGeoJSON = (
         setOptionsStyle(newVal: PathOptions | StyleFunction) {
             leafletRef.value?.setStyle(newVal)
         },
+        /* v8 ignore start - unreachable code, marked for removal */
+        /**
+         * TODO remove unused code
+         * @deprecated unreachable code ?
+         */
         getGeoJSONData() {
             return leafletRef.value?.toGeoJSON()
         },
+        /**
+         * TODO remove unused code
+         * @deprecated unreachable code ?
+         */
         getBounds() {
             return leafletRef.value?.getBounds()
         },
+        /* v8 ignore end */
     }
 
     return { options, methods }
