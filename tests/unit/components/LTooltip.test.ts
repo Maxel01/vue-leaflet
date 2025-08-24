@@ -11,8 +11,9 @@ import { testEmitsReady } from './helper/emitTests'
 import { mockBindTooltip, mockUnbindTooltip } from './helper/injectionsTests'
 import { Tooltip } from 'leaflet'
 import { mergeReactiveProps } from './helper/props'
-import { testUnbindTooltipOnUnmount } from './helper/tests'
+import { testBindTooltip, testUnbindTooltipOnUnmount } from './helper/tests'
 import { TooltipProps } from '../../../src/functions/tooltip'
+import { createWrapper as createMarkerWrapper } from './LMarker.test'
 
 const tooltipProps = mergeReactiveProps(popperProps, {})
 
@@ -62,6 +63,7 @@ describe('LTooltip.vue', () => {
     testUnbindTooltipOnUnmount(createWrapper)
 
     testCorrectInitialisation(createWrapper)
+    testBindTooltip(createWrapper)
 })
 
 const testCorrectInitialisation = (
@@ -84,5 +86,11 @@ const testCorrectInitialisation = (
                 "        @slot Content to be rendered inside the Leaflet tooltip's container. This slot replaces the default content and allows full customization of the tooltip's appearance. The content will be injected into the tooltip's root DOM element.\n" +
                 '        -->Something</div>'
         )
+    })
+    it('creates a Leaflet layer with a tooltip', async () => {
+        const wrapper = await createMarkerWrapper({}, { default: LTooltip })
+        expect(wrapper.vm.leafletObject).toBeDefined()
+        const lTooltip = wrapper.findComponent(LTooltip)
+        expect(lTooltip.vm.leafletObject).toBeDefined()
     })
 }

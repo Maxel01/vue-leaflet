@@ -1,4 +1,4 @@
-import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
+import { flushPromises, mount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import LMarker from '../../../src/components/LMarker.vue'
 import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
@@ -26,12 +26,13 @@ const markerProps = mergeReactiveProps(layerProps, {
     }
 })
 
-const createWrapper = async (props = {}) => {
-    const wrapper = shallowMount(LMarker, {
+export const createWrapper = async (props = {}, slots = {}) => {
+    const wrapper = mount(LMarker, {
         propsData: {
             latLng: [44.48865, 11.3317],
             ...props
         },
+        slots: slots,
         global: {
             provide: {
                 [AddLayerInjection as symbol]: mockAddLayer,

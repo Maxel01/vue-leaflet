@@ -1,6 +1,12 @@
 import { beforeEach, expect, it, vi } from 'vitest'
 import { VueWrapper } from '@vue/test-utils'
-import { mockRemoveLayer, mockUnbindPopup, mockUnbindTooltip } from './injectionsTests'
+import {
+    mockBindPopup,
+    mockBindTooltip,
+    mockRemoveLayer,
+    mockUnbindPopup,
+    mockUnbindTooltip
+} from './injectionsTests'
 
 export const testRemoveOnUnmount = (getWrapper: () => Promise<VueWrapper<any>>) => {
     it('removes the leafletObject on unmount', async () => {
@@ -23,6 +29,17 @@ export const testRemoveLayerOnUnmount = (getWrapper: () => Promise<VueWrapper<an
     })
 }
 
+export const testBindTooltip = (getWrapper: () => Promise<VueWrapper<any>>) => {
+    beforeEach(() => {
+        mockBindTooltip.mockReset()
+    })
+    it('binds the tooltip on mount', async () => {
+        const wrapper = await getWrapper()
+        wrapper.unmount()
+        expect(mockBindTooltip).toHaveBeenCalledOnce()
+    })
+}
+
 export const testUnbindTooltipOnUnmount = (getWrapper: () => Promise<VueWrapper<any>>) => {
     beforeEach(() => {
         mockUnbindTooltip.mockReset()
@@ -31,6 +48,16 @@ export const testUnbindTooltipOnUnmount = (getWrapper: () => Promise<VueWrapper<
         const wrapper = await getWrapper()
         wrapper.unmount()
         expect(mockUnbindTooltip).toHaveBeenCalledOnce()
+    })
+}
+
+export const testBindPopup = (getWrapper: () => Promise<VueWrapper<any>>) => {
+    beforeEach(() => {
+        mockBindPopup.mockReset()
+    })
+    it('binds the popup on mount', async () => {
+        await getWrapper()
+        expect(mockBindPopup).toHaveBeenCalledOnce()
     })
 }
 
