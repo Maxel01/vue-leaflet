@@ -7,8 +7,8 @@ import { testRemoveLayerOnUnmount } from './helper/tests'
 import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
-import { polygonProps } from './LPolygon.test'
 import { mergeReactiveProps } from './helper/props'
+import { polygonProps } from './wrapper/LPolygonProps'
 
 const rectangleProps = mergeReactiveProps(polygonProps, {
     bounds: [

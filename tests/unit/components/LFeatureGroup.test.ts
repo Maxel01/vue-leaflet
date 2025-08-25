@@ -7,8 +7,8 @@ import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/p
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
 import { FeatureGroup } from 'leaflet'
-import { layerGroupProps } from './LLayerGroup.test'
 import { mergeReactiveProps } from './helper/props'
+import { layerGroupProps } from './wrapper/LLayerGroup'
 
 const featureGroupProps = mergeReactiveProps(layerGroupProps, {})
 

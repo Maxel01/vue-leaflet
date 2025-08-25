@@ -13,7 +13,7 @@ import { Tooltip } from 'leaflet'
 import { mergeReactiveProps } from './helper/props'
 import { testBindTooltip, testUnbindTooltipOnUnmount } from './helper/tests'
 import { TooltipProps } from '../../../src/functions/tooltip'
-import { createWrapper as createMarkerWrapper } from './LMarker.test'
+import { createMarkerWrapper } from './wrapper/LMarker'
 
 const tooltipProps = mergeReactiveProps(popperProps, {})
 

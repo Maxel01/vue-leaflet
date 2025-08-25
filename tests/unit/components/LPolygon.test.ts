@@ -7,24 +7,7 @@ import { testRemoveLayerOnUnmount } from './helper/tests'
 import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
-import { polylineProps } from './LPolyline.test'
-import { mergeReactiveProps } from './helper/props'
-
-export const polygonProps = mergeReactiveProps(polylineProps, {
-    latLngs: [
-        [26.774, -81.19],
-        [19.466, -67.118],
-        [33.321, -65.757],
-        [26.774, -81.19]
-    ],
-    expecting: {
-        latLngs: (leafletObject: Polygon) => {
-            expect(leafletObject.getLatLngs()).toStrictEqual([
-                polygonProps.latLngs.map(([lat, lng]) => new LatLng(lat, lng)).slice(0, -1)
-            ])
-        }
-    }
-})
+import { polygonProps } from './wrapper/LPolygonProps'
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LPolygon, {

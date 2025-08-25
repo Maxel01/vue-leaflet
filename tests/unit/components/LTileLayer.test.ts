@@ -7,17 +7,7 @@ import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
 import { TileLayer } from 'leaflet'
 import LTileLayer from '../../../src/components/LTileLayer.vue'
-import { mergeReactiveProps } from './helper/props'
-import { gridLayerProps } from './LGridLayer.test'
-
-export const tileLayerProps = mergeReactiveProps(gridLayerProps, {
-    url: 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
-    expecting: {
-        url: (l: TileLayer & { _url: string }) => {
-            expect(l._url).toBe(tileLayerProps.url)
-        }
-    }
-})
+import { tileLayerProps } from './wrapper/LTileLayer'
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LTileLayer, {

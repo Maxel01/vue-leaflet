@@ -7,8 +7,8 @@ import { testRemoveOnUnmount } from './helper/tests'
 import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockRegisterControl, testControlRegistration } from './helper/injectionsTests'
-import { controlAbstractProps } from './LControl.test'
 import { mergeReactiveProps } from './helper/props'
+import { controlAbstractProps } from './wrapper/LControl'
 
 const controlZoomProps = mergeReactiveProps(controlAbstractProps, {})
 

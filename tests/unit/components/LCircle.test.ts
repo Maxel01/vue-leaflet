@@ -7,8 +7,8 @@ import { testRemoveLayerOnUnmount } from './helper/tests'
 import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
-import { circleMarkerProps } from './LCircleMarker.test'
 import { mergeReactiveProps } from './helper/props'
+import { circleMarkerProps } from './wrapper/LCircleMarker'
 
 const circleProps = mergeReactiveProps(circleMarkerProps, {
     radius: 10000

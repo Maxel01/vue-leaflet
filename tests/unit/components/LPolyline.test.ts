@@ -4,28 +4,10 @@ import LPolyline from '../../../src/components/LPolyline.vue'
 import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
 import { LatLng, Polyline } from 'leaflet'
 import { testRemoveLayerOnUnmount } from './helper/tests'
-import { pathProps, testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
+import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
-import { mergeReactiveProps } from './helper/props'
-
-export const polylineProps = mergeReactiveProps(pathProps, {
-    smoothFactor: 0.9,
-    noClip: true,
-    latLngs: [
-        [47.4, -1.51],
-        [47.34, -1.3],
-        [47.24, -1.2],
-        [47.23, -1.36]
-    ],
-    expecting: {
-        latLngs: (leafletObject: Polyline) => {
-            expect(leafletObject.getLatLngs()).toStrictEqual(
-                polylineProps.latLngs.map(([lat, lng]) => new LatLng(lat, lng))
-            )
-        }
-    }
-})
+import { polylineProps } from './wrapper/LPolyline'
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LPolyline, {

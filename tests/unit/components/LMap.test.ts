@@ -1,5 +1,5 @@
-import { flushPromises, mount, type VueWrapper } from '@vue/test-utils'
-import { describe, expect, it, vi } from 'vitest'
+import { flushPromises, type VueWrapper } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import {
     componentProps,
     testComponentPropBindings,
@@ -7,10 +7,11 @@ import {
 } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { CRS, LatLngBounds, LatLngExpression, Map } from 'leaflet'
-import LMap from '../../../src/components/LMap.vue'
 import { mergeReactiveProps } from './helper/props'
 import 'leaflet/dist/leaflet.css'
 import { expectBoundsToBeClose } from './helper/geo'
+import { createMapWrapper } from './wrapper/LMap'
+import { MapProps } from '../../../src/functions/map'
 
 const mapProps = mergeReactiveProps(componentProps, {
     width: '400px',
@@ -59,63 +60,29 @@ const mapProps = mergeReactiveProps(componentProps, {
                 new LatLngBounds([44.5, 10.5], [47.5, 11.5])
             )
         },
-        paddingBottomRight: (leafletObject: Map, i, wrapper) => {
-            expect(wrapper.vm.$props.paddingBottomRight).toStrictEqual(mapProps.paddingBottomRight)
+        paddingBottomRight: (_m: Map, _i, wrapper) => {
+            expect((wrapper.vm.$props as MapProps).paddingBottomRight).toStrictEqual(
+                mapProps.paddingBottomRight
+            )
         },
-        paddingTopLeft: (leafletObject: Map, i, wrapper) => {
-            expect(wrapper.vm.$props.paddingTopLeft).toStrictEqual(mapProps.paddingTopLeft)
+        paddingTopLeft: (_m: Map, _, wrapper) => {
+            expect((wrapper.vm.$props as MapProps).paddingTopLeft).toStrictEqual(
+                mapProps.paddingTopLeft
+            )
         },
-        padding: (leafletObject: Map, i, wrapper) => {
-            expect(wrapper.vm.$props.padding).toStrictEqual(mapProps.padding)
+        padding: (_m: Map, _i, wrapper) => {
+            expect((wrapper.vm.$props as MapProps).padding).toStrictEqual(mapProps.padding)
         }
     }
 })
 
-class ResizeObserver {
-    observe() {}
-    unobserve() {}
-    disconnect() {}
-}
-
-global.ResizeObserver = ResizeObserver
-
-Object.defineProperty(HTMLElement.prototype, 'clientWidth', {
-    configurable: true,
-    value: 300
-})
-Object.defineProperty(HTMLElement.prototype, 'clientHeight', {
-    configurable: true,
-    value: 300
-})
-
-export const createWrapper = async (props = {}, slots = {}) => {
-    const wrapper = mount(LMap, {
-        propsData: {
-            width: '300px',
-            height: '300px',
-            center: [45, 10],
-            zoom: 8,
-            noBlockingAnimations: true,
-            options: {
-                zoomSnap: 0
-            },
-            ...props
-        },
-        slots: slots,
-        attachTo: document.body
-    })
-    await flushPromises()
-    await vi.waitFor(() => expect(wrapper.emitted('ready')).toBeTruthy())
-    return wrapper
-}
-
 describe('LMap.vue', () => {
-    testEmitsReady(createWrapper)
-    testComponentPropBindings(createWrapper, 'LMap')
-    testPropsBindingToLeaflet(createWrapper, mapProps)
+    testEmitsReady(createMapWrapper)
+    testComponentPropBindings(createMapWrapper, 'LMap')
+    testPropsBindingToLeaflet(createMapWrapper, mapProps)
 
-    testCorrectInitialisation(createWrapper)
-    testFitBounds(createWrapper)
+    testCorrectInitialisation(createMapWrapper)
+    testFitBounds(createMapWrapper)
 })
 
 const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {

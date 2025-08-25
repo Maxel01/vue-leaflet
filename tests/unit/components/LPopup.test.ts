@@ -13,7 +13,7 @@ import { mockBindPopup, mockUnbindPopup } from './helper/injectionsTests'
 import { mergeReactiveProps } from './helper/props'
 import { testBindPopup, testUnbindPopupOnUnmount } from './helper/tests'
 import { PopupProps } from '../../../src/functions/popup'
-import { createWrapper as createMarkerWrapper } from './LMarker.test'
+import { createMarkerWrapper } from './wrapper/LMarker'
 
 const popupProps = mergeReactiveProps(popperProps, {
     latLng: new LatLng(44.5, 11.5)

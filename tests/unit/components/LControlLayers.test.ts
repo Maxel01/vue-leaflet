@@ -7,11 +7,11 @@ import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/p
 import { testEmitsReady } from './helper/emitTests'
 import LControlLayers from '../../../src/components/LControlLayers.vue'
 import { mockRegisterLayerControl, testControlLayerRegistration } from './helper/injectionsTests'
-import { controlAbstractProps } from './LControl.test'
 import { mergeReactiveProps } from './helper/props'
 import { Control } from 'leaflet'
-import { createWrapper as createMapWrapper } from './LMap.test'
 import LTileLayer from '../../../src/components/LTileLayer.vue'
+import { createMapWrapper } from './wrapper/LMap'
+import { controlAbstractProps } from './wrapper/LControl'
 
 const controlLayersProps = mergeReactiveProps(controlAbstractProps, {})
 
@@ -57,10 +57,17 @@ const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) =
         async (layerType) => {
             const wrapper = await createMapWrapper(
                 {},
-                { default: [h(LTileLayer, { layerType: layerType, url: '' }), LControlLayers, h(LTileLayer, { layerType: layerType, url: '' })] }
+                {
+                    default: [
+                        h(LTileLayer, { layerType: layerType, url: '' }),
+                        LControlLayers,
+                        h(LTileLayer, { layerType: layerType, url: '' })
+                    ]
+                }
             )
             const lControlLayers = wrapper.findComponent(LControlLayers)
             expect(lControlLayers.vm.leafletObject).toBeDefined()
+            // @ts-expect-error _map is private so not in the types
             expect((lControlLayers.vm.leafletObject as Control.Layers)._map).toBeDefined()
             const lTileLayer = wrapper.findComponent(LTileLayer)
             expect(lTileLayer.vm.leafletObject).toBeDefined()

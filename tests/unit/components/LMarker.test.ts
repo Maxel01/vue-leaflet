@@ -1,7 +1,5 @@
-import { flushPromises, mount, type VueWrapper } from '@vue/test-utils'
+import { type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import LMarker from '../../../src/components/LMarker.vue'
-import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
 import { Circle, LatLng, Marker } from 'leaflet'
 import { testRemoveLayerOnUnmount } from './helper/tests'
 import {
@@ -10,8 +8,9 @@ import {
     testPropsBindingToLeaflet
 } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
-import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
+import { testAddLayer } from './helper/injectionsTests'
 import { mergeReactiveProps } from './helper/props'
+import { createMarkerWrapper } from './wrapper/LMarker'
 
 const markerProps = mergeReactiveProps(layerProps, {
     // TEST draggable: true,
@@ -26,33 +25,14 @@ const markerProps = mergeReactiveProps(layerProps, {
     }
 })
 
-export const createWrapper = async (props = {}, slots = {}) => {
-    const wrapper = mount(LMarker, {
-        propsData: {
-            latLng: [44.48865, 11.3317],
-            ...props
-        },
-        slots: slots,
-        global: {
-            provide: {
-                [AddLayerInjection as symbol]: mockAddLayer,
-                [RemoveLayerInjection as symbol]: mockRemoveLayer
-            }
-        }
-    })
-
-    await flushPromises()
-    return wrapper
-}
-
 describe('LMarker.vue', () => {
-    testEmitsReady(createWrapper)
-    testComponentPropBindings(createWrapper, 'LMarker')
-    testPropsBindingToLeaflet(createWrapper, markerProps)
-    testRemoveLayerOnUnmount(createWrapper)
+    testEmitsReady(createMarkerWrapper)
+    testComponentPropBindings(createMarkerWrapper, 'LMarker')
+    testPropsBindingToLeaflet(createMarkerWrapper, markerProps)
+    testRemoveLayerOnUnmount(createMarkerWrapper)
 
-    testCorrectInitialisation(createWrapper)
-    testAddLayer(createWrapper)
+    testCorrectInitialisation(createMarkerWrapper)
+    testAddLayer(createMarkerWrapper)
 })
 
 const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {

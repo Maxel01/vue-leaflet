@@ -3,21 +3,12 @@ import { h } from 'vue'
 import { describe, expect, it } from 'vitest'
 import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
 import { testRemoveLayerOnUnmount } from './helper/tests'
-import {
-    layerProps,
-    testComponentPropBindings,
-    testPropsBindingToLeaflet
-} from './helper/propsBindingTests'
+import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
 import { GridLayer } from 'leaflet'
 import LGridLayer from '../../../src/components/LGridLayer.vue'
-import { mergeReactiveProps } from './helper/props'
-
-export const gridLayerProps = mergeReactiveProps(layerProps, {
-    opacity: 0.5,
-    zIndex: 50
-})
+import { gridLayerProps } from './wrapper/LGridLayer'
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LGridLayer, {

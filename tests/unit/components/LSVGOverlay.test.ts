@@ -7,8 +7,8 @@ import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
 import { type LatLngBoundsLiteral, SVGOverlay } from 'leaflet'
 import LSVGOverlay from '../../../src/components/LSVGOverlay.vue'
-import { imageOverlayAbstractProps } from './LImageOverlay.test'
 import { mergeReactiveProps } from './helper/props'
+import { imageOverlayAbstractProps } from './wrapper/LImageOverlay'
 
 const svgOverlayProps = mergeReactiveProps(imageOverlayAbstractProps, {})
 
