@@ -43,17 +43,17 @@ export interface MapProps extends ComponentProps<MapOptions> {
      */
     maxZoom?: number
     /**
-     * The paddingBottomRight of the map
+     * The paddingBottomRight of the map. Applies only when LMap.fitBounds is called.
      * @reactive native
      */
     paddingBottomRight?: PointExpression
     /**
-     * The paddingTopLeft of the map
+     * The paddingTopLeft of the map. Applies only when LMap.fitBounds is called.
      * @reactive native
      */
     paddingTopLeft?: PointExpression
     /**
-     * The padding of the map
+     * The padding of the map. Applies only when LMap.fitBounds is called.
      * @reactive native
      */
     padding?: PointExpression

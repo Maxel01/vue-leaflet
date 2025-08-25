@@ -28,18 +28,21 @@ export function testPropsBindingToLeaflet(
         async (propName, newValue) => {
             const wrapper = await getWrapper()
             const leafletObject = wrapper.vm.leafletObject
+            const values = Array.isArray(newValue?.values) ? newValue.values : [newValue]
 
-            await wrapper.setProps({ [propName]: newValue })
-            await flushPromises()
+            for (const [i, value] of values.entries()) {
+                await wrapper.setProps({ [propName]: value })
+                await flushPromises()
 
-            if (updatedProps['expecting']?.[propName]) {
-                updatedProps['expecting']?.[propName](leafletObject)
-                return
+                if (updatedProps['expecting']?.[propName]) {
+                    updatedProps['expecting']?.[propName](leafletObject, i, wrapper)
+                    continue
+                }
+                const getter = 'get' + capitalizeFirstLetter(propName)
+                if (isFunction(leafletObject[getter]))
+                    expect(leafletObject[getter]()).toStrictEqual(newValue)
+                else expect(leafletObject.options[propName]).toBe(newValue)
             }
-            const getter = 'get' + capitalizeFirstLetter(propName)
-            if (isFunction(leafletObject[getter]))
-                expect(leafletObject[getter]()).toStrictEqual(newValue)
-            else expect(leafletObject.options[propName]).toBe(newValue)
         }
     )
 }

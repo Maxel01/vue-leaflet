@@ -10,6 +10,7 @@ export default mergeConfig(
             exclude: [...configDefaults.exclude, 'e2e/**', 'node_modules'],
             root: fileURLToPath(new URL('./', import.meta.url)),
             coverage: {
+                provider: 'v8',
                 include: ['src/**']
             }
         }

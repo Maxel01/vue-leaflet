@@ -1,4 +1,5 @@
 import { InterfaceDeclaration, Project, SyntaxKind } from 'ts-morph'
+import { type VueWrapper } from '@vue/test-utils'
 
 const project = new Project({
     tsConfigFilePath: 'tsconfig.json'
@@ -67,14 +68,11 @@ function collectReactivePropCount(interfaceDecl: InterfaceDeclaration) {
 }
 
 type ReactiveProps = {
-    expecting?: Record<string, (leafletObject: any) => void>
+    expecting?: Record<string, (leafletObject: any, iteration: number, wrapper: VueWrapper) => void>
     [key: string]: any
 }
 
-export function mergeReactiveProps<
-    P extends ReactiveProps,
-    C extends ReactiveProps
->(
+export function mergeReactiveProps<P extends ReactiveProps, C extends ReactiveProps>(
     parentProps: P,
     childProps: C
 ): P & C {

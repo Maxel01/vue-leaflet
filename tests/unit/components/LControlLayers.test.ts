@@ -57,7 +57,7 @@ const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) =
         async (layerType) => {
             const wrapper = await createMapWrapper(
                 {},
-                { default: [h(LTileLayer, { layerType: layerType, url: '' }), LControlLayers] }
+                { default: [h(LTileLayer, { layerType: layerType, url: '' }), LControlLayers, h(LTileLayer, { layerType: layerType, url: '' })] }
             )
             const lControlLayers = wrapper.findComponent(LControlLayers)
             expect(lControlLayers.vm.leafletObject).toBeDefined()
