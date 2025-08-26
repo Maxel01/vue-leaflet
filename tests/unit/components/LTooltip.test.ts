@@ -50,8 +50,6 @@ const createWrapperWithSlot = async (props = {}) => {
             default: 'Something'
         }
     })
-    console.log(wrapper.html())
-
     await flushPromises()
     return wrapper
 }
@@ -87,7 +85,7 @@ const testCorrectInitialisation = (
                 '        -->Something</div>'
         )
     })
-    it('creates a Leaflet layer with a tooltip', async () => {
+    it('creates a Leaflet layer (marker) with a tooltip', async () => {
         const wrapper = await createMarkerWrapper({}, { default: LTooltip })
         expect(wrapper.vm.leafletObject).toBeDefined()
         const lTooltip = wrapper.findComponent(LTooltip)

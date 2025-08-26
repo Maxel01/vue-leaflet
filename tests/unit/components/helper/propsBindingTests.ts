@@ -54,7 +54,9 @@ export const layerProps = mergeReactiveProps(componentProps, {
     attribution: 'new attribution',
     name: 'name',
     layerType: 'overlay',
-    visible: false,
+    visible: {
+        values: [false, true]
+    },
     expecting: {
         name: (_leafletObject: Layer) => {
             expect(mockRemoveLayer).toHaveBeenCalledOnce()
@@ -64,9 +66,9 @@ export const layerProps = mergeReactiveProps(componentProps, {
             expect(mockRemoveLayer).toHaveBeenCalledOnce()
             expect(mockAddLayer).toHaveBeenCalledTimes(2)
         },
-        visible: (_leafletObject: Layer) => {
+        visible: (_leafletObject: Layer, iteration) => {
             expect(mockRemoveLayer).toHaveBeenCalledOnce()
-            expect(mockAddLayer).toHaveBeenCalledOnce()
+            expect(mockAddLayer).toHaveBeenCalledTimes(iteration + 1)
         }
     }
 })

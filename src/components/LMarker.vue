@@ -7,7 +7,7 @@ import {
     provide,
     ref,
     useAttrs,
-    useSlots,
+    useSlots
 } from 'vue'
 import {
     assertInject,
@@ -15,13 +15,13 @@ import {
     cancelDebounces,
     isFunction,
     propsBinder,
-    remapEvents,
+    remapEvents
 } from '@/utils'
 import {
     AddLayerInjection,
     CanSetParentHtmlInjection,
     SetIconInjection,
-    SetParentHtmlInjection,
+    SetParentHtmlInjection
 } from '@/types/injectionKeys'
 import { DivIcon, Icon, type LeafletEventHandlerFnMap, Marker } from 'leaflet'
 import { debounce } from 'ts-debounce'
@@ -30,7 +30,7 @@ import {
     type MarkerProps,
     markerPropsDefaults,
     setupMarker,
-    shouldBlankIcon,
+    shouldBlankIcon
 } from '@/functions/marker'
 
 /**
@@ -67,12 +67,13 @@ function useMarker() {
     function useEvents() {
         const { listeners } = remapEvents(useAttrs())
         const eventHandlers: LeafletEventHandlerFnMap = {
-            move: debounce(methods.latLngSync),
+            move: debounce(methods.latLngSync)
         }
         return { listeners, eventHandlers }
     }
 
     onMounted(async () => {
+        // TODO this causes in vitest: [Vue warn]: Slot "default" invoked outside of the render function: this will not track dependencies used in the slot. Invoke the slot function inside the render function instead.
         if (shouldBlankIcon(useSlots())) {
             options.icon = new DivIcon({ className: '' })
         }
@@ -84,7 +85,7 @@ function useMarker() {
         addLayer({
             ...props,
             ...methods,
-            leafletObject: leafletObject.value,
+            leafletObject: leafletObject.value
         })
         ready.value = true
         nextTick(() => emit('ready', leafletObject.value!))

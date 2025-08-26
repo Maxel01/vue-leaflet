@@ -1,5 +1,6 @@
-import { flushPromises, type VueWrapper } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { type VueWrapper } from '@vue/test-utils'
+import { describe, expect, it, vi } from 'vitest'
+import { h } from 'vue'
 import {
     componentProps,
     testComponentPropBindings,
@@ -12,6 +13,9 @@ import 'leaflet/dist/leaflet.css'
 import { expectBoundsToBeClose } from './helper/geo'
 import { createMapWrapper } from './wrapper/LMap'
 import { MapProps } from '../../../src/functions/map'
+import { nextTick } from 'vue'
+import LTileLayer from '../../../src/components/LTileLayer.vue'
+import LControlLayers from '../../../src/components/LControlLayers.vue'
 
 const mapProps = mergeReactiveProps(componentProps, {
     width: '400px',
@@ -83,16 +87,20 @@ describe('LMap.vue', () => {
 
     testCorrectInitialisation(createMapWrapper)
     testFitBounds(createMapWrapper)
+    testBeforeMapMount(createMapWrapper)
+    testRemoveLayer(createMapWrapper)
+    testRemoveMapOnUmount(createMapWrapper)
 })
 
 const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {
     it('creates a Leaflet map with correct options', async () => {
         const wrapper = await getWrapper()
-        await flushPromises()
         const obj = wrapper.vm.leafletObject as Map
 
         expect(obj).toBeDefined()
         expect(obj.options).toBeDefined()
+        const mapElement = wrapper.find('.leaflet-container')
+        expect(mapElement.exists()).toBe(true)
     })
 }
 
@@ -127,5 +135,63 @@ const testFitBounds = (getWrapper: () => Promise<VueWrapper<any>>) => {
         wrapper.vm.fitBounds(mapProps.bounds.values[0])
         expectedBounds = new LatLngBounds([-10, -10], [10, 10])
         expectBoundsToBeClose(obj.getBounds(), expectedBounds, [0, 1, 1, 1])
+    })
+}
+
+const testBeforeMapMount = (getWrapper: (props: MapProps) => Promise<VueWrapper<any>>) => {
+    it('it calls beforeMapMount', async () => {
+        const mockFn = vi.fn()
+        await getWrapper({ beforeMapMount: mockFn })
+        expect(mockFn).toHaveBeenCalledOnce()
+    })
+    it('it catches the error in beforeMapMount', async () => {
+        const consoleErrorMock = vi.spyOn(console, 'error').mockImplementation(() => {})
+        const mockFn = vi.fn(() => {
+            throw new Error('Error in BeforeMapMount')
+        })
+        await getWrapper({ beforeMapMount: mockFn })
+        expect(mockFn).toThrow()
+        expect(consoleErrorMock).toHaveBeenCalledExactlyOnceWith(
+            'The following error occurred running the provided beforeMapMount hook Error: Error in BeforeMapMount'
+        )
+    })
+}
+
+const testRemoveLayer = (getWrapper: () => Promise<VueWrapper<any>>) => {
+    it('removes the layer from the map on unmount with ControlLayers', async () => {
+        const wrapper = await createMapWrapper(
+            {},
+            { default:  [LControlLayers,  h(LTileLayer, { url: '', layerType: 'base' })] }
+        )
+        wrapper.unmount()
+    })
+    it('removes the layer from the map on unmount without ControlLayers', async () => {
+        const wrapper = await createMapWrapper(
+            {},
+            { default: h(LTileLayer, { url: '', layerType: 'base' }) }
+        )
+        wrapper.unmount()
+    })
+}
+
+const testRemoveMapOnUmount = (getWrapper: () => Promise<VueWrapper<any>>) => {
+    it('removes the map on unmount', async () => {
+        const wrapper = await getWrapper()
+
+        wrapper.unmount()
+        await nextTick()
+        const leafletObject = wrapper.vm.leafletObject as Map
+        // @ts-expect-error _mapPane is private so not in the types
+        expect(leafletObject._mapPane).toBe(undefined)
+    })
+    it('should not respond to events after removal', async () => {
+        const wrapper = await getWrapper()
+        const leafletObject = wrapper.vm.leafletObject as Map
+        const spy = vi.fn()
+        leafletObject.on('click', spy)
+
+        wrapper.unmount()
+        leafletObject.fire('click')
+        expect(spy).not.toHaveBeenCalled()
     })
 }
