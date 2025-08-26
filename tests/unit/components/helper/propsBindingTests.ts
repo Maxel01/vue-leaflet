@@ -1,8 +1,8 @@
 import { flushPromises, VueWrapper } from '@vue/test-utils'
 import { expect, it, vi } from 'vitest'
 import getReactivePropCount, { mergeReactiveProps } from './props'
-import { capitalizeFirstLetter, isFunction } from '../../../../src/utils'
 import * as utils from '../../../../src/utils'
+import { capitalizeFirstLetter, isFunction } from '../../../../src/utils'
 import { Layer } from 'leaflet'
 import { mockAddLayer, mockRemoveLayer } from './injectionsTests'
 
@@ -15,7 +15,7 @@ export function testComponentPropBindings(
         const propsBinderSpy = vi.spyOn(utils, 'propsBinder')
         await getWrapper()
         expect(propsBinderSpy).toHaveBeenCalledOnce()
-        expect((propsBinderSpy.mock.results[0].value.length)).toBe(initOnly + reactiveNative)
+        expect(propsBinderSpy.mock.results[0].value.length).toBe(initOnly + reactiveNative)
     })
 }
 
@@ -23,7 +23,9 @@ export function testPropsBindingToLeaflet(
     getWrapper: (initialProps?: Record<string, any>) => Promise<VueWrapper<any>>,
     updatedProps: Record<string, any>
 ) {
-    const entries = Object.entries(updatedProps).filter(([key]) => key !== 'expecting')
+    const entries = Object.entries(updatedProps).filter(
+        ([key]) => key !== 'expecting' && key != 'customCheck'
+    )
     it.each(entries)(
         'updates Leaflet object when prop "%s" changes',
         async (propName, newValue) => {
@@ -35,6 +37,10 @@ export function testPropsBindingToLeaflet(
                 await wrapper.setProps({ [propName]: value })
                 await flushPromises()
 
+                if (updatedProps['customCheck']) {
+                    await updatedProps['customCheck'](wrapper)
+                    continue
+                }
                 if (updatedProps['expecting']?.[propName]) {
                     updatedProps['expecting']?.[propName](leafletObject, i, wrapper)
                     continue

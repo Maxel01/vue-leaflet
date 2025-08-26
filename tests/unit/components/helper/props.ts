@@ -69,6 +69,7 @@ function collectReactivePropCount(interfaceDecl: InterfaceDeclaration) {
 
 type ReactiveProps = {
     expecting?: Record<string, (leafletObject: any, iteration: number, wrapper: VueWrapper) => void>
+    customCheck?: (wrapper: VueWrapper) => Promise<void>
     [key: string]: any
 }
 

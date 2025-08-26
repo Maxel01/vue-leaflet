@@ -1,5 +1,5 @@
 import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import {
     CanSetParentHtmlInjection,
     SetIconInjection,
@@ -16,14 +16,26 @@ import {
     mockSetParentHtmlInjection,
     testSetIcon
 } from './helper/injectionsTests'
-import { Icon } from 'leaflet'
 import LIcon from '../../../src/components/LIcon.vue'
 import { mergeReactiveProps } from './helper/props'
 
 // TODO incomplete testing
 
 const iconProps = mergeReactiveProps(componentProps, {
-    // TODO add props
+    iconUrl: 'replace.icon',
+    iconRetinaUrl: 'replaceRetina.icon',
+    iconSize: [20, 20],
+    iconAnchor: [10, 10],
+    popupAnchor: [10, 10],
+    tooltipAnchor: [10, 10],
+    shadowUrl: 'replace.shadow',
+    shadowRetinaUrl: 'replaceRetina.shadow',
+    shadowAnchor: [10, 10],
+    bgPos: [10, 10],
+    className: 'classes',
+    customCheck: async (wrapper: VueWrapper) => {
+        await vi.waitFor(() => expect(mockSetIconInjection).toHaveBeenCalledTimes(2))
+    }
 })
 
 const createWrapper = async (props = {}) => {
@@ -39,29 +51,25 @@ const createWrapper = async (props = {}) => {
             }
         }
     })
-
     await flushPromises()
+    await vi.waitFor(() => expect(mockSetIconInjection).toHaveBeenCalledOnce())
     return wrapper
 }
 
 describe('LIcon.vue', () => {
-    // TEST testEmitsReady(createWrapper)
     testComponentPropBindings(createWrapper, 'LIcon')
     testPropsBindingToLeaflet(createWrapper, iconProps)
     // TEST testRemoveLayerOnUnmount(createWrapper)
 
     // TEST testCorrectInitialisation(createWrapper)
-    // TEST testCanSetParentHtml(createWrapper)
-    // TEST testSetParentHtml(createWrapper)
     testSetIcon(createWrapper)
+    testSwapHtml(createWrapper)
 })
 
-const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {
+const testSwapHtml = (getWrapper: () => Promise<VueWrapper<any>>) => {
     it('creates a Leaflet icon with correct options', async () => {
         const wrapper = await getWrapper()
-        await flushPromises()
-        const obj = wrapper.vm.leafletObject as Icon
-
-        expect(obj).toBeDefined()
+        wrapper.vm.root.innerHTML = '<div>SOme new content</div>'
+        await vi.waitFor(() => expect(mockSetParentHtmlInjection).toHaveBeenCalledOnce())
     })
 }
