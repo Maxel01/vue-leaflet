@@ -1,0 +1,31 @@
+import * as lib from '../../src/lib'
+import { describe, expect, it } from 'vitest'
+
+describe('lib', () => {
+    it('should export the components', () => {
+        expect(lib.LCircle).toBeDefined()
+        expect(lib.LCircleMarker).toBeDefined()
+        expect(lib.LControl).toBeDefined()
+        expect(lib.LControlAttribution).toBeDefined()
+        expect(lib.LControlLayers).toBeDefined()
+        expect(lib.LControlScale).toBeDefined()
+        expect(lib.LControlZoom).toBeDefined()
+        expect(lib.LFeatureGroup).toBeDefined()
+        expect(lib.LGeoJson).toBeDefined()
+        expect(lib.LGridLayer).toBeDefined()
+        expect(lib.LIcon).toBeDefined()
+        expect(lib.LImageOverlay).toBeDefined()
+        expect(lib.LLayerGroup).toBeDefined()
+        expect(lib.LMap).toBeDefined()
+        expect(lib.LMarker).toBeDefined()
+        expect(lib.LPolygon).toBeDefined()
+        expect(lib.LPolyline).toBeDefined()
+        expect(lib.LPopup).toBeDefined()
+        expect(lib.LRectangle).toBeDefined()
+        expect(lib.LSVGOverlay).toBeDefined()
+        expect(lib.LTileLayer).toBeDefined()
+        expect(lib.LTooltip).toBeDefined()
+        expect(lib.LVideoOverlay).toBeDefined()
+        expect(lib.LWmsTileLayer).toBeDefined()
+    })
+})
