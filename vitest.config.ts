@@ -11,7 +11,8 @@ export default mergeConfig(
             root: fileURLToPath(new URL('./', import.meta.url)),
             coverage: {
                 provider: 'v8',
-                include: ['src/**']
+                include: ['src/**'],
+                exclude: ['src/types/**'],
             }
         }
     })

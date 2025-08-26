@@ -1,4 +1,4 @@
-import { Control } from 'leaflet'
+import type { Control } from 'leaflet'
 import type { ILayerDefinition } from '@/types/interfaces/ILayerDefinition.ts'
 
 export interface IControlDefinition<T extends Control = Control> {
