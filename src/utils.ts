@@ -59,9 +59,11 @@ export const isFunction = (x: unknown) => typeof x === 'function'
  * @param methods
  * @param leafletElement
  * @param props the relevant Vue component props
+ * @return array of unbounded prop keys
  */
 export const propsBinder = (methods: Readonly<FunctionMap>, leafletElement: PropertyMap, props: Readonly<PropertyMap>) => {
     //propsBinderScope.run(() => {
+    const unboundedProps: string[] = []
     for (const key in props) {
         /* v8 ignore next */
         if (vueLeafletConfig.experimental.skipUndefinedProps && props[key] === undefined) continue
@@ -83,12 +85,13 @@ export const propsBinder = (methods: Readonly<FunctionMap>, leafletElement: Prop
                     leafletElement[setMethodName](newVal)
                 }
             )
-        } else if (key !== 'options' && import.meta.env.vitest) {
-            console.warn(`No setter for '${key}'`)
+        } else if (key !== 'options') {
+            unboundedProps.push(key)
         }
     }
     //})
     // propsBinderScope.log('Active watchers:', devScope.effects.length)
+    return unboundedProps
 }
 
 export const propsToLeafletOptions = <T extends object>(

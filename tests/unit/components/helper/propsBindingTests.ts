@@ -2,6 +2,7 @@ import { flushPromises, VueWrapper } from '@vue/test-utils'
 import { expect, it, vi } from 'vitest'
 import getReactivePropCount, { mergeReactiveProps } from './props'
 import { capitalizeFirstLetter, isFunction } from '../../../../src/utils'
+import * as utils from '../../../../src/utils'
 import { Layer } from 'leaflet'
 import { mockAddLayer, mockRemoveLayer } from './injectionsTests'
 
@@ -11,10 +12,10 @@ export function testComponentPropBindings(
 ) {
     const { initOnly, reactiveNative } = getReactivePropCount(componentName)
     it('registers watch for each prop with matching setter', async () => {
-        const consoleWarnMock = vi.spyOn(console, 'warn').mockImplementation(() => {})
+        const propsBinderSpy = vi.spyOn(utils, 'propsBinder')
         await getWrapper()
-        expect(consoleWarnMock).toHaveBeenCalledTimes(initOnly + reactiveNative)
-        consoleWarnMock.mockRestore()
+        expect(propsBinderSpy).toHaveBeenCalledOnce()
+        expect((propsBinderSpy.mock.results[0].value.length)).toBe(initOnly + reactiveNative)
     })
 }
 
