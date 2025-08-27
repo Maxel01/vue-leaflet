@@ -40,7 +40,6 @@ describe('propsBinder', () => {
     })
 
     it('should not bind props if no matching setMethod exists', async () => {
-        const consoleWarnMock = vi.spyOn(console, 'warn').mockImplementation(() => {})
         const methods = {}
         const leafletElement = {
             setOpacity: vi.fn(),
@@ -48,13 +47,12 @@ describe('propsBinder', () => {
         const props = reactive({
             weight: 3,
         })
-
-        propsBinder(methods, leafletElement, props)
+        const result = propsBinder(methods, leafletElement, props)
 
         props.weight = 5
         await nextTick()
 
         expect(leafletElement.setOpacity).not.toHaveBeenCalled()
-        expect(consoleWarnMock).toHaveBeenCalledOnce()
+        expect(result).toStrictEqual(["weight"])
     })
 })

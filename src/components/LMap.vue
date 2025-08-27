@@ -145,15 +145,9 @@ function useOptions() {
 
     const fitBoundsOptions = computed((): FitBoundsOptions => {
         const result: FitBoundsOptions = zoomPanOptions.value
-        if (props.padding) {
-            result.padding = props.padding
-        }
-        if (props.paddingTopLeft) {
-            result.paddingTopLeft = props.paddingTopLeft
-        }
-        if (props.paddingBottomRight) {
-            result.paddingBottomRight = props.paddingBottomRight
-        }
+        result.padding = props.padding ? props.padding : undefined
+        result.paddingTopLeft = props.paddingTopLeft ? props.paddingTopLeft : undefined
+        result.paddingBottomRight = props.paddingBottomRight ? props.paddingBottomRight : undefined
         return result
     })
     return { zoomPanOptions, fitBoundsOptions }
@@ -245,13 +239,13 @@ function useMethods() {
         const boundsChanged = !oldBounds.equals(newBounds, 0) // set maxMargin to 0 - check exact equals
         if (boundsChanged) {
             lastSetBounds.value = newBounds
-            leafletObject.value!.fitBounds(newBounds)
+            fitBounds(newBounds)
         }
     }
 
     const lastSetCenter = ref<LatLng>()
     function setCenter(center: [number, number]) {
-        if (center == null) {
+        if (!center) {
             return
         }
         const newCenter = new LatLng(...center)

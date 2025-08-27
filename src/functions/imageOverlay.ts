@@ -107,37 +107,47 @@ export const setupImageOverlay = (
         setBounds(bounds: LatLngBounds) {
             return leafletRef.value?.setBounds(bounds)
         },
+        /* v8 ignore start - unreachable code, marked for removal */
         /**
          * Get the bounds that this ImageOverlay covers
+         * TODO remove unused code
+         * @deprecated unreachable code ?
          */
         getBounds(): LatLngBounds | undefined {
             return leafletRef.value?.getBounds()
         },
         /**
          * Returns the instance of HTMLImageElement used by this overlay.
+         * TODO remove unused code
+         * @deprecated unreachable code ?
          */
         getElement(): HTMLElement | undefined {
             return leafletRef.value?.getElement()
         },
         /**
          * Brings the layer to the top of all overlays.
+         * TODO remove unused code
+         * @deprecated unreachable code ?
          */
         bringToFront() {
             return leafletRef.value?.bringToFront()
         },
         /**
          * Brings the layer to the bottom of all overlays.
+         * TODO remove unused code
+         * @deprecated unreachable code ?
          */
         bringToBack() {
             return leafletRef.value?.bringToBack()
         },
+        /* v8 ignore end */
         /**
          * Changes the zIndex of the image overlay.
          * @param {number} zIndex
          */
         setZIndex(zIndex: number) {
             return leafletRef.value?.setZIndex(zIndex)
-        },
+        }
     }
 
     return { options, methods }

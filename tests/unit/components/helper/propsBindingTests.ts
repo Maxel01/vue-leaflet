@@ -1,6 +1,7 @@
 import { flushPromises, VueWrapper } from '@vue/test-utils'
 import { expect, it, vi } from 'vitest'
 import getReactivePropCount, { mergeReactiveProps } from './props'
+import * as utils from '../../../../src/utils'
 import { capitalizeFirstLetter, isFunction } from '../../../../src/utils'
 import { Layer } from 'leaflet'
 import { mockAddLayer, mockRemoveLayer } from './injectionsTests'
@@ -11,10 +12,10 @@ export function testComponentPropBindings(
 ) {
     const { initOnly, reactiveNative } = getReactivePropCount(componentName)
     it('registers watch for each prop with matching setter', async () => {
-        const consoleWarnMock = vi.spyOn(console, 'warn').mockImplementation(() => {})
+        const propsBinderSpy = vi.spyOn(utils, 'propsBinder')
         await getWrapper()
-        expect(consoleWarnMock).toHaveBeenCalledTimes(initOnly + reactiveNative)
-        consoleWarnMock.mockRestore()
+        expect(propsBinderSpy).toHaveBeenCalledOnce()
+        expect(propsBinderSpy.mock.results[0].value.length).toBe(initOnly + reactiveNative)
     })
 }
 
@@ -22,24 +23,33 @@ export function testPropsBindingToLeaflet(
     getWrapper: (initialProps?: Record<string, any>) => Promise<VueWrapper<any>>,
     updatedProps: Record<string, any>
 ) {
-    const entries = Object.entries(updatedProps).filter(([key]) => key !== 'expecting')
+    const entries = Object.entries(updatedProps).filter(
+        ([key]) => key !== 'expecting' && key != 'customCheck'
+    )
     it.each(entries)(
         'updates Leaflet object when prop "%s" changes',
         async (propName, newValue) => {
             const wrapper = await getWrapper()
             const leafletObject = wrapper.vm.leafletObject
+            const values = Array.isArray(newValue?.values) ? newValue.values : [newValue]
 
-            await wrapper.setProps({ [propName]: newValue })
-            await flushPromises()
+            for (const [i, value] of values.entries()) {
+                await wrapper.setProps({ [propName]: value })
+                await flushPromises()
 
-            if (updatedProps['expecting']?.[propName]) {
-                updatedProps['expecting']?.[propName](leafletObject)
-                return
+                if (updatedProps['customCheck']) {
+                    await updatedProps['customCheck'](wrapper)
+                    continue
+                }
+                if (updatedProps['expecting']?.[propName]) {
+                    updatedProps['expecting']?.[propName](leafletObject, i, wrapper)
+                    continue
+                }
+                const getter = 'get' + capitalizeFirstLetter(propName)
+                if (isFunction(leafletObject[getter]))
+                    expect(leafletObject[getter]()).toStrictEqual(newValue)
+                else expect(leafletObject.options[propName]).toBe(newValue)
             }
-            const getter = 'get' + capitalizeFirstLetter(propName)
-            if (isFunction(leafletObject[getter]))
-                expect(leafletObject[getter]()).toStrictEqual(newValue)
-            else expect(leafletObject.options[propName]).toBe(newValue)
         }
     )
 }
@@ -50,7 +60,9 @@ export const layerProps = mergeReactiveProps(componentProps, {
     attribution: 'new attribution',
     name: 'name',
     layerType: 'overlay',
-    visible: false,
+    visible: {
+        values: [false, true]
+    },
     expecting: {
         name: (_leafletObject: Layer) => {
             expect(mockRemoveLayer).toHaveBeenCalledOnce()
@@ -60,9 +72,9 @@ export const layerProps = mergeReactiveProps(componentProps, {
             expect(mockRemoveLayer).toHaveBeenCalledOnce()
             expect(mockAddLayer).toHaveBeenCalledTimes(2)
         },
-        visible: (_leafletObject: Layer) => {
+        visible: (_leafletObject: Layer, iteration) => {
             expect(mockRemoveLayer).toHaveBeenCalledOnce()
-            expect(mockAddLayer).toHaveBeenCalledOnce()
+            expect(mockAddLayer).toHaveBeenCalledTimes(iteration + 1)
         }
     }
 })

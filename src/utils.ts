@@ -59,10 +59,13 @@ export const isFunction = (x: unknown) => typeof x === 'function'
  * @param methods
  * @param leafletElement
  * @param props the relevant Vue component props
+ * @return array of unbounded prop keys
  */
 export const propsBinder = (methods: Readonly<FunctionMap>, leafletElement: PropertyMap, props: Readonly<PropertyMap>) => {
     //propsBinderScope.run(() => {
+    const unboundedProps: string[] = []
     for (const key in props) {
+        /* v8 ignore next */
         if (vueLeafletConfig.experimental.skipUndefinedProps && props[key] === undefined) continue
         const setMethodName = 'set' + capitalizeFirstLetter(key)
         const setterMethod = methods[setMethodName]
@@ -82,12 +85,13 @@ export const propsBinder = (methods: Readonly<FunctionMap>, leafletElement: Prop
                     leafletElement[setMethodName](newVal)
                 }
             )
-        } else if (key !== 'options' && import.meta.env.vitest) {
-            console.warn(`No setter for '${key}'`)
+        } else if (key !== 'options') {
+            unboundedProps.push(key)
         }
     }
     //})
     // propsBinderScope.log('Active watchers:', devScope.effects.length)
+    return unboundedProps
 }
 
 export const propsToLeafletOptions = <T extends object>(
@@ -137,6 +141,7 @@ export const remapEvents = (contextAttrs: Record<string, unknown>): ListenersAnd
 // TODO It seems like Icon.Default is now IconDefault in leaflet v2
 export const resetWebpackIcon = async (Icon) => {
 //export const resetWebpackIcon = async (Icon: typeof IconDefault) => {
+    /* v8 ignore next */
     if (!vueLeafletConfig.experimental.useResetWebpackIcon) return
     const modules = await Promise.all([
         import('leaflet/dist/images/marker-icon-2x.png'),

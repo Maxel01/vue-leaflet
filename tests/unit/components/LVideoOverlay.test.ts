@@ -7,8 +7,8 @@ import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
 import { type LatLngBoundsLiteral, VideoOverlay } from 'leaflet'
 import LVideoOverlay from '../../../src/components/LVideoOverlay.vue'
-import { imageOverlayAbstractProps } from './LImageOverlay.test'
 import { mergeReactiveProps } from './helper/props'
+import { imageOverlayAbstractProps } from './wrapper/LImageOverlay'
 
 const videoOverlayProps = mergeReactiveProps(imageOverlayAbstractProps, {
     video: 'https://www.mapbox.com/bites/00188/patricia_nasa.webm'

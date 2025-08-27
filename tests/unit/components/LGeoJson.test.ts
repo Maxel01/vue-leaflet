@@ -7,10 +7,10 @@ import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
 import { GeoJSON, Layer } from 'leaflet'
 import LGeoJson from '../../../src/components/LGeoJson.vue'
-import { layerGroupProps } from './LLayerGroup.test'
 import geoJson from './geo.json'
-import geoJsonReplace from './geo.json'
+import geoJsonReplace from './geo_replace.json'
 import { mergeReactiveProps } from './helper/props'
+import { layerGroupProps } from './wrapper/LLayerGroup'
 
 const geoJsonProps = mergeReactiveProps(layerGroupProps, {
     geojson: geoJsonReplace,

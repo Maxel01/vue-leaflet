@@ -7,8 +7,8 @@ import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
 import { TileLayer } from 'leaflet'
 import LWmsTileLayer from '../../../src/components/LWmsTileLayer.vue'
-import { tileLayerProps } from './LTileLayer.test'
 import { mergeReactiveProps } from './helper/props'
+import { tileLayerProps } from './wrapper/LTileLayer'
 
 const wmsTileLayerProps = mergeReactiveProps(tileLayerProps, {
     url: 'https://ows.terrestris.de/osm/service?',

@@ -4,19 +4,10 @@ import LCircleMarker from '../../../src/components/LCircleMarker.vue'
 import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
 import { Circle, LatLng } from 'leaflet'
 import { testRemoveLayerOnUnmount } from './helper/tests'
-import {
-    pathProps,
-    testComponentPropBindings,
-    testPropsBindingToLeaflet
-} from './helper/propsBindingTests'
+import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
 import { testEmitsReady } from './helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
-import { mergeReactiveProps } from './helper/props'
-
-export const circleMarkerProps = mergeReactiveProps(pathProps, {
-    radius: 15,
-    latLng: new LatLng(44.5, 11.5)
-})
+import { circleMarkerProps } from './wrapper/LCircleMarker'
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LCircleMarker, {

@@ -84,9 +84,15 @@ export const setupGridLayer = <T extends GridLayer>(
 
     const methods = {
         ...layerMethods,
+        /* v8 ignore start - unreachable code, marked for removal */
+        /**
+         * TODO remove unused code
+         * @deprecated unreachable code ?
+         */
         setTileComponent() {
             leafletRef.value?.redraw()
         },
+        /* v8 ignore end */
     }
 
     onUnmounted(() => {

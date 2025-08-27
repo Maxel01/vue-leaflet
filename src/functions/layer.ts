@@ -68,9 +68,9 @@ export const setupLayer = <T extends Layer>(
     function updateVisibleProp(value: boolean) {
         emit('update:visible', value)
     }
-    const addThisLayer = () => addLayer({ leafletObject: leafletRef.value, updateVisibleProp })
+    const addThisLayer = () => addLayer({ leafletObject: leafletRef.value, updateVisibleProp, layerType: props.layerType })
     const removeThisLayer = () =>
-        removeLayer({ leafletObject: leafletRef.value, updateVisibleProp })
+        removeLayer({ leafletObject: leafletRef.value, updateVisibleProp, layerType: props.layerType })
 
     const methods = {
         ...componentMethods,

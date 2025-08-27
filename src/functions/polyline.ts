@@ -57,9 +57,15 @@ export const setupPolyline = (
         setNoClip(noClip: boolean) {
             leafletRef.value?.setStyle({ noClip } as PolylineOptions) // TYPES remove cast
         },
+        /* v8 ignore start - unreachable code, marked for removal */
+        /**
+         * TODO remove unused code
+         * @deprecated unreachable code ?
+         */
         addLatLng(latLng: LatLngExpression) {
             leafletRef.value?.addLatLng(latLng)
         }
+        /* v8 ignore stop */
     }
 
     return { options, methods }
