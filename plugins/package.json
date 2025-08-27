@@ -1,0 +1,33 @@
+{
+  "name": "@maxel01/vue-leaflet-plugins",
+  "version": "1.0.0-alpha.2",
+  "license": "MIT",
+  "public": "true",
+  "type": "module",
+  "sideEffects": false,
+  "main": "dist/vue-leaflet-plugins.cjs.js",
+  "unpkg": "dist/vue-leaflet-plugins.umd.js",
+  "module": "dist/vue-leaflet-plugins.es.js",
+  "types": "./dist/src/plugins.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "test": "vitest --coverage",
+    "build": "vue-tsc --noEmit && vite build",
+    "build-only": "vite build",
+    "preview": "vite preview",
+    "type-check": "vue-tsc --noEmit",
+    "lint": "eslint . --fix",
+    "format": "prettier --write src/ tests/"
+  },
+  "peerDependencies": {
+    "@maxel01/vue-leaflet": "^1.0.0-alpha.2",
+    "leaflet": "^2.0.0-alpha",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@maxel01/vue-leaflet": "file:..",
+    "@vitejs/plugin-vue": "^6.0.0"
+  }
+}
