@@ -7,14 +7,14 @@ describe('bindEventHandlers', () => {
 
     beforeEach(() => {
         mockLeafletObject = {
-            on: vi.fn(),
+            on: vi.fn()
         } as unknown as Evented
     })
 
     it('binds all event handlers correctly', () => {
         const handlers = {
             click: vi.fn(),
-            mouseover: vi.fn(),
+            mouseover: vi.fn()
         }
 
         bindEventHandlers(mockLeafletObject, handlers)
@@ -35,7 +35,7 @@ describe('bindEventHandlers', () => {
     it('binds undefined or null handlers', () => {
         const handlers = {
             click: undefined,
-            zoom: null,
+            zoom: null
         } as LeafletEventHandlerFnMap
 
         bindEventHandlers(mockLeafletObject, handlers)

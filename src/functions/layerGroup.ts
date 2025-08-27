@@ -8,8 +8,7 @@ import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from
 import type { ILayerDefinition } from '@/types/interfaces'
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
-export interface LayerGroupProps<T extends LayerOptions = LayerOptions> extends LayerProps<T> {
-}
+export interface LayerGroupProps<T extends LayerOptions = LayerOptions> extends LayerProps<T> {}
 
 export const layerGroupPropsDefaults = layerPropsDefaults
 
@@ -23,7 +22,7 @@ export interface LayerGroupEmits<T extends LayerGroup = LayerGroup> extends Laye
 export const setupLayerGroup = <T extends LayerGroup = LayerGroup>(
     props: LayerGroupProps,
     leafletRef: Ref<LayerGroup | undefined>,
-    emit: LayerGroupEmits<T>,
+    emit: LayerGroupEmits<T>
 ) => {
     const { options: layerOptions, methods: layerMethods } = setupLayer(props, leafletRef, emit)
 
@@ -36,7 +35,7 @@ export const setupLayerGroup = <T extends LayerGroup = LayerGroup>(
         },
         removeLayer(layer: ILayerDefinition) {
             leafletRef.value?.removeLayer(layer.leafletObject!)
-        },
+        }
     }
 
     provide(AddLayerInjection, methods.addLayer)

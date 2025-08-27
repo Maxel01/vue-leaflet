@@ -6,13 +6,12 @@ import {
     type LayerGroupEmits,
     type LayerGroupProps,
     layerGroupPropsDefaults,
-    setupLayerGroup,
+    setupLayerGroup
 } from './layerGroup'
 import type { Ref } from 'vue'
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
-export interface FeatureGroupProps extends LayerGroupProps {
-}
+export interface FeatureGroupProps extends LayerGroupProps {}
 
 export const featureGroupPropsDefaults = layerGroupPropsDefaults
 
@@ -21,18 +20,18 @@ export type FeatureGroupEmits = LayerGroupEmits<FeatureGroup>
 export const setupFeatureGroup = (
     props: FeatureGroupProps,
     leafletRef: Ref<FeatureGroup | undefined>,
-    emit: FeatureGroupEmits,
+    emit: FeatureGroupEmits
 ) => {
     const { options: layerOptions, methods: layerGroupMethods } = setupLayerGroup(
         props,
         leafletRef,
-        emit,
+        emit
     )
 
     const options = propsToLeafletOptions<InteractiveLayerOptions>(props, layerOptions)
 
     const methods = {
-        ...layerGroupMethods,
+        ...layerGroupMethods
     }
 
     return { options, methods }

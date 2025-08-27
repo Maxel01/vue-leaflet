@@ -6,7 +6,7 @@ import {
     setupTileLayer,
     type TileLayerEmits,
     type TileLayerProps,
-    tileLayerPropsDefaults,
+    tileLayerPropsDefaults
 } from './tileLayer'
 import type { Ref } from 'vue'
 
@@ -51,7 +51,7 @@ export interface WmsTileLayerProps extends TileLayerProps<WMSOptions> {
 export const wmsTileLayerPropsDefaults = {
     ...tileLayerPropsDefaults,
     transparent: undefined,
-    uppercase: undefined,
+    uppercase: undefined
 }
 
 export type WmsTileLayerEmits = TileLayerEmits<TileLayer.WMS>
@@ -59,12 +59,12 @@ export type WmsTileLayerEmits = TileLayerEmits<TileLayer.WMS>
 export const setupWMSTileLayer = (
     props: WmsTileLayerProps,
     leafletRef: Ref<TileLayer.WMS | undefined>,
-    emit: WmsTileLayerEmits,
+    emit: WmsTileLayerEmits
 ) => {
     const { options: tileLayerOptions, methods: tileLayerMethods } = setupTileLayer(
         props,
         leafletRef,
-        emit,
+        emit
     )
 
     const options = propsToLeafletOptions<WMSOptions>(props, tileLayerOptions)
@@ -72,7 +72,7 @@ export const setupWMSTileLayer = (
     return {
         options,
         methods: {
-            ...tileLayerMethods,
-        },
+            ...tileLayerMethods
+        }
     }
 }

@@ -12,7 +12,7 @@ export interface PopupProps extends PopperProps<PopupOptions> {
 }
 
 export const popupPropsDefaults = {
-    ...popperPropsDefaults,
+    ...popperPropsDefaults
 }
 
 export const setupPopup = (props: PopupProps, leafletRef: Ref<Popup | undefined>) => {

@@ -2,7 +2,12 @@ import { Control } from 'leaflet'
 
 import { propsToLeafletOptions } from '@/utils'
 
-import { type ControlEmits, type ControlAbstractProps, controlAbstractPropsDefaults, setupControl } from './control'
+import {
+    type ControlEmits,
+    type ControlAbstractProps,
+    controlAbstractPropsDefaults,
+    setupControl
+} from './control'
 import type { Ref } from 'vue'
 
 export interface ControlZoomProps extends ControlAbstractProps<Control.ZoomOptions> {
@@ -29,14 +34,14 @@ export interface ControlZoomProps extends ControlAbstractProps<Control.ZoomOptio
 }
 
 export const controlZoomPropsDefaults = {
-    ...controlAbstractPropsDefaults,
+    ...controlAbstractPropsDefaults
 }
 
 export type ControlZoomEmits = ControlEmits<Control.Zoom>
 
 export const setupControlZoom = (
     props: ControlZoomProps,
-    leafletRef: Ref<Control.Zoom | undefined>,
+    leafletRef: Ref<Control.Zoom | undefined>
 ) => {
     const { options: controlOptions, methods: controlMethods } = setupControl(props, leafletRef)
 

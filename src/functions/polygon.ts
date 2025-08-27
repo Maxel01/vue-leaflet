@@ -11,8 +11,7 @@ import {
 import type { Ref } from 'vue'
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
-export interface PolygonAbstractProps extends PolylineAbstractProps {
-}
+export interface PolygonAbstractProps extends PolylineAbstractProps {}
 
 export interface PolygonProps extends PolygonAbstractProps {
     /**

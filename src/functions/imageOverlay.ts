@@ -2,7 +2,7 @@ import type {
     ImageOverlay,
     ImageOverlayOptions,
     LatLngBounds,
-    LatLngBoundsExpression,
+    LatLngBoundsExpression
 } from 'leaflet'
 import type { Ref } from 'vue'
 
@@ -65,7 +65,7 @@ export interface ImageOverlayProps extends ImageOverlayAbstractProps {
 export const imageOverlayPropsDefaults = {
     ...layerPropsDefaults,
     interactive: undefined,
-    crossOrigin: undefined,
+    crossOrigin: undefined
 }
 
 export interface ImageOverlayEmits<T extends ImageOverlay = ImageOverlay> extends LayerEmits {
@@ -78,7 +78,7 @@ export interface ImageOverlayEmits<T extends ImageOverlay = ImageOverlay> extend
 export const setupImageOverlay = (
     props: ImageOverlayAbstractProps,
     leafletRef: Ref<ImageOverlay | undefined>,
-    emit: ImageOverlayEmits,
+    emit: ImageOverlayEmits
 ) => {
     const { options: layerOptions, methods: layerMethods } = setupLayer(props, leafletRef, emit)
 

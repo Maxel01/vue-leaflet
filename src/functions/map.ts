@@ -133,7 +133,7 @@ export const mapPropsDefaults = {
     zoomAnimation: undefined,
     fadeAnimation: undefined,
     markerZoomAnimation: undefined,
-    noBlockingAnimations: undefined,
+    noBlockingAnimations: undefined
 }
 
 export const setupMap = (props: MapProps) => {

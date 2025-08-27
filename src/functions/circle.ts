@@ -6,7 +6,7 @@ import {
     type CircleMarkerEmits,
     type CircleMarkerProps,
     circleMarkerPropsDefaults,
-    setupCircleMarker,
+    setupCircleMarker
 } from './circleMarker'
 import type { Ref } from 'vue'
 
@@ -19,7 +19,7 @@ export interface CircleProps extends CircleMarkerProps<CircleOptions> {
 }
 
 export const circlePropsDefaults = {
-    ...circleMarkerPropsDefaults,
+    ...circleMarkerPropsDefaults
 }
 
 export type CircleEmits = CircleMarkerEmits<Circle>
@@ -27,18 +27,18 @@ export type CircleEmits = CircleMarkerEmits<Circle>
 export const setupCircle = (
     props: CircleProps,
     leafletRef: Ref<Circle | undefined>,
-    emit: CircleEmits,
+    emit: CircleEmits
 ) => {
     const { options: circleMarkerOptions, methods: circleMarkerMethods } = setupCircleMarker(
         props,
         leafletRef,
-        emit,
+        emit
     )
 
     const options = propsToLeafletOptions<CircleOptions>(props, circleMarkerOptions)
 
     const methods = {
-        ...circleMarkerMethods,
+        ...circleMarkerMethods
     }
 
     return { options, methods }

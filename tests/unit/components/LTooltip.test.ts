@@ -80,8 +80,8 @@ const testCorrectInitialisation = (
 
         expect(obj).toBeDefined()
         expect((obj.getContent() as HTMLDivElement).outerHTML).toBe(
-            '<div><!--\n' +
-                "        @slot Content to be rendered inside the Leaflet tooltip's container. This slot replaces the default content and allows full customization of the tooltip's appearance. The content will be injected into the tooltip's root DOM element.\n" +
+            '<div><!--\r\n' +
+                "        @slot Content to be rendered inside the Leaflet tooltip's container. This slot replaces the default content and allows full customization of the tooltip's appearance. The content will be injected into the tooltip's root DOM element.\r\n" +
                 '        -->Something</div>'
         )
     })

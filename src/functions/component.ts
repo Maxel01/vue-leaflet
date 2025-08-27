@@ -7,7 +7,7 @@ export interface ComponentProps<T extends object = object> {
 }
 
 export const componentPropsDefaults = {
-    options: () => ({}),
+    options: () => ({})
 }
 
 export const setupComponent = (props: ComponentProps) => {

@@ -15,7 +15,7 @@ export interface SVGOverlayProps extends ImageOverlayAbstractProps {
 }
 
 export const svgOverlayPropsDefaults = {
-    ...imageOverlayPropsDefaults,
+    ...imageOverlayPropsDefaults
 }
 
 export type SVGOverlayEmits = ImageOverlayEmits<SVGOverlay>
@@ -23,18 +23,18 @@ export type SVGOverlayEmits = ImageOverlayEmits<SVGOverlay>
 export const setupSVGOverlay = (
     props: SVGOverlayProps,
     leafletRef: Ref<SVGOverlay | undefined>,
-    emit: SVGOverlayEmits,
+    emit: SVGOverlayEmits
 ) => {
     const { options: imageOverlayOptions, methods: imageOverlayMethods } = setupImageOverlay(
         props,
         leafletRef,
-        emit,
+        emit
     )
 
     const options = propsToLeafletOptions<ImageOverlayOptions>(props, imageOverlayOptions)
 
     const methods = {
-        ...imageOverlayMethods,
+        ...imageOverlayMethods
     }
 
     return { options, methods }

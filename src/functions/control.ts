@@ -28,13 +28,13 @@ export interface ControlProps extends ControlAbstractProps {
 }
 
 export const controlAbstractPropsDefaults = {
-    ...componentPropsDefaults,
+    ...componentPropsDefaults
 }
 
 export const controlPropsDefaults = {
     ...controlAbstractPropsDefaults,
     disableClickPropagation: true,
-    disableScrollPropagation: false,
+    disableScrollPropagation: false
 }
 
 export interface ControlEmits<T extends Control = Control> {
@@ -53,7 +53,7 @@ export const setupControl = (props: ControlAbstractProps, leafletRef: Ref<Contro
         ...componentMethods,
         setPosition(position: ControlPosition) {
             leafletRef.value?.setPosition(position)
-        },
+        }
     }
 
     onUnmounted(() => {

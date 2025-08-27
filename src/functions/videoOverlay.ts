@@ -14,7 +14,7 @@ export interface VideoOverlayProps extends ImageOverlayAbstractProps<VideoOverla
 }
 
 export const videoOverlayPropsDefaults = {
-    ...imageOverlayPropsDefaults,
+    ...imageOverlayPropsDefaults
 }
 
 export type VideoOverlayEmits = ImageOverlayEmits<VideoOverlay>
@@ -22,18 +22,18 @@ export type VideoOverlayEmits = ImageOverlayEmits<VideoOverlay>
 export const setupVideoOverlay = (
     props: VideoOverlayProps,
     leafletRef: Ref<VideoOverlay | undefined>,
-    emit: VideoOverlayEmits,
+    emit: VideoOverlayEmits
 ) => {
     const { options: imageOverlayOptions, methods: imageOverlayMethods } = setupImageOverlay(
         props,
         leafletRef,
-        emit,
+        emit
     )
 
     const options = propsToLeafletOptions<VideoOverlayOptions>(props, imageOverlayOptions)
 
     const methods = {
-        ...imageOverlayMethods,
+        ...imageOverlayMethods
     }
 
     return { options, methods }

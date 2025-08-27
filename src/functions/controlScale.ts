@@ -2,7 +2,12 @@ import { Control } from 'leaflet'
 
 import { propsToLeafletOptions } from '@/utils'
 
-import { type ControlEmits, type ControlAbstractProps, controlAbstractPropsDefaults, setupControl } from './control'
+import {
+    type ControlEmits,
+    type ControlAbstractProps,
+    controlAbstractPropsDefaults,
+    setupControl
+} from './control'
 import type { Ref } from 'vue'
 
 export interface ControlScaleProps extends ControlAbstractProps<Control.ScaleOptions> {
@@ -32,14 +37,14 @@ export const controlScalePropsDefaults = {
     ...controlAbstractPropsDefaults,
     metric: undefined,
     imperial: undefined,
-    updateWhenIdle: undefined,
+    updateWhenIdle: undefined
 }
 
 export type ControlScaleEmits = ControlEmits<Control.Scale>
 
 export const setupControlScale = (
     props: ControlScaleProps,
-    leafletRef: Ref<Control.Scale | undefined>,
+    leafletRef: Ref<Control.Scale | undefined>
 ) => {
     const { options: controlOptions, methods: controlMethods } = setupControl(props, leafletRef)
 
