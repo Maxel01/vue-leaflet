@@ -8,7 +8,7 @@ vi.mock('vue', async () => {
     const actual = await vi.importActual<typeof import('vue')>('vue')
     return {
         ...actual,
-        inject: vi.fn(),
+        inject: vi.fn()
     }
 })
 
@@ -31,7 +31,7 @@ describe('assertInject (unit)', () => {
         mockedInject.mockReturnValue(undefined)
 
         expect(() => assertInject(key)).toThrowError(
-            'Attempt to inject missingKey before it was provided.',
+            'Attempt to inject missingKey before it was provided.'
         )
     })
 })

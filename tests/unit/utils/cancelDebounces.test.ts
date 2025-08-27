@@ -18,7 +18,7 @@ describe('cancelDebounces', () => {
 
         const handlers: LeafletEventHandlerFnMap = {
             click: clickHandler,
-            zoom: zoomHandler,
+            zoom: zoomHandler
         }
 
         cancelDebounces(handlers)
@@ -30,7 +30,7 @@ describe('cancelDebounces', () => {
     it('does not throw if handlers do not have cancel method', () => {
         const handlers: LeafletEventHandlerFnMap = {
             click: () => {},
-            zoom: () => {},
+            zoom: () => {}
         }
 
         expect(() => cancelDebounces(handlers)).not.toThrow()
@@ -39,7 +39,7 @@ describe('cancelDebounces', () => {
     it('skips undefined or null handlers', () => {
         const handlers: LeafletEventHandlerFnMap = {
             click: undefined,
-            zoom: null,
+            zoom: null
         }
 
         expect(() => cancelDebounces(handlers)).not.toThrow()
@@ -49,7 +49,7 @@ describe('cancelDebounces', () => {
         const handler = Object.assign(() => {}, { cancel: 'notAFunction' })
 
         const handlers: LeafletEventHandlerFnMap = {
-            move: handler,
+            move: handler
         }
 
         expect(() => cancelDebounces(handlers)).not.toThrow()

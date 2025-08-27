@@ -9,22 +9,22 @@ const Provider = defineComponent({
     setup(_, { slots }) {
         provide(MyKey, 'injectedValue')
         return () => h('div', slots.default?.())
-    },
+    }
 })
 
 const Consumer = defineComponent({
     setup() {
         const value = assertInject(MyKey)
         return () => h('span', value)
-    },
+    }
 })
 
 describe('assertInject (integration)', () => {
     it('injects value from provider', () => {
         const wrapper = mount(Provider, {
             slots: {
-                default: () => h(Consumer),
-            },
+                default: () => h(Consumer)
+            }
         })
 
         expect(wrapper.html()).toContain('injectedValue')

@@ -98,8 +98,9 @@ const testCorrectInitialisation = (getWrapper: (props?) => Promise<VueWrapper<an
         }
         await getWrapper({ latLngs: undefined })
         expect(caughtError).toBeInstanceOf(Error)
-        expect((caughtError as Error).message).toMatch("Specify bounds or LatLngs for a valid rectangle.")
-
+        expect((caughtError as Error).message).toMatch(
+            'Specify bounds or LatLngs for a valid rectangle.'
+        )
     })
     it('creates a Leaflet rectangle with bounds', async () => {
         const wrapper = await getWrapper({

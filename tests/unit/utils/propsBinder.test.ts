@@ -5,12 +5,12 @@ import { nextTick, reactive } from 'vue'
 describe('propsBinder', () => {
     it('should bind props to methods object using watchers', async () => {
         const methods = {
-            setColor: vi.fn(),
+            setColor: vi.fn()
         }
 
         const leafletElement = {}
         const props = reactive({
-            color: 'red',
+            color: 'red'
         })
 
         propsBinder(methods, leafletElement, props)
@@ -24,11 +24,11 @@ describe('propsBinder', () => {
     it('should bind props to leafletElement if method not in methods object', async () => {
         const methods = {}
         const leafletElement = {
-            setOpacity: vi.fn(),
+            setOpacity: vi.fn()
         }
 
         const props = reactive({
-            opacity: 0.5,
+            opacity: 0.5
         })
 
         propsBinder(methods, leafletElement, props)
@@ -42,10 +42,10 @@ describe('propsBinder', () => {
     it('should not bind props if no matching setMethod exists', async () => {
         const methods = {}
         const leafletElement = {
-            setOpacity: vi.fn(),
+            setOpacity: vi.fn()
         }
         const props = reactive({
-            weight: 3,
+            weight: 3
         })
         const result = propsBinder(methods, leafletElement, props)
 
@@ -53,6 +53,6 @@ describe('propsBinder', () => {
         await nextTick()
 
         expect(leafletElement.setOpacity).not.toHaveBeenCalled()
-        expect(result).toStrictEqual(["weight"])
+        expect(result).toStrictEqual(['weight'])
     })
 })

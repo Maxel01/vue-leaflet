@@ -161,7 +161,7 @@ const testRemoveLayer = (getWrapper: () => Promise<VueWrapper<any>>) => {
     it('removes the layer from the map on unmount with ControlLayers', async () => {
         const wrapper = await createMapWrapper(
             {},
-            { default:  [LControlLayers,  h(LTileLayer, { url: '', layerType: 'base' })] }
+            { default: [LControlLayers, h(LTileLayer, { url: '', layerType: 'base' })] }
         )
         wrapper.unmount()
     })

@@ -7,7 +7,7 @@ describe('remapEvents', () => {
             onClick: () => {},
             onMouseover: () => {},
             title: 'Hello',
-            id: 'marker-1',
+            id: 'marker-1'
         }
 
         const { listeners, attrs } = remapEvents(input)
@@ -21,7 +21,7 @@ describe('remapEvents', () => {
             onClick: () => {},
             onUpdateModelValue: () => {},
             onReady: () => {},
-            name: 'Test',
+            name: 'Test'
         }
 
         const { listeners, attrs } = remapEvents(input)
@@ -41,7 +41,7 @@ describe('remapEvents', () => {
         const clickHandler = () => {}
         const input = {
             onClick: clickHandler,
-            label: 'Test',
+            label: 'Test'
         }
 
         const { listeners, attrs } = remapEvents(input)

@@ -14,7 +14,7 @@ describe('provideLeafletWrapper', () => {
                 const wrapper = provideLeafletWrapper(testKey)
                 wrapper('arg1', 'arg2')
                 return () => h('div')
-            },
+            }
         })
 
         mount(TestComponent)
@@ -33,7 +33,7 @@ describe('provideLeafletWrapper', () => {
                 updateLeafletWrapper(wrapper, mockFn)
                 wrapper('foo', 'bar')
                 return () => h('div')
-            },
+            }
         })
 
         mount(TestComponent)
@@ -48,7 +48,7 @@ describe('provideLeafletWrapper', () => {
                 const wrapper = provideLeafletWrapper(testKey)
                 updateLeafletWrapper(wrapper, mockFn)
                 return () => h('div', slots.default?.())
-            },
+            }
         })
 
         const ConsumerComponent = defineComponent({
@@ -56,13 +56,13 @@ describe('provideLeafletWrapper', () => {
                 const injected = inject(testKey) as (...args: any[]) => void
                 injected('hello')
                 return () => h('div')
-            },
+            }
         })
 
         mount(ProviderComponent, {
             slots: {
-                default: () => h(ConsumerComponent),
-            },
+                default: () => h(ConsumerComponent)
+            }
         })
 
         expect(mockFn).toHaveBeenCalledWith('hello')
