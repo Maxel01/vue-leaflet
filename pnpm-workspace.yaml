@@ -2,3 +2,4 @@ packages:
   - "./"
   - "playground"
   - "playground-vue"
+  - "plugins"
