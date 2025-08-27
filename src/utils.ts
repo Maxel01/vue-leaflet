@@ -24,8 +24,7 @@ export type FunctionMap = Record<string, Function>
 export type LeafletWrapper = {
     (...args: unknown[]): unknown
     wrapped: Ref<Function>
-};
-
+}
 
 export const bindEventHandlers = (
     leafletObject: Evented,
@@ -61,7 +60,11 @@ export const isFunction = (x: unknown) => typeof x === 'function'
  * @param props the relevant Vue component props
  * @return array of unbounded prop keys
  */
-export const propsBinder = (methods: Readonly<FunctionMap>, leafletElement: PropertyMap, props: Readonly<PropertyMap>) => {
+export const propsBinder = (
+    methods: Readonly<FunctionMap>,
+    leafletElement: PropertyMap,
+    props: Readonly<PropertyMap>
+) => {
     //propsBinderScope.run(() => {
     const unboundedProps: string[] = []
     for (const key in props) {
@@ -140,7 +143,7 @@ export const remapEvents = (contextAttrs: Record<string, unknown>): ListenersAnd
 
 // TODO It seems like Icon.Default is now IconDefault in leaflet v2
 export const resetWebpackIcon = async (Icon) => {
-//export const resetWebpackIcon = async (Icon: typeof IconDefault) => {
+    //export const resetWebpackIcon = async (Icon: typeof IconDefault) => {
     /* v8 ignore next */
     if (!vueLeafletConfig.experimental.useResetWebpackIcon) return
     const modules = await Promise.all([

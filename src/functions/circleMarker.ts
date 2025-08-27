@@ -21,7 +21,7 @@ export interface CircleMarkerProps<T extends CircleMarkerOptions = CircleMarkerO
 export const circleMarkerPropsDefaults = {
     ...pathPropsDefaults,
     // radius should be optional
-    options: () => ({ radius: 10 }),
+    options: () => ({ radius: 10 })
 }
 
 export interface CircleMarkerEmits<T extends CircleMarker = CircleMarker> extends PathEmits {
@@ -34,7 +34,7 @@ export interface CircleMarkerEmits<T extends CircleMarker = CircleMarker> extend
 export const setupCircleMarker = (
     props: CircleMarkerProps,
     leafletRef: Ref<CircleMarker | undefined>,
-    emit: CircleMarkerEmits,
+    emit: CircleMarkerEmits
 ) => {
     const { options: pathOptions, methods: pathMethods } = pathSetup(props, leafletRef, emit)
 
@@ -47,7 +47,7 @@ export const setupCircleMarker = (
         },
         setLatLng(latLng: LatLngExpression) {
             leafletRef.value?.setLatLng(latLng)
-        },
+        }
     }
 
     return { options, methods }

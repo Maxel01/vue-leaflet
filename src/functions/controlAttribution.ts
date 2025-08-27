@@ -2,7 +2,12 @@ import { Control } from 'leaflet'
 
 import { propsToLeafletOptions } from '@/utils'
 
-import { type ControlEmits, type ControlAbstractProps, controlAbstractPropsDefaults, setupControl } from './control'
+import {
+    type ControlEmits,
+    type ControlAbstractProps,
+    controlAbstractPropsDefaults,
+    setupControl
+} from './control'
 import type { Ref } from 'vue'
 
 export interface ControlAttributionProps extends ControlAbstractProps<Control.AttributionOptions> {
@@ -14,15 +19,14 @@ export interface ControlAttributionProps extends ControlAbstractProps<Control.At
 }
 
 export const controlAttributionPropsDefaults = {
-    ...controlAbstractPropsDefaults,
+    ...controlAbstractPropsDefaults
 }
 
 export type ControlAttributionEmits = ControlEmits<Control.Attribution>
 
-
 export const setupControlAttribution = (
     props: ControlAttributionProps,
-    leafletRef: Ref<Control.Attribution | undefined>,
+    leafletRef: Ref<Control.Attribution | undefined>
 ) => {
     const { options: controlOptions, methods: controlMethods } = setupControl(props, leafletRef)
 
@@ -32,7 +36,7 @@ export const setupControlAttribution = (
         ...controlMethods,
         setPrefix(prefix: string | false) {
             leafletRef.value?.setPrefix(prefix)
-        },
+        }
     }
 
     return { options, methods }

@@ -1,8 +1,18 @@
-import { type LatLngBoundsExpression, type LatLngExpression, type PolylineOptions, Rectangle } from 'leaflet'
+import {
+    type LatLngBoundsExpression,
+    type LatLngExpression,
+    type PolylineOptions,
+    Rectangle
+} from 'leaflet'
 
 import { propsToLeafletOptions } from '@/utils'
 
-import { type PolygonEmits, type PolygonAbstractProps, polygonPropsDefaults, setupPolygon } from './polygon'
+import {
+    type PolygonEmits,
+    type PolygonAbstractProps,
+    polygonPropsDefaults,
+    setupPolygon
+} from './polygon'
 import type { Ref } from 'vue'
 
 export interface RectangleProps extends PolygonAbstractProps {
@@ -19,7 +29,7 @@ export interface RectangleProps extends PolygonAbstractProps {
 }
 
 export const rectanglePropsDefaults = {
-    ...polygonPropsDefaults,
+    ...polygonPropsDefaults
 }
 
 export type RectangleEmits = PolygonEmits<Rectangle>
@@ -27,12 +37,12 @@ export type RectangleEmits = PolygonEmits<Rectangle>
 export const setupRectangle = (
     props: RectangleProps,
     leafletRef: Ref<Rectangle | undefined>,
-    emit: RectangleEmits,
+    emit: RectangleEmits
 ) => {
     const { options: polygonOptions, methods: polygonMethods } = setupPolygon(
         props,
         leafletRef,
-        emit,
+        emit
     )
 
     const options = propsToLeafletOptions<PolylineOptions>(props, polygonOptions)
@@ -48,7 +58,7 @@ export const setupRectangle = (
             // that the rectangle remains a rectangle, defined by the
             // bounds of the points in the latLngs array.
             leafletRef.value?.setBounds(latLngs)
-        },
+        }
     }
 
     return { options, methods }

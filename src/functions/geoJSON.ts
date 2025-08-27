@@ -8,7 +8,7 @@ import {
     type LayerGroupEmits,
     type LayerGroupProps,
     layerGroupPropsDefaults,
-    setupLayerGroup,
+    setupLayerGroup
 } from './layerGroup'
 
 export interface GeoJSONProps extends LayerGroupProps<GeoJSONOptions> {
@@ -31,12 +31,12 @@ export type GeoJSONEmits = LayerGroupEmits<GeoJSON>
 export const setupGeoJSON = (
     props: GeoJSONProps,
     leafletRef: Ref<GeoJSON | undefined>,
-    emit: GeoJSONEmits,
+    emit: GeoJSONEmits
 ) => {
     const { options: layerOptions, methods: layerGroupMethods } = setupLayerGroup(
         props,
         leafletRef,
-        emit,
+        emit
     )
 
     const options = propsToLeafletOptions<GeoJSONOptions>(props, layerOptions)
@@ -67,7 +67,7 @@ export const setupGeoJSON = (
          */
         getBounds() {
             return leafletRef.value?.getBounds()
-        },
+        }
         /* v8 ignore end */
     }
 

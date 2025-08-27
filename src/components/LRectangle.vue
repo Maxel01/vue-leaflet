@@ -43,7 +43,7 @@ function useRectangle() {
 
     onMounted(async () => {
         if (!props.bounds && !props.latLngs) {
-            throw new Error("Specify bounds or LatLngs for a valid rectangle.")
+            throw new Error('Specify bounds or LatLngs for a valid rectangle.')
         }
         const bounds = props.bounds
             ? new LatLngBounds(props.bounds)

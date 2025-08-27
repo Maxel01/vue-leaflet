@@ -7,11 +7,10 @@ import { type PopperProps, popperPropsDefaults, setupPopper } from './popper'
 import type { Tooltip, TooltipOptions } from 'leaflet'
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
-export interface TooltipProps extends PopperProps<TooltipOptions> {
-}
+export interface TooltipProps extends PopperProps<TooltipOptions> {}
 
 export const tooltipPropsDefaults = {
-    ...popperPropsDefaults,
+    ...popperPropsDefaults
 }
 
 export const setupTooltip = (props: TooltipProps, leafletRef: Ref<Tooltip | undefined>) => {

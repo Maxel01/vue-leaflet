@@ -65,5 +65,5 @@ export interface IconProps extends ComponentProps<DivIconOptions> {
 }
 
 export const iconPropsDefaults = {
-    ...componentPropsDefaults,
+    ...componentPropsDefaults
 }

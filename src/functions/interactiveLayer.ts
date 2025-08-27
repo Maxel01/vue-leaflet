@@ -23,7 +23,7 @@ export interface InteractiveLayerProps<T extends InteractiveLayerOptions = Inter
 export const interactiveLayerPropsDefaults = {
     ...layerPropsDefaults,
     interactive: undefined,
-    bubblingMouseEvents: undefined,
+    bubblingMouseEvents: undefined
 }
 
 export type InteractiveLayerEmits = LayerEmits
@@ -31,7 +31,7 @@ export type InteractiveLayerEmits = LayerEmits
 export const setupInteractiveLayer = (
     props: InteractiveLayerProps,
     leafletRef: Ref<Layer | undefined>,
-    emit: InteractiveLayerEmits,
+    emit: InteractiveLayerEmits
 ) => {
     const { options: layerOptions, methods } = setupLayer(props, leafletRef, emit)
 

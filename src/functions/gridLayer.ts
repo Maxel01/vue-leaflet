@@ -6,7 +6,7 @@ import {
     type GridLayerOptions,
     type Point,
     type PointExpression,
-    type TileEvent,
+    type TileEvent
 } from 'leaflet'
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
 import { propsToLeafletOptions } from '@/utils'
@@ -59,7 +59,7 @@ export interface GridLayerProps extends GridLayerAbstractProps {
 
 export const gridLayerAbstractPropsDefaults = {
     ...layerPropsDefaults,
-    noWrap: undefined,
+    noWrap: undefined
 }
 
 export const gridLayerPropsDefaults = gridLayerAbstractPropsDefaults
@@ -76,7 +76,7 @@ export type VueGridLayerTileRenderer = (props: { coords: Point }) => () => VNode
 export const setupGridLayer = <T extends GridLayer>(
     props: GridLayerAbstractProps,
     leafletRef: Ref<T | undefined>,
-    emit: GridLayerEmits<T>,
+    emit: GridLayerEmits<T>
 ) => {
     const { options: layerOptions, methods: layerMethods } = setupLayer(props, leafletRef, emit)
 
@@ -91,7 +91,7 @@ export const setupGridLayer = <T extends GridLayer>(
          */
         setTileComponent() {
             leafletRef.value?.redraw()
-        },
+        }
         /* v8 ignore end */
     }
 

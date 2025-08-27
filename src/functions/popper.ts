@@ -13,10 +13,13 @@ export interface PopperProps<T extends object> extends ComponentProps<T> {
 
 export const popperPropsDefaults = {
     ...componentPropsDefaults,
-    content: undefined,
+    content: undefined
 }
 
-export const setupPopper = (props: PopperProps<object>, leafletRef: Ref<DivOverlay | undefined>) => {
+export const setupPopper = (
+    props: PopperProps<object>,
+    leafletRef: Ref<DivOverlay | undefined>
+) => {
     const { options, methods: componentMethods } = setupComponent(props)
 
     const methods = {
@@ -25,7 +28,7 @@ export const setupPopper = (props: PopperProps<object>, leafletRef: Ref<DivOverl
             if (leafletRef.value && newVal !== null && newVal !== undefined) {
                 leafletRef.value.setContent(newVal)
             }
-        },
+        }
     }
 
     return { options, methods }
