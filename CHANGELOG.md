@@ -1,5 +1,37 @@
 # Changelog
 
+## [1.0.0-beta](https://github.com/maxel01/vue-leaflet/compare/v1.0.0-alpha.2...v1.0.0-beta) (2025-08-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* deprecates unreachable code (see #56)
+* **types:** remove IMapBlueprint
+
+### ✨ Features
+
+* add support for plugins ([#58](https://github.com/maxel01/vue-leaflet/issues/58)) ([514e62d](https://github.com/maxel01/vue-leaflet/commit/514e62d8753624f6769f04cf9fe356cb1c570ed1))
+* **docs:** add automatic deployment to vitepress ([#51](https://github.com/maxel01/vue-leaflet/issues/51)) ([e772109](https://github.com/maxel01/vue-leaflet/commit/e7721098b1a55a9719c303b797e8121a46139109))
+
+
+### 🐛 Bug Fixes
+
+* **build:** remove terser plugin to allow tree-shaking again ([#50](https://github.com/maxel01/vue-leaflet/issues/50)) ([44605e8](https://github.com/maxel01/vue-leaflet/commit/44605e8c9098ecbce06538002755dc45bb506774))
+* revert change from [#37](https://github.com/maxel01/vue-leaflet/issues/37) in utils.ts which caused a lost context when calling the setter method of a leaflet object. ([#53](https://github.com/maxel01/vue-leaflet/issues/53)) ([5b28cdc](https://github.com/maxel01/vue-leaflet/commit/5b28cdc855b98196df4b756fdc1cc0ddeeab4513))
+
+
+### 🚧 Chores
+
+* format files ([#57](https://github.com/maxel01/vue-leaflet/issues/57)) ([bf85dbd](https://github.com/maxel01/vue-leaflet/commit/bf85dbd92195e66ebd266e88647c968b83e6ce8b))
+* **types:** simplify types and improve type hints in LMap ([#55](https://github.com/maxel01/vue-leaflet/issues/55)) ([7e9d9ca](https://github.com/maxel01/vue-leaflet/commit/7e9d9ca0cc1af0e0ff616024eb5b021c6bd859c7))
+
+
+### ✅ Tests
+
+* add more tests for reactive prop changes ([#54](https://github.com/maxel01/vue-leaflet/issues/54)) ([aba6b60](https://github.com/maxel01/vue-leaflet/commit/aba6b60305a6f3a1170f02ea1462850e5a31c33a))
+* add remaining tests for all components to increase the coverage ([#56](https://github.com/maxel01/vue-leaflet/issues/56)) ([cb9331b](https://github.com/maxel01/vue-leaflet/commit/cb9331b5b2eea8d93e873b33c702def1b2dcb5e4))
+* add tests for all components and config.ts ([#52](https://github.com/maxel01/vue-leaflet/issues/52)) ([01b1a9d](https://github.com/maxel01/vue-leaflet/commit/01b1a9d989c8f9fd7ca97147c76301bd839cc01b))
+
 ## [1.0.0-alpha.2](https://github.com/maxel01/vue-leaflet/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2025-08-16)
 
 
