@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import path from 'node:path'
+import { alias } from '../alias.config'
+
 export default defineNuxtConfig({
     ssr: true,
     compatibilityDate: '2025-07-15',
@@ -14,9 +17,11 @@ export default defineNuxtConfig({
     vite: {
         resolve: {
             alias: {
-                '@maxel01/vue-leaflet': 'vue-leaflet-v2',
+                '@maxel01/vue-leaflet': path.resolve(__dirname, '../src/lib'),
+                '@maxel01/vue-leaflet-plugins': path.resolve(__dirname, '../plugins/src/plugins'),
                 //'@maxel01/vue-leaflet': '@maxel01/vue-leaflet'
                 //'@maxel01/vue-leaflet': '@vue-leaflet/vue-leaflet'
+                ...alias
             }
         }
     }

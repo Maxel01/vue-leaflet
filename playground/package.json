@@ -17,7 +17,6 @@
     "leaflet": "2.0.0-alpha",
     "nuxt": "^4.0.3",
     "vue": "^3.5.17",
-    "vue-leaflet-v2": "link:..\\",
     "vue-router": "^4.5.1"
   }
 }
