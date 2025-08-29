@@ -2,6 +2,13 @@
 import path from 'node:path'
 import { alias } from '../alias.config'
 
+const version: 'local' | 'dist' | 'npm' = 'dist'
+const vue_leaflet = {
+    local: path.resolve(__dirname, '../src/lib'),
+    dist: '@dist/vue-leaflet',
+    npm: '@maxel01/vue-leaflet'
+}
+
 export default defineNuxtConfig({
     ssr: true,
     compatibilityDate: '2025-07-15',
@@ -17,9 +24,7 @@ export default defineNuxtConfig({
     vite: {
         resolve: {
             alias: {
-                '@maxel01/vue-leaflet': path.resolve(__dirname, '../src/lib'),
-                //'@maxel01/vue-leaflet': '@maxel01/vue-leaflet'
-                //'@maxel01/vue-leaflet': '@vue-leaflet/vue-leaflet'
+                '@maxel01/vue-leaflet': vue_leaflet[version],
                 ...alias
             }
         }

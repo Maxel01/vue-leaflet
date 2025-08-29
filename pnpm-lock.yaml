@@ -108,12 +108,12 @@ importers:
 
   playground:
     dependencies:
+      '@dist/vue-leaflet':
+        specifier: link:..
+        version: link:..
       '@maxel01/vue-leaflet':
         specifier: 1.0.0-alpha.1
         version: 1.0.0-alpha.1(leaflet@2.0.0-alpha)(vue@3.5.17(typescript@5.8.3))
-      '@vue-leaflet/vue-leaflet':
-        specifier: ^0.10.1
-        version: 0.10.1(@types/leaflet@1.9.20)(leaflet@2.0.0-alpha)(typescript@5.8.3)
       leaflet:
         specifier: 2.0.0-alpha
         version: 2.0.0-alpha
@@ -129,6 +129,9 @@ importers:
 
   playground-vue:
     dependencies:
+      '@dist/vue-leaflet':
+        specifier: link:..
+        version: link:..
       '@maxel01/vue-leaflet':
         specifier: 1.0.0-alpha.1
         version: 1.0.0-alpha.1(leaflet@2.0.0-alpha)(vue@3.5.18(typescript@5.8.3))
@@ -2353,15 +2356,6 @@ packages:
 
   '@volar/typescript@2.4.22':
     resolution: {integrity: sha512-6ZczlJW1/GWTrNnkmZxJp4qyBt/SGVlcTuCWpI5zLrdPdCZsj66Aff9ZsfFaT3TyjG8zVYgBMYPuCm/eRkpcpQ==}
-
-  '@vue-leaflet/vue-leaflet@0.10.1':
-    resolution: {integrity: sha512-RNEDk8TbnwrJl8ujdbKgZRFygLCxd0aBcWLQ05q/pGv4+d0jamE3KXQgQBqGAteE1mbQsk3xoNcqqUgaIGfWVg==}
-    peerDependencies:
-      '@types/leaflet': ^1.5.7
-      leaflet: ^1.6.0
-    peerDependenciesMeta:
-      '@types/leaflet':
-        optional: true
 
   '@vue-macros/common@3.0.0-beta.16':
     resolution: {integrity: sha512-8O2gWxWFiaoNkk7PGi0+p7NPGe/f8xJ3/INUufvje/RZOs7sJvlI1jnR4lydtRFa/mU0ylMXUXXjSK0fHDEYTA==}
@@ -9149,15 +9143,6 @@ snapshots:
       '@volar/language-core': 2.4.22
       path-browserify: 1.0.1
       vscode-uri: 3.1.0
-
-  '@vue-leaflet/vue-leaflet@0.10.1(@types/leaflet@1.9.20)(leaflet@2.0.0-alpha)(typescript@5.8.3)':
-    dependencies:
-      leaflet: 2.0.0-alpha
-      vue: 3.5.17(typescript@5.8.3)
-    optionalDependencies:
-      '@types/leaflet': 1.9.20
-    transitivePeerDependencies:
-      - typescript
 
   '@vue-macros/common@3.0.0-beta.16(vue@3.5.18(typescript@5.8.3))':
     dependencies:
