@@ -12,7 +12,7 @@
     "analyze": "nuxt analyze"
   },
   "dependencies": {
-    "@maxel01/vue-leaflet": "1.0.0-alpha.1",
+    "@maxel01/vue-leaflet": "1.0.0-beta",
     "@dist/vue-leaflet": "link:..",
     "leaflet": "2.0.0-alpha",
     "nuxt": "^4.0.3",
