@@ -9,6 +9,12 @@
   "unpkg": "dist/vue-leaflet.umd.js",
   "module": "dist/vue-leaflet.es.js",
   "types": "./dist/src/lib.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-leaflet.es.js",
+      "require": "./dist/vue-leaflet.cjs.js"
+    }
+  },
   "files": [
     "dist/"
   ],
