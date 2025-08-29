@@ -170,22 +170,6 @@ importers:
         specifier: ^3.0.4
         version: 3.0.5(typescript@5.8.3)
 
-  plugins:
-    dependencies:
-      leaflet:
-        specifier: ^2.0.0-alpha
-        version: 2.0.0-alpha
-      vue:
-        specifier: ^3.5.0
-        version: 3.5.18(typescript@5.8.3)
-    devDependencies:
-      '@maxel01/vue-leaflet':
-        specifier: file:..
-        version: file:(leaflet@2.0.0-alpha)(vue@3.5.18(typescript@5.8.3))
-      '@vitejs/plugin-vue':
-        specifier: ^6.0.0
-        version: 6.0.1(vite@7.1.2(@types/node@24.0.14)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.43.1)(yaml@2.8.1))(vue@3.5.18(typescript@5.8.3))
-
 packages:
 
   '@algolia/autocomplete-core@1.17.7':
@@ -1310,12 +1294,6 @@ packages:
 
   '@maxel01/vue-leaflet@1.0.0-alpha.1':
     resolution: {integrity: sha512-vdfwZvw7ZO3w+1fTxmXNxdDAdt3Bd59cFNBNlVxeF7/kLj+GPlmIosemRr3iKXWfZarU9le6Dn3mr36tAwcTMQ==}
-    peerDependencies:
-      leaflet: ^2.0.0-alpha
-      vue: ^3.5.0
-
-  '@maxel01/vue-leaflet@file:':
-    resolution: {directory: '', type: directory}
     peerDependencies:
       leaflet: ^2.0.0-alpha
       vue: ^3.5.0
@@ -7935,12 +7913,6 @@ snapshots:
       vue: 3.5.17(typescript@5.8.3)
 
   '@maxel01/vue-leaflet@1.0.0-alpha.1(leaflet@2.0.0-alpha)(vue@3.5.18(typescript@5.8.3))':
-    dependencies:
-      leaflet: 2.0.0-alpha
-      ts-debounce: 4.0.0
-      vue: 3.5.18(typescript@5.8.3)
-
-  '@maxel01/vue-leaflet@file:(leaflet@2.0.0-alpha)(vue@3.5.18(typescript@5.8.3))':
     dependencies:
       leaflet: 2.0.0-alpha
       ts-debounce: 4.0.0
