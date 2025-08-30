@@ -1,15 +1,21 @@
 import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { h } from 'vue'
 import { describe, expect, it } from 'vitest'
-import { RegisterLayerControlInjection } from '../../../src/types/injectionKeys'
-import { testRemoveOnUnmount } from './helper/tests'
-import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
-import { testEmitsReady } from './helper/emitTests'
-import LControlLayers from '../../../src/components/LControlLayers.vue'
-import { mockRegisterLayerControl, testControlLayerRegistration } from './helper/injectionsTests'
-import { mergeReactiveProps } from './helper/props'
+import { RegisterLayerControlInjection } from '@/types/injectionKeys'
+import { testRemoveOnUnmount } from '@/tests/helper/tests'
+import {
+    testComponentPropBindings,
+    testPropsBindingToLeaflet
+} from '@/tests/helper/propsBindingTests'
+import { testEmitsReady } from '@/tests/helper/emitTests'
+import LControlLayers from '@/components/LControlLayers.vue'
+import {
+    mockRegisterLayerControl,
+    testControlLayerRegistration
+} from '@/tests/helper/injectionsTests'
+import { mergeReactiveProps } from '@/tests/helper/props'
 import { Control } from 'leaflet'
-import LTileLayer from '../../../src/components/LTileLayer.vue'
+import LTileLayer from '@/components/LTileLayer.vue'
 import { createMapWrapper } from './wrapper/LMap'
 import { controlAbstractProps } from './wrapper/LControl'
 

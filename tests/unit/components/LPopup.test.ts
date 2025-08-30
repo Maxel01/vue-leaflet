@@ -1,18 +1,18 @@
 import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import LPopup from '../../../src/components/LPopup.vue'
-import { BindPopupInjection, UnbindPopupInjection } from '../../../src/types/injectionKeys'
+import LPopup from '@/components/LPopup.vue'
+import { BindPopupInjection, UnbindPopupInjection } from '@/types/injectionKeys'
 import { LatLng, Popup } from 'leaflet'
 import {
     popperProps,
     testComponentPropBindings,
     testPropsBindingToLeaflet
-} from './helper/propsBindingTests'
-import { testEmitsReady } from './helper/emitTests'
-import { mockBindPopup, mockUnbindPopup } from './helper/injectionsTests'
-import { mergeReactiveProps } from './helper/props'
-import { testBindPopup, testUnbindPopupOnUnmount } from './helper/tests'
-import { PopupProps } from '../../../src/functions/popup'
+} from '@/tests/helper/propsBindingTests'
+import { testEmitsReady } from '@/tests/helper/emitTests'
+import { mockBindPopup, mockUnbindPopup } from '@/tests/helper/injectionsTests'
+import { mergeReactiveProps } from '@/tests/helper/props'
+import { testBindPopup, testUnbindPopupOnUnmount } from '@/tests/helper/tests'
+import type { PopupProps } from '@/functions/popup'
 import { createMarkerWrapper } from './wrapper/LMarker'
 
 const popupProps = mergeReactiveProps(popperProps, {

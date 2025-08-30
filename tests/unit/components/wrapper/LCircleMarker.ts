@@ -1,5 +1,5 @@
-import { mergeReactiveProps } from '../helper/props'
-import { pathProps } from '../helper/propsBindingTests'
+import { mergeReactiveProps } from '@/tests/helper/props'
+import { pathProps } from '@/tests/helper/propsBindingTests'
 import { LatLng } from 'leaflet'
 
 export const circleMarkerProps = mergeReactiveProps(pathProps, {

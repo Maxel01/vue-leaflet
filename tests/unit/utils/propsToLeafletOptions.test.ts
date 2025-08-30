@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { propsToLeafletOptions } from '../../../src/utils'
+import { propsToLeafletOptions } from '@/utils'
 
 interface ComponentProps {
     options?: object

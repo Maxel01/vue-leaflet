@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { propsBinder } from '../../../src/utils'
+import { propsBinder } from '@/utils'
 import { nextTick, reactive } from 'vue'
 
 describe('propsBinder', () => {

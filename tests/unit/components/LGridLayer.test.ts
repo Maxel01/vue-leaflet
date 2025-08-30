@@ -1,13 +1,16 @@
 import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { h } from 'vue'
 import { describe, expect, it } from 'vitest'
-import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
-import { testRemoveLayerOnUnmount } from './helper/tests'
-import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
-import { testEmitsReady } from './helper/emitTests'
-import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
+import { AddLayerInjection, RemoveLayerInjection } from '@/types/injectionKeys'
+import { testRemoveLayerOnUnmount } from '@/tests/helper/tests'
+import {
+    testComponentPropBindings,
+    testPropsBindingToLeaflet
+} from '@/tests/helper/propsBindingTests'
+import { testEmitsReady } from '@/tests/helper/emitTests'
+import { mockAddLayer, mockRemoveLayer, testAddLayer } from '@/tests/helper/injectionsTests'
 import { GridLayer } from 'leaflet'
-import LGridLayer from '../../../src/components/LGridLayer.vue'
+import LGridLayer from '@/components/LGridLayer.vue'
 import { gridLayerProps } from './wrapper/LGridLayer'
 
 const createWrapper = async (props = {}) => {

@@ -1,4 +1,4 @@
-import { bindEventHandlers } from '../../../src/utils'
+import { bindEventHandlers } from '@/utils'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { Evented, LeafletEventHandlerFnMap } from 'leaflet'
 

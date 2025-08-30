@@ -4,20 +4,20 @@ import {
     CanSetParentHtmlInjection,
     SetIconInjection,
     SetParentHtmlInjection
-} from '../../../src/types/injectionKeys'
+} from '@/types/injectionKeys'
 import {
     componentProps,
     testComponentPropBindings,
     testPropsBindingToLeaflet
-} from './helper/propsBindingTests'
+} from '@/tests/helper/propsBindingTests'
 import {
     mockCanSetParentHtmlInjection,
     mockSetIconInjection,
     mockSetParentHtmlInjection,
     testSetIcon
-} from './helper/injectionsTests'
-import LIcon from '../../../src/components/LIcon.vue'
-import { mergeReactiveProps } from './helper/props'
+} from '@/tests/helper/injectionsTests'
+import LIcon from '@/components/LIcon.vue'
+import { mergeReactiveProps } from '@/tests/helper/props'
 
 // TODO incomplete testing
 

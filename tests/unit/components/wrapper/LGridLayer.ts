@@ -1,5 +1,5 @@
-import { mergeReactiveProps } from '../helper/props'
-import { layerProps } from '../helper/propsBindingTests'
+import { mergeReactiveProps } from '@/tests/helper/props'
+import { layerProps } from '@/tests/helper/propsBindingTests'
 
 export const gridLayerProps = mergeReactiveProps(layerProps, {
     opacity: 0.5,

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { provideLeafletWrapper, updateLeafletWrapper } from '../../../src/utils'
+import { provideLeafletWrapper, updateLeafletWrapper } from '@/utils'
 import { inject, defineComponent, h } from 'vue'
 import { mount } from '@vue/test-utils'
 

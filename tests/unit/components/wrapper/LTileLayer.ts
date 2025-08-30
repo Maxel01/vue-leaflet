@@ -1,4 +1,4 @@
-import { mergeReactiveProps } from '../helper/props'
+import { mergeReactiveProps } from '@/tests/helper/props'
 import { gridLayerProps } from './LGridLayer'
 import { TileLayer } from 'leaflet'
 import { expect } from 'vitest'

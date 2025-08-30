@@ -1,4 +1,4 @@
-import { mergeReactiveProps } from '../helper/props'
+import { mergeReactiveProps } from '@/tests/helper/props'
 import { LatLng, Polygon } from 'leaflet'
 import { expect } from 'vitest'
 import { polylineProps } from './LPolyline'

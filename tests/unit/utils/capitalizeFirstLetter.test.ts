@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { capitalizeFirstLetter } from '../../../src/utils'
+import { capitalizeFirstLetter } from '@/utils'
 
 describe('capitalizeFirstLetter', () => {
     it('returns empty string given empty string', () => {

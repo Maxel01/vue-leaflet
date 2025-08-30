@@ -1,4 +1,4 @@
-import * as lib from '../../src/lib'
+import * as lib from '@/lib'
 import { describe, expect, it } from 'vitest'
 
 describe('lib', () => {

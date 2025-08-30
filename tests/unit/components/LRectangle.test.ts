@@ -1,13 +1,16 @@
 import { config, flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import LRectangle from '../../../src/components/LRectangle.vue'
-import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
+import LRectangle from '@/components/LRectangle.vue'
+import { AddLayerInjection, RemoveLayerInjection } from '@/types/injectionKeys'
 import { LatLng, LatLngBounds, Rectangle } from 'leaflet'
-import { testRemoveLayerOnUnmount } from './helper/tests'
-import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
-import { testEmitsReady } from './helper/emitTests'
-import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
-import { mergeReactiveProps } from './helper/props'
+import { testRemoveLayerOnUnmount } from '@/tests/helper/tests'
+import {
+    testComponentPropBindings,
+    testPropsBindingToLeaflet
+} from '@/tests/helper/propsBindingTests'
+import { testEmitsReady } from '@/tests/helper/emitTests'
+import { mockAddLayer, mockRemoveLayer, testAddLayer } from '@/tests/helper/injectionsTests'
+import { mergeReactiveProps } from '@/tests/helper/props'
 import { polygonProps } from './wrapper/LPolygonProps'
 
 const rectangleProps = mergeReactiveProps(polygonProps, {

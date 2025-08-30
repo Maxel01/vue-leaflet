@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { defineComponent, h, InjectionKey, provide } from 'vue'
 import { mount } from '@vue/test-utils'
-import { assertInject } from '../../../src/utils'
+import { assertInject } from '@/utils'
 
 const MyKey: InjectionKey<string> = Symbol('MyKey')
 

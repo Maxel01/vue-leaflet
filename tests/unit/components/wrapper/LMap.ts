@@ -1,6 +1,6 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import { expect, vi } from 'vitest'
-import LMap from '../../../../src/components/LMap.vue'
+import LMap from '@/components/LMap.vue'
 
 class ResizeObserver {
     observe() {}

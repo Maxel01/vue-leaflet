@@ -5,17 +5,17 @@ import {
     componentProps,
     testComponentPropBindings,
     testPropsBindingToLeaflet
-} from './helper/propsBindingTests'
-import { testEmitsReady } from './helper/emitTests'
-import { CRS, LatLngBounds, LatLngExpression, Map } from 'leaflet'
-import { mergeReactiveProps } from './helper/props'
+} from '@/tests/helper/propsBindingTests'
+import { testEmitsReady } from '@/tests/helper/emitTests'
+import { CRS, LatLngBounds, type LatLngExpression, Map } from 'leaflet'
+import { mergeReactiveProps } from '@/tests/helper/props'
 import 'leaflet/dist/leaflet.css'
-import { expectBoundsToBeClose } from './helper/geo'
+import { expectBoundsToBeClose } from '@/tests/helper/geo'
 import { createMapWrapper } from './wrapper/LMap'
-import { MapProps } from '../../../src/functions/map'
+import type { MapProps } from '@/functions/map'
 import { nextTick } from 'vue'
-import LTileLayer from '../../../src/components/LTileLayer.vue'
-import LControlLayers from '../../../src/components/LControlLayers.vue'
+import LTileLayer from '@/components/LTileLayer.vue'
+import LControlLayers from '@/components/LControlLayers.vue'
 
 const mapProps = mergeReactiveProps(componentProps, {
     width: '400px',

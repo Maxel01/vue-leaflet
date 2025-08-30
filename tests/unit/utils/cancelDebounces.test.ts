@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { cancelDebounces } from '../../../src/utils'
+import { cancelDebounces } from '@/utils'
 import type { LeafletEventHandlerFnMap } from 'leaflet'
 
 // Helper type for handlers with cancel method

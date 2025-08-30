@@ -1,18 +1,18 @@
 import { flushPromises, mount, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import LTooltip from '../../../src/components/LTooltip.vue'
-import { BindTooltipInjection, UnbindTooltipInjection } from '../../../src/types/injectionKeys'
+import LTooltip from '@/components/LTooltip.vue'
+import { BindTooltipInjection, UnbindTooltipInjection } from '@/types/injectionKeys'
 import {
     popperProps,
     testComponentPropBindings,
     testPropsBindingToLeaflet
-} from './helper/propsBindingTests'
-import { testEmitsReady } from './helper/emitTests'
-import { mockBindTooltip, mockUnbindTooltip } from './helper/injectionsTests'
+} from '@/tests/helper/propsBindingTests'
+import { testEmitsReady } from '@/tests/helper/emitTests'
+import { mockBindTooltip, mockUnbindTooltip } from '@/tests/helper/injectionsTests'
 import { Tooltip } from 'leaflet'
-import { mergeReactiveProps } from './helper/props'
-import { testBindTooltip, testUnbindTooltipOnUnmount } from './helper/tests'
-import { TooltipProps } from '../../../src/functions/tooltip'
+import { mergeReactiveProps } from '@/tests/helper/props'
+import { testBindTooltip, testUnbindTooltipOnUnmount } from '@/tests/helper/tests'
+import type { TooltipProps } from '@/functions/tooltip'
 import { createMarkerWrapper } from './wrapper/LMarker'
 
 const tooltipProps = mergeReactiveProps(popperProps, {})
@@ -80,8 +80,8 @@ const testCorrectInitialisation = (
 
         expect(obj).toBeDefined()
         expect((obj.getContent() as HTMLDivElement).outerHTML).toBe(
-            '<div><!--\r\n' +
-                "        @slot Content to be rendered inside the Leaflet tooltip's container. This slot replaces the default content and allows full customization of the tooltip's appearance. The content will be injected into the tooltip's root DOM element.\r\n" +
+            '<div><!--\n' +
+                "        @slot Content to be rendered inside the Leaflet tooltip's container. This slot replaces the default content and allows full customization of the tooltip's appearance. The content will be injected into the tooltip's root DOM element.\n" +
                 '        -->Something</div>'
         )
     })

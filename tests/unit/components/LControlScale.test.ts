@@ -1,13 +1,16 @@
 import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import LControlScale from '../../../src/components/LControlScale.vue'
-import { RegisterControlInjection } from '../../../src/types/injectionKeys'
+import LControlScale from '@/components/LControlScale.vue'
+import { RegisterControlInjection } from '@/types/injectionKeys'
 import { Control } from 'leaflet'
-import { testRemoveOnUnmount } from './helper/tests'
-import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
-import { testEmitsReady } from './helper/emitTests'
-import { mockRegisterControl, testControlRegistration } from './helper/injectionsTests'
-import { mergeReactiveProps } from './helper/props'
+import { testRemoveOnUnmount } from '@/tests/helper/tests'
+import {
+    testComponentPropBindings,
+    testPropsBindingToLeaflet
+} from '@/tests/helper/propsBindingTests'
+import { testEmitsReady } from '@/tests/helper/emitTests'
+import { mockRegisterControl, testControlRegistration } from '@/tests/helper/injectionsTests'
+import { mergeReactiveProps } from '@/tests/helper/props'
 import { controlAbstractProps } from './wrapper/LControl'
 
 const controlScaleProps = mergeReactiveProps(controlAbstractProps, {})

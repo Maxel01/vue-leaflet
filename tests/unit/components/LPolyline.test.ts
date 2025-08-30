@@ -1,12 +1,15 @@
 import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import LPolyline from '../../../src/components/LPolyline.vue'
-import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
+import LPolyline from '@/components/LPolyline.vue'
+import { AddLayerInjection, RemoveLayerInjection } from '@/types/injectionKeys'
 import { LatLng, Polyline } from 'leaflet'
-import { testRemoveLayerOnUnmount } from './helper/tests'
-import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
-import { testEmitsReady } from './helper/emitTests'
-import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
+import { testRemoveLayerOnUnmount } from '@/tests/helper/tests'
+import {
+    testComponentPropBindings,
+    testPropsBindingToLeaflet
+} from '@/tests/helper/propsBindingTests'
+import { testEmitsReady } from '@/tests/helper/emitTests'
+import { mockAddLayer, mockRemoveLayer, testAddLayer } from '@/tests/helper/injectionsTests'
 import { polylineProps } from './wrapper/LPolyline'
 
 const createWrapper = async (props = {}) => {
