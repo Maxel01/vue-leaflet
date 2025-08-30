@@ -1,8 +1,8 @@
 import { flushPromises, VueWrapper } from '@vue/test-utils'
 import { expect, it, vi } from 'vitest'
 import getReactivePropCount, { mergeReactiveProps } from './props'
-import * as utils from '../../../../src/utils'
-import { capitalizeFirstLetter, isFunction } from '../../../../src/utils'
+import * as utils from '../../src/utils'
+import { capitalizeFirstLetter, isFunction } from '../../src/utils'
 import { Layer } from 'leaflet'
 import { mockAddLayer, mockRemoveLayer } from './injectionsTests'
 

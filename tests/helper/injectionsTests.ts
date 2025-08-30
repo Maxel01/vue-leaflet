@@ -1,6 +1,6 @@
 import type { VueWrapper } from '@vue/test-utils'
 import { flushPromises } from '@vue/test-utils'
-import { beforeEach, expect, it, Mock, vi } from 'vitest'
+import { beforeEach, expect, it, type Mock, vi } from 'vitest'
 
 export const mockRegisterControl = vi.fn()
 export const mockRegisterLayerControl = vi.fn()
