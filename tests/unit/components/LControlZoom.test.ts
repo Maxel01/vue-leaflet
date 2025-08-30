@@ -10,10 +10,7 @@ import {
 } from '@/tests/helper/propsBindingTests'
 import { testEmitsReady } from '@/tests/helper/emitTests'
 import { mockRegisterControl, testControlRegistration } from '@/tests/helper/injectionsTests'
-import { mergeReactiveProps } from '@/tests/helper/props'
-import { controlAbstractProps } from './wrapper/LControl'
-
-const controlZoomProps = mergeReactiveProps(controlAbstractProps, {})
+import { controlZoomProps } from './wrapper/LControlZoom'
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LControlZoom, {

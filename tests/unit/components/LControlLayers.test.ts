@@ -13,13 +13,10 @@ import {
     mockRegisterLayerControl,
     testControlLayerRegistration
 } from '@/tests/helper/injectionsTests'
-import { mergeReactiveProps } from '@/tests/helper/props'
 import { Control } from 'leaflet'
 import LTileLayer from '@/components/LTileLayer.vue'
 import { createMapWrapper } from './wrapper/LMap'
-import { controlAbstractProps } from './wrapper/LControl'
-
-const controlLayersProps = mergeReactiveProps(controlAbstractProps, {})
+import { controlLayersProps } from './wrapper/LControlLayers'
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LControlLayers, {

@@ -10,10 +10,7 @@ import { testEmitsReady } from '@/tests/helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from '@/tests/helper/injectionsTests'
 import { type LatLngBoundsLiteral, SVGOverlay } from 'leaflet'
 import LSVGOverlay from '@/components/LSVGOverlay.vue'
-import { mergeReactiveProps } from '@/tests/helper/props'
-import { imageOverlayAbstractProps } from './wrapper/LImageOverlay'
-
-const svgOverlayProps = mergeReactiveProps(imageOverlayAbstractProps, {})
+import { svgOverlayProps } from './wrapper/LSVGOverlay'
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LSVGOverlay, {

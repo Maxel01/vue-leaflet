@@ -4,20 +4,15 @@ import LPopup from '@/components/LPopup.vue'
 import { BindPopupInjection, UnbindPopupInjection } from '@/types/injectionKeys'
 import { LatLng, Popup } from 'leaflet'
 import {
-    popperProps,
     testComponentPropBindings,
     testPropsBindingToLeaflet
 } from '@/tests/helper/propsBindingTests'
 import { testEmitsReady } from '@/tests/helper/emitTests'
 import { mockBindPopup, mockUnbindPopup } from '@/tests/helper/injectionsTests'
-import { mergeReactiveProps } from '@/tests/helper/props'
 import { testBindPopup, testUnbindPopupOnUnmount } from '@/tests/helper/tests'
 import type { PopupProps } from '@/functions/popup'
 import { createMarkerWrapper } from './wrapper/LMarker'
-
-const popupProps = mergeReactiveProps(popperProps, {
-    latLng: new LatLng(44.5, 11.5)
-})
+import { popupProps } from './wrapper/LPopup'
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LPopup, {

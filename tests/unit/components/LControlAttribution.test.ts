@@ -10,12 +10,7 @@ import {
 } from '@/tests/helper/propsBindingTests'
 import { testEmitsReady } from '@/tests/helper/emitTests'
 import { mockRegisterControl, testControlRegistration } from '@/tests/helper/injectionsTests'
-import { mergeReactiveProps } from '@/tests/helper/props'
-import { controlAbstractProps } from './wrapper/LControl'
-
-const controlAttributionProps = mergeReactiveProps(controlAbstractProps, {
-    prefix: 'new prefix'
-})
+import { controlAttributionProps } from './wrapper/LControlAttribution'
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LControlAttribution, {

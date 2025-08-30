@@ -6,7 +6,6 @@ import {
     SetParentHtmlInjection
 } from '@/types/injectionKeys'
 import {
-    componentProps,
     testComponentPropBindings,
     testPropsBindingToLeaflet
 } from '@/tests/helper/propsBindingTests'
@@ -17,26 +16,9 @@ import {
     testSetIcon
 } from '@/tests/helper/injectionsTests'
 import LIcon from '@/components/LIcon.vue'
-import { mergeReactiveProps } from '@/tests/helper/props'
+import { iconProps } from './wrapper/LIcon'
 
 // TODO incomplete testing
-
-const iconProps = mergeReactiveProps(componentProps, {
-    iconUrl: 'replace.icon',
-    iconRetinaUrl: 'replaceRetina.icon',
-    iconSize: [20, 20],
-    iconAnchor: [10, 10],
-    popupAnchor: [10, 10],
-    tooltipAnchor: [10, 10],
-    shadowUrl: 'replace.shadow',
-    shadowRetinaUrl: 'replaceRetina.shadow',
-    shadowAnchor: [10, 10],
-    bgPos: [10, 10],
-    className: 'classes',
-    customCheck: async (wrapper: VueWrapper) => {
-        await vi.waitFor(() => expect(mockSetIconInjection).toHaveBeenCalledTimes(2))
-    }
-})
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LIcon, {

@@ -10,17 +10,7 @@ import { testEmitsReady } from '@/tests/helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from '@/tests/helper/injectionsTests'
 import { TileLayer } from 'leaflet'
 import LWmsTileLayer from '@/components/LWmsTileLayer.vue'
-import { mergeReactiveProps } from '@/tests/helper/props'
-import { tileLayerProps } from './wrapper/LTileLayer'
-
-const wmsTileLayerProps = mergeReactiveProps(tileLayerProps, {
-    url: 'https://ows.terrestris.de/osm/service?',
-    expecting: {
-        url: (l: TileLayer & { _url: string }) => {
-            expect(l._url).toBe(wmsTileLayerProps.url)
-        }
-    }
-})
+import { wmsTileLayerProps } from './wrapper/LWmsTileLayer'
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LWmsTileLayer, {

@@ -10,7 +10,7 @@ import {
 } from '@/tests/helper/propsBindingTests'
 import { testEmitsReady } from '@/tests/helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from '@/tests/helper/injectionsTests'
-import { polygonProps } from './wrapper/LPolygonProps'
+import { polygonProps } from './wrapper/LPolygon'
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LPolygon, {
