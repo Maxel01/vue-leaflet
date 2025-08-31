@@ -26,41 +26,43 @@ A modern Vue 3 wrapper for Leaflet v2-alpha, based on [vue-leaflet/vue-leaflet](
 
 ---
 
-## 🔌 Plugin Support
+## ✅ Available Components
 
-Leaflet plugins are being ported to v2 and integrated via a dedicated wrapper:  
-👉 [vue-leaflet-plugins](https://github.com/Maxel01/vue-leaflet-plugins)
-
-The first plugin has already been implemented. If you need support for a specific plugin, open an issue in the plugin repo and help shape the roadmap.
+☑️ LCircle              
+☑️ LCircleMarker        
+☑️ LControl             
+☑️ LControlAttribution  
+☑️ LControlLayers       
+☑️ LControlScale        
+☑️ LControlZoom         
+☑️ LFeatureGroup        
+☑️ LGeoJson             
+☑️ LIcon                
+☑️ LImageOverlay        
+☑️ LMap                 
+☑️ LMarker              
+☑️ LPolygon             
+☑️ LPolyline            
+☑️ LPopup               
+☑️ LRectangle           
+☑️ LSVGOverlay          
+☑️ LTileLayer           
+☑️ LTooltip             
+☑️ LVideoOverlay        
+☑️ LWmsTileLayer
 
 ---
 
-## ✅ Component Status
+## 🔌 Plugin Support
 
-| Component             | Status                |
-|----------------------|-----------------------|
-| LCircle              | ☑️ Playground & Tests |
-| LCircleMarker        | ☑️ Playground & Tests         |
-| LControl             | ☑️ Playground & Tests         |
-| LControlAttribution  | ☑️ Playground & Tests         |
-| LControlLayers       | ☑️ Playground & Tests         |
-| LControlScale        | ☑️ Playground & Tests         |
-| LControlZoom         | ☑️ Playground & Tests         |
-| LFeatureGroup        | ☑️ Playground & Tests         |
-| LGeoJson             | ☑️ Playground & Tests         |
-| LIcon                | ☑️ Playground & Tests         |
-| LImageOverlay        | ☑️ Playground & Tests         |
-| LMap                 | ☑️ Playground & Tests         |
-| LMarker              | ☑️ Playground & Tests         |
-| LPolygon             | ☑️ Playground & Tests         |
-| LPolyline            | ☑️ Playground & Tests         |
-| LPopup               | ☑️ Playground & Tests         |
-| LRectangle           | ☑️ Playground & Tests         |
-| LSVGOverlay          | ☑️ Playground & Tests         |
-| LTileLayer           | ☑️ Playground & Tests         |
-| LTooltip             | ☑️ Playground & Tests         |
-| LVideoOverlay        | ☑️ Playground & Tests         |
-| LWmsTileLayer        | ☑️ Playground & Tests         |
+Leaflet plugins compatible with version 2 can be seamlessly integrated using a dedicated wrapper: \
+👉 [vue-leaflet-plugins](https://github.com/Maxel01/vue-leaflet-plugins)
+
+Explore the documentation to see which plugins are already supported and learn how to build your own wrappers for additional functionality.
+
+The first plugin has already been implemented. If you need support for a specific plugin, open an issue in the plugin repo and help shape the roadmap.
+
+> ⚠️ **Important:** Leaflet v1 plugins are **not compatible** with Leaflet v2 and cannot be used directly. To use a plugin with v2, it must be ported and wrapped appropriately.
 
 ---
 
@@ -108,11 +110,22 @@ const zoom = ref(2)
 
 ---
 
-## 🧪 Component Playground
+## 🧪 Documentation and Component Playground
 
-Explore the full power of vue-leaflet through interactive demo components built directly into the documentation. The playground showcases real-world usage and helps you test features live.
+Explore the full power of vue-leaflet through interactive demo components built directly into the [documentation](https://maxel01.github.io/vue-leaflet/). The playground showcases real-world usage and helps you test features live. \
+Use the nuxt-playground to experience the SSR feature.
 
-To run the playground locally:
+Absolutely, Max! Here's a polished and more engaging version of that section with improved clarity, flow, and tone:
+
+---
+
+## 🧪 Interactive Playground
+
+Unlock the full potential of **vue-leaflet** with interactive demo components built right into the [official documentation](https://maxel01.github.io/vue-leaflet/). The playground lets you explore real-world examples, experiment with features live, and see how everything fits together.
+
+Want to test **Server-Side Rendering (SSR)**? Dive into the **Nuxt playground** for a hands-on SSR experience.
+
+To run the **Nuxt Playground** locally:
 
 ```bash
 git clone https://github.com/maxel01/vue-leaflet.git
@@ -129,40 +142,6 @@ pnpm dev:vue
 ```
 
 Visit: [http://127.0.0.1:5173](http://127.0.0.1:5173)
-
----
-
-## 🌐 SSR Example
-
-Leaflet v2 supports ES modules, so SSR works out of the box.
-
-```vue
-<script setup>
-import "leaflet/dist/leaflet.css"
-import { LMap, LGeoJson } from "@maxel01/vue-leaflet"
-import { CircleMarker } from "leaflet"
-
-const geojson = {
-  type: "FeatureCollection",
-  features: [
-    // ...
-  ],
-}
-
-const geojsonOptions = {
-  pointToLayer: (feature, latLng) => new CircleMarker(latLng, { radius: 8 }),
-}
-</script>
-
-<template>
-  <div style="height:600px; width:800px">
-    <p>vue-leaflet SSR Demo</p>
-    <LMap :zoom="2" :center="[47.41322, -1.219482]">
-      <LGeoJson :geojson="geojson" :options="geojsonOptions" />
-    </LMap>
-  </div>
-</template>
-```
 
 ---
 
