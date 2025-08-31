@@ -1,4 +1,4 @@
-# vue-leaflet
+# 🗺️ Vue-Leaflet v2 Wrapper
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
@@ -6,143 +6,151 @@
 [![Vue][vue-src]][vue-href]
 [![Leaflet][leaflet-src]][leaflet-href]
 
-Vue-leaflet wrapper supporting leaflet v2 (based on [vue-leaflet/vue-leaflet](https://github.com/vue-leaflet/vue-leaflet)).
+A modern Vue 3 wrapper for Leaflet v2-alpha, based on [vue-leaflet/vue-leaflet](https://github.com/vue-leaflet/vue-leaflet). Built with the Composition API, fully SSR-compatible, and designed for future extensibility.
 
-This is an Alpha version! And may yet be unstable! If you want to help, please reach out in an [issue](https://github.com/Maxel01/vue-leaflet/issues) or join the [discussions](https://github.com/Maxel01/vue-leaflet/discussions).
+> ⚠️ This is a **Beta version** and may be unstable. Contributions, feedback, and bug reports are welcome via [issues](https://github.com/Maxel01/vue-leaflet/issues) or [discussions](https://github.com/Maxel01/vue-leaflet/discussions).
 
-> This wrapper is fully compatible with SSR.
+> ✅ Fully compatible with SSR (tested in Nuxt playground)
 
-> [!NOTE]
-> All SSR tests were performed in Nuxt using the playground.
+---
 
-### What's new?
+## 🚀 What's New
 
-- uses leaflet v2-alpha
-- rewrite with composition api
-- SSR compatible without useGlobalLeaflet
+- ✅ Leaflet v2-alpha support
+- ✅ Refactored with Vue 3 Composition API
+- ✅ SSR compatibility without `useGlobalLeaflet`
+- ✅ >95% test coverage
+- ✅ Improved documentation ([vue-leaflet-docs](https://maxel01.github.io/vue-leaflet/))
+- ✅ Component playground for live demos
+- ✅ Plugin support via [vue-leaflet-plugins](https://github.com/Maxel01/vue-leaflet-plugins)
 
-### What's planned?
-#### Leaflet plugins
-This leaflet wrapper can't be used to add leaflet plugins as most of the plugins do not support v2 yet. This wrapper drops the L object support without a legacy version. Use the previous wrapper instead.
+---
 
-I am therefore planning on porting the leaflet plugins to v2 and create a leaflet-plugins-wrapper. So create an issue if a plugin is not yet supported.
+## 🔌 Plugin Support
 
-#### Docs
-Nuxt-leaflet already provides good documentation for the leaflet-wrapper. However, these docs have been customized and added to this repo: [vue-leaflet-docs](https://maxel01.github.io/vue-leaflet/). \
-The docs also contains the playground demo components.
+Leaflet plugins are being ported to v2 and integrated via a dedicated wrapper:  
+👉 [vue-leaflet-plugins](https://github.com/Maxel01/vue-leaflet-plugins)
 
-#### Tests
-The previous leaflet-wrapper did not really have tests. These will be added soon to provide a stable and reliable wrapper.
+The first plugin has already been implemented. If you need support for a specific plugin, open an issue in the plugin repo and help shape the roadmap.
 
-#### What else?
-Let me now what you need!
+---
 
-## What works?
-- ✅ Fully working
-- ☑️ Works in playground
-- 🔧 Support planned
-- ❌ Not implemented
+## ✅ Component Status
 
-☑️ LCircle \
-☑️ LCircleMarker \
-☑️ LControl\
-☑️ LControlAttribution\
-☑️ LControlLayers\
-☑️ LControlScale\
-☑️ LControlZoom\
-☑️ LFeatureGroup\
-☑️ LGeoJson\
-☑️ LIcon\
-☑️ LImageOverlay\
-☑️ LMap\
-☑️ LMarker\
-☑️ LPolygon\
-☑️ LPolyline\
-☑️ LPopup\
-☑️ LRectangle\
-☑️ LSVGOverlay\
-☑️ LTileLayer\
-☑️ LTooltip\
-☑️ LVideoOverlay\
-☑️ LWmsTileLayer
+| Component             | Status                |
+|----------------------|-----------------------|
+| LCircle              | ☑️ Playground & Tests |
+| LCircleMarker        | ☑️ Playground & Tests         |
+| LControl             | ☑️ Playground & Tests         |
+| LControlAttribution  | ☑️ Playground & Tests         |
+| LControlLayers       | ☑️ Playground & Tests         |
+| LControlScale        | ☑️ Playground & Tests         |
+| LControlZoom         | ☑️ Playground & Tests         |
+| LFeatureGroup        | ☑️ Playground & Tests         |
+| LGeoJson             | ☑️ Playground & Tests         |
+| LIcon                | ☑️ Playground & Tests         |
+| LImageOverlay        | ☑️ Playground & Tests         |
+| LMap                 | ☑️ Playground & Tests         |
+| LMarker              | ☑️ Playground & Tests         |
+| LPolygon             | ☑️ Playground & Tests         |
+| LPolyline            | ☑️ Playground & Tests         |
+| LPopup               | ☑️ Playground & Tests         |
+| LRectangle           | ☑️ Playground & Tests         |
+| LSVGOverlay          | ☑️ Playground & Tests         |
+| LTileLayer           | ☑️ Playground & Tests         |
+| LTooltip             | ☑️ Playground & Tests         |
+| LVideoOverlay        | ☑️ Playground & Tests         |
+| LWmsTileLayer        | ☑️ Playground & Tests         |
 
-## Installation
+---
+
+## 📦 Installation
 
 ```bash
 pnpm add @maxel01/vue-leaflet leaflet@2.0.0-alpha
-```
-
-```bash
+# or
 yarn add @maxel01/vue-leaflet leaflet@2.0.0-alpha
-```
-
-```bash
+# or
 npm i @maxel01/vue-leaflet leaflet@2.0.0-alpha
 ```
 
-## Usage
+---
 
-The documentation is ready, please check the
-[vue-leaflet docs](https://maxel01.github.io/vue-leaflet/) for examples and the usage with Vue 3 or check the [playground](https://github.com/Maxel01/vue-leaflet/tree/master/playground/app/pages).
-Most component props mimic the vanilla [Leaflet options](https://leafletjs.com/reference-2.0.0.html) as closely as
-possible.
+## 🧑‍💻 Usage
 
-### Quickstart
+Check out the full documentation at [vue-leaflet-docs](https://maxel01.github.io/vue-leaflet/) or explore the [playground](https://github.com/Maxel01/vue-leaflet/tree/master/playground/app/pages).
+
+Most props mirror the vanilla [Leaflet options](https://leafletjs.com/reference-2.0.0.html) for a familiar experience.
+
+### ⚡ Quickstart
 
 ```vue
 <script setup>
-  import 'leaflet/dist/leaflet.css'
-  import { LMap, LTileLayer } from '@maxel01/vue-leaflet'
-  import ref from "vue"
+import 'leaflet/dist/leaflet.css'
+import { LMap, LTileLayer } from '@maxel01/vue-leaflet'
+import { ref } from 'vue'
 
-  const zoom = ref<number>(2)
+const zoom = ref(2)
 </script>
 
 <template>
   <div style="height:600px; width:800px">
-    <LMap ref="map" v-model:zoom="zoom" :center="[47.41322, -1.219482]">
+    <LMap v-model:zoom="zoom" :center="[47.41322, -1.219482]">
       <LTileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         layer-type="base"
         name="OpenStreetMap"
-      ></LTileLayer>
+      />
     </LMap>
   </div>
 </template>
-
-<style></style>
 ```
 
-### Component playground
+---
 
-To see the [component playground](https://github.com/Maxel01/vue-leaflet/tree/master/playground/app/pages) in action,
-clone this repo and run the local dev server, then visit http://127.0.0.1:5173,
+## 🧪 Component Playground
+
+Explore the full power of vue-leaflet through interactive demo components built directly into the documentation. The playground showcases real-world usage and helps you test features live.
+
+To run the playground locally:
+
 ```bash
 git clone https://github.com/maxel01/vue-leaflet.git
 cd vue-leaflet
 pnpm install
-pnpm run dev
+pnpm dev
+```
+Visit: [http://127.0.0.1:3000](http://127.0.0.1:3000)
+
+Or use the Vue-specific playground:
+
+```bash
+pnpm dev:vue
 ```
 
-### Server-side rendering (SSR)
+Visit: [http://127.0.0.1:5173](http://127.0.0.1:5173)
 
-Leaflet v2 now supports ES modules and can be imported directly. So far there were no issues with SSR.
+---
+
+## 🌐 SSR Example
+
+Leaflet v2 supports ES modules, so SSR works out of the box.
 
 ```vue
 <script setup>
 import "leaflet/dist/leaflet.css"
-import { LMap, LGeoJson } from "@maxel01/vue-leaflet";
-import CircleMarker from "leaflet"
+import { LMap, LGeoJson } from "@maxel01/vue-leaflet"
+import { CircleMarker } from "leaflet"
 
-const geojson = { 
+const geojson = {
   type: "FeatureCollection",
   features: [
     // ...
   ],
 }
+
 const geojsonOptions = {
   pointToLayer: (feature, latLng) => new CircleMarker(latLng, { radius: 8 }),
-  // ...
 }
 </script>
 
@@ -156,18 +164,20 @@ const geojsonOptions = {
 </template>
 ```
 
-## For Maintainers
+---
 
-This repo uses pnpm for building the package.
+## 🛠 Maintainers
 
-Add the pnpm-lock.json to the commit only if necessary.
+This repo uses `pnpm` for building and development.
 
-> [!NOTE]
-> ([How do I install PNPM?](https://pnpm.io/installation))
+> 📘 [How to install PNPM](https://pnpm.io/installation)
 
-## Credits
+---
 
-[vue-leaflet/vue-leaflet](https://github.com/vue-leaflet/vue-leaflet)
+## 🙌 Credits
+
+- [vue-leaflet/vue-leaflet](https://github.com/vue-leaflet/vue-leaflet)
+- [nuxt-modules/leaflet](https://github.com/nuxt-modules/leaflet)
 
 <!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/v/@maxel01/vue-leaflet/latest.svg?color=0F81C2
