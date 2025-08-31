@@ -1,4 +1,4 @@
-# Accessing a map instance
+# 🔍 Accessing a map instance
 
 The guide explains how to access a Leaflet map instance from a Vue component.
 

@@ -18,7 +18,9 @@ export default defineConfig({
             { text: 'Home', link: '/' },
             { text: 'Quick Start', link: '/getting-started/installation' },
             { text: 'Guide', link: '/guide/using-l' },
-            { text: 'Components', link: '/components/introduction' }
+            { text: 'Components', link: '/components/introduction' },
+            { text: 'Plugins', link: 'https://maxel01.github.io/vue-leaflet-plugins/' },
+            { text: 'Contribution', link: '/getting-started/contribution' }
         ],
 
         sidebar: [
@@ -26,7 +28,8 @@ export default defineConfig({
                 text: 'Getting Started',
                 items: [
                     { text: 'Installation', link: '/getting-started/installation' },
-                    { text: 'Usage', link: '/getting-started/usage' }
+                    { text: 'Usage', link: '/getting-started/usage' },
+                    { text: 'Contribution', link: '/getting-started/contribution' }
                 ]
             },
             {
@@ -35,6 +38,7 @@ export default defineConfig({
                     { text: 'Using L', link: '/guide/using-l' },
                     { text: 'Accessing a map instance', link: '/guide/accessing-map-instance' },
                     { text: 'Reactivity in vue-leaflet', link: '/guide/reactivity-leaflet' },
+                    { text: 'Server-Side Rendering with vue-leaflet', link: '/guide/ssr' },
                     { text: 'Experimental Features', link: '/guide/experimental' }
                 ]
             },
