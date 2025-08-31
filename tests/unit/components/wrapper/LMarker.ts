@@ -1,7 +1,7 @@
 import { flushPromises, mount } from '@vue/test-utils'
-import { AddLayerInjection, RemoveLayerInjection } from '../../../../src/types/injectionKeys'
-import { mockAddLayer, mockRemoveLayer } from '../helper/injectionsTests'
-import LMarker from '../../../../src/components/LMarker.vue'
+import { AddLayerInjection, RemoveLayerInjection } from '@/types/injectionKeys'
+import { mockAddLayer, mockRemoveLayer } from '@/tests/helper/injectionsTests'
+import LMarker from '@/components/LMarker.vue'
 
 export const createMarkerWrapper = async (props = {}, slots = {}) => {
     const wrapper = mount(LMarker, {

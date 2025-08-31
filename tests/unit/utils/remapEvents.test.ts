@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { remapEvents } from '../../../src/utils'
+import { remapEvents } from '@/utils'
 
 describe('remapEvents', () => {
     it('should separate event listeners from attributes', () => {

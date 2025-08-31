@@ -1,4 +1,4 @@
-import { VueWrapper } from '@vue/test-utils'
+import type { VueWrapper } from '@vue/test-utils'
 import { expect, it } from 'vitest'
 
 export const testEmitsReady = (getWrapper: () => Promise<VueWrapper<any>>) => {

@@ -14,6 +14,9 @@
       "@/playground/*": [
         "./playground/*"
       ],
+      "@/tests/*": [
+        "./tests/*"
+      ],
       "@/*": [
         "src/*"
       ]

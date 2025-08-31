@@ -1,5 +1,5 @@
-import { mergeReactiveProps } from '../helper/props'
-import { LatLng, Polygon } from 'leaflet'
+import { mergeReactiveProps } from '@/tests/helper/props'
+import { LatLng, type Polygon } from 'leaflet'
 import { expect } from 'vitest'
 import { polylineProps } from './LPolyline'
 

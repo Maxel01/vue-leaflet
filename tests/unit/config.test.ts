@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { setVueLeafletConfig, vueLeafletConfig } from '../../src/config'
+import { setVueLeafletConfig, vueLeafletConfig } from '@/config'
 
 describe('config', () => {
     it('checks the default settings for the config', () => {

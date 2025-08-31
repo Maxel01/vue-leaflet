@@ -1,15 +1,15 @@
 import { type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { Circle, LatLng, Marker } from 'leaflet'
-import { testRemoveLayerOnUnmount } from './helper/tests'
+import { testRemoveLayerOnUnmount } from '@/tests/helper/tests'
 import {
     layerProps,
     testComponentPropBindings,
     testPropsBindingToLeaflet
-} from './helper/propsBindingTests'
-import { testEmitsReady } from './helper/emitTests'
-import { testAddLayer } from './helper/injectionsTests'
-import { mergeReactiveProps } from './helper/props'
+} from '@/tests/helper/propsBindingTests'
+import { testEmitsReady } from '@/tests/helper/emitTests'
+import { testAddLayer } from '@/tests/helper/injectionsTests'
+import { mergeReactiveProps } from '@/tests/helper/props'
 import { createMarkerWrapper } from './wrapper/LMarker'
 
 const markerProps = mergeReactiveProps(layerProps, {

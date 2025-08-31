@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { isFunction } from '../../../src/utils'
+import { isFunction } from '@/utils'
 
 describe('isFunction', () => {
     it('returns true for regular functions', () => {

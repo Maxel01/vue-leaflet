@@ -1,5 +1,5 @@
-import { mergeReactiveProps } from '../helper/props'
-import { layerProps } from '../helper/propsBindingTests'
+import { mergeReactiveProps } from '@/tests/helper/props'
+import { layerProps } from '@/tests/helper/propsBindingTests'
 import { LatLngBounds } from 'leaflet'
 
 export const imageOverlayAbstractProps = mergeReactiveProps(layerProps, {

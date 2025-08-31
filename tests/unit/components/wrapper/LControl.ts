@@ -1,5 +1,5 @@
-import { mergeReactiveProps } from '../helper/props'
-import { componentProps } from '../helper/propsBindingTests'
+import { mergeReactiveProps } from '@/tests/helper/props'
+import { componentProps } from '@/tests/helper/propsBindingTests'
 
 export const controlAbstractProps = mergeReactiveProps(componentProps, {
     position: 'bottomleft'

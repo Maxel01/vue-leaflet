@@ -1,34 +1,17 @@
 import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import { AddLayerInjection, RemoveLayerInjection } from '../../../src/types/injectionKeys'
-import { testRemoveLayerOnUnmount } from './helper/tests'
-import { testComponentPropBindings, testPropsBindingToLeaflet } from './helper/propsBindingTests'
-import { testEmitsReady } from './helper/emitTests'
-import { mockAddLayer, mockRemoveLayer, testAddLayer } from './helper/injectionsTests'
-import { GeoJSON, Layer } from 'leaflet'
-import LGeoJson from '../../../src/components/LGeoJson.vue'
+import { AddLayerInjection, RemoveLayerInjection } from '@/types/injectionKeys'
+import { testRemoveLayerOnUnmount } from '@/tests/helper/tests'
+import {
+    testComponentPropBindings,
+    testPropsBindingToLeaflet
+} from '@/tests/helper/propsBindingTests'
+import { testEmitsReady } from '@/tests/helper/emitTests'
+import { mockAddLayer, mockRemoveLayer, testAddLayer } from '@/tests/helper/injectionsTests'
+import type { GeoJSON } from 'leaflet'
+import LGeoJson from '@/components/LGeoJson.vue'
 import geoJson from './geo.json'
-import geoJsonReplace from './geo_replace.json'
-import { mergeReactiveProps } from './helper/props'
-import { layerGroupProps } from './wrapper/LLayerGroup'
-
-const geoJsonProps = mergeReactiveProps(layerGroupProps, {
-    geojson: geoJsonReplace,
-    optionsStyle: () => ({
-        opacity: 0.35
-    }),
-    expecting: {
-        ...layerGroupProps.expecting,
-        geojson: (leafletObject: GeoJSON) => {
-            expect(leafletObject.toGeoJSON()).toStrictEqual(geoJsonReplace)
-        },
-        optionsStyle: (leafletObject: GeoJSON) => {
-            leafletObject.eachLayer((layer: Layer) => {
-                expect(layer.options).toStrictEqual({ opacity: 0.35 })
-            })
-        }
-    }
-})
+import { geoJsonProps } from './wrapper/LGeoJson'
 
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LGeoJson, {
