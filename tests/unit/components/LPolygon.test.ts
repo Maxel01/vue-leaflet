@@ -2,7 +2,7 @@ import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import LPolygon from '@/components/LPolygon.vue'
 import { AddLayerInjection, RemoveLayerInjection } from '@/types/injectionKeys'
-import { LatLng, Polygon } from 'leaflet'
+import { LatLng, type Polygon } from 'leaflet'
 import { testRemoveLayerOnUnmount } from '@/tests/helper/tests'
 import {
     testComponentPropBindings,

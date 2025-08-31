@@ -1,6 +1,6 @@
 import { mergeReactiveProps } from '@/tests/helper/props'
 import { tileLayerProps } from './LTileLayer'
-import { TileLayer } from 'leaflet'
+import type { TileLayer } from 'leaflet'
 import { expect } from 'vitest'
 
 export const wmsTileLayerProps = mergeReactiveProps(tileLayerProps, {

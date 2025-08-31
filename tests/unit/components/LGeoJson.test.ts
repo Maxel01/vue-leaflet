@@ -8,7 +8,7 @@ import {
 } from '@/tests/helper/propsBindingTests'
 import { testEmitsReady } from '@/tests/helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from '@/tests/helper/injectionsTests'
-import { GeoJSON } from 'leaflet'
+import type { GeoJSON } from 'leaflet'
 import LGeoJson from '@/components/LGeoJson.vue'
 import geoJson from './geo.json'
 import { geoJsonProps } from './wrapper/LGeoJson'

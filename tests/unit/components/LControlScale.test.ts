@@ -2,7 +2,7 @@ import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import LControlScale from '@/components/LControlScale.vue'
 import { RegisterControlInjection } from '@/types/injectionKeys'
-import { Control } from 'leaflet'
+import type { Control } from 'leaflet'
 import { testRemoveOnUnmount } from '@/tests/helper/tests'
 import {
     testComponentPropBindings,

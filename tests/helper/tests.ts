@@ -1,5 +1,5 @@
 import { beforeEach, expect, it, vi } from 'vitest'
-import { VueWrapper } from '@vue/test-utils'
+import type { VueWrapper } from '@vue/test-utils'
 import {
     mockBindPopup,
     mockBindTooltip,

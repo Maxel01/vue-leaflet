@@ -1,4 +1,4 @@
-import { InterfaceDeclaration, Project, SyntaxKind } from 'ts-morph'
+import { type InterfaceDeclaration, Project, SyntaxKind } from 'ts-morph'
 import { type VueWrapper } from '@vue/test-utils'
 
 const project = new Project({

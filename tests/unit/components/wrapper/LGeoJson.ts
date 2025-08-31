@@ -1,7 +1,7 @@
 import { mergeReactiveProps } from '@/tests/helper/props'
 import { layerGroupProps } from './LLayerGroup'
 import geoJsonReplace from '@/tests/unit/components/geo_replace.json'
-import { GeoJSON, Layer } from 'leaflet'
+import type { GeoJSON, Layer } from 'leaflet'
 import { expect } from 'vitest'
 
 export const geoJsonProps = mergeReactiveProps(layerGroupProps, {

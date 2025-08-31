@@ -1,9 +1,9 @@
-import { flushPromises, VueWrapper } from '@vue/test-utils'
+import { flushPromises, type VueWrapper } from '@vue/test-utils'
 import { expect, it, vi } from 'vitest'
 import getReactivePropCount, { mergeReactiveProps } from './props'
 import * as utils from '@/utils'
 import { capitalizeFirstLetter, isFunction } from '@/utils'
-import { Layer } from 'leaflet'
+import type { Layer } from 'leaflet'
 import { mockAddLayer, mockRemoveLayer } from './injectionsTests'
 
 export function testComponentPropBindings(

@@ -1,6 +1,6 @@
 import { mergeReactiveProps } from '@/tests/helper/props'
 import { polygonProps } from './LPolygon'
-import { LatLng, LatLngBounds, Rectangle } from 'leaflet'
+import { LatLng, LatLngBounds, type Rectangle } from 'leaflet'
 import { expect } from 'vitest'
 
 export const rectangleProps = mergeReactiveProps(polygonProps, {

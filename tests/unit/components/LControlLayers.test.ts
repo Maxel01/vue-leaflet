@@ -13,7 +13,7 @@ import {
     mockRegisterLayerControl,
     testControlLayerRegistration
 } from '@/tests/helper/injectionsTests'
-import { Control } from 'leaflet'
+import type { Control } from 'leaflet'
 import LTileLayer from '@/components/LTileLayer.vue'
 import { createMapWrapper } from './wrapper/LMap'
 import { controlLayersProps } from './wrapper/LControlLayers'

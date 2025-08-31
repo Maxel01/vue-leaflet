@@ -2,7 +2,7 @@ import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import LPolyline from '@/components/LPolyline.vue'
 import { AddLayerInjection, RemoveLayerInjection } from '@/types/injectionKeys'
-import { LatLng, Polyline } from 'leaflet'
+import { LatLng, type Polyline } from 'leaflet'
 import { testRemoveLayerOnUnmount } from '@/tests/helper/tests'
 import {
     testComponentPropBindings,

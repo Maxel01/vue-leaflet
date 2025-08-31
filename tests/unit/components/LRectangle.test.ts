@@ -2,7 +2,7 @@ import { config, flushPromises, shallowMount, type VueWrapper } from '@vue/test-
 import { describe, expect, it } from 'vitest'
 import LRectangle from '@/components/LRectangle.vue'
 import { AddLayerInjection, RemoveLayerInjection } from '@/types/injectionKeys'
-import { LatLng, LatLngBounds, Rectangle } from 'leaflet'
+import { LatLng, LatLngBounds, type Rectangle } from 'leaflet'
 import { testRemoveLayerOnUnmount } from '@/tests/helper/tests'
 import {
     testComponentPropBindings,

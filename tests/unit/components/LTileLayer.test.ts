@@ -8,7 +8,7 @@ import {
 } from '@/tests/helper/propsBindingTests'
 import { testEmitsReady } from '@/tests/helper/emitTests'
 import { mockAddLayer, mockRemoveLayer, testAddLayer } from '@/tests/helper/injectionsTests'
-import { TileLayer } from 'leaflet'
+import type { TileLayer } from 'leaflet'
 import LTileLayer from '@/components/LTileLayer.vue'
 import { tileLayerProps } from './wrapper/LTileLayer'
 

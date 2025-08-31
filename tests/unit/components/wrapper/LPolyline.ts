@@ -1,6 +1,6 @@
 import { mergeReactiveProps } from '@/tests/helper/props'
 import { pathProps } from '@/tests/helper/propsBindingTests'
-import { LatLng, Polyline } from 'leaflet'
+import { LatLng, type Polyline } from 'leaflet'
 import { expect } from 'vitest'
 
 export const polylineProps = mergeReactiveProps(pathProps, {
