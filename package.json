@@ -11,10 +11,12 @@
   "types": "./dist/src/lib.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/src/lib.d.ts",
       "import": "./dist/vue-leaflet.es.js",
       "require": "./dist/vue-leaflet.cjs.js"
     },
     "./tests": {
+      "types": "./dist/tests/test-helpers.d.ts",
       "import": "./dist/vue-leaflet-test-helpers.es.js",
       "require": "./dist/vue-leaflet-test-helpers.cjs.js"
     }
