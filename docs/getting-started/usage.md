@@ -2,7 +2,7 @@
 outline: deep
 ---
 
-# Usage
+# 🧑‍💻 Usage
 
 Vue Leaflet is a module that provides a set of components to work with Leaflet in Vue 3.
 

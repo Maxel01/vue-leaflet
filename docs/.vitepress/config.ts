@@ -35,6 +35,7 @@ export default defineConfig({
                     { text: 'Using L', link: '/guide/using-l' },
                     { text: 'Accessing a map instance', link: '/guide/accessing-map-instance' },
                     { text: 'Reactivity in vue-leaflet', link: '/guide/reactivity-leaflet' },
+                    { text: 'Server-Side Rendering with vue-leaflet', link: '/guide/ssr' },
                     { text: 'Experimental Features', link: '/guide/experimental' }
                 ]
             },

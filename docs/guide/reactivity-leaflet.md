@@ -1,14 +1,14 @@
-# Reactivity in vue-leaflet
+# 🧠 Reactivity in vue-leaflet
 
 vue-leaflet integrates Vue’s powerful reactive system to provide a seamless and efficient way to work with Leaflet maps and layers inside your Vue components. This guide explains how reactivity is implemented and how you can leverage it effectively.
 
-## Core Concept
+## 🧩 Core Concept
 
 Leaflet itself is imperative: you create map objects, add layers, update properties via methods, and so forth. Vue, on the other hand, follows a reactive and declarative paradigm. vue-leaflet acts as a bridge that **maps reactive Vue props and state to Leaflet’s imperative API**.
 
 When you update a prop on a vue-leaflet component, the corresponding Leaflet map or layer updates automatically and efficiently.
 
-## How It Works
+## ⚙️ How It Works
 
 1. **Props Binding:**  
    vue-leaflet components accept props such as `center`, `zoom`, `layers`, or any Leaflet options (e.g., `color`, `radius` for markers). These props are reactive Vue refs or reactive data. \
@@ -24,7 +24,7 @@ When you update a prop on a vue-leaflet component, the corresponding Leaflet map
 4. **Cleanup:**  
    When components unmount, vue-leaflet ensures proper cleanup by removing layers or listeners from the map to avoid memory leaks.
 
-## Example
+## 🧪 Example
 
 ```vue
 <script setup>
