@@ -13,6 +13,10 @@
     ".": {
       "import": "./dist/vue-leaflet.es.js",
       "require": "./dist/vue-leaflet.cjs.js"
+    },
+    "./tests": {
+      "import": "./dist/vue-leaflet-test-helpers.es.js",
+      "require": "./dist/vue-leaflet-test-helpers.cjs.js"
     }
   },
   "files": [
@@ -26,7 +30,7 @@
     "dev": "pnpm --filter playground dev",
     "dev:vue": "pnpm --filter playground-vue dev",
     "test": "vitest --coverage",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vue-tsc --noEmit && vite build && vite build -c vite.tests.config.ts",
     "build-only": "vite build",
     "preview": "vite preview",
     "type-check": "vue-tsc --noEmit",

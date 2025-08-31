@@ -7,7 +7,7 @@ import { alias } from './alias.config.js'
 
 // https://vite.dev/config/
 export default defineConfig({
-    plugins: [vue(), dts({ tsconfigPath: './tsconfig.build.json' })],
+    plugins: [vue(), dts({ tsconfigPath: './tsconfig.build.json', include: ['src'] })],
     resolve: {
         alias
     },
@@ -26,7 +26,7 @@ export default defineConfig({
                     vue: 'Vue',
                     leaflet: 'L'
                 }
-            },
+            }
         }
     }
 })
