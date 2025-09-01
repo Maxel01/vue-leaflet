@@ -110,15 +110,6 @@ const zoom = ref(2)
 
 ---
 
-## 🧪 Documentation and Component Playground
-
-Explore the full power of vue-leaflet through interactive demo components built directly into the [documentation](https://maxel01.github.io/vue-leaflet/). The playground showcases real-world usage and helps you test features live. \
-Use the nuxt-playground to experience the SSR feature.
-
-Absolutely, Max! Here's a polished and more engaging version of that section with improved clarity, flow, and tone:
-
----
-
 ## 🧪 Interactive Playground
 
 Unlock the full potential of **vue-leaflet** with interactive demo components built right into the [official documentation](https://maxel01.github.io/vue-leaflet/). The playground lets you explore real-world examples, experiment with features live, and see how everything fits together.
