@@ -145,11 +145,13 @@ Visit: [http://127.0.0.1:5173](http://127.0.0.1:5173)
 
 ---
 
-## 🛠 Maintainers
+## 🛠 Contribution
 
 This repo uses `pnpm` for building and development.
 
 > 📘 [How to install PNPM](https://pnpm.io/installation)
+
+See the [contribution guide](https://maxel01.github.io/vue-leaflet/getting-started/contribution.html) for more.
 
 ---
 
