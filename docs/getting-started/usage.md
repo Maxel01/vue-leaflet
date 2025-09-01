@@ -9,7 +9,7 @@ Vue Leaflet is a module that provides a set of components to work with Leaflet i
 Here is a basic example of how to use the `LMap` and `LTileLayer` components to display a map :
 
 ```vue{2,5,9-15}
-<!--@include: ../../src/playground/views/DemoHome.vue -->
+<!--@include: ../../playground/app/pages/index.vue -->
 ```
 
 And here is how it should look :
@@ -19,5 +19,5 @@ import "leaflet/dist/leaflet.css";
 </script>
 
 <div class="demo">
-    <DemoHome />
+    <demo-index />
 </div>
