@@ -1,5 +1,6 @@
 ---
 outline: [2,3]
+title: Contribution Guide
 ---
 
 

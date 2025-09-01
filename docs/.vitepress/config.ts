@@ -5,7 +5,7 @@ import { alias } from '../../alias.config'
 export default defineConfig({
     title: 'Vue Leaflet',
     description: 'Documentation for the Vue Leaflet module',
-    head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
+    head: [['link', { rel: 'icon', href: '/vue-leaflet/favicon.ico' }]],
     base: '/vue-leaflet/',
     vite: {
         resolve: {

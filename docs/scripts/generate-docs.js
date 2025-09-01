@@ -25,7 +25,7 @@ async function generate() {
         const markdownPath = path.join(outputDir, `${toKebabCase(name)}.md`)
 
         let markdown = `# ${name}\n\n${doc.description || ''}\n\n`
-        markdown = '---\noutline: deep\n---\n\n'
+        markdown = `---\noutline: deep\ntitle: ${doc.displayName}\n---\n\n`
         markdown += `# 🧩 ${doc.displayName}\n\n`
         markdown += `${doc.description}\n\n`
 

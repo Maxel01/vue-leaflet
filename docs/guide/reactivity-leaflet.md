@@ -1,3 +1,6 @@
+---
+title: Reactivity in vue-leaflet
+---
 # 🧠 Reactivity in vue-leaflet
 
 vue-leaflet integrates Vue’s powerful reactive system to provide a seamless and efficient way to work with Leaflet maps and layers inside your Vue components. This guide explains how reactivity is implemented and how you can leverage it effectively.
