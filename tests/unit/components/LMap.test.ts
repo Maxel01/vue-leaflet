@@ -1,84 +1,18 @@
 import { type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
-import { h } from 'vue'
+import { h, nextTick } from 'vue'
 import {
-    componentProps,
     testComponentPropBindings,
     testPropsBindingToLeaflet
 } from '@/tests/helper/propsBindingTests'
 import { testEmitsReady } from '@/tests/helper/emitTests'
-import { CRS, LatLngBounds, type LatLngExpression, Map } from 'leaflet'
-import { mergeReactiveProps } from '@/tests/helper/props'
+import { LatLngBounds, Map } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { expectBoundsToBeClose } from '@/tests/helper/geo'
-import { createMapWrapper } from './wrapper/LMap'
+import { createMapWrapper, mapProps } from './wrapper/LMap'
 import type { MapProps } from '@/functions/map'
-import { nextTick } from 'vue'
 import LTileLayer from '@/components/LTileLayer.vue'
 import LControlLayers from '@/components/LControlLayers.vue'
-
-const mapProps = mergeReactiveProps(componentProps, {
-    width: '400px',
-    height: '400px',
-    center: {
-        values: [undefined, null, [44.5, 10.5]]
-    },
-    bounds: {
-        values: [
-            [
-                [-5, 5],
-                [5, -5]
-            ] as LatLngExpression[],
-            undefined,
-            null,
-            [null, undefined] as LatLngExpression[]
-        ]
-    },
-    maxBounds: new LatLngBounds([44.5, 10.5], [47.5, 11.5]),
-    zoom: 10,
-    minZoom: 3,
-    maxZoom: 15,
-    paddingBottomRight: [100, 100],
-    paddingTopLeft: [100, 100],
-    padding: [75, 75],
-    crs: CRS.Simple,
-    expecting: {
-        width: (leafletObject: Map) => {
-            expect(leafletObject.getContainer().style.width).toBe('400px')
-        },
-        height: (leafletObject: Map) => {
-            expect(leafletObject.getContainer().style.height).toBe('400px')
-        },
-        center: (leafletObject: Map, iteration: number) => {
-            const [lat, lng] = iteration >= 2 ? mapProps.center.values[iteration] : [45, 10]
-            expect(leafletObject.getCenter().lat).toBeCloseTo(lat)
-            expect(leafletObject.getCenter().lng).toBeCloseTo(lng)
-        },
-        bounds: (leafletObject: Map) => {
-            const lBounds = leafletObject.getBounds()
-            const expectedBounds = new LatLngBounds(mapProps.bounds.values[0])
-            expectBoundsToBeClose(lBounds, expectedBounds, [2, 2, 1, 1])
-        },
-        maxBounds: (leafletObject: Map) => {
-            expect(leafletObject.options.maxBounds).toStrictEqual(
-                new LatLngBounds([44.5, 10.5], [47.5, 11.5])
-            )
-        },
-        paddingBottomRight: (_m: Map, _i, wrapper) => {
-            expect((wrapper.vm.$props as MapProps).paddingBottomRight).toStrictEqual(
-                mapProps.paddingBottomRight
-            )
-        },
-        paddingTopLeft: (_m: Map, _, wrapper) => {
-            expect((wrapper.vm.$props as MapProps).paddingTopLeft).toStrictEqual(
-                mapProps.paddingTopLeft
-            )
-        },
-        padding: (_m: Map, _i, wrapper) => {
-            expect((wrapper.vm.$props as MapProps).padding).toStrictEqual(mapProps.padding)
-        }
-    }
-})
 
 describe('LMap.vue', () => {
     testEmitsReady(createMapWrapper)
