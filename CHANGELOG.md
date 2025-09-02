@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.0.0-beta.1](https://github.com/maxel01/vue-leaflet/compare/v1.0.0-beta...v1.0.0-beta.1) (2025-09-02)
+
+
+### 🐛 Bug Fixes
+
+* **docs:** demo and src are working in `getting-started/usage` ([1e344e7](https://github.com/maxel01/vue-leaflet/commit/1e344e7691ccb3c7afb4e50ec9fee9497b9adad1))
+
+
+### 📝 Documentation
+
+* add SSR and contribution guide ([#63](https://github.com/maxel01/vue-leaflet/issues/63)) ([5fcd104](https://github.com/maxel01/vue-leaflet/commit/5fcd104171b7d5aa0506d79391a278cbd66cd460))
+
+
+### 🚧 Chores
+
+* **build:** improve build and playground deps ([#60](https://github.com/maxel01/vue-leaflet/issues/60)) ([4528ef1](https://github.com/maxel01/vue-leaflet/commit/4528ef1ba354624a1a3f0b05b65b94d6a6fc0598))
+* **docs:** remove duplicated part from `README.md` ([#66](https://github.com/maxel01/vue-leaflet/issues/66)) ([ab62645](https://github.com/maxel01/vue-leaflet/commit/ab6264560859368a3aba539e39b2f73772bf97f8))
+* **docs:** remove emojis from tab titles ([#65](https://github.com/maxel01/vue-leaflet/issues/65)) ([df1c90c](https://github.com/maxel01/vue-leaflet/commit/df1c90c6ae276c3239f28cae77a92c34a57d6fbd))
+* remove plugins related files ([#59](https://github.com/maxel01/vue-leaflet/issues/59)) ([d312b1a](https://github.com/maxel01/vue-leaflet/commit/d312b1a13f6367b2a4d742585874b51d422d1485))
+
+
+### ✅ Tests
+
+* add modular test structure to provide helper functions for vue-leaflet-plugins ([#62](https://github.com/maxel01/vue-leaflet/issues/62)) ([e112885](https://github.com/maxel01/vue-leaflet/commit/e1128858312c20ca41cc9ecaafbdbc4a6c56ba83))
+
 ## [1.0.0-beta](https://github.com/maxel01/vue-leaflet/compare/v1.0.0-alpha.2...v1.0.0-beta) (2025-08-28)
 
 
