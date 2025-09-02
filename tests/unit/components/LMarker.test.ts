@@ -1,6 +1,6 @@
 import { type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import { Circle, LatLng } from 'leaflet'
+import { LatLng, type Marker } from 'leaflet'
 import { testRemoveLayerOnUnmount } from '@/tests/helper/tests'
 import {
     testComponentPropBindings,
@@ -23,7 +23,7 @@ describe('LMarker.vue', () => {
 const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {
     it('creates a Leaflet marker with correct options', async () => {
         const wrapper = await getWrapper()
-        const obj = wrapper.vm.leafletObject as Circle
+        const obj = wrapper.vm.leafletObject as Marker
 
         expect(obj).toBeDefined()
         expect(obj.getLatLng()).toStrictEqual(new LatLng(44.48865, 11.3317))
