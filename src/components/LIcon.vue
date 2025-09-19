@@ -69,7 +69,7 @@ function useCreateIcon() {
     let iconObject: Icon | DivIcon | undefined = undefined
 
     const createIcon = (el: HTMLElement, recreationNeeded: boolean, htmlSwapNeeded: boolean) => {
-        const elHtml = el && el.innerHTML
+        const elHtml = el && el.innerHTML.replace(new RegExp("<!--[\\s\\S]*?-->", "g"), "")
         if (!recreationNeeded) {
             if (htmlSwapNeeded && iconObject && canSetParentHtml()) {
                 setParentHtml(elHtml)
@@ -111,7 +111,7 @@ function useCreateIcon() {
 <template>
     <div ref="root">
         <!--
-        @slot Slot content will be rendered inside the Leaflet icon container. Use this slot to inject custom HTML or Vue components into the icon, such as labels, SVGs, or interactive elements.
+        @slot Slot content will be rendered inside the Leaflet icon container. Use this slot to inject custom HTML or Vue components into the icon, such as labels, SVGs, or interactive elements. This will use `DivIcon` instead of `Icon`.
         -->
         <slot />
     </div>
