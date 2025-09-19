@@ -111,7 +111,7 @@ function useCreateIcon() {
 <template>
     <div ref="root">
         <!--
-        @slot Slot content will be rendered inside the Leaflet icon container. Use this slot to inject custom HTML or Vue components into the icon, such as labels, SVGs, or interactive elements.
+        @slot Slot content will be rendered inside the Leaflet icon container. Use this slot to inject custom HTML or Vue components into the icon, such as labels, SVGs, or interactive elements. This will use `DivIcon` instead of `Icon`.
         -->
         <slot />
     </div>
