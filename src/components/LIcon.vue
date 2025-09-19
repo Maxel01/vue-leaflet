@@ -69,7 +69,7 @@ function useCreateIcon() {
     let iconObject: Icon | DivIcon | undefined = undefined
 
     const createIcon = (el: HTMLElement, recreationNeeded: boolean, htmlSwapNeeded: boolean) => {
-        const elHtml = el && el.innerHTML
+        const elHtml = el && el.innerHTML.replace(new RegExp("<!--[\\s\\S]*?-->", "g"), "")
         if (!recreationNeeded) {
             if (htmlSwapNeeded && iconObject && canSetParentHtml()) {
                 setParentHtml(elHtml)
