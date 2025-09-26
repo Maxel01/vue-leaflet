@@ -40,6 +40,7 @@
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint ./src --fix",
     "format": "prettier --write src/ tests/",
+    "format:check": "prettier --check src/ tests/",
     "docs:generate": "node docs/scripts/generate-docs.js",
     "docs:dev": "node docs/scripts/generate-docs.js && vitepress dev docs",
     "docs:build": "node docs/scripts/generate-docs.js && vitepress build docs",

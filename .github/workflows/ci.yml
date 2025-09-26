@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Format check
-        run: pnpm format --check
+        run: pnpm format:check
   tests:
     runs-on: ubuntu-latest
     steps:
