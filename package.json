@@ -39,6 +39,7 @@
     "preview": "vite preview",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint ./src --fix",
+    "lint:check": "eslint ./src",
     "format": "prettier --write src/ tests/",
     "format:check": "prettier --check src/ tests/",
     "docs:generate": "node docs/scripts/generate-docs.js",
