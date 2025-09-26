@@ -11,6 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Lint
@@ -20,6 +22,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Format check
@@ -29,6 +33,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Run tests with coverage
@@ -38,6 +44,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Run build
@@ -47,6 +55,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Run build with VitePress
@@ -56,6 +66,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Run build with VitePress
