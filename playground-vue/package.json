@@ -15,7 +15,7 @@
   "dependencies": {
     "@maxel01/vue-leaflet": "1.0.0-beta",
     "@dist/vue-leaflet": "link:..",
-    "@vueuse/core": "^13.6.0",
+    "@vueuse/core": "^13.9.0",
     "leaflet": "2.0.0-alpha",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1"
@@ -24,8 +24,8 @@
     "@tsconfig/node22": "^22.0.2",
     "@types/node": "^22.16.5",
     "@vitejs/plugin-vue": "^6.0.1",
-    "@vue/tsconfig": "^0.7.0",
-    "typescript": "~5.8.0",
+    "@vue/tsconfig": "^0.8.1",
+    "typescript": "~5.9.2",
     "vite": "^7.1.7",
     "vite-plugin-vue-devtools": "^8.0.0",
     "vue-tsc": "^3.0.4"
