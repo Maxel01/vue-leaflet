@@ -16,7 +16,7 @@
     "@dist/vue-leaflet": "link:..",
     "leaflet": "2.0.0-alpha",
     "nuxt": "^4.1.2",
-    "vue": "^3.5.17",
+    "vue": "^3.5.22",
     "vue-router": "^4.5.1"
   }
 }

@@ -17,7 +17,7 @@
     "@dist/vue-leaflet": "link:..",
     "@vueuse/core": "^13.6.0",
     "leaflet": "2.0.0-alpha",
-    "vue": "^3.5.18",
+    "vue": "^3.5.22",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
