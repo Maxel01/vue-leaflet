@@ -10,17 +10,3 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
-    groups:
-      security-updates:
-        applies-to: security-updates
-        patterns:
-          - "*"
-      minor-deps:
-        update-types:
-          - "minor"
-      patch-deps:
-        update-types:
-          - "patch"
-      major-deps:
-        update-types:
-          - "major"
