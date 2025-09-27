@@ -10,7 +10,7 @@ import {
 } from './tileLayer'
 import type { Ref } from 'vue'
 
-export interface WmsTileLayerProps extends TileLayerProps<WMSOptions> {
+export interface WmsTileLayerProps<T extends WMSOptions = WMSOptions> extends TileLayerProps<T> {
     /**
      * Comma-separated list of WMS layers to show
      * @initOnly
@@ -54,7 +54,9 @@ export const wmsTileLayerPropsDefaults = {
     uppercase: undefined
 }
 
-export type WmsTileLayerEmits = TileLayerEmits<TileLayer.WMS>
+/* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
+export interface WmsTileLayerEmits<T extends TileLayer.WMS = TileLayer.WMS>
+    extends TileLayerEmits<T> {}
 
 export const setupWMSTileLayer = (
     props: WmsTileLayerProps,

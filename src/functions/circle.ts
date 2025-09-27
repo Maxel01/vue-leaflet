@@ -10,7 +10,7 @@ import {
 } from './circleMarker'
 import type { Ref } from 'vue'
 
-export interface CircleProps extends CircleMarkerProps<CircleOptions> {
+export interface CircleProps<T extends CircleOptions = CircleOptions> extends CircleMarkerProps<T> {
     /**
      * Radius of the circle, in meters
      * @reactive
@@ -22,7 +22,8 @@ export const circlePropsDefaults = {
     ...circleMarkerPropsDefaults
 }
 
-export type CircleEmits = CircleMarkerEmits<Circle>
+/* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
+export interface CircleEmits<T extends Circle = Circle> extends CircleMarkerEmits<T> {}
 
 export const setupCircle = (
     props: CircleProps,

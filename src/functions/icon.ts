@@ -1,7 +1,7 @@
 import type { DivIconOptions, PointExpression } from 'leaflet'
 import { type ComponentProps, componentPropsDefaults } from '@/functions/component'
 
-export interface IconProps extends ComponentProps<DivIconOptions> {
+export interface IconProps<T extends DivIconOptions = DivIconOptions> extends ComponentProps<T> {
     /**
      * The URL to the icon image (absolute or relative to your script path).
      * @reactive

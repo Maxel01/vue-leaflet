@@ -10,7 +10,9 @@ import {
 } from './control'
 import type { Ref } from 'vue'
 
-export interface ControlAttributionProps extends ControlAbstractProps<Control.AttributionOptions> {
+export interface ControlAttributionProps<
+    T extends Control.AttributionOptions = Control.AttributionOptions
+> extends ControlAbstractProps<T> {
     /**
      * The HTML text shown before the attributions. Pass `false` to disable.
      * @reactive
@@ -22,7 +24,9 @@ export const controlAttributionPropsDefaults = {
     ...controlAbstractPropsDefaults
 }
 
-export type ControlAttributionEmits = ControlEmits<Control.Attribution>
+/* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
+export interface ControlAttributionEmits<T extends Control.Attribution = Control.Attribution>
+    extends ControlEmits<T> {}
 
 export const setupControlAttribution = (
     props: ControlAttributionProps,

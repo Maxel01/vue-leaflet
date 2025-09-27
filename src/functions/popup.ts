@@ -3,7 +3,7 @@ import type { Ref } from 'vue'
 
 import { type PopperProps, popperPropsDefaults, setupPopper } from './popper'
 
-export interface PopupProps extends PopperProps<PopupOptions> {
+export interface PopupProps<T extends PopupOptions = PopupOptions> extends PopperProps<T> {
     /**
      * The position of the popup
      * @reactive

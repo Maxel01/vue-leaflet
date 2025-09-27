@@ -11,7 +11,8 @@ import {
     setupLayerGroup
 } from './layerGroup'
 
-export interface GeoJSONProps extends LayerGroupProps<GeoJSONOptions> {
+export interface GeoJSONProps<T extends GeoJSONOptions = GeoJSONOptions>
+    extends LayerGroupProps<T> {
     /**
      * An object in GeoJSON format to display on the map (you can alternatively add it later with addData method).
      * @reactive
@@ -26,7 +27,8 @@ export interface GeoJSONProps extends LayerGroupProps<GeoJSONOptions> {
 
 export const geoJSONPropsDefaults = layerGroupPropsDefaults
 
-export type GeoJSONEmits = LayerGroupEmits<GeoJSON>
+/* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
+export interface GeoJSONEmits<T extends GeoJSON = GeoJSON> extends LayerGroupEmits<T> {}
 
 export const setupGeoJSON = (
     props: GeoJSONProps,

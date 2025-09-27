@@ -7,7 +7,7 @@ import { propsToLeafletOptions } from '@/utils'
 const unrenderedContentTypes = ['Symbol(Comment)', 'Symbol(Text)']
 const unrenderedComponentNames = ['LTooltip', 'LPopup']
 
-export interface MarkerProps extends LayerProps<MarkerOptions> {
+export interface MarkerProps<T extends MarkerOptions = MarkerOptions> extends LayerProps<T> {
     /**
      * Whether the marker is draggable with mouse/touch or not.
      * @reactive
@@ -35,11 +35,11 @@ export const markerPropsDefaults = {
     draggable: undefined
 }
 
-export interface MarkerEmits extends LayerEmits {
+export interface MarkerEmits<T extends Marker = Marker> extends LayerEmits {
     /**
      * Triggers when the component is ready
      */
-    (event: 'ready', marker: Marker): void
+    (event: 'ready', marker: T): void
     /**
      * Triggers when the latLng prop needs to be updated
      */

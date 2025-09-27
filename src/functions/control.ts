@@ -14,7 +14,8 @@ export interface ControlAbstractProps<T extends ControlOptions = ControlOptions>
     position?: ControlPosition
 }
 
-export interface ControlProps extends ControlAbstractProps {
+export interface ControlProps<T extends ControlOptions = ControlOptions>
+    extends ControlAbstractProps<T> {
     /**
      * Adds stopPropagation to the element's `click`, `dblclick`, `contextmenu` and `pointerdown` events (plus browser variants).
      * @initOnly

@@ -15,7 +15,8 @@ import {
 } from './polygon'
 import type { Ref } from 'vue'
 
-export interface RectangleProps extends PolygonAbstractProps {
+export interface RectangleProps<T extends PolylineOptions = PolylineOptions>
+    extends PolygonAbstractProps<T> {
     /**
      * Array of coordinates objects that represent the rectangle
      * @reactive
@@ -32,7 +33,8 @@ export const rectanglePropsDefaults = {
     ...polygonPropsDefaults
 }
 
-export type RectangleEmits = PolygonEmits<Rectangle>
+/* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
+export interface RectangleEmits<T extends Rectangle = Rectangle> extends PolygonEmits<T> {}
 
 export const setupRectangle = (
     props: RectangleProps,
