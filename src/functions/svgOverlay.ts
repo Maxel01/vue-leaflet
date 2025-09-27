@@ -6,7 +6,8 @@ import { propsToLeafletOptions } from '@/utils'
 import type { ImageOverlayAbstractProps, ImageOverlayEmits } from './imageOverlay'
 import { imageOverlayPropsDefaults, setupImageOverlay } from './imageOverlay'
 
-export interface SVGOverlayProps extends ImageOverlayAbstractProps {
+export interface SVGOverlayProps<T extends ImageOverlayOptions = ImageOverlayOptions>
+    extends ImageOverlayAbstractProps<T> {
     /**
      * Url of the svg or the SVGElement
      * @initOnly
@@ -18,7 +19,8 @@ export const svgOverlayPropsDefaults = {
     ...imageOverlayPropsDefaults
 }
 
-export type SVGOverlayEmits = ImageOverlayEmits<SVGOverlay>
+/* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
+export interface SVGOverlayEmits<T extends SVGOverlay = SVGOverlay> extends ImageOverlayEmits<T> {}
 
 export const setupSVGOverlay = (
     props: SVGOverlayProps,

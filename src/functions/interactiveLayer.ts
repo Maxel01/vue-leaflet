@@ -26,7 +26,8 @@ export const interactiveLayerPropsDefaults = {
     bubblingMouseEvents: undefined
 }
 
-export type InteractiveLayerEmits = LayerEmits
+/* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
+export interface InteractiveLayerEmits extends LayerEmits {}
 
 export const setupInteractiveLayer = (
     props: InteractiveLayerProps,

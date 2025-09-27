@@ -38,7 +38,8 @@ export const tileLayerPropsDefaults = {
     detectRetina: undefined
 }
 
-export type TileLayerEmits<T extends TileLayer = TileLayer> = GridLayerEmits<T>
+/* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
+export interface TileLayerEmits<T extends TileLayer = TileLayer> extends GridLayerEmits<T> {}
 
 export const setupTileLayer = <T extends TileLayer>(
     props: TileLayerProps,

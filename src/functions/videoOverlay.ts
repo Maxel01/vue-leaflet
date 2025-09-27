@@ -5,7 +5,8 @@ import { propsToLeafletOptions } from '@/utils'
 import type { ImageOverlayAbstractProps, ImageOverlayEmits } from './imageOverlay'
 import { imageOverlayPropsDefaults, setupImageOverlay } from './imageOverlay'
 
-export interface VideoOverlayProps extends ImageOverlayAbstractProps<VideoOverlayOptions> {
+export interface VideoOverlayProps<T extends VideoOverlayOptions = VideoOverlayOptions>
+    extends ImageOverlayAbstractProps<T> {
     /**
      * Url of the video, urls of the videos or a video Element
      * @initOnly
@@ -17,7 +18,9 @@ export const videoOverlayPropsDefaults = {
     ...imageOverlayPropsDefaults
 }
 
-export type VideoOverlayEmits = ImageOverlayEmits<VideoOverlay>
+/* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
+export interface VideoOverlayEmits<T extends VideoOverlay = VideoOverlay>
+    extends ImageOverlayEmits<T> {}
 
 export const setupVideoOverlay = (
     props: VideoOverlayProps,

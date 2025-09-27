@@ -1,7 +1,7 @@
-import { type CRS, LatLngBounds, type MapOptions, type PointExpression } from 'leaflet'
+import { type CRS, LatLng, LatLngBounds, Map, type MapOptions, type PointExpression } from 'leaflet'
 import { type ComponentProps, componentPropsDefaults, setupComponent } from '@/functions/component'
 
-export interface MapProps extends ComponentProps<MapOptions> {
+export interface MapProps<T extends MapOptions = MapOptions> extends ComponentProps<T> {
     /**
      * The width of the map
      * @reactive native
@@ -134,6 +134,25 @@ export const mapPropsDefaults = {
     fadeAnimation: undefined,
     markerZoomAnimation: undefined,
     noBlockingAnimations: undefined
+}
+
+export interface MapEmits<T extends Map = Map> {
+    /**
+     * Triggers when the component is ready
+     */
+    (event: 'ready', map: T): void
+    /**
+     * Triggers when the map's zoom level changes.
+     */
+    (event: 'update:zoom', zoom: number): void
+    /**
+     * Triggers when the map's center coordinates are updated.
+     */
+    (event: 'update:center', center: LatLng): void
+    /**
+     * Triggers when the map's visible bounds are updated.
+     */
+    (event: 'update:bounds', center: LatLngBounds): void
 }
 
 export const setupMap = (props: MapProps) => {

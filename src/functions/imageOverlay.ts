@@ -54,7 +54,8 @@ export interface ImageOverlayAbstractProps<T extends ImageOverlayOptions = Image
     bounds: LatLngBoundsExpression
 }
 
-export interface ImageOverlayProps extends ImageOverlayAbstractProps {
+export interface ImageOverlayProps<T extends ImageOverlayOptions = ImageOverlayOptions>
+    extends ImageOverlayAbstractProps<T> {
     /**
      * Url of the image
      * @reactive

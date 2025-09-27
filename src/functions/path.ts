@@ -83,7 +83,8 @@ export const pathPropsDefaults = {
     fill: undefined
 }
 
-export type PathEmits = InteractiveLayerEmits
+/* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
+export interface PathEmits extends InteractiveLayerEmits {}
 
 export const setupPath = (props: PathProps, leafletRef: Ref<Path | undefined>, emit: PathEmits) => {
     const { options: interactiveLayerOptions, methods: interactiveLayerMethods } =

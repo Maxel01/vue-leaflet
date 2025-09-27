@@ -10,7 +10,8 @@ import {
 } from './control'
 import type { Ref } from 'vue'
 
-export interface ControlZoomProps extends ControlAbstractProps<Control.ZoomOptions> {
+export interface ControlZoomProps<T extends Control.ZoomOptions = Control.ZoomOptions>
+    extends ControlAbstractProps<T> {
     /**
      * The text set on the 'zoom in' button
      * @initOnly
@@ -37,7 +38,8 @@ export const controlZoomPropsDefaults = {
     ...controlAbstractPropsDefaults
 }
 
-export type ControlZoomEmits = ControlEmits<Control.Zoom>
+/* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
+export interface ControlZoomEmits<T extends Control.Zoom = Control.Zoom> extends ControlEmits<T> {}
 
 export const setupControlZoom = (
     props: ControlZoomProps,

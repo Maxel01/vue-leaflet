@@ -10,7 +10,8 @@ import {
 } from './control'
 import type { Ref } from 'vue'
 
-export interface ControlScaleProps extends ControlAbstractProps<Control.ScaleOptions> {
+export interface ControlScaleProps<T extends Control.ScaleOptions = Control.ScaleOptions>
+    extends ControlAbstractProps<T> {
     /**
      * Maximum width of the control in pixels. The width is set dynamically to show round values (eg. 100, 200, 500).
      * @initOnly
@@ -40,7 +41,9 @@ export const controlScalePropsDefaults = {
     updateWhenIdle: undefined
 }
 
-export type ControlScaleEmits = ControlEmits<Control.Scale>
+/* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
+export interface ControlScaleEmits<T extends Control.Scale = Control.Scale>
+    extends ControlEmits<T> {}
 
 export const setupControlScale = (
     props: ControlScaleProps,
