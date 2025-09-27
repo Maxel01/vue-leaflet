@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { LMap, LTileLayer, LVideoOverlay } from '@maxel01/vue-leaflet'
+import { LatLngBounds } from 'leaflet'
 
 /**
  * TODO Video doesn't seem to work in vitepress but works in playground.
  */
 const videoUrl = 'https://www.mapbox.com/bites/00188/patricia_nasa.webm'
-const videoBounds = [
+const videoBounds = new LatLngBounds([
     [32, -130],
     [13, -100]
-]
+])
 </script>
 
 <template>
@@ -18,6 +19,6 @@ const videoBounds = [
             layer-type="base"
             name="OpenStreetMap"
         />
-        <LVideoOverlay :video="videoUrl" :bounds="videoBounds"/>
+        <LVideoOverlay :video="videoUrl" :bounds="videoBounds" />
     </LMap>
 </template>

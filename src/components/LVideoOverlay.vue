@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { VideoOverlay } from 'leaflet'
-import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
+import { markRaw, nextTick, onMounted, ref, useAttrs, computed } from 'vue'
 
 import { AddLayerInjection } from '@/types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '@/utils'
@@ -13,13 +13,13 @@ import {
 
 /**
  * > Used to load and display a video over specific bounds of the map.
- * @demo video-overlay {7-11,16-21}
+ * @demo video-overlay {8-12,17-22}
  */
 defineOptions({})
 const props = withDefaults(defineProps<VideoOverlayProps>(), videoOverlayPropsDefaults)
 const emit = defineEmits<VideoOverlayEmits>()
 
-const { ready, leafletObject } = useVideoOverlay()
+const { ready, leafletObject, videoRoot } = useVideoOverlay()
 defineExpose({
     /**
      * Indicates whether the component and its underlying Leaflet object are fully initialized.
@@ -36,14 +36,23 @@ defineExpose({
 function useVideoOverlay() {
     const leafletObject = ref<VideoOverlay>()
     const ready = ref<boolean>(false)
+    const videoRoot = ref<HTMLDivElement>()
+    const video = computed(() => {
+        const video = videoRoot.value?.firstElementChild
+        return video?.tagName === 'svg' ? (video as HTMLVideoElement) : undefined
+    })
 
     const addLayer = assertInject(AddLayerInjection)
 
     const { options, methods } = setupVideoOverlay(props, leafletObject, emit)
 
     onMounted(async () => {
+        if (!video.value && !props.video) {
+            console.warn('Missing video prop or slot: VideoOverlay has not been created.')
+            return
+        }
         leafletObject.value = markRaw<VideoOverlay>(
-            new VideoOverlay(props.video, props.bounds, options)
+            new VideoOverlay(video.value ? video.value : props.video!, props.bounds, options)
         )
 
         const { listeners } = remapEvents(useAttrs())
@@ -58,15 +67,21 @@ function useVideoOverlay() {
         nextTick(() => emit('ready', leafletObject.value!))
     })
 
-    return { ready, leafletObject }
+    return { ready, leafletObject, videoRoot }
 }
 </script>
 
 <template>
     <div v-if="ready" style="display: none">
         <!--
-        @slot Used to inject Leaflet child components like `<LPopup>` or `<LTooltip>` into the `LCircleMarker`.
+        @slot Used to inject Leaflet child components like `<LPopup>` or `<LTooltip>` into the `LVideoOverlay`.
         -->
         <slot />
+    </div>
+    <div style="display: none" ref="videoRoot">
+        <!--
+       @slot Place your `HtmlVideoElement` inside this slot. Be aware that `props.video` will be ignored, when this slot is used. Replacing the `HtmlVideoElement` is not reactive.
+       -->
+        <slot name="video" />
     </div>
 </template>
