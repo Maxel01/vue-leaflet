@@ -14,7 +14,7 @@
   "dependencies": {
     "@maxel01/vue-leaflet": "1.0.0-beta",
     "@dist/vue-leaflet": "link:..",
-    "leaflet": "2.0.0-alpha",
+    "leaflet": "2.0.0-alpha.1",
     "nuxt": "^4.1.2",
     "vue": "^3.5.22",
     "vue-router": "^4.5.1"
