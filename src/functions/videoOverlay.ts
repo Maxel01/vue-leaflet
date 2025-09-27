@@ -8,10 +8,10 @@ import { imageOverlayPropsDefaults, setupImageOverlay } from './imageOverlay'
 export interface VideoOverlayProps<T extends VideoOverlayOptions = VideoOverlayOptions>
     extends ImageOverlayAbstractProps<T> {
     /**
-     * Url of the video, urls of the videos or a video Element
+     * Url of the video, urls of the videos or a video Element. Will be ignored when using the named slot `video`.
      * @initOnly
      */
-    video: string | string[] | HTMLVideoElement
+    video?: string | string[] | HTMLVideoElement
 }
 
 export const videoOverlayPropsDefaults = {
