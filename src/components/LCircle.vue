@@ -68,7 +68,7 @@ function useCircleMarker() {
 <template>
     <div v-if="ready" style="display: none">
         <!--
-        @slot Used to inject Leaflet child components like `<LPopup>` or `<LTooltip>` into the `LCircleMarker`.
+        @slot Used to inject Leaflet child components like `<LPopup>` or `<LTooltip>` into the `LCircle`.
         -->
         <slot />
     </div>
