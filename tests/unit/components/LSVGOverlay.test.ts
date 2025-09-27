@@ -61,8 +61,10 @@ const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) =
 const testWarnings = (getWrapper: (props: object) => Promise<VueWrapper<any>>) => {
     it('it logs an error when props.svg and the svg slot are invalid', async () => {
         const consoleWarnMock = vi.spyOn(console, 'warn').mockImplementation(() => {})
-        const wrapper = await getWrapper({svg: undefined})
-        expect(consoleWarnMock).toHaveBeenCalledExactlyOnceWith('Missing svg prop or slot: LSVGOverlay has not been created.')
+        const wrapper = await getWrapper({ svg: undefined })
+        expect(consoleWarnMock).toHaveBeenCalledExactlyOnceWith(
+            'Missing svg prop or slot: LSVGOverlay has not been created.'
+        )
         expect(wrapper.vm.leafletObject).toBeUndefined()
     })
 }
