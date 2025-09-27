@@ -9,10 +9,10 @@ import { imageOverlayPropsDefaults, setupImageOverlay } from './imageOverlay'
 export interface SVGOverlayProps<T extends ImageOverlayOptions = ImageOverlayOptions>
     extends ImageOverlayAbstractProps<T> {
     /**
-     * Url of the svg or the SVGElement
+     * Url of the svg or the SVGElement. Will be ignored when using the named slot `svg`.
      * @initOnly
      */
-    svg: string | SVGElement
+    svg?: string | SVGElement
 }
 
 export const svgOverlayPropsDefaults = {
