@@ -38,7 +38,7 @@ import {
     RegisterLayerControlInjection,
     RemoveLayerInjection
 } from '@/types/injectionKeys'
-import { type MapProps, mapPropsDefaults, setupMap } from '@/functions/map'
+import { type MapEmits, type MapProps, mapPropsDefaults, setupMap } from '@/functions/map'
 
 /**
  * > Base component, contains and wraps all the other components.
@@ -53,24 +53,7 @@ const { methods, layersInControl } = useMethods()
 const { listeners, attrs, eventHandlers } = useEvents()
 useProvideFunctions()
 
-const emit = defineEmits<{
-    /**
-     * Triggers when the component is ready
-     */
-    (event: 'ready', map: Map): void
-    /**
-     * Triggers when the map's zoom level changes.
-     */
-    (event: 'update:zoom', zoom: number): void
-    /**
-     * Triggers when the map's center coordinates are updated.
-     */
-    (event: 'update:center', center: LatLng): void
-    /**
-     * Triggers when the map's visible bounds are updated.
-     */
-    (event: 'update:bounds', center: LatLngBounds): void
-}>()
+const emit = defineEmits<MapEmits>()
 
 defineExpose({
     /**
