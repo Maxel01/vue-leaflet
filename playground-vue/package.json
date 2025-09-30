@@ -15,7 +15,7 @@
   "dependencies": {
     "@maxel01/vue-leaflet": "1.0.0-beta",
     "@dist/vue-leaflet": "link:..",
-    "@vueuse/core": "^13.6.0",
+    "@vueuse/core": "^13.9.0",
     "leaflet": "2.0.0-alpha.1",
     "vue": "^3.5.22",
     "vue-router": "^4.5.1"
