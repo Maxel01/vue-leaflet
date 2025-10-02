@@ -62,7 +62,8 @@ Explore the documentation to see which plugins are already supported and learn h
 
 The first plugin has already been implemented. If you need support for a specific plugin, open an issue in the plugin repo and help shape the roadmap.
 
-> ⚠️ **Important:** Leaflet v1 plugins are **not compatible** with Leaflet v2 and cannot be used directly. To use a plugin with v2, it must be ported and wrapped appropriately.
+> ⚠️ **Important:** Leaflet v1 plugins are **not compatible** with Leaflet v2 and cannot be used directly. To use a plugin with v2, it must be ported and wrapped appropriately. \
+> However, there is a possibility to use the [Leaflet-V1-polyfill](https://github.com/Falke-Design/Leaflet-V1-polyfill). Check out the [`vue-leaflet-plugins`](https://github.com/Maxel01/vue-leaflet-plugins) wrapper for more.
 
 ---
 
