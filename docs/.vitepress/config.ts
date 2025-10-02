@@ -29,7 +29,8 @@ export default defineConfig({
                 items: [
                     { text: 'Installation', link: '/getting-started/installation' },
                     { text: 'Usage', link: '/getting-started/usage' },
-                    { text: 'Contribution', link: '/getting-started/contribution' }
+                    { text: 'Contribution', link: '/getting-started/contribution' },
+                    { text: 'Migration', link: '/getting-started/migration' }
                 ]
             },
             {
