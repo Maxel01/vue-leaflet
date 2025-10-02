@@ -1,7 +1,6 @@
-//import './assets/css/main.css'
 import 'leaflet/dist/leaflet.css'
 
-import { createApp, defineAsyncComponent, ref } from 'vue'
+import { createApp, defineAsyncComponent } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 import App from './App.vue'
@@ -30,26 +29,5 @@ Object.entries(components).forEach(([path, component]) => {
 })
 
 app.use(router)
-
-// @ts-expect-error unknown global property
-globalThis.useFetch = async (url: string, options: RequestInit & { transform?: (data) => any } = {}) => {
-    const data = ref()
-    const status = ref('idle')
-    async function _fetch() {
-        status.value = 'loading'
-        try {
-            data.value = await fetch(url, options).then(r => r.json()).then(r => options.transform ? options.transform(r) : r)
-            status.value = 'success'
-        } catch (error) {
-            console.error(error)
-            status.value = 'error'
-        }
-    }
-    _fetch()
-    return Promise.resolve({
-        data,
-        status
-    })
-}
 
 app.mount('#app')
