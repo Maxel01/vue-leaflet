@@ -138,11 +138,29 @@ pnpm install
 
 #### Start development
 
+To make sure the development environments work correctly, build the wrapper first:
+
+```sh
+pnpm build
+```
+
+You can select which build should be used for the dev environment. Open the `nuxt.config.ts` in the `playground` or `vite.config.ts` in the `vue-playground` and select `local`, `dist` or `npm`.
+
+::: warning
+Please make sure to revert your changes in the configuration to `dist` when pushing.
+:::
+
 - To work on the **documentation** located in the `docs` folder, run:
 
 ```sh
 pnpm docs:dev
 ```
+
+To regenerate the files from the vue components, you need to restart the dev server.
+
+::: tip
+The documentation always uses the `dist` folder. Build the wrapper first.
+:::
 
 - To test the vue-leaflet components using the **playground**, run:
 
