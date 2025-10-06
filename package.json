@@ -79,7 +79,7 @@
     "release-it": "^17.11.0",
     "ts-morph": "^26.0.0",
     "typescript": "~5.8.3",
-    "vite": "^7.1.7",
+    "vite": "^7.1.9",
     "vite-plugin-dts": "^4.5.4",
     "vitepress": "^1.6.4",
     "vitest": "^3.2.4",
