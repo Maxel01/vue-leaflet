@@ -12,18 +12,17 @@ export interface InteractiveLayerProps<T extends InteractiveLayerOptions = Inter
      * @initOnly
      */
     interactive?: boolean
-    // TODO in leaflet v2 it is bubblingPointerEvents
     /**
      * When `true`, a pointer event on this path will trigger the same event on the map (unless [DomEvent.stopPropagation](https://leafletjs.com/reference-2.0.0.html#domevent-stoppropagation) is used).
      * @initOnly
      */
-    bubblingMouseEvents?: boolean
+    bubblingPointerEvents?: boolean
 }
 
 export const interactiveLayerPropsDefaults = {
     ...layerPropsDefaults,
     interactive: undefined,
-    bubblingMouseEvents: undefined
+    bubblingPointerEvents: undefined
 }
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
