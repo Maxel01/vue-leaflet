@@ -7,6 +7,9 @@
     "publish": true,
     "tag": "latest"
   },
+  "hooks": {
+    "before:init": "pnpm build"
+  },
   "github": {
     "release": true,
     "releaseName": "v${version}",
