@@ -1,5 +1,38 @@
 # Changelog
 
+## [1.0.0-beta.2](https://github.com/maxel01/vue-leaflet/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2025-10-08)
+
+### ✨ Features
+
+* **LSVGOverlay:** add slot for the `SVGElement` ([#92](https://github.com/maxel01/vue-leaflet/issues/92)) ([3fc3bab](https://github.com/maxel01/vue-leaflet/commit/3fc3bab7228d067a1b089a111e880fd0e5b77573))
+* **LVideoOverlay:** add slot for the `HtmlVideoElement` ([#94](https://github.com/maxel01/vue-leaflet/issues/94)) ([dd7e506](https://github.com/maxel01/vue-leaflet/commit/dd7e50619c688257a04750303c956d1ea6bf1246))
+
+### 🐛 Bug Fixes
+
+* **LIcon:** LIcon uses Icon instead of DivIcon if the slot is empty ([#68](https://github.com/maxel01/vue-leaflet/issues/68)) ([70ab213](https://github.com/maxel01/vue-leaflet/commit/70ab213a35c1b7bf2069701d87f87d7f5e9beda2))
+* **tests:** move remaining props to the wrapper folder ([#69](https://github.com/maxel01/vue-leaflet/issues/69)) ([8b9cc67](https://github.com/maxel01/vue-leaflet/commit/8b9cc672a0e28e7d55a738edabc9b1cfe8053563))
+
+### 📝 Documentation
+
+* add a short migration guide ([#104](https://github.com/maxel01/vue-leaflet/issues/104)) ([bda8862](https://github.com/maxel01/vue-leaflet/commit/bda8862642492bc478ea3530e2944cd80e1ed1cd))
+* add detailed information to select the version used in the playgrounds. ([#103](https://github.com/maxel01/vue-leaflet/issues/103)) ([f123641](https://github.com/maxel01/vue-leaflet/commit/f123641d4573f97e704085bd98afba122349d777))
+* add links on components introduction page ([#93](https://github.com/maxel01/vue-leaflet/issues/93)) ([db24f65](https://github.com/maxel01/vue-leaflet/commit/db24f65c2739be4c4991da14f5747fcd4cc9803a))
+* add v1 plugins compatibility to README.md ([#105](https://github.com/maxel01/vue-leaflet/issues/105)) ([6eb7eca](https://github.com/maxel01/vue-leaflet/commit/6eb7eca046f82302555a89e72eece88571d1c84e))
+* fix component name in comment ([#95](https://github.com/maxel01/vue-leaflet/issues/95)) ([15a1184](https://github.com/maxel01/vue-leaflet/commit/15a118453d7b70f8d7ee725f1165036c1d0fd2f2))
+
+### ♻️ Refactoring
+
+* add generics to all `Props` and `Emits` ([#91](https://github.com/maxel01/vue-leaflet/issues/91)) ([d953407](https://github.com/maxel01/vue-leaflet/commit/d9534073dc1f39fbd3886d138ad7922edff2478f))
+
+### 🚧 Chores
+
+* add ci workflow for PRs ([#72](https://github.com/maxel01/vue-leaflet/issues/72)) ([8c5d350](https://github.com/maxel01/vue-leaflet/commit/8c5d350f2fbaf780477d2e6e6debde9d2bd87a1d))
+* add pnpm caching to ci ([#90](https://github.com/maxel01/vue-leaflet/issues/90)) ([1ed64b1](https://github.com/maxel01/vue-leaflet/commit/1ed64b1e713e4e05386c5d3dbeebd195a735cb45))
+* fix formatting errors ([#73](https://github.com/maxel01/vue-leaflet/issues/73)) ([0e591c4](https://github.com/maxel01/vue-leaflet/commit/0e591c45647df25b5b31f656c7669c4963571b88))
+* improve release ([#111](https://github.com/maxel01/vue-leaflet/issues/111)) ([1ab30db](https://github.com/maxel01/vue-leaflet/commit/1ab30dbda6753f47b18bee2332cce18588470d35))
+* update dependabot.yml ([#81](https://github.com/maxel01/vue-leaflet/issues/81)) ([2d77b25](https://github.com/maxel01/vue-leaflet/commit/2d77b25f732fa17e5d5d02c4384f8a9315256ce8))
+* **vue-playground:** remove unused code ([#102](https://github.com/maxel01/vue-leaflet/issues/102)) ([e4015bb](https://github.com/maxel01/vue-leaflet/commit/e4015bb2018b147d3327e2e994218f0ac71b2d17))
+
 ## [1.0.0-beta.1](https://github.com/maxel01/vue-leaflet/compare/v1.0.0-beta...v1.0.0-beta.1) (2025-09-02)
 
 
