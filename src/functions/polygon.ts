@@ -1,4 +1,5 @@
-import { type LatLngExpression, Polygon, type PolylineOptions } from 'leaflet'
+import type { Polygon} from 'leaflet';
+import { type LatLngExpression, type PolylineOptions } from 'leaflet'
 
 import { propsToLeafletOptions } from '@/utils'
 

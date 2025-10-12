@@ -1,4 +1,4 @@
-import { Circle, type CircleOptions } from 'leaflet'
+import type { Circle, CircleOptions } from 'leaflet'
 
 import { propsToLeafletOptions } from '@/utils'
 

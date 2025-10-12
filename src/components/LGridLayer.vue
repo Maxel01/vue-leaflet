@@ -9,7 +9,7 @@ import {
 import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 import { AddLayerInjection } from '@/types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '@/utils'
-import { GridLayer } from 'leaflet'
+import type { GridLayer } from 'leaflet'
 
 /**
  * > Creates a map layer where each tile is an instantiated Vue component.

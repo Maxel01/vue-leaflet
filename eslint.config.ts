@@ -19,6 +19,13 @@ export default defineConfigWithVueTs(
                     argsIgnorePattern: '^_',
                     varsIgnorePattern: '^_'
                 }
+            ],
+            '@typescript-eslint/consistent-type-imports': [
+                'warn',
+                {
+                    prefer: 'type-imports',
+                    disallowTypeAnnotations: false
+                }
             ]
         },
         files: ['**/*.{ts,mts,tsx,vue}']

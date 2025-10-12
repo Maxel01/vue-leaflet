@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, markRaw, nextTick, onBeforeUnmount, onMounted, ref, useAttrs } from 'vue'
 import {
-    Control,
+    type Control,
     type CRS,
     type FitBoundsOptions,
     Icon,

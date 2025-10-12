@@ -1,5 +1,5 @@
 import type { ImageOverlayOptions } from 'leaflet'
-import { SVGOverlay } from 'leaflet'
+import type { SVGOverlay } from 'leaflet'
 import type { Ref } from 'vue'
 
 import { propsToLeafletOptions } from '@/utils'

@@ -1,6 +1,6 @@
 import { mergeReactiveProps } from '@/tests/helper/props'
 import { layerProps } from '@/tests/helper/propsBindingTests'
-import { ImageOverlay, LatLngBounds } from 'leaflet'
+import { type ImageOverlay, LatLngBounds } from 'leaflet'
 import { expect } from 'vitest'
 
 export const imageOverlayAbstractProps = mergeReactiveProps(layerProps, {
