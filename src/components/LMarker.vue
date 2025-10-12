@@ -23,7 +23,7 @@ import {
     SetIconInjection,
     SetParentHtmlInjection
 } from '@/types/injectionKeys'
-import { DivIcon, Icon, type LeafletEventHandlerFnMap, Marker } from 'leaflet'
+import { type Icon, DivIcon, type LeafletEventHandlerFnMap, Marker } from 'leaflet'
 import { debounce } from 'ts-debounce'
 import {
     type MarkerEmits,

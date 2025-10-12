@@ -1,4 +1,4 @@
-import { Control } from 'leaflet'
+import type { Control } from 'leaflet'
 
 import { propsToLeafletOptions } from '@/utils'
 

@@ -1,4 +1,4 @@
-import { FeatureGroup, type InteractiveLayerOptions } from 'leaflet'
+import type { FeatureGroup, InteractiveLayerOptions } from 'leaflet'
 
 import { propsToLeafletOptions } from '@/utils'
 

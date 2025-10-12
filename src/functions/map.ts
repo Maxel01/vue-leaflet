@@ -1,4 +1,4 @@
-import { type CRS, LatLng, LatLngBounds, Map, type MapOptions, type PointExpression } from 'leaflet'
+import type { CRS, LatLng, LatLngBounds, Map, MapOptions, PointExpression } from 'leaflet'
 import { type ComponentProps, componentPropsDefaults, setupComponent } from '@/functions/component'
 
 export interface MapProps<T extends MapOptions = MapOptions> extends ComponentProps<T> {

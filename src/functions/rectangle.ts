@@ -1,9 +1,4 @@
-import {
-    type LatLngBoundsExpression,
-    type LatLngExpression,
-    type PolylineOptions,
-    Rectangle
-} from 'leaflet'
+import type { Rectangle, LatLngBoundsExpression, LatLngExpression, PolylineOptions } from 'leaflet'
 
 import { propsToLeafletOptions } from '@/utils'
 
