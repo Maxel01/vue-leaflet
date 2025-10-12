@@ -2,8 +2,12 @@ import type { VideoOverlay, VideoOverlayOptions } from 'leaflet'
 import type { Ref } from 'vue'
 
 import { propsToLeafletOptions } from '@/utils'
-import type { ImageOverlayAbstractProps, ImageOverlayEmits } from './imageOverlay'
-import { imageOverlayPropsDefaults, setupImageOverlay } from './imageOverlay'
+import {
+    type ImageOverlayAbstractProps,
+    type ImageOverlayEmits,
+    imageOverlayPropsDefaults,
+    setupImageOverlay
+} from './imageOverlay'
 
 export interface VideoOverlayProps<T extends VideoOverlayOptions = VideoOverlayOptions>
     extends ImageOverlayAbstractProps<T> {

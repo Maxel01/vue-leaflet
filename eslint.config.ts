@@ -20,6 +20,7 @@ export default defineConfigWithVueTs(
                     varsIgnorePattern: '^_'
                 }
             ],
+            "no-duplicate-imports": "error",
             '@typescript-eslint/consistent-type-imports': [
                 'warn',
                 {

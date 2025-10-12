@@ -1,5 +1,4 @@
-import type { LayerGroup } from 'leaflet'
-import { type InteractiveLayerOptions, type LayerOptions } from 'leaflet'
+import type { LayerGroup, InteractiveLayerOptions, LayerOptions } from 'leaflet'
 import { provide, type Ref } from 'vue'
 
 import { AddLayerInjection, RemoveLayerInjection } from '@/types/injectionKeys'
