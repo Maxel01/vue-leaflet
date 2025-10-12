@@ -1,7 +1,7 @@
 import { propsToLeafletOptions } from '@/utils'
 
 import { type PathEmits, type PathProps, pathPropsDefaults, setupPath as pathSetup } from './path'
-import { CircleMarker, type CircleMarkerOptions, type LatLngExpression } from 'leaflet'
+import type { CircleMarker, CircleMarkerOptions, LatLngExpression } from 'leaflet'
 import type { Ref } from 'vue'
 
 export interface CircleMarkerProps<T extends CircleMarkerOptions = CircleMarkerOptions>

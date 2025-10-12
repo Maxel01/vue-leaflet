@@ -1,4 +1,4 @@
-import type { LayerGroup} from 'leaflet';
+import type { LayerGroup } from 'leaflet'
 import { type InteractiveLayerOptions, type LayerOptions } from 'leaflet'
 import { provide, type Ref } from 'vue'
 
