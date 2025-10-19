@@ -7,7 +7,14 @@ export default defineConfig({
     description: 'Documentation for the Vue Leaflet module',
     head: [
         ['link', { rel: 'icon', href: '/vue-leaflet/favicon.ico' }],
-        ['script', { src: 'https://scripts.simpleanalyticscdn.com/latest.js', async: 'true' }]
+        [
+            'script',
+            {
+                src: 'https://scripts.simpleanalyticscdn.com/latest.js',
+                async: 'true',
+                'data-collect-dnt': 'true'
+            }
+        ]
     ],
     base: '/vue-leaflet/',
     vite: {
