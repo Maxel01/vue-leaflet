@@ -5,7 +5,10 @@ import { alias } from '../../alias.config'
 export default defineConfig({
     title: 'Vue Leaflet',
     description: 'Documentation for the Vue Leaflet module',
-    head: [['link', { rel: 'icon', href: '/vue-leaflet/favicon.ico' }]],
+    head: [
+        ['link', { rel: 'icon', href: '/vue-leaflet/favicon.ico' }],
+        ['script', { src: 'https://scripts.simpleanalyticscdn.com/latest.js', async: 'true' }]
+    ],
     base: '/vue-leaflet/',
     vite: {
         resolve: {
@@ -76,9 +79,7 @@ export default defineConfig({
             },
             {
                 text: 'About',
-                items: [
-                    { text: 'Q&A', link: '/about/q&a' }
-                ]
+                items: [{ text: 'Q&A', link: '/about/q&a' }]
             }
         ],
 
