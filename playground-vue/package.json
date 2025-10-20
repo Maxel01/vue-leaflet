@@ -17,7 +17,7 @@
     "@dist/vue-leaflet": "link:..",
     "leaflet": "2.0.0-alpha.1",
     "vue": "^3.5.22",
-    "vue-router": "^4.5.1"
+    "vue-router": "^4.6.3"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.2",
