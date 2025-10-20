@@ -10,3 +10,10 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
+    groups:
+      minor-deps:
+        update-types:
+          - "minor"
+      patch-deps:
+        update-types:
+          - "patch"
