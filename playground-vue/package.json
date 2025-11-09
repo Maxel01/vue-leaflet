@@ -13,9 +13,9 @@
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
-    "@maxel01/vue-leaflet": "1.0.0-beta",
+    "@maxel01/vue-leaflet": "^1.0.0-beta.2",
     "@dist/vue-leaflet": "link:..",
-    "leaflet": "2.0.0-alpha.1",
+    "leaflet": "^2.0.0-alpha.1",
     "vue": "^3.5.22",
     "vue-router": "^4.6.3"
   },
