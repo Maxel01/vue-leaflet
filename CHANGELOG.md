@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.0.0-beta.3](https://github.com/maxel01/vue-leaflet/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2025-11-16)
+
+### ⚠ BREAKING CHANGES
+
+* **interactiveLayer:** rename `bubblingMouseEvents` to `bubblingPointerEvents` in `interactiveLayer`
+
+### ✨ Features
+
+* **docs:** update vitepress to v2 ([#136](https://github.com/maxel01/vue-leaflet/issues/136)) ([663e2c9](https://github.com/maxel01/vue-leaflet/commit/663e2c9bba74d73c780de73d4ed79595cea5e723))
+
+### 📝 Documentation
+
+* add analytics to get usage overview ([#120](https://github.com/maxel01/vue-leaflet/issues/120)) ([300bc1b](https://github.com/maxel01/vue-leaflet/commit/300bc1b65cac7f739fa49398f73a10465285e6b5))
+* remove comment in `LVideoOverlay` demo ([#112](https://github.com/maxel01/vue-leaflet/issues/112)) ([4db5023](https://github.com/maxel01/vue-leaflet/commit/4db502376abc45eefbcf392a9c45f736cfbba7be))
+
+### ♻️ Refactoring
+
+* **interactiveLayer:** rename `bubblingMouseEvents` to `bubblingPointerEvents` ([#113](https://github.com/maxel01/vue-leaflet/issues/113)) ([519c764](https://github.com/maxel01/vue-leaflet/commit/519c7641049dd9a34c60022317f135be29db9e48))
+* replace `import x` with `import type x` where applicable ([#114](https://github.com/maxel01/vue-leaflet/issues/114)) ([488d1e9](https://github.com/maxel01/vue-leaflet/commit/488d1e9e782ee5e1eb8a408aa400243fbee83745))
+
+### 🚧 Chores
+
+* configure groups for minor and patch dependencies ([#128](https://github.com/maxel01/vue-leaflet/issues/128)) ([a108b7d](https://github.com/maxel01/vue-leaflet/commit/a108b7dc1aac5d32609a9a79580eacbe046667a5))
+
 ## [1.0.0-beta.2](https://github.com/maxel01/vue-leaflet/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2025-10-08)
 
 ### ✨ Features
