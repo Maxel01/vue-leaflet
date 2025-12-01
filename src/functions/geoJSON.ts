@@ -11,8 +11,9 @@ import {
     setupLayerGroup
 } from './layerGroup'
 
-export interface GeoJSONProps<T extends GeoJSONOptions = GeoJSONOptions>
-    extends LayerGroupProps<T> {
+export interface GeoJSONProps<
+    T extends GeoJSONOptions = GeoJSONOptions
+> extends LayerGroupProps<T> {
     /**
      * An object in GeoJSON format to display on the map (you can alternatively add it later with addData method).
      * @reactive

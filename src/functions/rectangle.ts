@@ -10,8 +10,9 @@ import {
 } from './polygon'
 import type { Ref } from 'vue'
 
-export interface RectangleProps<T extends PolylineOptions = PolylineOptions>
-    extends PolygonAbstractProps<T> {
+export interface RectangleProps<
+    T extends PolylineOptions = PolylineOptions
+> extends PolygonAbstractProps<T> {
     /**
      * Array of coordinates objects that represent the rectangle
      * @reactive

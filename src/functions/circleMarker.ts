@@ -4,8 +4,9 @@ import { type PathEmits, type PathProps, pathPropsDefaults, setupPath as pathSet
 import type { CircleMarker, CircleMarkerOptions, LatLngExpression } from 'leaflet'
 import type { Ref } from 'vue'
 
-export interface CircleMarkerProps<T extends CircleMarkerOptions = CircleMarkerOptions>
-    extends PathProps<T> {
+export interface CircleMarkerProps<
+    T extends CircleMarkerOptions = CircleMarkerOptions
+> extends PathProps<T> {
     /**
      * Radius of the marker, in pixels
      * @reactive

@@ -10,8 +10,9 @@ import {
 } from './control'
 import type { Ref } from 'vue'
 
-export interface ControlZoomProps<T extends Control.ZoomOptions = Control.ZoomOptions>
-    extends ControlAbstractProps<T> {
+export interface ControlZoomProps<
+    T extends Control.ZoomOptions = Control.ZoomOptions
+> extends ControlAbstractProps<T> {
     /**
      * The text set on the 'zoom in' button
      * @initOnly

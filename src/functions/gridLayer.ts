@@ -11,8 +11,9 @@ import {
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
 import { propsToLeafletOptions } from '@/utils'
 
-export interface GridLayerAbstractProps<T extends GridLayerOptions = GridLayerOptions>
-    extends LayerProps<T> {
+export interface GridLayerAbstractProps<
+    T extends GridLayerOptions = GridLayerOptions
+> extends LayerProps<T> {
     /**
      * Opacity of the tiles. Can be used in the createTile() function.
      * @reactive

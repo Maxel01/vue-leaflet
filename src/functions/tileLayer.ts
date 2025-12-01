@@ -8,8 +8,9 @@ import type { Ref } from 'vue'
 import { type TileLayer, type TileLayerOptions } from 'leaflet'
 import { propsToLeafletOptions } from '@/utils'
 
-export interface TileLayerProps<T extends TileLayerOptions = TileLayerOptions>
-    extends GridLayerAbstractProps<T> {
+export interface TileLayerProps<
+    T extends TileLayerOptions = TileLayerOptions
+> extends GridLayerAbstractProps<T> {
     /**
      * If `true`, inverses Y axis numbering for tiles (turn this on for TMS services)
      * @initOnly

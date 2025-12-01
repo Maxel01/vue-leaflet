@@ -25,8 +25,9 @@ export const controlAttributionPropsDefaults = {
 }
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
-export interface ControlAttributionEmits<T extends Control.Attribution = Control.Attribution>
-    extends ControlEmits<T> {}
+export interface ControlAttributionEmits<
+    T extends Control.Attribution = Control.Attribution
+> extends ControlEmits<T> {}
 
 export const setupControlAttribution = (
     props: ControlAttributionProps,
