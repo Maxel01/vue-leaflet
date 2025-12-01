@@ -55,8 +55,9 @@ export const wmsTileLayerPropsDefaults = {
 }
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
-export interface WmsTileLayerEmits<T extends TileLayer.WMS = TileLayer.WMS>
-    extends TileLayerEmits<T> {}
+export interface WmsTileLayerEmits<
+    T extends TileLayer.WMS = TileLayer.WMS
+> extends TileLayerEmits<T> {}
 
 export const setupWMSTileLayer = (
     props: WmsTileLayerProps,

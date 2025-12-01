@@ -11,8 +11,9 @@ import {
 import type { Ref } from 'vue'
 import type { ILayerDefinition } from '@/types/interfaces'
 
-export interface ControlLayersProps<T extends Control.LayersOptions = Control.LayersOptions>
-    extends ControlAbstractProps<T> {
+export interface ControlLayersProps<
+    T extends Control.LayersOptions = Control.LayersOptions
+> extends ControlAbstractProps<T> {
     /**
      * If `true`, the control will be collapsed into an icon and expanded on mouse hover, touch, or keyboard activation.
      * @initOnly
@@ -49,8 +50,9 @@ export const controlLayersPropsDefaults = {
 }
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
-export interface ControlLayersEmits<T extends Control.Layers = Control.Layers>
-    extends ControlEmits<T> {}
+export interface ControlLayersEmits<
+    T extends Control.Layers = Control.Layers
+> extends ControlEmits<T> {}
 
 export const setupControlLayers = (
     props: ControlLayersProps,

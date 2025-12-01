@@ -10,8 +10,9 @@ import { propsToLeafletOptions } from '@/utils'
 
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
 
-export interface ImageOverlayAbstractProps<T extends ImageOverlayOptions = ImageOverlayOptions>
-    extends LayerProps<T> {
+export interface ImageOverlayAbstractProps<
+    T extends ImageOverlayOptions = ImageOverlayOptions
+> extends LayerProps<T> {
     /**
      * The opacity of the image overlay.
      * @reactive
@@ -54,8 +55,9 @@ export interface ImageOverlayAbstractProps<T extends ImageOverlayOptions = Image
     bounds: LatLngBoundsExpression
 }
 
-export interface ImageOverlayProps<T extends ImageOverlayOptions = ImageOverlayOptions>
-    extends ImageOverlayAbstractProps<T> {
+export interface ImageOverlayProps<
+    T extends ImageOverlayOptions = ImageOverlayOptions
+> extends ImageOverlayAbstractProps<T> {
     /**
      * Url of the image
      * @reactive

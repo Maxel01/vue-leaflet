@@ -5,8 +5,9 @@ import { propsToLeafletOptions } from '@/utils'
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
 import type { Ref } from 'vue'
 
-export interface InteractiveLayerProps<T extends InteractiveLayerOptions = InteractiveLayerOptions>
-    extends LayerProps<T> {
+export interface InteractiveLayerProps<
+    T extends InteractiveLayerOptions = InteractiveLayerOptions
+> extends LayerProps<T> {
     /**
      * If `false`, the layer will not emit pointer events and will act as a part of the underlying map.
      * @initOnly

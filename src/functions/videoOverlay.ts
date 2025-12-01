@@ -9,8 +9,9 @@ import {
     setupImageOverlay
 } from './imageOverlay'
 
-export interface VideoOverlayProps<T extends VideoOverlayOptions = VideoOverlayOptions>
-    extends ImageOverlayAbstractProps<T> {
+export interface VideoOverlayProps<
+    T extends VideoOverlayOptions = VideoOverlayOptions
+> extends ImageOverlayAbstractProps<T> {
     /**
      * Url of the video, urls of the videos or a video Element. Will be ignored when using the named slot `video`.
      * @initOnly
@@ -23,8 +24,9 @@ export const videoOverlayPropsDefaults = {
 }
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
-export interface VideoOverlayEmits<T extends VideoOverlay = VideoOverlay>
-    extends ImageOverlayEmits<T> {}
+export interface VideoOverlayEmits<
+    T extends VideoOverlay = VideoOverlay
+> extends ImageOverlayEmits<T> {}
 
 export const setupVideoOverlay = (
     props: VideoOverlayProps,

@@ -5,8 +5,9 @@ import { propsToLeafletOptions } from '@/utils'
 
 import { type ComponentProps, componentPropsDefaults, setupComponent } from '@/functions/component'
 
-export interface ControlAbstractProps<T extends ControlOptions = ControlOptions>
-    extends ComponentProps<T> {
+export interface ControlAbstractProps<
+    T extends ControlOptions = ControlOptions
+> extends ComponentProps<T> {
     /**
      * The position of the control (one of the map corners). Possible values are `topleft`, `topright`, `bottomleft` or `bottomright`.
      * @reactive
@@ -14,8 +15,9 @@ export interface ControlAbstractProps<T extends ControlOptions = ControlOptions>
     position?: ControlPosition
 }
 
-export interface ControlProps<T extends ControlOptions = ControlOptions>
-    extends ControlAbstractProps<T> {
+export interface ControlProps<
+    T extends ControlOptions = ControlOptions
+> extends ControlAbstractProps<T> {
     /**
      * Adds stopPropagation to the element's `click`, `dblclick`, `contextmenu` and `pointerdown` events (plus browser variants).
      * @initOnly
