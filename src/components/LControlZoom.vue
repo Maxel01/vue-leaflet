@@ -1,21 +1,21 @@
 <script setup lang="ts">
 import { markRaw, nextTick, onMounted, ref } from 'vue'
 
-import { RegisterControlInjection } from '@/types/injectionKeys'
-import { assertInject, propsBinder } from '@/utils'
 import {
     type ControlZoomEmits,
     type ControlZoomProps,
     controlZoomPropsDefaults,
     setupControlZoom
 } from '@/functions/controlZoom'
+import { RegisterControlInjection } from '@/types/injectionKeys'
+import { assertInject, propsBinder } from '@/utils'
 import { Control } from 'leaflet'
 
 /**
  * > A basic zoom control with two buttons (zoom in and zoom out).
  * @demo control-zoom {12}
  */
-defineOptions({})
+defineOptions({ name: 'LControlZoom' })
 const props = withDefaults(defineProps<ControlZoomProps>(), controlZoomPropsDefaults)
 const emit = defineEmits<ControlZoomEmits>()
 

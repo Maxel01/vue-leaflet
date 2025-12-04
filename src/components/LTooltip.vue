@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { Tooltip } from 'leaflet'
-import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 import { setupTooltip, type TooltipProps, tooltipPropsDefaults } from '@/functions/tooltip'
 import { BindTooltipInjection } from '@/types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '@/utils'
+import { Tooltip } from 'leaflet'
+import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 
 /**
  * > Display a tooltip on the map
@@ -13,7 +13,7 @@ import { assertInject, propsBinder, remapEvents } from '@/utils'
  * :::
  * @demo tooltip {25,29,34,41,56,66,79,87}
  */
-defineOptions({})
+defineOptions({ name: 'LTooltip' })
 const props = withDefaults(defineProps<TooltipProps>(), tooltipPropsDefaults)
 const emit = defineEmits<{
     /**

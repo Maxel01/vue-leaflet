@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { markRaw, nextTick, onBeforeUnmount, onMounted, ref, useAttrs } from 'vue'
+import { type PopupProps, popupPropsDefaults, setupPopup } from '@/functions/popup'
 import { BindPopupInjection, UnbindPopupInjection } from '@/types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '@/utils'
 import { Popup } from 'leaflet'
-import { type PopupProps, popupPropsDefaults, setupPopup } from '@/functions/popup'
+import { markRaw, nextTick, onBeforeUnmount, onMounted, ref, useAttrs } from 'vue'
 
 /**
  * > Display a popup on the map
@@ -13,7 +13,7 @@ import { type PopupProps, popupPropsDefaults, setupPopup } from '@/functions/pop
  * :::
  * @demo popup {25,30,46,56,69,77}
  */
-defineOptions({})
+defineOptions({ name: 'LPopup' })
 const props = withDefaults(defineProps<PopupProps>(), popupPropsDefaults)
 const emit = defineEmits<{
     /**

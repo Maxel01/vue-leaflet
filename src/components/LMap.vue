@@ -1,5 +1,26 @@
 <script setup lang="ts">
-import { computed, markRaw, nextTick, onBeforeUnmount, onMounted, ref, useAttrs } from 'vue'
+import { type MapEmits, type MapProps, mapPropsDefaults, setupMap } from '@/functions/map'
+import {
+    AddLayerInjection,
+    RegisterControlInjection,
+    RegisterLayerControlInjection,
+    RemoveLayerInjection
+} from '@/types/injectionKeys'
+import type {
+    IControlDefinition,
+    ILayerControlDefinition,
+    ILayerDefinition
+} from '@/types/interfaces'
+import {
+    bindEventHandlers,
+    cancelDebounces,
+    propsBinder,
+    propsToLeafletOptions,
+    provideLeafletWrapper,
+    remapEvents,
+    resetWebpackIcon,
+    updateLeafletWrapper
+} from '@/utils'
 import {
     type Control,
     type CRS,
@@ -17,34 +38,13 @@ import {
     type ZoomPanOptions
 } from 'leaflet'
 import { debounce } from 'ts-debounce'
-import {
-    bindEventHandlers,
-    cancelDebounces,
-    propsBinder,
-    propsToLeafletOptions,
-    provideLeafletWrapper,
-    remapEvents,
-    resetWebpackIcon,
-    updateLeafletWrapper
-} from '@/utils'
-import type {
-    IControlDefinition,
-    ILayerControlDefinition,
-    ILayerDefinition
-} from '@/types/interfaces'
-import {
-    AddLayerInjection,
-    RegisterControlInjection,
-    RegisterLayerControlInjection,
-    RemoveLayerInjection
-} from '@/types/injectionKeys'
-import { type MapEmits, type MapProps, mapPropsDefaults, setupMap } from '@/functions/map'
+import { computed, markRaw, nextTick, onBeforeUnmount, onMounted, ref, useAttrs } from 'vue'
 
 /**
  * > Base component, contains and wraps all the other components.
  * @demo index {5,9-15}
  */
-defineOptions({})
+defineOptions({ name: 'LMap' })
 const props = withDefaults(defineProps<MapProps>(), mapPropsDefaults)
 
 const { root, leafletObject, ready } = useMap()

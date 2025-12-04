@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 import {
     type PolygonEmits,
     type PolygonProps,
@@ -9,12 +8,13 @@ import {
 import { AddLayerInjection } from '@/types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '@/utils'
 import { Polygon } from 'leaflet'
+import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 
 /**
  * > Easily draw a polygon on the map
  * @demo polygon {12-23}
  */
-defineOptions({})
+defineOptions({ name: 'LPolygon' })
 const props = withDefaults(defineProps<PolygonProps>(), polygonPropsDefaults)
 const emit = defineEmits<PolygonEmits>()
 

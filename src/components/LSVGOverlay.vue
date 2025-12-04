@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { SVGOverlay } from 'leaflet'
-import { markRaw, nextTick, onMounted, ref, useAttrs, computed } from 'vue'
-import { AddLayerInjection } from '@/types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '@/utils'
 import {
     setupSVGOverlay,
     type SVGOverlayEmits,
     type SVGOverlayProps,
     svgOverlayPropsDefaults
 } from '@/functions/svgOverlay'
+import { AddLayerInjection } from '@/types/injectionKeys'
+import { assertInject, propsBinder, remapEvents } from '@/utils'
+import { SVGOverlay } from 'leaflet'
+import { computed, markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 
 /**
  * > Used to load and display a single svg over specific bounds of the map.
  * @demo svg-overlay {7-24,40-49}
  */
-defineOptions({})
+defineOptions({ name: 'LSVGOverlay' })
 const props = withDefaults(defineProps<SVGOverlayProps>(), svgOverlayPropsDefaults)
 const emit = defineEmits<SVGOverlayEmits>()
 

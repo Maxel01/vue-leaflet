@@ -6,10 +6,10 @@ import {
     gridLayerPropsDefaults,
     setupGridLayer
 } from '@/functions/gridLayer'
-import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 import { AddLayerInjection } from '@/types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '@/utils'
 import type { GridLayer } from 'leaflet'
+import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 
 /**
  * > Creates a map layer where each tile is an instantiated Vue component.
@@ -31,7 +31,7 @@ import type { GridLayer } from 'leaflet'
  * :::
  * @demo grid-layer {5-11,17}
  */
-defineOptions({})
+defineOptions({ name: 'LGridLayer' })
 const props = withDefaults(defineProps<GridLayerProps>(), gridLayerPropsDefaults)
 
 const emit = defineEmits<GridLayerEmits>()

@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { LayerGroup } from 'leaflet'
-import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
-import { AddLayerInjection } from '@/types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '@/utils'
 import {
     type LayerGroupEmits,
     type LayerGroupProps,
     layerGroupPropsDefaults,
     setupLayerGroup
 } from '@/functions/layerGroup'
+import { AddLayerInjection } from '@/types/injectionKeys'
+import { assertInject, propsBinder, remapEvents } from '@/utils'
+import { LayerGroup } from 'leaflet'
+import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 
 /**
  * > Use to group several layers and handle them as one. If you add it to the map, any layers added or removed from the group will be added/removed on the map as well.
@@ -18,7 +18,7 @@ import {
  * :::
  * @demo layer-group {13-16}
  */
-defineOptions({})
+defineOptions({ name: 'LLayerGroup' })
 const props = withDefaults(defineProps<LayerGroupProps>(), layerGroupPropsDefaults)
 const emit = defineEmits<LayerGroupEmits>()
 
