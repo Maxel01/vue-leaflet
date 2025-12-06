@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.0-beta.4](https://github.com/maxel01/vue-leaflet/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2025-12-06)
+
+### ✨ Features
+
+* **debug:** Adding name to the components option ([#150](https://github.com/maxel01/vue-leaflet/issues/150)) ([506bebc](https://github.com/maxel01/vue-leaflet/commit/506bebc5d145cf6cebb37e6d6ab0313bfe2fde64))
+
 ## [1.0.0-beta.3](https://github.com/maxel01/vue-leaflet/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2025-11-16)
 
 ### ⚠ BREAKING CHANGES
