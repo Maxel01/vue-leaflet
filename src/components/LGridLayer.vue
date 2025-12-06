@@ -31,7 +31,7 @@ import type { GridLayer } from 'leaflet'
  * :::
  * @demo grid-layer {5-11,17}
  */
-defineOptions({})
+defineOptions({ name: 'LGridLayer' })
 const props = withDefaults(defineProps<GridLayerProps>(), gridLayerPropsDefaults)
 
 const emit = defineEmits<GridLayerEmits>()

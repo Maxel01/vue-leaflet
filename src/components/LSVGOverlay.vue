@@ -14,7 +14,7 @@ import {
  * > Used to load and display a single svg over specific bounds of the map.
  * @demo svg-overlay {7-24,40-49}
  */
-defineOptions({})
+defineOptions({ name: 'LSVGOverlay' })
 const props = withDefaults(defineProps<SVGOverlayProps>(), svgOverlayPropsDefaults)
 const emit = defineEmits<SVGOverlayEmits>()
 

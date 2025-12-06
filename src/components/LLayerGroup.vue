@@ -18,7 +18,7 @@ import {
  * :::
  * @demo layer-group {13-16}
  */
-defineOptions({})
+defineOptions({ name: 'LLayerGroup' })
 const props = withDefaults(defineProps<LayerGroupProps>(), layerGroupPropsDefaults)
 const emit = defineEmits<LayerGroupEmits>()
 

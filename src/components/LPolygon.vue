@@ -14,7 +14,7 @@ import { Polygon } from 'leaflet'
  * > Easily draw a polygon on the map
  * @demo polygon {12-23}
  */
-defineOptions({})
+defineOptions({ name: 'LPolygon' })
 const props = withDefaults(defineProps<PolygonProps>(), polygonPropsDefaults)
 const emit = defineEmits<PolygonEmits>()
 

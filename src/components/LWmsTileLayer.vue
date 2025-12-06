@@ -15,7 +15,7 @@ import { TileLayer } from 'leaflet'
  * > Display [WMS](https://en.wikipedia.org/wiki/Web_Map_Service) services as tile layers on the map.
  * @demo wms-tile-layer {7-17}
  */
-defineOptions({})
+defineOptions({ name: 'LWmsTileLayer' })
 const props = withDefaults(defineProps<WmsTileLayerProps>(), wmsTileLayerPropsDefaults)
 const emit = defineEmits<WmsTileLayerEmits>()
 

@@ -17,7 +17,7 @@ import {
  * > It's an approximation and starts to diverge from a real circle closer to the poles (due to projection distortion).
  * @demo circle {12}
  */
-defineOptions({})
+defineOptions({ name: 'LCircle' })
 const props = withDefaults(defineProps<CircleProps>(), circlePropsDefaults)
 const emit = defineEmits<CircleEmits>()
 

@@ -14,7 +14,7 @@ import { setupComponent } from '@/functions/component'
  * > Easy and reactive way to configure the icon of a marker
  * @demo icon {6-21,34,39,44,49}
  */
-defineOptions({})
+defineOptions({ name: 'LIcon' })
 const props = withDefaults(defineProps<IconProps>(), iconPropsDefaults)
 
 const { root } = useIcon()

@@ -15,7 +15,7 @@ import { GeoJSON } from 'leaflet'
  * > Represents a GeoJSON object or an array of GeoJSON objects.
  * @demo geo-json {5-8,11-14,25}
  */
-defineOptions({})
+defineOptions({ name: 'LGeoJson' })
 const props = withDefaults(defineProps<GeoJSONProps>(), geoJSONPropsDefaults)
 const emit = defineEmits<GeoJSONEmits>()
 

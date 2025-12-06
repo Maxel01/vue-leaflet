@@ -15,7 +15,7 @@ import {
  * > Used to load and display a video over specific bounds of the map.
  * @demo video-overlay {5-9,19}
  */
-defineOptions({})
+defineOptions({ name: 'LVideoOverlay' })
 const props = withDefaults(defineProps<VideoOverlayProps>(), videoOverlayPropsDefaults)
 const emit = defineEmits<VideoOverlayEmits>()
 

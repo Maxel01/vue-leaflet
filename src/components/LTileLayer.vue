@@ -14,7 +14,7 @@ import {
  * > Load tiles from a map server and display them accordingly to map zoom, center and size.
  * @demo tile-layer {7-19}
  */
-defineOptions({})
+defineOptions({ name: 'LTileLayer' })
 const props = withDefaults(defineProps<TileLayerProps>(), tileLayerPropsDefaults)
 const emit = defineEmits<TileLayerEmits>()
 

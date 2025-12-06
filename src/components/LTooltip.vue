@@ -13,7 +13,7 @@ import { assertInject, propsBinder, remapEvents } from '@/utils'
  * :::
  * @demo tooltip {25,29,34,41,56,66,79,87}
  */
-defineOptions({})
+defineOptions({ name: 'LTooltip' })
 const props = withDefaults(defineProps<TooltipProps>(), tooltipPropsDefaults)
 const emit = defineEmits<{
     /**

@@ -37,7 +37,7 @@ import {
  * > Used to display clickable/draggable markers on the map.
  * @demo marker {5,15}
  */
-defineOptions({})
+defineOptions({ name: 'LMarker' })
 const props = withDefaults(defineProps<MarkerProps>(), markerPropsDefaults)
 const emit = defineEmits<MarkerEmits>()
 

@@ -19,7 +19,7 @@ import {
  * :::
  * @demo feature-group {12-14}
  */
-defineOptions({})
+defineOptions({ name: 'LFeatureGroup' })
 const props = withDefaults(defineProps<FeatureGroupProps>(), featureGroupPropsDefaults)
 const emit = defineEmits<FeatureGroupEmits>()
 

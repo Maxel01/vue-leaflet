@@ -13,7 +13,7 @@ import { assertInject, propsBinder } from '@/utils'
  * > The layers control gives users the ability to switch between different base layers and switch overlays on/off.
  * @demo control-layers {18}
  */
-defineOptions({})
+defineOptions({ name: 'LControlLayers' })
 const props = withDefaults(defineProps<ControlLayersProps>(), controlLayersPropsDefaults)
 const emit = defineEmits<ControlLayersEmits>()
 

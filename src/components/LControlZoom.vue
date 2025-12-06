@@ -15,7 +15,7 @@ import { Control } from 'leaflet'
  * > A basic zoom control with two buttons (zoom in and zoom out).
  * @demo control-zoom {12}
  */
-defineOptions({})
+defineOptions({ name: 'LControlZoom' })
 const props = withDefaults(defineProps<ControlZoomProps>(), controlZoomPropsDefaults)
 const emit = defineEmits<ControlZoomEmits>()
 

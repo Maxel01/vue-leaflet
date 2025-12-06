@@ -13,7 +13,7 @@ import { type PopupProps, popupPropsDefaults, setupPopup } from '@/functions/pop
  * :::
  * @demo popup {25,30,46,56,69,77}
  */
-defineOptions({})
+defineOptions({ name: 'LPopup' })
 const props = withDefaults(defineProps<PopupProps>(), popupPropsDefaults)
 const emit = defineEmits<{
     /**

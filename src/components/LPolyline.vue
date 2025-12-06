@@ -14,7 +14,7 @@ import { Polyline } from 'leaflet'
  * > Easily draw a polyline on the map
  * @demo polyline {12-20}
  */
-defineOptions({})
+defineOptions({ name: 'LPolyline' })
 const props = withDefaults(defineProps<PolylineProps>(), polylinePropsDefaults)
 const emit = defineEmits<PolylineEmits>()
 
