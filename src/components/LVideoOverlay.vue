@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { VideoOverlay } from 'leaflet'
-import { computed, markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
+import { markRaw, nextTick, onMounted, ref, useAttrs, computed } from 'vue'
 
+import { AddLayerInjection } from '@/types/injectionKeys'
+import { assertInject, propsBinder, remapEvents } from '@/utils'
 import {
     setupVideoOverlay,
     type VideoOverlayEmits,
     type VideoOverlayProps,
     videoOverlayPropsDefaults
 } from '@/functions/videoOverlay'
-import { AddLayerInjection } from '@/types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '@/utils'
 
 /**
  * > Used to load and display a video over specific bounds of the map.

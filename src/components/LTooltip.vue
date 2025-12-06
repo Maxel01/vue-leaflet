@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { Tooltip } from 'leaflet'
+import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 import { setupTooltip, type TooltipProps, tooltipPropsDefaults } from '@/functions/tooltip'
 import { BindTooltipInjection } from '@/types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '@/utils'
-import { Tooltip } from 'leaflet'
-import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 
 /**
  * > Display a tooltip on the map

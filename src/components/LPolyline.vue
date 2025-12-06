@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 import {
     type PolylineEmits,
     type PolylineProps,
@@ -8,7 +9,6 @@ import {
 import { AddLayerInjection } from '@/types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '@/utils'
 import { Polyline } from 'leaflet'
-import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 
 /**
  * > Easily draw a polyline on the map

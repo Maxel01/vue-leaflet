@@ -2,14 +2,14 @@
 import { Circle } from 'leaflet'
 import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
 
+import { AddLayerInjection } from '@/types/injectionKeys'
+import { assertInject, propsBinder, remapEvents } from '@/utils'
 import {
     type CircleEmits,
     type CircleProps,
     circlePropsDefaults,
     setupCircle
 } from '@/functions/circle'
-import { AddLayerInjection } from '@/types/injectionKeys'
-import { assertInject, propsBinder, remapEvents } from '@/utils'
 
 /**
  * > Draw a path in the shape of a circle around a center positioned at `latLng` coordinates.

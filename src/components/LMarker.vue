@@ -1,28 +1,5 @@
 <script setup lang="ts">
 import {
-    type MarkerEmits,
-    type MarkerProps,
-    markerPropsDefaults,
-    setupMarker,
-    shouldBlankIcon
-} from '@/functions/marker'
-import {
-    AddLayerInjection,
-    CanSetParentHtmlInjection,
-    SetIconInjection,
-    SetParentHtmlInjection
-} from '@/types/injectionKeys'
-import {
-    assertInject,
-    bindEventHandlers,
-    cancelDebounces,
-    isFunction,
-    propsBinder,
-    remapEvents
-} from '@/utils'
-import { DivIcon, type Icon, type LeafletEventHandlerFnMap, Marker } from 'leaflet'
-import { debounce } from 'ts-debounce'
-import {
     markRaw,
     nextTick,
     onBeforeUnmount,
@@ -32,6 +9,29 @@ import {
     useAttrs,
     useSlots
 } from 'vue'
+import {
+    assertInject,
+    bindEventHandlers,
+    cancelDebounces,
+    isFunction,
+    propsBinder,
+    remapEvents
+} from '@/utils'
+import {
+    AddLayerInjection,
+    CanSetParentHtmlInjection,
+    SetIconInjection,
+    SetParentHtmlInjection
+} from '@/types/injectionKeys'
+import { type Icon, DivIcon, type LeafletEventHandlerFnMap, Marker } from 'leaflet'
+import { debounce } from 'ts-debounce'
+import {
+    type MarkerEmits,
+    type MarkerProps,
+    markerPropsDefaults,
+    setupMarker,
+    shouldBlankIcon
+} from '@/functions/marker'
 
 /**
  * > Used to display clickable/draggable markers on the map.

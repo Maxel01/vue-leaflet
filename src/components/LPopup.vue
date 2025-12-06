@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { type PopupProps, popupPropsDefaults, setupPopup } from '@/functions/popup'
+import { markRaw, nextTick, onBeforeUnmount, onMounted, ref, useAttrs } from 'vue'
 import { BindPopupInjection, UnbindPopupInjection } from '@/types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '@/utils'
 import { Popup } from 'leaflet'
-import { markRaw, nextTick, onBeforeUnmount, onMounted, ref, useAttrs } from 'vue'
+import { type PopupProps, popupPropsDefaults, setupPopup } from '@/functions/popup'
 
 /**
  * > Display a popup on the map
