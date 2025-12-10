@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
-import { TileLayer } from 'leaflet'
+import { type TileLayer } from 'leaflet'
 import { assertInject, propsBinder, remapEvents } from '@/utils'
 import { AddLayerInjection } from '@/types/injectionKeys'
 import {
@@ -35,7 +35,7 @@ function useTileLayer() {
     const { options, methods } = setupTileLayer(props, leafletObject, emit)
 
     onMounted(async () => {
-        leafletObject.value = markRaw<TileLayer>(new TileLayer(props.url, options))
+        leafletObject.value = markRaw<TileLayer>(props.tileLayerClass(props.url, options))
 
         const { listeners } = remapEvents(useAttrs())
         leafletObject.value.on(listeners)

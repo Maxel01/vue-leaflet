@@ -5,7 +5,7 @@ import {
     setupGridLayer
 } from './gridLayer'
 import type { Ref } from 'vue'
-import { type TileLayer, type TileLayerOptions } from 'leaflet'
+import { TileLayer, type TileLayerOptions } from 'leaflet'
 import { propsToLeafletOptions } from '@/utils'
 
 export interface TileLayerProps<
@@ -31,12 +31,20 @@ export interface TileLayerProps<
      * @reactive
      */
     url: string
+    /**
+     * A function that provides a TileLayer class. This prop may cause unintended errors, loss of reactivity or memory leaks if not used properly. Prefer creating a custom component if you encounter issues.
+     * @param url url of the TileLayer
+     * @param options options of the TileLayer
+     * @initOnly
+     */
+    tileLayerClass?: (url: string, options: TileLayerOptions) => TileLayer
 }
 
 export const tileLayerPropsDefaults = {
     ...gridLayerAbstractPropsDefaults,
     tms: undefined,
-    detectRetina: undefined
+    detectRetina: undefined,
+    tileLayerClass: (url: string, options: TileLayerOptions) => new TileLayer(url, options)
 }
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
