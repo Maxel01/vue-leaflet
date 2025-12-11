@@ -6,12 +6,7 @@ const project = new Project({
 })
 project.addSourceFilesAtPaths('src/**/*')
 
-export default function propOriginHandler(
-    documentation,
-    _componentDefinition,
-    _astPath,
-    options
-) {
+export default function propOriginHandler(documentation, _componentDefinition, _astPath, options) {
     const filePath = options.filePath || ''
     const fileName = path.basename(filePath, '.vue')
 
@@ -20,8 +15,8 @@ export default function propOriginHandler(
 
     const interfaceDeclaration = project
         .getSourceFiles()
-        .flatMap(sf => sf.getInterfaces())
-        .find(i => i.getName() === interfaceName)
+        .flatMap((sf) => sf.getInterfaces())
+        .find((i) => i.getName() === interfaceName)
     if (!interfaceDeclaration) {
         console.warn(`[propOriginHandler] Interface "${interfaceName}" not found in ${filePath}`)
         return
