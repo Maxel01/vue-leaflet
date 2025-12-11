@@ -6,12 +6,7 @@ const project = new Project({
 })
 project.addSourceFilesAtPaths('src/**/*')
 
-export default function propOriginHandler(
-    documentation,
-    _componentDefinition,
-    _astPath,
-    options
-) {
+export default function propOriginHandler(documentation, _componentDefinition, _astPath, options) {
     const filePath = options.filePath || ''
     const fileName = path.basename(filePath, '.vue')
 
@@ -20,8 +15,8 @@ export default function propOriginHandler(
 
     const interfaceDeclaration = project
         .getSourceFiles()
-        .flatMap(sf => sf.getInterfaces())
-        .find(i => i.getName() === interfaceName)
+        .flatMap((sf) => sf.getInterfaces())
+        .find((i) => i.getName() === interfaceName)
     if (!interfaceDeclaration) {
         console.warn(`[propOriginHandler] Interface "${interfaceName}" not found in ${filePath}`)
         return
@@ -37,12 +32,7 @@ export default function propOriginHandler(
     }
     for (const prop of doc.props) {
         prop['interface'] = result.get(prop.name)
-        const typeInfo = prop.type
-
-        if (typeInfo?.name === 'union' && Array.isArray(typeInfo.elements)) {
-            prop.type.name = typeInfo.elements.map((el) => el.name).join(' \\| ')
-        }
-
+        prop.type.name = formatType(prop.type)
     }
 }
 
@@ -53,7 +43,7 @@ function collectProps(interfaceDecl, resultMap, level = 0) {
     for (const prop of interfaceDecl.getProperties()) {
         const propName = prop.getName()
         if (!resultMap.has(propName)) {
-            resultMap.set(propName, { name: name, level: level })
+            resultMap.set(propName, { name: name, level: level, interface: interfaceDecl })
         }
     }
 
@@ -63,7 +53,9 @@ function collectProps(interfaceDecl, resultMap, level = 0) {
             const symbol = typeNode.getType().getSymbol()
             if (!symbol) continue
 
-            const decl = symbol.getDeclarations().find(d => d.getKind() === SyntaxKind.InterfaceDeclaration)
+            const decl = symbol
+                .getDeclarations()
+                .find((d) => d.getKind() === SyntaxKind.InterfaceDeclaration)
             if (decl) {
                 collectProps(decl, resultMap, level + 1)
             }
@@ -71,3 +63,20 @@ function collectProps(interfaceDecl, resultMap, level = 0) {
     }
 }
 
+function formatType(typeInfo) {
+    if (!typeInfo) return ''
+
+    if (typeInfo.name === 'Array' && Array.isArray(typeInfo.elements)) {
+        if (typeInfo.elements.length === 1) {
+            return `${formatType(typeInfo.elements[0])}[]`
+        } else if (typeInfo.elements.length > 1) {
+            return `[${typeInfo.elements.map(formatType).join(', ')}]`
+        }
+        return `${formatType(typeInfo.elements[0])}[]`
+    }
+    if (typeInfo.name === 'union' && Array.isArray(typeInfo.elements)) {
+        return typeInfo.elements.map(formatType).join(' \\| ')
+    }
+
+    return typeInfo.name
+}
