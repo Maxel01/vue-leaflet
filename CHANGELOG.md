@@ -2,6 +2,14 @@
 
 ## [1.0.0-beta.5](///compare/v1.0.0-beta.4...v1.0.0-beta.5) (2025-12-14)
 
+### 📝 Documentation
+
+* improve typing for array and union types ([#154](https://github.com/maxel01/vue-leaflet/issues/154)) ([c5da15c](https://github.com/maxel01/vue-leaflet/commit/c5da15c092402571c8dd87a7057f10a6615c73cc))
+
+### 🚧 Chores
+
+* **LTileLayer:** add `tileLayerClass` from vue2-leaflet ([#153](https://github.com/maxel01/vue-leaflet/issues/153)) ([4914713](https://github.com/maxel01/vue-leaflet/commit/4914713611dcfccbb5b9c63b79ffe5c90a90ea57))
+
 ## [1.0.0-beta.4](https://github.com/maxel01/vue-leaflet/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2025-12-06)
 
 ### ✨ Features
