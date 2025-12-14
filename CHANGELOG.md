@@ -1,5 +1,7 @@
 # Changelog
 
+## [1.0.0-beta.5](///compare/v1.0.0-beta.4...v1.0.0-beta.5) (2025-12-14)
+
 ## [1.0.0-beta.4](https://github.com/maxel01/vue-leaflet/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2025-12-06)
 
 ### ✨ Features
