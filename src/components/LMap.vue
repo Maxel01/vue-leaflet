@@ -34,6 +34,7 @@ import type {
 } from '@/types/interfaces'
 import {
     AddLayerInjection,
+    GetMapObjectInjection,
     RegisterControlInjection,
     RegisterLayerControlInjection,
     RemoveLayerInjection
@@ -141,6 +142,10 @@ function useMethods() {
     const layerControl = ref<ILayerControlDefinition>()
     const layersToAdd = ref<ILayerDefinition[]>([])
 
+    function getMapObject(): Map | undefined {
+        return leafletObject.value
+    }
+
     function addLayer(layer: ILayerDefinition) {
         if (layer.layerType !== undefined) {
             if (layerControl.value === undefined) {
@@ -241,6 +246,7 @@ function useMethods() {
 
     return {
         methods: {
+            getMapObject,
             addLayer,
             removeLayer,
             registerLayerControl,
@@ -278,12 +284,14 @@ function useEvents() {
 }
 
 function useProvideFunctions() {
+    const mapObject = provideLeafletWrapper(GetMapObjectInjection)
     const addLayer = provideLeafletWrapper(AddLayerInjection)
     const removeLayer = provideLeafletWrapper(RemoveLayerInjection)
     const registerControl = provideLeafletWrapper(RegisterControlInjection)
     const registerLayerControl = provideLeafletWrapper(RegisterLayerControlInjection)
 
     onMounted(() => {
+        updateLeafletWrapper(mapObject, methods.getMapObject)
         updateLeafletWrapper(addLayer, methods.addLayer)
         updateLeafletWrapper(removeLayer, methods.removeLayer)
         updateLeafletWrapper(registerControl, methods.registerControl)
