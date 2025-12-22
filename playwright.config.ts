@@ -15,9 +15,9 @@ export default defineConfig({
         { name: 'chromium', use: { ...devices['Desktop Chrome'] } }
     ],
     webServer: {
-        command: 'pnpm --filter playground dev',
+        command: 'pnpm --filter playground build && pnpm --filter playground preview',
         url: 'http://localhost:3000',
-        timeout: 2 * 60 * 1000,
+        timeout: 5 * 60 * 1000,
         reuseExistingServer: !process.env.CI
     }
 })
