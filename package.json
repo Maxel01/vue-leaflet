@@ -36,9 +36,10 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest --coverage",
+    "test:e2e": "pnpm --filter playground build && playwright test",
+    "playwright:install": "playwright install --with-deps",
     "build": "vue-tsc --noEmit && vite build && vite build -c vite.tests.config.ts",
     "build-only": "vite build",
-    "preview": "vite preview",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint ./src --fix",
     "lint:check": "eslint ./src --max-warnings=0",
@@ -58,6 +59,7 @@
     "vue": "^3.5.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.57.0",
     "@release-it/conventional-changelog": "^10.0.4",
     "@types/geojson": "^7946.0.16",
     "@types/leaflet": "^1.9.20",
@@ -76,6 +78,7 @@
     "fs-extra": "^11.3.3",
     "jiti": "^2.4.2",
     "jsdom": "^27.3.0",
+    "playwright": "^1.45.0",
     "prettier": "^3.7.4",
     "release-it": "^19.1.0",
     "ts-morph": "^27.0.2",
