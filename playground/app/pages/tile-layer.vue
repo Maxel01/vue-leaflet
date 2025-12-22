@@ -8,7 +8,7 @@ import { LMap, LTileLayer } from '@maxel01/vue-leaflet'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             layer-type="base"
             name="OpenStreetMap"
-            :max-zoom="10"
+            :max-zoom="11"
         />
         <LTileLayer
             url="https://s3.amazonaws.com/te512.safecast.org/{z}/{x}/{y}.png"
