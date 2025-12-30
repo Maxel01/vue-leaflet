@@ -1,6 +1,6 @@
 {
   "name": "@maxel01/vue-leaflet",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "license": "MIT",
   "public": "true",
   "type": "module",

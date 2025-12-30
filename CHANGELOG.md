@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.0-beta.6](https://github.com/Maxel01/vue-leaflet/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2025-12-30)
+
+### ✨ Features
+
+* **LMap:** provide `mapObject` via injection ([#163](https://github.com/Maxel01/vue-leaflet/issues/163)) ([91d2e9a](https://github.com/Maxel01/vue-leaflet/commit/91d2e9ac73b84e94f7c3912065e9cfddce8fac7e))
+
+### 🐛 Bug Fixes
+
+* **changelog:** add missing url in heading. ([#158](https://github.com/Maxel01/vue-leaflet/issues/158)) ([a7430ab](https://github.com/Maxel01/vue-leaflet/commit/a7430ab9714c116c8925902866a40d04354d2e6a))
+
+### 🚧 Chores
+
+* update missing changelog ([7ec33f7](https://github.com/Maxel01/vue-leaflet/commit/7ec33f7eb37660c40d84bf9425df99dac13eb475))
+
+### ✅ Tests
+
+* **e2e:** initialize e2e tests with playwright ([#164](https://github.com/Maxel01/vue-leaflet/issues/164)) ([64ddfb6](https://github.com/Maxel01/vue-leaflet/commit/64ddfb6095016a0152c2e03c6fcfd6ebfb3729ba))
+
 ## [1.0.0-beta.5](https://github.com/maxel01/vue-leaflet/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2025-12-14)
 
 ### 📝 Documentation
