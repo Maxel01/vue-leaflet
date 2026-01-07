@@ -45,7 +45,7 @@ import { type MapEmits, type MapProps, mapPropsDefaults, setupMap } from '@/func
  * > Base component, contains and wraps all the other components.
  * @demo index {5,9-15}
  */
-defineOptions({ name: 'LMap' })
+defineOptions({ name: 'LMap', inheritAttrs: false })
 const props = withDefaults(defineProps<MapProps>(), mapPropsDefaults)
 
 const { root, leafletObject, ready } = useMap()
