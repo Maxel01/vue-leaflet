@@ -38,7 +38,7 @@ export const bindEventHandlers = (
 export const cancelDebounces = (handlerMethods: LeafletEventHandlerFnMap) => {
     for (const [, eventHandler] of Object.entries(handlerMethods)) {
         if (isFunction(eventHandler?.cancel)) {
-            eventHandler.cancel()
+            eventHandler.cancel('Vue-Leaflet: Cleanup')
         }
     }
 }
