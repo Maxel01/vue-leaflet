@@ -83,8 +83,5 @@ function useGridLayer() {
 }
 </script>
 
-<template>
-    <div v-if="ready" ref="root" style="display: none"></div>
-</template>
-
-<style scoped></style>
+<!-- eslint-disable-next-line vue/valid-template-root -->
+<template></template>

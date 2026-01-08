@@ -308,5 +308,3 @@ function useProvideFunctions() {
         <slot v-if="ready" />
     </div>
 </template>
-
-<style scoped></style>

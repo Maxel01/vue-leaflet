@@ -61,6 +61,5 @@ function useGeoJson() {
 }
 </script>
 
-<template>
-    <div v-if="ready" ref="root" style="display: none"></div>
-</template>
+<!-- eslint-disable-next-line vue/valid-template-root -->
+<template></template>
