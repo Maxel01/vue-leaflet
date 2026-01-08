@@ -3,7 +3,7 @@ import { LMap, LRectangle, LTileLayer } from '@maxel01/vue-leaflet'
 </script>
 
 <template>
-    <LMap zoom="9" :center="[46.41322, -1.219482]">
+    <LMap :zoom="9" :center="[46.41322, -1.219482]">
         <LTileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             layer-type="base"
