@@ -63,7 +63,7 @@
     "@release-it/conventional-changelog": "^10.0.4",
     "@types/geojson": "^7946.0.16",
     "@types/leaflet": "^1.9.20",
-    "@types/node": "^25.1.0",
+    "@types/node": "^25.2.0",
     "@typescript-eslint/eslint-plugin": "^8.54.0",
     "@vitejs/plugin-vue": "^6.0.4",
     "@vitest/coverage-v8": "4.0.18",
