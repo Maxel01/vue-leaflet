@@ -16,17 +16,17 @@
     "@maxel01/vue-leaflet": "^1.0.0-beta.2",
     "@dist/vue-leaflet": "link:..",
     "leaflet": "^2.0.0-alpha.1",
-    "vue": "^3.5.27",
+    "vue": "^3.5.28",
     "vue-router": "^5.0.2"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.5",
-    "@types/node": "^25.2.0",
+    "@types/node": "^25.2.3",
     "@vitejs/plugin-vue": "^6.0.4",
     "@vue/tsconfig": "^0.8.1",
     "typescript": "~5.9.3",
     "vite": "^7.3.1",
-    "vite-plugin-vue-devtools": "^8.0.5",
+    "vite-plugin-vue-devtools": "^8.0.6",
     "vue-tsc": "^3.2.4"
   }
 }
