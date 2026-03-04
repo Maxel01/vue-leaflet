@@ -17,14 +17,14 @@ import {
     propsBinder,
     remapEvents
 } from '@/utils'
+import { debounce } from '@/debounce'
 import {
     AddLayerInjection,
     CanSetParentHtmlInjection,
     SetIconInjection,
     SetParentHtmlInjection
 } from '@/types/injectionKeys'
-import { type Icon, DivIcon, type LeafletEventHandlerFnMap, Marker } from 'leaflet'
-import { debounce } from 'ts-debounce'
+import { DivIcon, type Icon, type LeafletEventHandlerFnMap, Marker } from 'leaflet'
 import {
     type MarkerEmits,
     type MarkerProps,
