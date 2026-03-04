@@ -16,7 +16,7 @@ import {
     Util,
     type ZoomPanOptions
 } from 'leaflet'
-import { debounce } from 'ts-debounce'
+import { debounce } from '@/debounce'
 import {
     bindEventHandlers,
     cancelDebounces,
