@@ -63,7 +63,7 @@
     "@release-it/conventional-changelog": "^10.0.5",
     "@types/geojson": "^7946.0.16",
     "@types/leaflet": "^1.9.20",
-    "@types/node": "^25.3.3",
+    "@types/node": "^25.3.5",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@vitejs/plugin-vue": "^6.0.4",
     "@vitest/coverage-v8": "4.0.18",
@@ -75,7 +75,7 @@
     "eslint": "^9.39.3",
     "eslint-plugin-vue": "^10.8.0",
     "fast-glob": "^3.3.3",
-    "fs-extra": "^11.3.3",
+    "fs-extra": "^11.3.4",
     "jiti": "^2.4.2",
     "jsdom": "^28.1.0",
     "playwright": "^1.58.2",
@@ -87,7 +87,7 @@
     "vite-plugin-dts": "^4.5.4",
     "vitepress": "2.0.0-alpha.16",
     "vitest": "^4.0.18",
-    "vue": "^3.5.28",
+    "vue": "^3.5.30",
     "vue-docgen-api": "^4.79.2",
     "vue-tsc": "^3.2.5"
   }
