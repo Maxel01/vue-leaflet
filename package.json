@@ -60,14 +60,14 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
-    "@release-it/conventional-changelog": "^10.0.5",
+    "@release-it/conventional-changelog": "^10.0.6",
     "@types/geojson": "^7946.0.16",
     "@types/leaflet": "^1.9.20",
     "@types/node": "^25.5.0",
     "@typescript-eslint/eslint-plugin": "^8.57.1",
-    "@vitejs/plugin-vue": "^6.0.4",
+    "@vitejs/plugin-vue": "^6.0.5",
     "@vitest/coverage-v8": "4.1.0",
-    "@vitest/eslint-plugin": "^1.6.9",
+    "@vitest/eslint-plugin": "^1.6.13",
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.7.0",
     "@vue/test-utils": "^2.4.6",
@@ -89,6 +89,6 @@
     "vitest": "^4.1.0",
     "vue": "^3.5.30",
     "vue-docgen-api": "^4.79.2",
-    "vue-tsc": "^3.2.5"
+    "vue-tsc": "^3.2.6"
   }
 }
