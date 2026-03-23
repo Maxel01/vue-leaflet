@@ -12,6 +12,8 @@ updates:
       day: "monday"
       time: "14:00"
     open-pull-requests-limit: 5
+    allow:
+      - dependency-type: "direct"
     groups:
       minor-deps:
         update-types:
