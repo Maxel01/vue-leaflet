@@ -52,7 +52,6 @@
     "release": "release-it"
   },
   "dependencies": {
-    "ts-debounce": "^4.0.0"
   },
   "peerDependencies": {
     "leaflet": "^2.0.0-alpha",
@@ -81,6 +80,7 @@
     "playwright": "^1.58.2",
     "prettier": "^3.8.1",
     "release-it": "^19.2.4",
+    "ts-debounce": "^4.0.0",
     "ts-morph": "^27.0.2",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
