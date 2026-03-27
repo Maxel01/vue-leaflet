@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.0-beta.7](https://github.com/Maxel01/vue-leaflet/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2026-03-27)
+
+### 🐛 Bug Fixes
+
+* **debounce:** debounce implementation moved from ts-debounce to custom implementation without promises. ([#196](https://github.com/Maxel01/vue-leaflet/issues/196)) ([1337ace](https://github.com/Maxel01/vue-leaflet/commit/1337ace15c91019e8e37683f262c197b7dfb9b5c))
+* **LMap:** remove event duplication ([#171](https://github.com/Maxel01/vue-leaflet/issues/171)) ([568ee43](https://github.com/Maxel01/vue-leaflet/commit/568ee43ad3b94c65aa26ab49867088bdb7ca0eef))
+* **playground:** pass int instead of string ([#173](https://github.com/Maxel01/vue-leaflet/issues/173)) ([7bdeeed](https://github.com/Maxel01/vue-leaflet/commit/7bdeeed623cb4c566ab13546cb21307d2b29fec8))
+* remove redundant divs in empty templates ([#174](https://github.com/Maxel01/vue-leaflet/issues/174)) ([38d4f2c](https://github.com/Maxel01/vue-leaflet/commit/38d4f2cfeaf96847d89f4af2dfee637985a782ef))
+
+### 🚧 Chores
+
+* **utils:** add reason to `debounce.cancel` ([#175](https://github.com/Maxel01/vue-leaflet/issues/175)) ([939c79f](https://github.com/Maxel01/vue-leaflet/commit/939c79fc87b70618c09c9609082c7b06f50ab629))
+
 ## [1.0.0-beta.6](https://github.com/Maxel01/vue-leaflet/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2025-12-30)
 
 ### ✨ Features
