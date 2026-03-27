@@ -5,7 +5,7 @@ title: Experimental Features
 
 # 🧪 Experimental Features
 
-This library provides a set of **[experimental flags](#experimental-flags)** to enable or disable certain features that are still under development. These flags are **optional** and grouped under the `experimental` namespace in the configuration.
+This library provides a set of **[experimental flags](#🚩-experimental-flags)** to enable or disable certain features that are still under development. These flags are **optional** and grouped under the `experimental` namespace in the configuration.
 
 ## ⚙️ Default Configuration
 
@@ -70,7 +70,7 @@ The `propsBinder` utility binds every reactive property to a watcher (see [react
 #### Example
 The `DemoHome` component **has 14 watchers by default**:
 ```vue
-<!--@include: ../../src/playground/views/DemoHome.vue -->
+<!--@include: ../../playground/app/pages/index.vue -->
 ```
 Enabling this feature reduces the number of watchers to **6**.
 
