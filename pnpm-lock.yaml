@@ -79,8 +79,8 @@ importers:
         specifier: ^19.2.4
         version: 19.2.4(@types/node@25.5.0)(magicast@0.5.2)
       ts-debounce:
-        specifier: ^4.0.0
-        version: 4.0.0
+        specifier: ^5.0.0
+        version: 5.0.0
       ts-morph:
         specifier: ^27.0.2
         version: 27.0.2
@@ -4966,8 +4966,8 @@ packages:
     peerDependencies:
       typescript: '>=4.8.4'
 
-  ts-debounce@4.0.0:
-    resolution: {integrity: sha512-+1iDGY6NmOGidq7i7xZGA4cm8DAa6fqdYcvO5Z6yBevH++Bdo9Qt/mN0TzHUgcCcKv1gmh9+W5dHqz8pMWbCbg==}
+  ts-debounce@5.0.0:
+    resolution: {integrity: sha512-u0TCPC1koR5OcYC8hUC9ZisNlkxW87VejeoK+qX2in0grK1Dy0Fjlq9diNwHsFZwbFjM5lCTloRPPrs4TcPPug==}
 
   ts-map@1.0.3:
     resolution: {integrity: sha512-vDWbsl26LIcPGmDpoVzjEP6+hvHZkBkLW7JpvwbCv/5IYPJlsbzCVXY3wsCeAxAUeTclNOUZxnLdGh3VBD/J6w==}
@@ -10833,7 +10833,7 @@ snapshots:
     dependencies:
       typescript: 5.9.3
 
-  ts-debounce@4.0.0: {}
+  ts-debounce@5.0.0: {}
 
   ts-map@1.0.3: {}
 
