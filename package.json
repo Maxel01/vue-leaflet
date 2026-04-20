@@ -65,19 +65,19 @@
     "@typescript-eslint/eslint-plugin": "^8.58.2",
     "@vitejs/plugin-vue": "^6.0.6",
     "@vitest/coverage-v8": "4.1.4",
-    "@vitest/eslint-plugin": "^1.6.15",
+    "@vitest/eslint-plugin": "^1.6.16",
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.7.0",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.9.1",
-    "eslint": "^10.2.0",
+    "eslint": "^10.2.1",
     "eslint-plugin-vue": "^10.8.0",
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.4",
     "jiti": "^2.4.2",
     "jsdom": "^29.0.2",
     "playwright": "^1.59.1",
-    "prettier": "^3.8.2",
+    "prettier": "^3.8.3",
     "release-it": "^19.2.4",
     "ts-debounce": "^5.0.0",
     "ts-morph": "^27.0.2",
@@ -88,6 +88,6 @@
     "vitest": "^4.1.4",
     "vue": "^3.5.32",
     "vue-docgen-api": "^4.79.2",
-    "vue-tsc": "^3.2.6"
+    "vue-tsc": "^3.2.7"
   }
 }
