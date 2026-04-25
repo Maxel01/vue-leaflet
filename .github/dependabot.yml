@@ -21,3 +21,8 @@ updates:
       patch-deps:
         update-types:
           - "patch"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
