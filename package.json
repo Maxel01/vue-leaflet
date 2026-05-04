@@ -70,7 +70,7 @@
     "@vue/eslint-config-typescript": "^14.7.0",
     "@vue/test-utils": "^2.4.9",
     "@vue/tsconfig": "^0.9.1",
-    "eslint": "^10.2.1",
+    "eslint": "^10.3.0",
     "eslint-plugin-vue": "^10.9.0",
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.4",
