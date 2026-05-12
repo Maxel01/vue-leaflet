@@ -34,11 +34,11 @@ jobs:
           fetch-depth: 0 # Not needed if lastUpdated is not enabled
       - uses: pnpm/action-setup@v6
         with:
-          version: 10
+          version: 11
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
       - name: Setup Pages
         uses: actions/configure-pages@v6

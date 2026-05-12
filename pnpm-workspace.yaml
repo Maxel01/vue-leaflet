@@ -2,3 +2,6 @@ packages:
   - "./"
   - "playground"
   - "playground-vue"
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
