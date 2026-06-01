@@ -16,7 +16,7 @@
     "@maxel01/vue-leaflet": "^1.0.0-beta.7",
     "@dist/vue-leaflet": "link:..",
     "leaflet": "^2.0.0-alpha.1",
-    "vue": "^3.5.34",
+    "vue": "^3.5.35",
     "vue-router": "^5.0.7"
   },
   "devDependencies": {
@@ -27,6 +27,6 @@
     "typescript": "~5.9.3",
     "vite": "^7.3.2",
     "vite-plugin-vue-devtools": "^8.1.2",
-    "vue-tsc": "^3.3.1"
+    "vue-tsc": "^3.3.3"
   }
 }
