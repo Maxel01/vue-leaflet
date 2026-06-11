@@ -9,7 +9,6 @@
     }
   ],
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@/playground/*": [
         "./playground/*"
@@ -18,7 +17,7 @@
         "./tests/*"
       ],
       "@/*": [
-        "src/*"
+        "./src/*"
       ]
     },
     /* Common type-checking */

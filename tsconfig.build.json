@@ -2,7 +2,8 @@
   "extends": "./tsconfig.json",
   "include": [
     "src",
-    "tests"
+    "tests",
+    "tests/**/*.json"
   ],
   "exclude": [
     "src/playground"
@@ -12,6 +13,7 @@
     "emitDeclarationOnly": true,
     "declarationDir": "dist",
     "composite": true,
-    "module": "ESNext"
+    "module": "ESNext",
+    "moduleResolution": "bundler"
   }
 }
