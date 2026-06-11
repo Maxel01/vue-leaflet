@@ -13,10 +13,10 @@ export interface MapProps<T extends MapOptions = MapOptions> extends ComponentPr
      */
     height?: string
     /**
-     * The center of the map, supports `v-model`
+     * The center of the map, supports `v-model`. `v-model:center` always emits a `LatLng` instance
      * @reactive
      */
-    center?: PointExpression
+    center?: LatLng | PointExpression
     /**
      * The bounds of the map, supports `v-model`
      * @reactive
@@ -94,7 +94,7 @@ export interface MapProps<T extends MapOptions = MapOptions> extends ComponentPr
      */
     easeLinearity?: number
     /**
-     * Whether the map zoom animation is enabled. By default it's enabled in all browsers that support CSS3 Transitions except Android.
+     * Whether the map zoom animation is enabled. By default, it's enabled in all browsers that support CSS3 Transitions except Android.
      * @initOnly
      */
     zoomAnimation?: boolean
@@ -104,7 +104,7 @@ export interface MapProps<T extends MapOptions = MapOptions> extends ComponentPr
      */
     zoomAnimationThreshold?: number
     /**
-     * Whether the tile fade animation is enabled. By default it's enabled in all browsers that support CSS3 Transitions except Android.
+     * Whether the tile fade animation is enabled. By default, it's enabled in all browsers that support CSS3 Transitions except Android.
      * @initOnly
      */
     fadeAnimation?: boolean
