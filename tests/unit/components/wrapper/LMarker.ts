@@ -3,7 +3,7 @@ import { AddLayerInjection, RemoveLayerInjection } from '@/types/injectionKeys'
 import { mockAddLayer, mockRemoveLayer } from '@/tests/helper/injectionsTests'
 import LMarker from '@/components/LMarker.vue'
 import { layerProps, mergeReactiveProps } from '@/tests/helper'
-import { LatLng, Marker } from 'leaflet'
+import { LatLng, type Marker } from 'leaflet'
 import { expect } from 'vitest'
 
 export const markerProps = mergeReactiveProps(layerProps, {

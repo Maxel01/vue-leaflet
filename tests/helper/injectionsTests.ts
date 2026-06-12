@@ -1,17 +1,17 @@
 import { flushPromises, type VueWrapper } from '@vue/test-utils'
 import { beforeEach, expect, it, type Mock, vi } from 'vitest'
 
-export const mockRegisterControl = vi.fn()
-export const mockRegisterLayerControl = vi.fn()
-export const mockAddLayer = vi.fn()
-export const mockRemoveLayer = vi.fn()
-export const mockCanSetParentHtmlInjection = vi.fn(() => true)
-export const mockSetParentHtmlInjection = vi.fn()
-export const mockSetIconInjection = vi.fn()
-export const mockBindPopup = vi.fn()
-export const mockUnbindPopup = vi.fn()
-export const mockBindTooltip = vi.fn()
-export const mockUnbindTooltip = vi.fn()
+export const mockRegisterControl: Mock = vi.fn()
+export const mockRegisterLayerControl: Mock = vi.fn()
+export const mockAddLayer: Mock = vi.fn()
+export const mockRemoveLayer: Mock = vi.fn()
+export const mockCanSetParentHtmlInjection: Mock = vi.fn(() => true)
+export const mockSetParentHtmlInjection: Mock = vi.fn()
+export const mockSetIconInjection: Mock = vi.fn()
+export const mockBindPopup: Mock = vi.fn()
+export const mockUnbindPopup: Mock = vi.fn()
+export const mockBindTooltip: Mock = vi.fn()
+export const mockUnbindTooltip: Mock = vi.fn()
 
 export const testRegistration = (
     getWrapper: () => Promise<VueWrapper<any>>,
