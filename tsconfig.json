@@ -9,6 +9,8 @@
     }
   ],
   "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "paths": {
       "@/playground/*": [
         "./playground/*"
@@ -23,9 +25,6 @@
     /* Common type-checking */
     // vite provides types but is not under @types, so their types cannot be discovered
     // note: also see https://vite.dev/guide/features.html#client-types
-    "types": [
-      "node",
-      "vite/client"
-    ]
+    "types": ["node", "vite/client"]
   }
 }

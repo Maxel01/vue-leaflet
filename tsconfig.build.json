@@ -1,8 +1,10 @@
 {
   "extends": "./tsconfig.json",
   "include": [
-    "src",
-    "tests",
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.vue",
     "tests/**/*.json"
   ],
   "exclude": [
@@ -12,8 +14,6 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "declarationDir": "dist",
-    "composite": true,
-    "module": "ESNext",
-    "moduleResolution": "bundler"
+    "composite": true
   }
 }
