@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.0.0-beta.8](https://github.com/Maxel01/vue-leaflet/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2026-07-29)
+
+### 🐛 Bug Fixes
+
+* **LMap:** add Latlng type to center prop and refine v-model typing ([#252](https://github.com/Maxel01/vue-leaflet/issues/252)) ([ecc722a](https://github.com/Maxel01/vue-leaflet/commit/ecc722a0fffdb429f7f1211ed21401261778cedb))
+* restore Vue2Leaflet `visible` behavior for layer control entries ([#273](https://github.com/Maxel01/vue-leaflet/issues/273)) ([bc67e3b](https://github.com/Maxel01/vue-leaflet/commit/bc67e3ba1ffd0fe515da623f62182ef7eeed4046))
+* **ts:** resolve ts-errors ([#253](https://github.com/Maxel01/vue-leaflet/issues/253)) ([61f073a](https://github.com/Maxel01/vue-leaflet/commit/61f073ad04d5356986ab12ec0533f6e317cb8608))
+
+### 🚧 Chores
+
+* **ci:** remove redundant upload artifact ([#232](https://github.com/Maxel01/vue-leaflet/issues/232)) ([cd95161](https://github.com/Maxel01/vue-leaflet/commit/cd951613191d0cd8f9964ca6d28b7f529d0b760a))
+* **ci:** update node and pnpm ([#231](https://github.com/Maxel01/vue-leaflet/issues/231)) ([ff4fd93](https://github.com/Maxel01/vue-leaflet/commit/ff4fd938990a5f709aae56c45607b1a914b0ad78))
+* configure dependabot for github actions ([#213](https://github.com/Maxel01/vue-leaflet/issues/213)) ([1c0e0db](https://github.com/Maxel01/vue-leaflet/commit/1c0e0dbb25938297824defe4896e3222b19f57d9))
+* move from vite-plugin-dts to unplugin-dts and improve its config ([#254](https://github.com/Maxel01/vue-leaflet/issues/254)) ([8e10c5c](https://github.com/Maxel01/vue-leaflet/commit/8e10c5c216f16b4eb7754c7fd64e13ec1cf05217))
+
 ## [1.0.0-beta.7](https://github.com/Maxel01/vue-leaflet/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2026-03-27)
 
 ### 🐛 Bug Fixes
