@@ -1,7 +1,7 @@
 import type { LayerGroup, InteractiveLayerOptions, LayerOptions } from 'leaflet'
 import { provide, type Ref } from 'vue'
 
-import { AddLayerInjection, RemoveLayerInjection } from '@/types/injectionKeys'
+import { AddLayerInjection, HideLayerInjection, RemoveLayerInjection } from '@/types/injectionKeys'
 import { propsToLeafletOptions } from '@/utils'
 
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
@@ -33,12 +33,16 @@ export const setupLayerGroup = <T extends LayerGroup = LayerGroup>(
         addLayer(layer: ILayerDefinition) {
             leafletRef.value?.addLayer(layer.leafletObject!)
         },
+        hideLayer(layer: ILayerDefinition) {
+            methods.removeLayer(layer)
+        },
         removeLayer(layer: ILayerDefinition) {
             leafletRef.value?.removeLayer(layer.leafletObject!)
         }
     }
 
     provide(AddLayerInjection, methods.addLayer)
+    provide(HideLayerInjection, methods.hideLayer)
     provide(RemoveLayerInjection, methods.removeLayer)
 
     return { options, methods }

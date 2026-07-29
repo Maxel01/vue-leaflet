@@ -9,6 +9,10 @@ export const AddLayerInjection = Symbol('addLayer') as InjectionKey<
     (layer: ILayerDefinition) => void
 >
 
+export const HideLayerInjection = Symbol('hideLayer') as InjectionKey<
+    (layer: ILayerDefinition) => void
+>
+
 export const RemoveLayerInjection = Symbol('removeLayer') as InjectionKey<
     (layer: ILayerDefinition) => void
 >

@@ -7,6 +7,9 @@ import { alias } from './alias.config.js'
 
 // https://vite.dev/config/
 export default defineConfig({
+    css: {
+        postcss: {}
+    },
     plugins: [vue(), dts({ tsconfigPath: './tsconfig.build.json' })],
     resolve: {
         alias

@@ -6,8 +6,10 @@ import dts from 'unplugin-dts/vite'
 import { alias } from './alias.config.js'
 
 export default defineConfig({
-    plugins: [vue(), dts({ tsconfigPath: './tsconfig.build.json' })
-    ],
+    css: {
+        postcss: {}
+    },
+    plugins: [vue(), dts({ tsconfigPath: './tsconfig.build.json' })],
     resolve: {
         alias
     },

@@ -1,6 +1,6 @@
 import { flushPromises, mount } from '@vue/test-utils'
-import { AddLayerInjection, RemoveLayerInjection } from '@/types/injectionKeys'
-import { mockAddLayer, mockRemoveLayer } from '@/tests/helper/injectionsTests'
+import { AddLayerInjection, HideLayerInjection, RemoveLayerInjection } from '@/types/injectionKeys'
+import { mockAddLayer, mockHideLayer, mockRemoveLayer } from '@/tests/helper/injectionsTests'
 import LMarker from '@/components/LMarker.vue'
 import { layerProps, mergeReactiveProps } from '@/tests/helper'
 import { LatLng, type Marker } from 'leaflet'
@@ -29,6 +29,7 @@ export const createMarkerWrapper = async (props = {}, slots = {}) => {
         global: {
             provide: {
                 [AddLayerInjection as symbol]: mockAddLayer,
+                [HideLayerInjection as symbol]: mockHideLayer,
                 [RemoveLayerInjection as symbol]: mockRemoveLayer
             }
         }

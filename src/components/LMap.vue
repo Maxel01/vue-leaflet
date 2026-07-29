@@ -35,6 +35,7 @@ import type {
 import {
     AddLayerInjection,
     GetMapObjectInjection,
+    HideLayerInjection,
     RegisterControlInjection,
     RegisterLayerControlInjection,
     RemoveLayerInjection
@@ -165,6 +166,14 @@ function useMethods() {
         }
     }
 
+    function hideLayer(layer: ILayerDefinition) {
+        if (layer.layerType !== undefined) {
+            if (layer.leafletObject) leafletObject.value!.removeLayer(layer.leafletObject)
+            return
+        }
+        removeLayer(layer)
+    }
+
     function removeLayer(layer: ILayerDefinition) {
         if (layer.layerType !== undefined) {
             if (layerControl.value === undefined) {
@@ -248,6 +257,7 @@ function useMethods() {
         methods: {
             getMapObject,
             addLayer,
+            hideLayer,
             removeLayer,
             registerLayerControl,
             registerControl,
@@ -270,6 +280,13 @@ function useEvents() {
             emit('update:center', leafletObject.value.getCenter())
             emit('update:bounds', leafletObject.value.getBounds())
         }),
+        baselayerchange(ev) {
+            layersInControl.value.forEach((layer) => {
+                if (layer.layerType === 'base') {
+                    layer.updateVisibleProp(layer.name === ev.name)
+                }
+            })
+        },
         overlayadd(ev) {
             const layer = layersInControl.value.find((l) => l.name === ev.name)
             layer?.updateVisibleProp(true)
@@ -286,6 +303,7 @@ function useEvents() {
 function useProvideFunctions() {
     const mapObject = provideLeafletWrapper(GetMapObjectInjection)
     const addLayer = provideLeafletWrapper(AddLayerInjection)
+    const hideLayer = provideLeafletWrapper(HideLayerInjection)
     const removeLayer = provideLeafletWrapper(RemoveLayerInjection)
     const registerControl = provideLeafletWrapper(RegisterControlInjection)
     const registerLayerControl = provideLeafletWrapper(RegisterLayerControlInjection)
@@ -293,6 +311,7 @@ function useProvideFunctions() {
     onMounted(() => {
         updateLeafletWrapper(mapObject, methods.getMapObject)
         updateLeafletWrapper(addLayer, methods.addLayer)
+        updateLeafletWrapper(hideLayer, methods.hideLayer)
         updateLeafletWrapper(removeLayer, methods.removeLayer)
         updateLeafletWrapper(registerControl, methods.registerControl)
         updateLeafletWrapper(registerLayerControl, methods.registerLayerControl)

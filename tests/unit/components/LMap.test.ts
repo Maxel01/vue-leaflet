@@ -1,6 +1,6 @@
 import { type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
-import { h, nextTick } from 'vue'
+import { h, nextTick, ref } from 'vue'
 import {
     testComponentPropBindings,
     testPropsBindingToLeaflet
@@ -23,6 +23,7 @@ describe('LMap.vue', () => {
     testFitBounds(createMapWrapper)
     testBeforeMapMount(createMapWrapper)
     testRemoveLayer(createMapWrapper)
+    testControlLayerVisibilitySync()
     testRemoveMapOnUmount(createMapWrapper)
 })
 
@@ -105,6 +106,45 @@ const testRemoveLayer = (getWrapper: () => Promise<VueWrapper<any>>) => {
             { default: h(LTileLayer, { url: '', layerType: 'base' }) }
         )
         wrapper.unmount()
+    })
+}
+
+const testControlLayerVisibilitySync = () => {
+    it('updates base layer visible models on baselayerchange', async () => {
+        const firstVisible = ref(true)
+        const secondVisible = ref(false)
+        const wrapper = await createMapWrapper(
+            {},
+            {
+                default: [
+                    LControlLayers,
+                    h(LTileLayer, {
+                        url: '',
+                        name: 'First',
+                        layerType: 'base',
+                        visible: firstVisible.value,
+                        'onUpdate:visible': (value: boolean) => (firstVisible.value = value)
+                    }),
+                    h(LTileLayer, {
+                        url: '',
+                        name: 'Second',
+                        layerType: 'base',
+                        visible: secondVisible.value,
+                        'onUpdate:visible': (value: boolean) => (secondVisible.value = value)
+                    })
+                ]
+            }
+        )
+        const tileLayers = wrapper.findAllComponents(LTileLayer)
+        const map = wrapper.vm.leafletObject as Map
+
+        map.fire('baselayerchange', {
+            layer: tileLayers[1].vm.leafletObject,
+            name: 'Second'
+        })
+
+        expect(firstVisible.value).toBe(false)
+        expect(secondVisible.value).toBe(true)
     })
 }
 

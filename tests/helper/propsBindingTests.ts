@@ -1,10 +1,10 @@
 import { flushPromises, type VueWrapper } from '@vue/test-utils'
-import { expect, it, vi } from 'vitest'
+import { beforeEach, expect, it, vi } from 'vitest'
 import getReactivePropCount, { mergeReactiveProps } from './props'
 import * as utils from '@/utils'
 import { capitalizeFirstLetter, isFunction } from '@/utils'
 import type { Layer } from 'leaflet'
-import { mockAddLayer, mockRemoveLayer } from './injectionsTests'
+import { mockAddLayer, mockHideLayer, mockRemoveLayer } from './injectionsTests'
 
 export function testComponentPropBindings(
     getWrapper: () => Promise<VueWrapper<any>>,
@@ -26,6 +26,12 @@ export function testPropsBindingToLeaflet(
     const entries = Object.entries(updatedProps).filter(
         ([key]) => key !== 'expecting' && key != 'customCheck'
     )
+    beforeEach(() => {
+        mockAddLayer.mockReset()
+        mockHideLayer.mockReset()
+        mockRemoveLayer.mockReset()
+    })
+
     it.each(entries)(
         'updates Leaflet object when prop "%s" changes',
         async (propName, newValue) => {
@@ -73,8 +79,15 @@ export const layerProps = mergeReactiveProps(componentProps, {
             expect(mockAddLayer).toHaveBeenCalledTimes(2)
         },
         visible: (_leafletObject: Layer, iteration) => {
-            expect(mockRemoveLayer).toHaveBeenCalledOnce()
-            expect(mockAddLayer).toHaveBeenCalledTimes(iteration + 1)
+            if (iteration === 0) {
+                expect(mockHideLayer).toHaveBeenCalledOnce()
+                expect(mockRemoveLayer).not.toHaveBeenCalled()
+                expect(mockAddLayer).toHaveBeenCalledOnce()
+            } else {
+                expect(mockHideLayer).toHaveBeenCalledOnce()
+                expect(mockRemoveLayer).not.toHaveBeenCalled()
+                expect(mockAddLayer).toHaveBeenCalledTimes(2)
+            }
         }
     }
 })

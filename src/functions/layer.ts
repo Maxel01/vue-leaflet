@@ -4,6 +4,7 @@ import {
     AddLayerInjection,
     BindPopupInjection,
     BindTooltipInjection,
+    HideLayerInjection,
     RemoveLayerInjection,
     UnbindPopupInjection,
     UnbindTooltipInjection
@@ -36,7 +37,9 @@ export interface LayerProps<T extends LayerOptions = LayerOptions> extends Compo
      */
     layerType?: LayerType
     /**
-     *
+     * Whether the layer is displayed on the map. When set to `false`, the layer is hidden
+     * from the map; layers with `layerType` set to `base` or `overlay` remain registered in
+     * `LControlLayers`. Changing it back to `true` adds it to the map again.
      * @reactive
      */
     visible?: boolean
@@ -60,6 +63,7 @@ export const setupLayer = <T extends Layer>(
     emit: LayerEmits
 ) => {
     const addLayer = assertInject(AddLayerInjection)
+    const hideLayer = assertInject(HideLayerInjection)
     const removeLayer = assertInject(RemoveLayerInjection)
     const { options: componentOptions, methods: componentMethods } = setupComponent(props)
 
@@ -69,7 +73,17 @@ export const setupLayer = <T extends Layer>(
         emit('update:visible', value)
     }
     const addThisLayer = () =>
-        addLayer({ leafletObject: leafletRef.value, updateVisibleProp, layerType: props.layerType })
+        addLayer({
+            leafletObject: leafletRef.value,
+            updateVisibleProp,
+            layerType: props.layerType
+        })
+    const hideThisLayer = () =>
+        hideLayer({
+            leafletObject: leafletRef.value,
+            updateVisibleProp,
+            layerType: props.layerType
+        })
     const removeThisLayer = () =>
         removeLayer({
             leafletObject: leafletRef.value,
@@ -103,7 +117,7 @@ export const setupLayer = <T extends Layer>(
                 if (isVisible) {
                     addThisLayer()
                 } else {
-                    removeThisLayer()
+                    hideThisLayer()
                 }
             }
         },
