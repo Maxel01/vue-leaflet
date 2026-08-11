@@ -74,7 +74,7 @@
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.4.0",
     "jiti": "^2.7.0",
-    "jsdom": "^29.1.1",
+    "jsdom": "^30.0.1",
     "playwright": "^1.62.1",
     "prettier": "^3.9.6",
     "release-it": "^20.2.1",
