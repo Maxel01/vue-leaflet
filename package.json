@@ -64,7 +64,7 @@
     "@typescript-eslint/eslint-plugin": "^8.67.0",
     "@vitejs/plugin-vue": "^6.0.7",
     "@vitest/coverage-v8": "4.1.10",
-    "@vitest/eslint-plugin": "^1.6.26",
+    "@vitest/eslint-plugin": "^1.6.27",
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.9.0",
     "@vue/test-utils": "^2.4.11",
@@ -87,6 +87,6 @@
     "vitest": "^4.1.10",
     "vue": "^3.5.41",
     "vue-docgen-api": "^4.79.2",
-    "vue-tsc": "^3.3.9"
+    "vue-tsc": "^3.3.10"
   }
 }
