@@ -83,7 +83,7 @@
     "typescript": "^6.0.3",
     "unplugin-dts": "^1.0.3",
     "vite": "^8.2.1",
-    "vitepress": "2.0.0-alpha.18",
+    "vitepress": "2.0.0-alpha.19",
     "vitest": "^4.1.10",
     "vue": "^3.5.41",
     "vue-docgen-api": "^4.79.2",
