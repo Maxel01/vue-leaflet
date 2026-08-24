@@ -63,7 +63,7 @@
     "@types/node": "^26.2.0",
     "@typescript-eslint/eslint-plugin": "^8.67.0",
     "@vitejs/plugin-vue": "^6.0.7",
-    "@vitest/coverage-v8": "4.1.10",
+    "@vitest/coverage-v8": "4.1.11",
     "@vitest/eslint-plugin": "^1.6.27",
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.9.0",
@@ -82,11 +82,11 @@
     "ts-morph": "^28.0.0",
     "typescript": "^6.0.3",
     "unplugin-dts": "^1.0.3",
-    "vite": "^8.2.1",
+    "vite": "^8.2.2",
     "vitepress": "2.0.0-alpha.19",
-    "vitest": "^4.1.10",
+    "vitest": "^4.1.11",
     "vue": "^3.5.41",
     "vue-docgen-api": "^4.79.2",
-    "vue-tsc": "^3.3.10"
+    "vue-tsc": "^3.3.11"
   }
 }
