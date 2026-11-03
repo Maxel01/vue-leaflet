@@ -1,4 +1,4 @@
-import type { Polygon, LatLngExpression, PolylineOptions } from 'leaflet'
+import type { LatLngExpression, Polygon, Polyline, PolylineOptions } from 'leaflet'
 
 import { propsToLeafletOptions } from '@/utils'
 
@@ -36,8 +36,8 @@ export const setupPolygon = (
 ) => {
     const { options: polylineOptions, methods: polylineMethods } = setupPolyline(
         props,
-        leafletRef,
-        emit
+        leafletRef as unknown as Ref<Polyline | undefined>,
+        emit as unknown as PolylineEmits
     )
 
     const options = propsToLeafletOptions<PolylineOptions>(props, polylineOptions)

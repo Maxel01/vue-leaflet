@@ -40,7 +40,7 @@ export const setupRectangle = (
     const { options: polygonOptions, methods: polygonMethods } = setupPolygon(
         props,
         leafletRef,
-        emit
+        emit as PolygonEmits
     )
 
     const options = propsToLeafletOptions<PolylineOptions>(props, polygonOptions)
