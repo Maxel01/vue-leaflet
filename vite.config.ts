@@ -11,7 +11,7 @@ export default defineConfig({
     css: {
         postcss: {}
     },
-    plugins: [vue(), dts({ tsconfigPath: './tsconfig.build.json' })],
+    plugins: [vue(), dts()],
     resolve: {
         alias
     },
