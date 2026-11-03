@@ -1,22 +1,18 @@
 <script setup lang="ts">
 import { LGeoJson, LMap, LTileLayer } from '@maxel01/vue-leaflet'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 
-const geojson = ref(undefined)
-const geoStyler = (feature) => ({
-    opacity: feature.properties.code / 100000
-})
+import communes from '../data/communes.json'
 
-onMounted(async () => {
-    const response = await fetch(
-        'https://rawgit.com/gregoiredavid/france-geojson/master/regions/pays-de-la-loire/communes-pays-de-la-loire.geojson'
-    )
-    geojson.value = await response.json()
+const geojson = ref(communes)
+const geoStyler = (feature: any) => ({
+    opacity: Number(feature.properties.code) / 100000,
+    fillOpacity: 0.5
 })
 </script>
 
 <template>
-    <LMap :zoom="8" :center="[47.41322, -1.219482]">
+    <LMap :zoom="8" :center="[47.57, -0.76]">
         <LTileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             layer-type="base"
