@@ -18,6 +18,7 @@ Leaflet released a new [major version](https://leafletjs.com/2025/05/18/leaflet-
 - deprecate unreachable code (see [#56](https://github.com/Maxel01/vue-leaflet/pull/56))
 - utils: deprecate `resetWebpackIcon` (Leaflet 2 default icons are inline SVGs and PNG assets are no longer used)
 - config: remove experimental flag `useResetWebpackIcon`
+- icon: remove invalid DOM event listeners from `LIcon` (Leaflet `Icon` and `DivIcon` instances do not implement `EventTarget`; events should be bound on `LMarker` or directly on elements inside the `LIcon` template slot)
 - types: remove `IMapBlueprint`
 - types: Leaflet 2 now provides native TypeScript types (`@types/leaflet` should be removed); several component prop and method types have been updated to match Leaflet 2 typings
 
