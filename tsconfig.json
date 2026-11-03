@@ -33,9 +33,7 @@
     "tests/**/*.ts",
     "tests/**/*.vue",
     "tests/**/*.json",
-    "vite.config.ts",
-    "vite.tests.config.ts",
-    "vitest.config.ts"
+    "vite.config.ts"
   ],
   "exclude": [
     "src/playground",
