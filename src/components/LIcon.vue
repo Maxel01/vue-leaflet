@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { type IconProps, iconPropsDefaults } from '@/functions/icon'
-import { nextTick, onMounted, ref, useAttrs } from 'vue'
-import { assertInject, propsBinder, propsToLeafletOptions, remapEvents } from '@/utils'
+import { nextTick, onMounted, ref } from 'vue'
+import { assertInject, propsBinder, propsToLeafletOptions } from '@/utils'
 import {
     CanSetParentHtmlInjection,
     SetIconInjection,
     SetParentHtmlInjection
 } from '@/types/injectionKeys'
-import { DivIcon, type DivIconOptions, DomEvent, Icon } from 'leaflet'
+import { DivIcon, type DivIconOptions, Icon } from 'leaflet'
 import { setupComponent } from '@/functions/component'
 
 /**
@@ -64,7 +64,6 @@ function useCreateIcon() {
     const canSetParentHtml = assertInject(CanSetParentHtmlInjection)
     const setParentHtml = assertInject(SetParentHtmlInjection)
     const setIcon = assertInject(SetIconInjection)
-    const attrs = useAttrs()
 
     let iconObject: Icon | DivIcon | undefined = undefined
 
@@ -77,11 +76,6 @@ function useCreateIcon() {
             return
         }
 
-        const { listeners } = remapEvents(attrs)
-        if (iconObject) {
-            DomEvent.off(iconObject, listeners)
-        }
-
         const { options: componentOptions } = setupComponent(props)
         const options = propsToLeafletOptions<DivIconOptions>(props, componentOptions)
         if (elHtml) {
@@ -89,7 +83,6 @@ function useCreateIcon() {
         }
 
         iconObject = options.html ? new DivIcon(options) : new Icon(options)
-        DomEvent.on(iconObject, listeners)
         setIcon(iconObject)
     }
 
