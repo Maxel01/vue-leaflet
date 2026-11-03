@@ -2,7 +2,7 @@ import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import LControlScale from '@/components/LControlScale.vue'
 import { RegisterControlInjection } from '@/types/injectionKeys'
-import type { Control } from 'leaflet'
+import type { ScaleControl } from 'leaflet'
 import { testRemoveOnUnmount } from '@/tests/helper/tests'
 import {
     testComponentPropBindings,
@@ -42,7 +42,7 @@ describe('LControlScale.vue', () => {
 const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {
     it('creates a Leaflet scale control with correct options', async () => {
         const wrapper = await getWrapper()
-        const obj = wrapper.vm.leafletObject as Control.Scale
+        const obj = wrapper.vm.leafletObject as ScaleControl
 
         expect(obj).toBeDefined()
         expect(obj.options.position).toBe('topright')

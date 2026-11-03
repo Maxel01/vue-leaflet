@@ -21,7 +21,7 @@ import { gridLayerProps } from './wrapper/LGridLayer'
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LGridLayer, {
         propsData: {
-            childRender: (props) => () => {
+            childRender: (props: any) => () => {
                 return h(
                     'div',
                     { style: 'border: 1px solid grey; height: 100%;' },

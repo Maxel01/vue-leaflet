@@ -52,7 +52,7 @@ describe('LRectangle.vue', () => {
     testAddLayer(createWrapper)
 })
 
-const testCorrectInitialisation = (getWrapper: (props?) => Promise<VueWrapper<any>>) => {
+const testCorrectInitialisation = (getWrapper: (props?: any) => Promise<VueWrapper<any>>) => {
     it('creates a Leaflet rectangle with correct options', async () => {
         const wrapper = await getWrapper()
         const obj = wrapper.vm.leafletObject as Rectangle

@@ -1,6 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { cancelDebounces } from '@/utils'
-import type { LeafletEventHandlerFnMap } from 'leaflet'
+import { cancelDebounces, type LeafletEventHandlerFnMap } from '@/utils'
 
 // Helper type for handlers with cancel method
 type CancellableHandler = {
@@ -38,8 +37,8 @@ describe('cancelDebounces', () => {
 
     it('skips undefined or null handlers', () => {
         const handlers: LeafletEventHandlerFnMap = {
-            click: undefined,
-            zoom: null
+            click: undefined as any,
+            zoom: null as any
         }
 
         expect(() => cancelDebounces(handlers)).not.toThrow()

@@ -57,7 +57,9 @@ function collectReactivePropCount(interfaceDecl: InterfaceDeclaration) {
                 .getDeclarations()
                 .find((d) => d.getKind() === SyntaxKind.InterfaceDeclaration)
             if (decl) {
-                const { reactive, reactiveNative, initOnly } = collectReactivePropCount(decl)
+                const { reactive, reactiveNative, initOnly } = collectReactivePropCount(
+                    decl as InterfaceDeclaration
+                )
                 reactiveCount += reactive
                 reactiveNativeCount += reactiveNative
                 initOnlyCount += initOnly

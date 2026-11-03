@@ -2,7 +2,7 @@ import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import LControlAttribution from '@/components/LControlAttribution.vue'
 import { RegisterControlInjection } from '@/types/injectionKeys'
-import type { Control } from 'leaflet'
+import type { AttributionControl } from 'leaflet'
 import { testRemoveOnUnmount } from '@/tests/helper/tests'
 import {
     testComponentPropBindings,
@@ -43,7 +43,7 @@ describe('LControlAttribution.vue', () => {
 const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {
     it('creates a Leaflet attribution control with correct options', async () => {
         const wrapper = await getWrapper()
-        const obj = wrapper.vm.leafletObject as Control.Attribution
+        const obj = wrapper.vm.leafletObject as AttributionControl
 
         expect(obj).toBeDefined()
         expect(obj.options.prefix).toBe('Hello there')

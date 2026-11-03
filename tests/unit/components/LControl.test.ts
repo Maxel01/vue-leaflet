@@ -55,7 +55,6 @@ const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) =
         const wrapper = await createMapWrapper({}, { default: LControl })
         const lControl = wrapper.findComponent(LControl)
         expect(lControl.vm.leafletObject).toBeDefined()
-        // @ts-expect-error _map is private so not in the types
         expect((lControl.vm.leafletObject as Control)._map).toBeDefined()
     })
 }

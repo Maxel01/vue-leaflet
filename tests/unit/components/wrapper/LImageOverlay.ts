@@ -13,7 +13,6 @@ export const imageOverlayProps = mergeReactiveProps(imageOverlayAbstractProps, {
     url: 'replace.jpg',
     expecting: {
         url: (leafletObject: ImageOverlay) => {
-            // @ts-expect-error _url is private so not in the types
             expect(leafletObject._url).toBe(imageOverlayProps.url)
         }
     }

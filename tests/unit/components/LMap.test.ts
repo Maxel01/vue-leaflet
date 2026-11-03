@@ -155,8 +155,8 @@ const testRemoveMapOnUmount = (getWrapper: () => Promise<VueWrapper<any>>) => {
         wrapper.unmount()
         await nextTick()
         const leafletObject = wrapper.vm.leafletObject as Map
-        // @ts-expect-error _mapPane is private so not in the types
-        expect(leafletObject._mapPane).toBe(undefined)
+        // In Leaflet 2.0+, mapPane is removed from the DOM rather than deleted from the instance
+        expect(leafletObject._mapPane?.parentNode).toBe(null)
     })
     it('should not respond to events after removal', async () => {
         const wrapper = await getWrapper()

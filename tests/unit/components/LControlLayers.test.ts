@@ -13,7 +13,7 @@ import {
     mockRegisterLayerControl,
     testControlLayerRegistration
 } from '@/tests/helper/injectionsTests'
-import type { Control } from 'leaflet'
+import type { LayersControl } from 'leaflet'
 import LTileLayer from '@/components/LTileLayer.vue'
 import { createMapWrapper } from './wrapper/LMap'
 import { controlLayersProps } from './wrapper/LControlLayers'
@@ -48,7 +48,7 @@ describe('LControlLayers.vue', () => {
 const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {
     it('creates a Leaflet control layers with correct options', async () => {
         const wrapper = await getWrapper()
-        const obj = wrapper.vm.leafletObject as Control.Layers
+        const obj = wrapper.vm.leafletObject as LayersControl
 
         expect(obj).toBeDefined()
         expect(obj.options.position).toBe('topright')
@@ -62,16 +62,15 @@ const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) =
                 {},
                 {
                     default: [
-                        h(LTileLayer, { layerType: layerType, url: '' }),
+                        h(LTileLayer, { layerType: layerType as any, url: '' }),
                         LControlLayers,
-                        h(LTileLayer, { layerType: layerType, url: '' })
+                        h(LTileLayer, { layerType: layerType as any, url: '' })
                     ]
                 }
             )
             const lControlLayers = wrapper.findComponent(LControlLayers)
             expect(lControlLayers.vm.leafletObject).toBeDefined()
-            // @ts-expect-error _map is private so not in the types
-            expect((lControlLayers.vm.leafletObject as Control.Layers)._map).toBeDefined()
+            expect((lControlLayers.vm.leafletObject as LayersControl)._map).toBeDefined()
             const lTileLayer = wrapper.findComponent(LTileLayer)
             expect(lTileLayer.vm.leafletObject).toBeDefined()
         }
