@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { defineComponent, h, InjectionKey, provide } from 'vue'
+import { defineComponent, h, type InjectionKey, provide } from 'vue'
 import { mount } from '@vue/test-utils'
 import { assertInject } from '@/utils'
 

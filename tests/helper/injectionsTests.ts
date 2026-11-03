@@ -48,7 +48,7 @@ export const testControlLayerRegistration = (getWrapper: () => Promise<VueWrappe
         mockRegisterLayerControl.mockReset()
     })
     it('registers the layer control via injection', async () => {
-        const wrapper = await getWrapper()
+        await getWrapper()
         expect(mockRegisterLayerControl).toHaveBeenCalledOnce()
         /* TEST
         expect(mockRegisterLayerControl).toHaveBeenCalledWith({
@@ -62,7 +62,7 @@ export const testAddLayer = (getWrapper: () => Promise<VueWrapper<any>>) => {
         mockAddLayer.mockReset()
     })
     it('adds the layer via injection', async () => {
-        const wrapper = await getWrapper()
+        await getWrapper()
         await flushPromises()
         expect(mockAddLayer).toHaveBeenCalledOnce()
         /* TEST
@@ -77,7 +77,7 @@ export const testHideLayer = (getWrapper: () => Promise<VueWrapper<any>>) => {
         mockHideLayer.mockReset()
     })
     it('hides the layer via injection', async () => {
-        const wrapper = await getWrapper()
+        await getWrapper()
         await flushPromises()
         /* TEST
         expect(mockHideLayer).toHaveBeenCalledOnce()
@@ -101,7 +101,7 @@ export const testCanSetParentHtml = (getWrapper: () => Promise<VueWrapper<any>>)
         mockCanSetParentHtmlInjection.mockReset()
     })
     it('checks can set parent html injection', async () => {
-        const wrapper = await getWrapper()
+        await getWrapper()
         await flushPromises()
         expect(mockCanSetParentHtmlInjection).toHaveBeenCalledOnce()
         /* TEST
@@ -116,7 +116,7 @@ export const testSetParentHtml = (getWrapper: () => Promise<VueWrapper<any>>) =>
         mockSetParentHtmlInjection.mockReset()
     })
     it('sets parent html via injection', async () => {
-        const wrapper = await getWrapper()
+        await getWrapper()
         await flushPromises()
         expect(mockSetParentHtmlInjection).toHaveBeenCalledOnce()
         /* TEST
@@ -131,7 +131,7 @@ export const testSetIcon = (getWrapper: () => Promise<VueWrapper<any>>) => {
         mockSetIconInjection.mockReset()
     })
     it('sets icon via injection', async () => {
-        const wrapper = await getWrapper()
+        await getWrapper()
         await flushPromises()
         expect(mockSetIconInjection).toHaveBeenCalledOnce()
         /* TEST

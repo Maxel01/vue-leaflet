@@ -16,7 +16,7 @@ export const iconProps = mergeReactiveProps(componentProps, {
     shadowAnchor: [10, 10],
     bgPos: [10, 10],
     className: 'classes',
-    customCheck: async (wrapper: VueWrapper) => {
+    customCheck: async (_wrapper: VueWrapper) => {
         await vi.waitFor(() => expect(mockSetIconInjection).toHaveBeenCalledTimes(2))
     }
 })
