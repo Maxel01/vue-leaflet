@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       leaflet:
-        specifier: ^2.0.0-alpha
-        version: 2.0.0-alpha.1
+        specifier: ^2.0.0-beta.1
+        version: 2.0.0-beta.1
     devDependencies:
       '@playwright/test':
         specifier: ^1.64.1
@@ -21,9 +21,6 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.16
         version: 7946.0.16
-      '@types/leaflet':
-        specifier: ^1.9.20
-        version: 1.9.20
       '@types/node':
         specifier: ^26.6.3
         version: 26.6.3
@@ -116,10 +113,10 @@ importers:
         version: link:..
       '@maxel01/vue-leaflet':
         specifier: ^1.0.0-beta.7
-        version: 1.0.0-beta.7(leaflet@2.0.0-alpha.1)(vue@3.5.43(typescript@6.0.3))
+        version: 1.0.0-beta.7(leaflet@2.0.0-beta.1)(vue@3.5.43(typescript@6.0.3))
       leaflet:
-        specifier: ^2.0.0-alpha.1
-        version: 2.0.0-alpha.1
+        specifier: ^2.0.0-beta.1
+        version: 2.0.0-beta.1
       nuxt:
         specifier: ^4.6.3
         version: 4.6.3(@babel/plugin-proposal-decorators@7.29.7(@babel/core@7.29.7(supports-color@10.2.2))(supports-color@10.2.2))(@babel/plugin-syntax-jsx@7.29.7(@babel/core@7.29.7(supports-color@10.2.2)))(@babel/plugin-syntax-typescript@7.29.7(@babel/core@7.29.7(supports-color@10.2.2)))(@oxc-project/types@0.151.0)(@parcel/watcher@2.5.6)(@types/node@26.6.3)(@vue/compiler-sfc@3.5.43)(acorn@8.18.0)(confbox@0.3.2)(db0@0.3.4)(dotenv@17.4.2)(esbuild@0.28.2)(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(giget@3.3.1)(ioredis@5.11.1(supports-color@10.2.2))(lightningcss@1.33.0)(magicast@0.5.5)(meow@13.2.0)(mlly@1.8.2)(optionator@0.9.4)(oxc-parser@0.140.0)(rolldown@1.2.15)(rollup-plugin-visualizer@7.1.1(rolldown@1.2.15)(rollup@4.66.0))(rollup@4.66.0)(srvx@1.0.8)(supports-color@10.2.2)(terser@5.49.2)(typescript@6.0.3)(vite@8.3.5(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.49.2)(yaml@2.9.0))(vue-tsc@3.3.11(typescript@6.0.3))(yaml@2.9.0)
@@ -137,10 +134,10 @@ importers:
         version: link:..
       '@maxel01/vue-leaflet':
         specifier: ^1.0.0-beta.7
-        version: 1.0.0-beta.7(leaflet@2.0.0-alpha.1)(vue@3.5.43(typescript@6.0.3))
+        version: 1.0.0-beta.7(leaflet@2.0.0-beta.1)(vue@3.5.43(typescript@6.0.3))
       leaflet:
-        specifier: ^2.0.0-alpha.1
-        version: 2.0.0-alpha.1
+        specifier: ^2.0.0-beta.1
+        version: 2.0.0-beta.1
       vue:
         specifier: ^3.5.43
         version: 3.5.43(typescript@6.0.3)
@@ -1861,9 +1858,6 @@ packages:
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
-
-  '@types/leaflet@1.9.20':
-    resolution: {integrity: sha512-rooalPMlk61LCaLOvBF2VIf9M47HgMQqi5xQ9QRi7c8PkdIe0WrIi5IxXUXQjAdL0c+vcQ01mYWbthzmp9GHWw==}
 
   '@types/linkify-it@5.0.0':
     resolution: {integrity: sha512-sVDA58zAw4eWAffKOaQH5/5j3XeayukzDk+ewSsnv3p4yJEZHCCzMDiZM8e0OUrRvmpGZ85jf4yDHkHsgBNr9Q==}
@@ -3837,8 +3831,8 @@ packages:
     resolution: {integrity: sha512-b94GiNHQNy6JNTrt5w6zNyffMrNkXZb3KTkCZJb2V1xaEGCk093vkZ2jk3tpaeP33/OiXC+WvK9AxUebnf5nbw==}
     engines: {node: '>= 0.6.3'}
 
-  leaflet@2.0.0-alpha.1:
-    resolution: {integrity: sha512-2EJU27z/wljOgQCyybRkfrm5Xc3uy6huKehh0UAPsrAdwnSMxaplsqCl9cXPAuDm6D7uL6PCznYMDVIsaAdSdA==}
+  leaflet@2.0.0-beta.1:
+    resolution: {integrity: sha512-CfEZEKWiksxVmTMn30OQZVfn2inJruglgRajUGP3euWtxYrrSUxMh0Q3i50DVUQ30JeToybdaItgbwSa1D57CQ==}
 
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
@@ -6553,9 +6547,9 @@ snapshots:
       - encoding
       - supports-color
 
-  '@maxel01/vue-leaflet@1.0.0-beta.7(leaflet@2.0.0-alpha.1)(vue@3.5.43(typescript@6.0.3))':
+  '@maxel01/vue-leaflet@1.0.0-beta.7(leaflet@2.0.0-beta.1)(vue@3.5.43(typescript@6.0.3))':
     dependencies:
-      leaflet: 2.0.0-alpha.1
+      leaflet: 2.0.0-beta.1
       vue: 3.5.43(typescript@6.0.3)
 
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
@@ -7625,10 +7619,6 @@ snapshots:
       '@types/unist': 3.0.3
 
   '@types/json-schema@7.0.15': {}
-
-  '@types/leaflet@1.9.20':
-    dependencies:
-      '@types/geojson': 7946.0.16
 
   '@types/linkify-it@5.0.0': {}
 
@@ -9790,7 +9780,9 @@ snapshots:
     dependencies:
       readable-stream: 2.3.8
 
-  leaflet@2.0.0-alpha.1: {}
+  leaflet@2.0.0-beta.1:
+    dependencies:
+      '@types/geojson': 7946.0.16
 
   levn@0.4.1:
     dependencies:
