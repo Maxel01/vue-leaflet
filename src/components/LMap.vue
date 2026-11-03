@@ -10,7 +10,7 @@ import {
     type LatLngExpression,
     type LayersControl,
     type LeafletEvent,
-    Map,
+    LeafletMap,
     type MapOptions,
     Util,
     type ZoomPanOptions
@@ -59,7 +59,7 @@ const emit = defineEmits<MapEmits>()
 
 defineExpose({
     /**
-     * The root DOM element of the Leaflet map. This element is used to create the Leaflet's `Map` class. You can use it to directly manipulate the map's container (e.g. styling, event listeners).
+     * The root DOM element of the Leaflet map. This element is used to create the Leaflet's `LeafletMap` class. You can use it to directly manipulate the map's container (e.g. styling, event listeners).
      *  @type {Ref<HTMLElement \| undefined>}
      */
     root,
@@ -70,7 +70,7 @@ defineExpose({
     ready,
     /**
      * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
-     * @type {Ref<Map \| undefined>}
+     * @type {Ref<LeafletMap \| undefined>}
      */
     leafletObject,
     attrs,
@@ -79,7 +79,7 @@ defineExpose({
 
 function useMap() {
     const root = ref<HTMLElement>()
-    const leafletObject = ref<Map>()
+    const leafletObject = ref<LeafletMap>()
     const ready = ref<boolean>(false)
 
     const { options: componentOptions } = setupMap(props)
@@ -99,7 +99,7 @@ function useMap() {
         }
         await resetWebpackIcon(Icon)
 
-        leafletObject.value = markRaw(new Map(root.value!, options))
+        leafletObject.value = markRaw(new LeafletMap(root.value!, options))
 
         propsBinder(methods, leafletObject.value, props)
 
@@ -143,7 +143,7 @@ function useMethods() {
     const layerControl = ref<ILayerControlDefinition>()
     const layersToAdd = ref<ILayerDefinition[]>([])
 
-    function getMapObject(): Map | undefined {
+    function getMapObject(): LeafletMap | undefined {
         return leafletObject.value
     }
 

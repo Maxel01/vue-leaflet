@@ -2,7 +2,7 @@ import { flushPromises, mount } from '@vue/test-utils'
 import { expect, vi } from 'vitest'
 import LMap from '@/components/LMap.vue'
 import { componentProps, expectBoundsToBeClose, mergeReactiveProps } from '@/tests/helper'
-import { LatLngBounds, type LatLngExpression, Map, SimpleCRS } from 'leaflet'
+import { LatLngBounds, type LatLngExpression, LeafletMap, SimpleCRS } from 'leaflet'
 import type { MapProps } from '@/functions'
 
 export const mapProps = mergeReactiveProps(componentProps, {
@@ -31,13 +31,13 @@ export const mapProps = mergeReactiveProps(componentProps, {
     padding: [75, 75],
     crs: SimpleCRS,
     expecting: {
-        width: (leafletObject: Map) => {
+        width: (leafletObject: LeafletMap) => {
             expect(leafletObject.getContainer().style.width).toBe('400px')
         },
-        height: (leafletObject: Map) => {
+        height: (leafletObject: LeafletMap) => {
             expect(leafletObject.getContainer().style.height).toBe('400px')
         },
-        center: (leafletObject: Map, iteration: number) => {
+        center: (leafletObject: LeafletMap, iteration: number) => {
             const [lat, lng] =
                 iteration >= 2 && mapProps.center.values[iteration]
                     ? (mapProps.center.values[iteration]! as [number, number])
@@ -45,27 +45,27 @@ export const mapProps = mergeReactiveProps(componentProps, {
             expect(leafletObject.getCenter().lat).toBeCloseTo(lat)
             expect(leafletObject.getCenter().lng).toBeCloseTo(lng)
         },
-        bounds: (leafletObject: Map) => {
+        bounds: (leafletObject: LeafletMap) => {
             const lBounds = leafletObject.getBounds()
             const expectedBounds = new LatLngBounds(mapProps.bounds.values[0] as any)
             expectBoundsToBeClose(lBounds, expectedBounds, [2, 2, 1, 1])
         },
-        maxBounds: (leafletObject: Map) => {
+        maxBounds: (leafletObject: LeafletMap) => {
             expect(leafletObject.options.maxBounds).toStrictEqual(
                 new LatLngBounds([44.5, 10.5], [47.5, 11.5])
             )
         },
-        paddingBottomRight: (_m: Map, _i, wrapper) => {
+        paddingBottomRight: (_m: LeafletMap, _i, wrapper) => {
             expect((wrapper.vm.$props as MapProps).paddingBottomRight).toStrictEqual(
                 mapProps.paddingBottomRight
             )
         },
-        paddingTopLeft: (_m: Map, _, wrapper) => {
+        paddingTopLeft: (_m: LeafletMap, _, wrapper) => {
             expect((wrapper.vm.$props as MapProps).paddingTopLeft).toStrictEqual(
                 mapProps.paddingTopLeft
             )
         },
-        padding: (_m: Map, _i, wrapper) => {
+        padding: (_m: LeafletMap, _i, wrapper) => {
             expect((wrapper.vm.$props as MapProps).padding).toStrictEqual(mapProps.padding)
         }
     }

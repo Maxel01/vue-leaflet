@@ -6,7 +6,7 @@ import {
     testPropsBindingToLeaflet
 } from '@/tests/helper/propsBindingTests'
 import { testEmitsReady } from '@/tests/helper/emitTests'
-import { LatLngBounds, Map } from 'leaflet'
+import { LatLngBounds, LeafletMap } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { expectBoundsToBeClose } from '@/tests/helper/geo'
 import { createMapWrapper, mapProps } from './wrapper/LMap'
@@ -30,7 +30,7 @@ describe('LMap.vue', () => {
 const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {
     it('creates a Leaflet map with correct options', async () => {
         const wrapper = await getWrapper()
-        const obj = wrapper.vm.leafletObject as Map
+        const obj = wrapper.vm.leafletObject as LeafletMap
 
         expect(obj).toBeDefined()
         expect(obj.options).toBeDefined()
@@ -42,7 +42,7 @@ const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) =
 const testFitBounds = (getWrapper: () => Promise<VueWrapper<any>>) => {
     it('fits the map bounds with different paddings', async () => {
         const wrapper = await getWrapper()
-        const obj = wrapper.vm.leafletObject as Map
+        const obj = wrapper.vm.leafletObject as LeafletMap
         // paddingBottomRight
         await wrapper.setProps({
             paddingBottomRight: mapProps.paddingBottomRight,
@@ -136,7 +136,7 @@ const testControlLayerVisibilitySync = () => {
             }
         )
         const tileLayers = wrapper.findAllComponents(LTileLayer)
-        const map = wrapper.vm.leafletObject as Map
+        const map = wrapper.vm.leafletObject as LeafletMap
 
         map.fire('baselayerchange', {
             layer: tileLayers[1].vm.leafletObject,
@@ -154,13 +154,13 @@ const testRemoveMapOnUmount = (getWrapper: () => Promise<VueWrapper<any>>) => {
 
         wrapper.unmount()
         await nextTick()
-        const leafletObject = wrapper.vm.leafletObject as Map
+        const leafletObject = wrapper.vm.leafletObject as LeafletMap
         // In Leaflet 2.0+, mapPane is removed from the DOM rather than deleted from the instance
         expect(leafletObject._mapPane?.parentNode).toBe(null)
     })
     it('should not respond to events after removal', async () => {
         const wrapper = await getWrapper()
-        const leafletObject = wrapper.vm.leafletObject as Map
+        const leafletObject = wrapper.vm.leafletObject as LeafletMap
         const spy = vi.fn()
         leafletObject.on('click', spy)
 
