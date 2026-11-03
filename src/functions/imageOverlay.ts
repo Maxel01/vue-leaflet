@@ -78,10 +78,10 @@ export interface ImageOverlayEmits<T extends ImageOverlay = ImageOverlay> extend
     (event: 'ready', layer: T): void
 }
 
-export const setupImageOverlay = (
+export const setupImageOverlay = <T extends ImageOverlay = ImageOverlay>(
     props: ImageOverlayAbstractProps,
-    leafletRef: Ref<ImageOverlay | undefined>,
-    emit: ImageOverlayEmits
+    leafletRef: Ref<T | undefined>,
+    emit: ImageOverlayEmits<T>
 ) => {
     const { options: layerOptions, methods: layerMethods } = setupLayer(props, leafletRef, emit)
 
