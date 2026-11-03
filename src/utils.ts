@@ -1,8 +1,13 @@
 // REWRITE DONE
-import { type Evented, type LeafletEventHandlerFnMap } from 'leaflet'
+import { type Evented, type LeafletEventHandlerFn } from 'leaflet'
 import { inject, type InjectionKey, provide, type Ref, ref, watch } from 'vue'
 import type { ComponentProps } from './functions/component'
 import { vueLeafletConfig } from '@/config'
+
+export type LeafletEventHandlerFnMap = Record<
+    string,
+    LeafletEventHandlerFn & { cancel?: () => void }
+>
 
 // BREAKING CHANGES: remove type Data
 export declare type ListenersAndAttrs = {
@@ -141,25 +146,11 @@ export const remapEvents = (contextAttrs: Record<string, unknown>): ListenersAnd
     return { listeners, attrs }
 }
 
-// TODO It seems like Icon.Default is now IconDefault in leaflet v2
-export const resetWebpackIcon = async (Icon) => {
-    //export const resetWebpackIcon = async (Icon: typeof IconDefault) => {
-    /* v8 ignore next */
-    if (!vueLeafletConfig.experimental.useResetWebpackIcon) return
-    const modules = await Promise.all([
-        import('leaflet/dist/images/marker-icon-2x.png'),
-        import('leaflet/dist/images/marker-icon.png'),
-        import('leaflet/dist/images/marker-shadow.png')
-    ])
-
-    //delete IconDefault.prototype._getIconUrl
-    delete Icon.Default.prototype._getIconUrl
-
-    Icon.Default.mergeOptions({
-        iconRetinaUrl: modules[0].default,
-        iconUrl: modules[1].default,
-        shadowUrl: modules[2].default
-    })
+/**
+ * @deprecated In Leaflet 2.0, default marker icons are inline SVGs and no longer require webpack image asset workarounds.
+ */
+export const resetWebpackIcon = async (_Icon?: unknown) => {
+    // No-op for Leaflet 2.0+
 }
 
 /**

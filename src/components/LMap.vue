@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, markRaw, nextTick, onBeforeUnmount, onMounted, ref, useAttrs } from 'vue'
 import {
-    type Control,
     type CRS,
     type FitBoundsOptions,
     Icon,
@@ -9,8 +8,8 @@ import {
     LatLngBounds,
     type LatLngBoundsExpression,
     type LatLngExpression,
+    type LayersControl,
     type LeafletEvent,
-    type LeafletEventHandlerFnMap,
     Map,
     type MapOptions,
     Util,
@@ -20,6 +19,7 @@ import { debounce } from '@/debounce'
 import {
     bindEventHandlers,
     cancelDebounces,
+    type LeafletEventHandlerFnMap,
     propsBinder,
     propsToLeafletOptions,
     provideLeafletWrapper,
@@ -153,7 +153,10 @@ function useMethods() {
                 layersToAdd.value.push(layer)
             } else {
                 const exist = layersInControl.value.find(
-                    (l) => Util.stamp(l.leafletObject) === Util.stamp(layer.leafletObject)
+                    (l) =>
+                        l.leafletObject &&
+                        layer.leafletObject &&
+                        Util.stamp(l.leafletObject) === Util.stamp(layer.leafletObject)
                 )
                 if (!exist) {
                     layerControl.value.addLayer(layer)
@@ -181,14 +184,17 @@ function useMethods() {
             } else {
                 layerControl.value.removeLayer(layer)
                 layersInControl.value = layersInControl.value.filter(
-                    (l) => Util.stamp(l.leafletObject) !== Util.stamp(layer.leafletObject)
+                    (l) =>
+                        !l.leafletObject ||
+                        !layer.leafletObject ||
+                        Util.stamp(l.leafletObject) !== Util.stamp(layer.leafletObject)
                 )
             }
         }
         if (layer.leafletObject) leafletObject.value!.removeLayer(layer.leafletObject)
     }
 
-    function registerLayerControl(lControlLayer: ILayerControlDefinition<Control.Layers>) {
+    function registerLayerControl(lControlLayer: ILayerControlDefinition<LayersControl>) {
         layerControl.value = lControlLayer
         layersToAdd.value.forEach((layer) => {
             // TODO TYPES remove as cast
@@ -210,7 +216,7 @@ function useMethods() {
         }
     }
 
-    function setCrs(crs: CRS) {
+    function setCrs(crs: typeof CRS) {
         const prevBounds = leafletObject.value!.getBounds()
         leafletObject.value!.options.crs = crs
         leafletObject.value!.fitBounds(prevBounds, {

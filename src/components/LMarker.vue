@@ -14,6 +14,7 @@ import {
     bindEventHandlers,
     cancelDebounces,
     isFunction,
+    type LeafletEventHandlerFnMap,
     propsBinder,
     remapEvents
 } from '@/utils'
@@ -24,7 +25,7 @@ import {
     SetIconInjection,
     SetParentHtmlInjection
 } from '@/types/injectionKeys'
-import { DivIcon, type Icon, type LeafletEventHandlerFnMap, Marker } from 'leaflet'
+import { DivIcon, type Icon, Marker } from 'leaflet'
 import {
     type MarkerEmits,
     type MarkerProps,
