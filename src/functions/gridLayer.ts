@@ -103,7 +103,9 @@ export const setupGridLayer = <T extends GridLayer>(
     return { options, methods }
 }
 
-export function CreateVueGridLayer(childRenderer: VueGridLayerTileRenderer): typeof GridLayer {
+export function CreateVueGridLayer(
+    childRenderer: VueGridLayerTileRenderer
+): new (options?: GridLayerOptions) => GridLayer {
     class VueGridLayer extends GridLayer {
         private tileComponents: Record<string, HTMLElement | undefined> = {}
 

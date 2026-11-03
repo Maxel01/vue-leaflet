@@ -1,4 +1,4 @@
-import type { CRS, TileLayer, WMSOptions } from 'leaflet'
+import type { CRS, WMSTileLayer, WMSTileLayerOptions } from 'leaflet'
 
 import { propsToLeafletOptions } from '@/utils'
 
@@ -10,7 +10,9 @@ import {
 } from './tileLayer'
 import type { Ref } from 'vue'
 
-export interface WmsTileLayerProps<T extends WMSOptions = WMSOptions> extends TileLayerProps<T> {
+export interface WmsTileLayerProps<
+    T extends WMSTileLayerOptions = WMSTileLayerOptions
+> extends TileLayerProps<T> {
     /**
      * Comma-separated list of WMS layers to show
      * @initOnly
@@ -56,12 +58,12 @@ export const wmsTileLayerPropsDefaults = {
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
 export interface WmsTileLayerEmits<
-    T extends TileLayer.WMS = TileLayer.WMS
+    T extends WMSTileLayer = WMSTileLayer
 > extends TileLayerEmits<T> {}
 
 export const setupWMSTileLayer = (
     props: WmsTileLayerProps,
-    leafletRef: Ref<TileLayer.WMS | undefined>,
+    leafletRef: Ref<WMSTileLayer | undefined>,
     emit: WmsTileLayerEmits
 ) => {
     const { options: tileLayerOptions, methods: tileLayerMethods } = setupTileLayer(
@@ -70,7 +72,7 @@ export const setupWMSTileLayer = (
         emit
     )
 
-    const options = propsToLeafletOptions<WMSOptions>(props, tileLayerOptions)
+    const options = propsToLeafletOptions<WMSTileLayerOptions>(props, tileLayerOptions)
 
     return {
         options,
