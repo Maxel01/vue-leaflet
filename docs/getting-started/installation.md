@@ -6,13 +6,13 @@ title: Installation
 # 📦 Installation
 
 ```bash
-pnpm add @maxel01/vue-leaflet leaflet@2.0.0-beta.1
+pnpm add @maxel01/vue-leaflet leaflet@^2.0.0
 ```
 
 ```bash
-yarn add @maxel01/vue-leaflet leaflet@2.0.0-beta.1
+yarn add @maxel01/vue-leaflet leaflet@^2.0.0
 ```
 
 ```bash
-npm i @maxel01/vue-leaflet leaflet@2.0.0-beta.1
+npm i @maxel01/vue-leaflet leaflet@^2.0.0
 ```

@@ -1,4 +1,4 @@
-import type { CRS, LatLng, LatLngBounds, Map, MapOptions, PointExpression } from 'leaflet'
+import type { CRS, LatLng, LatLngBounds, LeafletMap, MapOptions, PointExpression } from 'leaflet'
 import { type ComponentProps, componentPropsDefaults, setupComponent } from '@/functions/component'
 
 export interface MapProps<T extends MapOptions = MapOptions> extends ComponentProps<T> {
@@ -136,7 +136,7 @@ export const mapPropsDefaults = {
     noBlockingAnimations: undefined
 }
 
-export interface MapEmits<T extends Map = Map> {
+export interface MapEmits<T extends LeafletMap = LeafletMap> {
     /**
      * Triggers when the component is ready
      */
