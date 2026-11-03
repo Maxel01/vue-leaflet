@@ -1,4 +1,4 @@
-import type { Control, Layer } from 'leaflet'
+import type { Layer, LayersControl, LayersControlOptions } from 'leaflet'
 
 import { propsToLeafletOptions } from '@/utils'
 
@@ -12,7 +12,7 @@ import type { Ref } from 'vue'
 import type { ILayerDefinition } from '@/types/interfaces'
 
 export interface ControlLayersProps<
-    T extends Control.LayersOptions = Control.LayersOptions
+    T extends LayersControlOptions = LayersControlOptions
 > extends ControlAbstractProps<T> {
     /**
      * If `true`, the control will be collapsed into an icon and expanded on mouse hover, touch, or keyboard activation.
@@ -51,16 +51,16 @@ export const controlLayersPropsDefaults = {
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
 export interface ControlLayersEmits<
-    T extends Control.Layers = Control.Layers
-> extends ControlEmits<T> {}
+    T extends LayersControl = LayersControl
+> extends ControlEmits<T> { }
 
 export const setupControlLayers = (
     props: ControlLayersProps,
-    leafletRef: Ref<Control.Layers | undefined>
+    leafletRef: Ref<LayersControl | undefined>
 ) => {
     const { options: controlOptions } = setupControl(props, leafletRef)
 
-    const options = propsToLeafletOptions<Control.LayersOptions>(props, controlOptions)
+    const options = propsToLeafletOptions<LayersControlOptions>(props, controlOptions)
 
     const methods = {
         // TEST addLayer and removeLayer are managed by LMap via registerLayerControl

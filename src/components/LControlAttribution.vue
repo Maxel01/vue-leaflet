@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Control } from 'leaflet'
+import { AttributionControl } from 'leaflet'
 import { markRaw, nextTick, onMounted, ref } from 'vue'
 
 import {
@@ -23,20 +23,20 @@ const { leafletObject } = useControlAttribution()
 defineExpose({
     /**
      * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
-     * @type {Ref<Control.Attribution \| undefined>}
+     * @type {Ref<AttributionControl \| undefined>}
      */
     leafletObject
 })
 
 function useControlAttribution() {
-    const leafletObject = ref<Control.Attribution>()
+    const leafletObject = ref<AttributionControl>()
 
     const registerControl = assertInject(RegisterControlInjection)
 
     const { options, methods } = setupControlAttribution(props, leafletObject)
 
     onMounted(async () => {
-        leafletObject.value = markRaw<Control.Attribution>(new Control.Attribution(options))
+        leafletObject.value = markRaw<AttributionControl>(new AttributionControl(options))
         propsBinder(methods, leafletObject.value, props)
         registerControl({ leafletObject: leafletObject.value })
         nextTick(() => emit('ready', leafletObject.value!))

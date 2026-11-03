@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Control } from 'leaflet'
+import { ScaleControl } from 'leaflet'
 import { markRaw, nextTick, onMounted, ref } from 'vue'
 
 import { RegisterControlInjection } from '@/types/injectionKeys'
@@ -23,20 +23,20 @@ const { leafletObject } = useControlScale()
 defineExpose({
     /**
      * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
-     * @type {Ref<Control.Scale \| undefined>}
+     * @type {Ref<ScaleControl \| undefined>}
      */
     leafletObject
 })
 
 function useControlScale() {
-    const leafletObject = ref<Control.Scale>()
+    const leafletObject = ref<ScaleControl>()
 
     const registerControl = assertInject(RegisterControlInjection)
 
     const { options, methods } = setupControlScale(props, leafletObject)
 
     onMounted(async () => {
-        leafletObject.value = markRaw<Control.Scale>(new Control.Scale(options))
+        leafletObject.value = markRaw<ScaleControl>(new ScaleControl(options))
         propsBinder(methods, leafletObject.value, props)
         registerControl({ leafletObject: leafletObject.value })
         nextTick(() => emit('ready', leafletObject.value!))

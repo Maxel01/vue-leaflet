@@ -9,7 +9,7 @@ import {
     controlZoomPropsDefaults,
     setupControlZoom
 } from '@/functions/controlZoom'
-import { Control } from 'leaflet'
+import { ZoomControl } from 'leaflet'
 
 /**
  * > A basic zoom control with two buttons (zoom in and zoom out).
@@ -23,20 +23,20 @@ const { leafletObject } = useControlZoom()
 defineExpose({
     /**
      * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
-     * @type {Ref<Control.Zoom \| undefined>}
+     * @type {Ref<ZoomControl \| undefined>}
      */
     leafletObject
 })
 
 function useControlZoom() {
-    const leafletObject = ref<Control.Scale>()
+    const leafletObject = ref<ZoomControl>()
 
     const registerControl = assertInject(RegisterControlInjection)
 
     const { options, methods } = setupControlZoom(props, leafletObject)
 
     onMounted(async () => {
-        leafletObject.value = markRaw<Control.Scale>(new Control.Zoom(options))
+        leafletObject.value = markRaw<ZoomControl>(new ZoomControl(options))
         propsBinder(methods, leafletObject.value, props)
         registerControl({ leafletObject: leafletObject.value })
         nextTick(() => emit('ready', leafletObject.value!))

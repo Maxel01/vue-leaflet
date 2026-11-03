@@ -1,7 +1,7 @@
 import type { InjectionKey } from 'vue'
 
 import type { IControlDefinition, ILayerDefinition } from './interfaces'
-import type { Control, DivIcon, Icon, Map, Marker, Popup, Tooltip } from 'leaflet'
+import type { DivIcon, Icon, LayersControl, Map, Marker, Popup, Tooltip } from 'leaflet'
 
 export const GetMapObjectInjection = Symbol('getMapObject') as InjectionKey<() => Map>
 
@@ -22,7 +22,7 @@ export const RegisterControlInjection = Symbol('registerControl') as InjectionKe
 >
 
 export const RegisterLayerControlInjection = Symbol('registerLayerControl') as InjectionKey<
-    (control: IControlDefinition<Control.Layers>) => void
+    (control: IControlDefinition<LayersControl>) => void
 >
 
 export const CanSetParentHtmlInjection = Symbol('canSetParentHtml') as InjectionKey<() => boolean>

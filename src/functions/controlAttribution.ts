@@ -1,4 +1,4 @@
-import type { Control } from 'leaflet'
+import type { AttributionControl, AttributionControlOptions } from 'leaflet'
 
 import { propsToLeafletOptions } from '@/utils'
 
@@ -11,7 +11,7 @@ import {
 import type { Ref } from 'vue'
 
 export interface ControlAttributionProps<
-    T extends Control.AttributionOptions = Control.AttributionOptions
+    T extends AttributionControlOptions = AttributionControlOptions
 > extends ControlAbstractProps<T> {
     /**
      * The HTML text shown before the attributions. Pass `false` to disable.
@@ -26,16 +26,16 @@ export const controlAttributionPropsDefaults = {
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
 export interface ControlAttributionEmits<
-    T extends Control.Attribution = Control.Attribution
+    T extends AttributionControl = AttributionControl
 > extends ControlEmits<T> {}
 
 export const setupControlAttribution = (
     props: ControlAttributionProps,
-    leafletRef: Ref<Control.Attribution | undefined>
+    leafletRef: Ref<AttributionControl | undefined>
 ) => {
     const { options: controlOptions, methods: controlMethods } = setupControl(props, leafletRef)
 
-    const options = propsToLeafletOptions<Control.AttributionOptions>(props, controlOptions)
+    const options = propsToLeafletOptions<AttributionControlOptions>(props, controlOptions)
 
     const methods = {
         ...controlMethods,
