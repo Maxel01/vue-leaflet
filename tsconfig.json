@@ -1,14 +1,7 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ],
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo",
     "module": "ESNext",
     "moduleResolution": "bundler",
     "paths": {
@@ -22,9 +15,31 @@
         "./src/*"
       ]
     },
-    /* Common type-checking */
-    // vite provides types but is not under @types, so their types cannot be discovered
-    // note: also see https://vite.dev/guide/features.html#client-types
-    "types": ["node", "vite/client"]
-  }
+    "types": ["node", "vite/client"],
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.vue",
+    "tests/**/*.json",
+    "vite.config.ts",
+    "vite.tests.config.ts",
+    "vitest.config.ts"
+  ],
+  "exclude": [
+    "src/playground",
+    "node_modules",
+    "dist"
+  ]
 }

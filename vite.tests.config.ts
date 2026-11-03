@@ -3,13 +3,14 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import dts from 'unplugin-dts/vite'
+// @ts-expect-error alias.config.js is a plain JS file shared with Node scripts
 import { alias } from './alias.config.js'
 
 export default defineConfig({
     css: {
         postcss: {}
     },
-    plugins: [vue(), dts({ tsconfigPath: './tsconfig.build.json' })],
+    plugins: [vue(), dts()],
     resolve: {
         alias
     },
