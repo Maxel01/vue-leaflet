@@ -1,11 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import path from 'node:path'
-import { alias } from '../alias.config'
+import { alias } from '../alias.config.ts'
 
 const version: 'local' | 'dist' | 'npm' = 'dist'
 const vue_leaflet = {
-    local: path.resolve(__dirname, '../src/lib'),
-    dist: '@dist/vue-leaflet',
+    local: path.resolve(import.meta.dirname, '../src/lib.ts'),
+    dist: path.resolve(import.meta.dirname, '../dist/vue-leaflet.es.js'),
     npm: '@maxel01/vue-leaflet'
 }
 

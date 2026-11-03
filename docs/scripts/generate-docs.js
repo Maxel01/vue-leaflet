@@ -4,7 +4,7 @@ import fse from 'fs-extra'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import propOriginHandler from './handler.js'
-import { alias } from '../../alias.config.js'
+import { alias } from '../../alias.config.ts'
 
 // Reconstruct __dirname in ESM context
 const __filename = fileURLToPath(import.meta.url)

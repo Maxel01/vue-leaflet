@@ -1,6 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vitepress'
-import { alias } from '../../alias.config.js'
+import { alias } from '../../alias.config.ts'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({

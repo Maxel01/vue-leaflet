@@ -33,6 +33,7 @@
     "tests/**/*.ts",
     "tests/**/*.vue",
     "tests/**/*.json",
+    "alias.config.ts",
     "vite.config.ts"
   ],
   "exclude": [
