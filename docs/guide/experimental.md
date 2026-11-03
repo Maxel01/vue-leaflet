@@ -14,7 +14,6 @@ import { vueLeafletConfig } from '@maxel01/vue-leaflet'
 
 console.log(vueLeafletConfig.experimental)
 // {
-//   useResetWebpackIcon: true,
 //   skipUndefinedProps: false
 // }
 ```
@@ -28,11 +27,11 @@ import { setVueLeafletConfig, vueLeafletConfig } from '@maxel01/vue-leaflet'
 
 setVueLeafletConfig({
   experimental: {
-    skipUndefinedProps: false
+    skipUndefinedProps: true
   }
 })
 
-console.log(vueLeafletConfig.experimental.skipUndefinedProps) // false
+console.log(vueLeafletConfig.experimental.skipUndefinedProps) // true
 ```
 
 This allows you to safely enable or disable experimental behaviors **without affecting top-level configuration options**.
@@ -42,18 +41,10 @@ This allows you to safely enable or disable experimental behaviors **without aff
 ```ts
 import { setVueLeafletConfig } from '@maxel01/vue-leaflet'
 
-// Enable one experimental feature
+// Enable an experimental feature
 setVueLeafletConfig({
   experimental: {
-    useResetWebpackIcon: false
-  }
-})
-
-// Override both experimental flags at once
-setVueLeafletConfig({
-  experimental: {
-    useResetWebpackIcon: false,
-    skipUndefinedProps: false
+    skipUndefinedProps: true
   }
 })
 ```
@@ -75,7 +66,3 @@ The `DemoHome` component **has 14 watchers by default**:
 Enabling this feature reduces the number of watchers to **6**.
 
 When using multiple components, the effect is even more significant: `TooltipDemo` uses **22 components**, which normally leads to **176 watchers**, but only **37** when this flag is enabled.
-
-### 🧱 useResetWebpackIcon
-
-Automatically resets Webpack icons (used for Leaflet's default markers). This was required in Leaflet v1, but it may no longer be necessary in v2. **If you use it, please create an issue or discussion to report whether it still works**.

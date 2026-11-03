@@ -14,24 +14,11 @@ describe('config', () => {
         })
         expect(vueLeafletConfig).to.deep.equal({
             experimental: {
-                useResetWebpackIcon: true,
                 skipUndefinedProps: true
             }
         })
         setVueLeafletConfig({
             experimental: {
-                useResetWebpackIcon: false
-            }
-        })
-        expect(vueLeafletConfig).to.deep.equal({
-            experimental: {
-                useResetWebpackIcon: false,
-                skipUndefinedProps: true
-            }
-        })
-        setVueLeafletConfig({
-            experimental: {
-                useResetWebpackIcon: true,
                 skipUndefinedProps: false
             }
         })
@@ -48,7 +35,6 @@ describe('config', () => {
 function expectDefault() {
     expect(vueLeafletConfig).to.deep.equal({
         experimental: {
-            useResetWebpackIcon: true,
             skipUndefinedProps: false
         }
     })
