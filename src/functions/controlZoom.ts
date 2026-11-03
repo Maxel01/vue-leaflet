@@ -40,7 +40,7 @@ export const controlZoomPropsDefaults = {
 }
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
-export interface ControlZoomEmits<T extends ZoomControl = ZoomControl> extends ControlEmits<T> { }
+export interface ControlZoomEmits<T extends ZoomControl = ZoomControl> extends ControlEmits<T> {}
 
 export const setupControlZoom = (
     props: ControlZoomProps,

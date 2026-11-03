@@ -52,7 +52,7 @@ export const controlLayersPropsDefaults = {
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
 export interface ControlLayersEmits<
     T extends LayersControl = LayersControl
-> extends ControlEmits<T> { }
+> extends ControlEmits<T> {}
 
 export const setupControlLayers = (
     props: ControlLayersProps,
