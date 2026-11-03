@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import path from 'node:path'
-import { alias } from '../alias.config.js'
+import { alias } from '../alias.config.ts'
 
 const version: 'local' | 'dist' | 'npm' = 'dist'
 const vue_leaflet = {

@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import path from 'node:path'
-import { alias } from '../alias.config.js'
+import { alias } from '../alias.config.ts'
 
 const version: 'local' | 'dist' | 'npm' = 'dist'
 const vue_leaflet = {

@@ -1,6 +1,6 @@
 import { parse } from 'vue-docgen-api'
 import propOriginHandler from './handler.js'
-import { alias } from '../../alias.config.js'
+import { alias } from '../../alias.config.ts'
 
 
 const result = await parse('./src/components/LCircleMarker.vue', {
