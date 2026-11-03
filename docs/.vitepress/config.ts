@@ -1,5 +1,6 @@
+import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vitepress'
-import { alias } from '../../alias.config'
+import { alias } from '../../alias.config.js'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -15,7 +16,10 @@ export default defineConfig({
             postcss: {}
         },
         resolve: {
-            alias
+            alias: {
+                '@maxel01/vue-leaflet': fileURLToPath(new URL('../../src/lib.ts', import.meta.url)),
+                ...alias
+            }
         }
     },
     themeConfig: {
