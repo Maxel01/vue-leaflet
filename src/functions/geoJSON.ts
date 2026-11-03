@@ -1,4 +1,4 @@
-import type { GeoJsonObject } from 'geojson'
+import type { GeoJSON as GeoJSONData } from 'geojson'
 import type { GeoJSON, GeoJSONOptions, PathOptions, StyleFunction } from 'leaflet'
 import type { Ref } from 'vue'
 
@@ -18,7 +18,7 @@ export interface GeoJSONProps<
      * An object in GeoJSON format to display on the map (you can alternatively add it later with addData method).
      * @reactive
      */
-    geojson?: GeoJsonObject
+    geojson?: GeoJSONData | GeoJSONData[] | null
     /**
      * A Function defining the styling for GeoJSON lines and polygons. See more in [original Leaflet documentation](https://leafletjs.com/reference-2.0.0.html#geojson-style)
      * @reactive
@@ -49,9 +49,11 @@ export const setupGeoJSON = (
 
     const methods = {
         ...layerGroupMethods,
-        setGeojson(newVal: GeoJsonObject) {
+        setGeojson(newVal: GeoJSONData | GeoJSONData[] | null) {
             leafletRef.value?.clearLayers()
-            leafletRef.value?.addData(newVal)
+            if (newVal) {
+                leafletRef.value?.addData(newVal)
+            }
         },
         setOptionsStyle(newVal: PathOptions | StyleFunction) {
             leafletRef.value?.setStyle(newVal)

@@ -45,7 +45,7 @@ describe('cancelDebounces', () => {
     })
 
     it('ignores non-function cancel properties', () => {
-        const handler = Object.assign(() => {}, { cancel: 'notAFunction' })
+        const handler = Object.assign(() => {}, { cancel: 'notAFunction' }) as any
 
         const handlers: LeafletEventHandlerFnMap = {
             move: handler

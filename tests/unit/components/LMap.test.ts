@@ -92,7 +92,7 @@ const testBeforeMapMount = (getWrapper: (props: MapProps) => Promise<VueWrapper<
     })
 }
 
-const testRemoveLayer = (getWrapper: () => Promise<VueWrapper<any>>) => {
+const testRemoveLayer = (_getWrapper: () => Promise<VueWrapper<any>>) => {
     it('removes the layer from the map on unmount with ControlLayers', async () => {
         const wrapper = await createMapWrapper(
             {},

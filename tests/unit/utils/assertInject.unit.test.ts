@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { inject, InjectionKey } from 'vue'
+import { inject, type InjectionKey } from 'vue'
 import { assertInject } from '@/utils'
 
 const mockedInject = inject as unknown as ReturnType<typeof vi.fn>

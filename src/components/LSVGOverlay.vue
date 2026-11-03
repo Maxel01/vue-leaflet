@@ -29,7 +29,12 @@ defineExpose({
      * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
      * @type {Ref<SVGOverlay \| undefined>}
      */
-    leafletObject
+    leafletObject,
+    /**
+     * The root DOM element holding the svg slot.
+     * @type {Ref<HTMLDivElement \| undefined>}
+     */
+    svgRoot
 })
 
 function useSVGOverlay() {
@@ -38,7 +43,7 @@ function useSVGOverlay() {
     const svgRoot = ref<HTMLDivElement>()
     const svg = computed<SVGElement | undefined>(() => {
         const svg = svgRoot.value?.firstElementChild
-        return svg?.tagName === 'svg' ? (svg as SVGElement) : undefined
+        return svg?.tagName.toLowerCase() === 'svg' ? (svg as SVGElement) : undefined
     })
 
     const addLayer = assertInject(AddLayerInjection)
@@ -46,13 +51,12 @@ function useSVGOverlay() {
     const { options, methods } = setupSVGOverlay(props, leafletObject, emit)
 
     onMounted(async () => {
-        if (!svg.value && !props.svg) {
+        const svgElement = svg.value || props.svg
+        if (!svgElement) {
             console.warn('Missing svg prop or slot: LSVGOverlay has not been created.')
             return
         }
-        leafletObject.value = markRaw<SVGOverlay>(
-            new SVGOverlay(svg.value ? svg.value : props.svg!, props.bounds, options)
-        )
+        leafletObject.value = markRaw<SVGOverlay>(new SVGOverlay(svgElement, props.bounds, options))
 
         const { listeners } = remapEvents(useAttrs())
         leafletObject.value.on(listeners)

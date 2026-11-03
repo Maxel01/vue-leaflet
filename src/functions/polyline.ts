@@ -1,9 +1,10 @@
-import type { Polyline, LatLngExpression, PolylineOptions } from 'leaflet'
+import type { Geometry } from 'geojson'
+import type { InteractiveLayerEventMap, LatLngExpression, Polyline, PolylineOptions } from 'leaflet'
+import type { Ref } from 'vue'
 
 import { propsToLeafletOptions } from '@/utils'
 
 import { type PathEmits, type PathProps, pathPropsDefaults, setupPath } from './path'
-import type { Ref } from 'vue'
 
 export interface PolylineAbstractProps<
     T extends PolylineOptions = PolylineOptions
@@ -35,7 +36,9 @@ export const polylinePropsDefaults = {
     noClip: undefined
 }
 
-export interface PolylineEmits<T extends Polyline = Polyline> extends PathEmits {
+export interface PolylineEmits<
+    T extends Polyline<PolylineOptions, InteractiveLayerEventMap, Geometry> = Polyline
+> extends PathEmits {
     /**
      * Triggers when the component is ready
      */

@@ -33,7 +33,7 @@ export const setupCircle = (
     const { options: circleMarkerOptions, methods: circleMarkerMethods } = setupCircleMarker(
         props,
         leafletRef,
-        emit
+        emit as CircleMarkerEmits
     )
 
     const options = propsToLeafletOptions<CircleOptions>(props, circleMarkerOptions)
