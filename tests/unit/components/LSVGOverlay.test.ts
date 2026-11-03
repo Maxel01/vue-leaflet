@@ -20,7 +20,7 @@ import { svgOverlayProps } from './wrapper/LSVGOverlay'
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LSVGOverlay, {
         propsData: {
-            svg: './some.svg',
+            svg: document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
             bounds: [
                 [0, 0],
                 [100, 100]

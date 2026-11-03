@@ -2,13 +2,17 @@ import type {
     ImageOverlay,
     ImageOverlayOptions,
     LatLngBounds,
-    LatLngBoundsExpression
+    LatLngBoundsExpression,
+    SVGOverlay,
+    VideoOverlay
 } from 'leaflet'
 import type { Ref } from 'vue'
 
 import { propsToLeafletOptions } from '@/utils'
 
 import { type LayerEmits, type LayerProps, layerPropsDefaults, setupLayer } from './layer'
+
+export type OverlayLayer = ImageOverlay | SVGOverlay | VideoOverlay
 
 export interface ImageOverlayAbstractProps<
     T extends ImageOverlayOptions = ImageOverlayOptions
@@ -71,14 +75,14 @@ export const imageOverlayPropsDefaults = {
     crossOrigin: undefined
 }
 
-export interface ImageOverlayEmits<T extends ImageOverlay = ImageOverlay> extends LayerEmits {
+export interface ImageOverlayEmits<T extends OverlayLayer = ImageOverlay> extends LayerEmits {
     /**
      * Triggers when the component is ready
      */
     (event: 'ready', layer: T): void
 }
 
-export const setupImageOverlay = <T extends ImageOverlay = ImageOverlay>(
+export const setupImageOverlay = <T extends OverlayLayer = ImageOverlay>(
     props: ImageOverlayAbstractProps,
     leafletRef: Ref<T | undefined>,
     emit: ImageOverlayEmits<T>
@@ -120,11 +124,11 @@ export const setupImageOverlay = <T extends ImageOverlay = ImageOverlay>(
             return leafletRef.value?.getBounds()
         },
         /**
-         * Returns the instance of HTMLImageElement used by this overlay.
+         * Returns the DOM element used by this overlay.
          * TODO remove unused code
          * @deprecated unreachable code ?
          */
-        getElement(): HTMLElement | undefined {
+        getElement(): HTMLElement | SVGElement | undefined {
             return leafletRef.value?.getElement()
         },
         /**

@@ -30,7 +30,12 @@ defineExpose({
      * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
      * @type {Ref<VideoOverlay \| undefined>}
      */
-    leafletObject
+    leafletObject,
+    /**
+     * The root DOM element holding the video slot.
+     * @type {Ref<HTMLDivElement \| undefined>}
+     */
+    videoRoot
 })
 
 function useVideoOverlay() {
@@ -39,7 +44,7 @@ function useVideoOverlay() {
     const videoRoot = ref<HTMLDivElement>()
     const video = computed(() => {
         const video = videoRoot.value?.firstElementChild
-        return video?.tagName === 'svg' ? (video as HTMLVideoElement) : undefined
+        return video?.tagName.toLowerCase() === 'video' ? (video as HTMLVideoElement) : undefined
     })
 
     const addLayer = assertInject(AddLayerInjection)

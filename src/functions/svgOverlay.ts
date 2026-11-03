@@ -13,10 +13,10 @@ export interface SVGOverlayProps<
     T extends ImageOverlayOptions = ImageOverlayOptions
 > extends ImageOverlayAbstractProps<T> {
     /**
-     * Url of the svg or the SVGElement. Will be ignored when using the named slot `svg`.
+     * An SVGElement instance. Will be ignored when using the named slot `svg`.
      * @initOnly
      */
-    svg?: string | SVGElement
+    svg?: SVGElement
 }
 
 export const svgOverlayPropsDefaults = {
