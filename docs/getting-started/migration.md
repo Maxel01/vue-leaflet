@@ -17,6 +17,7 @@ Leaflet released a new [major version](https://leafletjs.com/2025/05/18/leaflet-
   - also applies to ``Path``, ``Polyline``, ``Polygon``, ``CircleMarker``, ``Circle`` 
 - deprecate unreachable code (see [#56](https://github.com/Maxel01/vue-leaflet/pull/56))
 - utils: deprecate `resetWebpackIcon` (Leaflet 2 default icons are inline SVGs and PNG assets are no longer used)
+- config: remove experimental flag `useResetWebpackIcon`
 - types: remove `IMapBlueprint`
 - types: Leaflet 2 now provides native TypeScript types (`@types/leaflet` should be removed); several component prop and method types have been updated to match Leaflet 2 typings
 
