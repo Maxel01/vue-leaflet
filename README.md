@@ -6,7 +6,7 @@
 [![Vue][vue-src]][vue-href]
 [![Leaflet][leaflet-src]][leaflet-href]
 
-A modern Vue 3 wrapper for Leaflet v2-alpha, based on [vue-leaflet/vue-leaflet](https://github.com/vue-leaflet/vue-leaflet). Built with the Composition API, fully SSR-compatible, and designed for future extensibility.
+A modern Vue 3 wrapper for Leaflet v2, based on [vue-leaflet/vue-leaflet](https://github.com/vue-leaflet/vue-leaflet). Built with the Composition API, fully SSR-compatible, and designed for future extensibility.
 
 > ⚠️ This is a **Beta version** and may be unstable. Contributions, feedback, and bug reports are welcome via [issues](https://github.com/Maxel01/vue-leaflet/issues) or [discussions](https://github.com/Maxel01/vue-leaflet/discussions).
 
@@ -16,7 +16,7 @@ A modern Vue 3 wrapper for Leaflet v2-alpha, based on [vue-leaflet/vue-leaflet](
 
 ## 🚀 What's New
 
-- ✅ Leaflet v2-alpha support
+- ✅ Leaflet v2 support
 - ✅ Refactored with Vue 3 Composition API
 - ✅ SSR compatibility without `useGlobalLeaflet`
 - ✅ >95% test coverage
@@ -70,11 +70,11 @@ The first plugin has already been implemented. If you need support for a specifi
 ## 📦 Installation
 
 ```bash
-pnpm add @maxel01/vue-leaflet leaflet@2.0.0-alpha
+pnpm add @maxel01/vue-leaflet leaflet@^2.0.0
 # or
-yarn add @maxel01/vue-leaflet leaflet@2.0.0-alpha
+yarn add @maxel01/vue-leaflet leaflet@^2.0.0
 # or
-npm i @maxel01/vue-leaflet leaflet@2.0.0-alpha
+npm i @maxel01/vue-leaflet leaflet@^2.0.0
 ```
 
 ---
