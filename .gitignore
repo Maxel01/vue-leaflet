@@ -18,6 +18,7 @@ node_modules
 dist
 dist-ssr
 coverage
+*.tsbuildinfo
 *.local
 docs/.vitepress/cache
 docs/components/l-*.md

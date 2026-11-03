@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 
 import { LImageOverlay, LMap, LMarker, LPopup } from '@maxel01/vue-leaflet'
-import { CRS, type LatLngBoundsLiteral } from 'leaflet'
+import { type LatLngBoundsLiteral, SimpleCRS } from 'leaflet'
 
 const imageOverlayUrl = ref(
     'https://www.printablee.com/postpic/2011/06/blank-100-square-grid-paper_405041.jpg'
@@ -31,7 +31,7 @@ const markers = ref([
 </script>
 
 <template>
-    <LMap :zoom="1" :crs="CRS.Simple" :center="[height / 2, width / 2]" :minZoom="-5">
+    <LMap :zoom="1" :crs="SimpleCRS" :center="[height / 2, width / 2]" :minZoom="-5">
         <LImageOverlay :url="imageOverlayUrl" :bounds="bounds"></LImageOverlay>
 
         <LMarker v-for="(marker, idx) in markers" :key="idx" :lat-lng="marker.coordinates">

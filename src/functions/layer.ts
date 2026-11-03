@@ -93,9 +93,10 @@ export const setupLayer = <T extends Layer>(
 
     const methods = {
         ...componentMethods,
+        // TODO: Breaking change - align setAttribution parameter with Leaflet 2 (string | null instead of string | undefined) in a separate PR
         setAttribution(val: string | undefined) {
             removeThisLayer()
-            if (leafletRef.value) leafletRef.value.options.attribution = val
+            if (leafletRef.value) leafletRef.value.options.attribution = val ?? null
             if (props.visible) {
                 addThisLayer()
             }

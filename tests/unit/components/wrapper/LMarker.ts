@@ -14,7 +14,7 @@ export const markerProps = mergeReactiveProps(layerProps, {
     expecting: {
         draggable(leafletObject: Marker) {
             // TEST leafletObject.dragging is undefined. Why?
-            expect(leafletObject.dragging.enabled()).toBeTruthy()
+            expect(leafletObject.dragging?.enabled()).toBeTruthy()
         }
     }
 })

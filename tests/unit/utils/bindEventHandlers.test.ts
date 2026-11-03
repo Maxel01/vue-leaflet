@@ -1,6 +1,6 @@
-import { bindEventHandlers } from '@/utils'
+import { bindEventHandlers, type LeafletEventHandlerFnMap } from '@/utils'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { Evented, LeafletEventHandlerFnMap } from 'leaflet'
+import type { Evented } from 'leaflet'
 
 describe('bindEventHandlers', () => {
     let mockLeafletObject: Evented
@@ -36,7 +36,7 @@ describe('bindEventHandlers', () => {
         const handlers = {
             click: undefined,
             zoom: null
-        } as LeafletEventHandlerFnMap
+        } as unknown as LeafletEventHandlerFnMap
 
         bindEventHandlers(mockLeafletObject, handlers)
 

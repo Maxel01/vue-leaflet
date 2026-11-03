@@ -67,7 +67,7 @@ export interface MapProps<T extends MapOptions = MapOptions> extends ComponentPr
      * The [Coordinate Reference System](https://leafletjs.com/reference-2.0.0.html#crs) to use. Don't change this if you're not sure what it means.
      * @reactive
      */
-    crs?: CRS | typeof CRS.EPSG3857 // typeof only necessary to remove the runtime warning
+    crs?: CRS | typeof CRS // typeof only necessary to remove the Vue prop runtime warning
     /**
      * If `maxBounds` is set, this option will control how solid the bounds are when dragging the map around. The default value of `0.0` allows the user to drag outside the bounds at normal speed, higher values will slow down map dragging outside bounds, and `1.0` makes the bounds fully solid, preventing the user from dragging outside the bounds.
      * @initOnly

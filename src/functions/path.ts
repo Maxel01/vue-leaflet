@@ -1,4 +1,4 @@
-import type { FillRule, LineCapShape, LineJoinShape, Path, PathOptions } from 'leaflet'
+import type { Path, PathOptions } from 'leaflet'
 import { type Ref } from 'vue'
 import { propsToLeafletOptions } from '@/utils'
 
@@ -34,12 +34,12 @@ export interface PathProps<T extends PathOptions = PathOptions> extends Interact
      * A string that defines [shape to be used at the end](https://developer.mozilla.org/docs/Web/SVG/Attribute/stroke-linecap) of the stroke.
      * @reactive
      */
-    lineCap?: LineCapShape
+    lineCap?: CanvasLineCap
     /**
      * A string that defines [shape to be used at the corners](https://developer.mozilla.org/docs/Web/SVG/Attribute/stroke-linejoin) of the stroke.
      * @reactive
      */
-    lineJoin?: LineJoinShape
+    lineJoin?: CanvasLineJoin
     /**
      * A string that defines the stroke [dash pattern](https://developer.mozilla.org/docs/Web/SVG/Attribute/stroke-dasharray).
      * @reactive
@@ -69,7 +69,7 @@ export interface PathProps<T extends PathOptions = PathOptions> extends Interact
      * A string that defines [how the inside of a shape](https://developer.mozilla.org/docs/Web/SVG/Attribute/fill-rule) is determined.
      * @reactive
      */
-    fillRule?: FillRule
+    fillRule?: CanvasFillRule
     /**
      * Custom class name set on an element. Only for SVG renderer.
      * @reactive
@@ -106,10 +106,10 @@ export const setupPath = (props: PathProps, leafletRef: Ref<Path | undefined>, e
         setOpacity(opacity: number) {
             leafletRef.value?.setStyle({ opacity })
         },
-        setLineCap(lineCap: LineCapShape) {
+        setLineCap(lineCap: CanvasLineCap) {
             leafletRef.value?.setStyle({ lineCap })
         },
-        setLineJoin(lineJoin: LineJoinShape) {
+        setLineJoin(lineJoin: CanvasLineJoin) {
             leafletRef.value?.setStyle({ lineJoin })
         },
         setDashArray(dashArray: string) {
@@ -127,7 +127,7 @@ export const setupPath = (props: PathProps, leafletRef: Ref<Path | undefined>, e
         setFillOpacity(fillOpacity: number) {
             leafletRef.value?.setStyle({ fillOpacity })
         },
-        setFillRule(fillRule: FillRule) {
+        setFillRule(fillRule: CanvasFillRule) {
             leafletRef.value?.setStyle({ fillRule })
         },
         setClassName(className: string) {

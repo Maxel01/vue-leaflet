@@ -2,7 +2,7 @@ import { flushPromises, mount } from '@vue/test-utils'
 import { expect, vi } from 'vitest'
 import LMap from '@/components/LMap.vue'
 import { componentProps, expectBoundsToBeClose, mergeReactiveProps } from '@/tests/helper'
-import { CRS, LatLngBounds, type LatLngExpression, Map } from 'leaflet'
+import { LatLngBounds, type LatLngExpression, Map, SimpleCRS } from 'leaflet'
 import type { MapProps } from '@/functions'
 
 export const mapProps = mergeReactiveProps(componentProps, {
@@ -19,7 +19,7 @@ export const mapProps = mergeReactiveProps(componentProps, {
             ] as LatLngExpression[],
             undefined,
             null,
-            [null, undefined] as LatLngExpression[]
+            [null, undefined] as unknown as LatLngExpression[]
         ]
     },
     maxBounds: new LatLngBounds([44.5, 10.5], [47.5, 11.5]),
@@ -29,7 +29,7 @@ export const mapProps = mergeReactiveProps(componentProps, {
     paddingBottomRight: [100, 100],
     paddingTopLeft: [100, 100],
     padding: [75, 75],
-    crs: CRS.Simple,
+    crs: SimpleCRS,
     expecting: {
         width: (leafletObject: Map) => {
             expect(leafletObject.getContainer().style.width).toBe('400px')
@@ -38,13 +38,16 @@ export const mapProps = mergeReactiveProps(componentProps, {
             expect(leafletObject.getContainer().style.height).toBe('400px')
         },
         center: (leafletObject: Map, iteration: number) => {
-            const [lat, lng] = iteration >= 2 ? mapProps.center.values[iteration] : [45, 10]
+            const [lat, lng] =
+                iteration >= 2 && mapProps.center.values[iteration]
+                    ? (mapProps.center.values[iteration]! as [number, number])
+                    : [45, 10]
             expect(leafletObject.getCenter().lat).toBeCloseTo(lat)
             expect(leafletObject.getCenter().lng).toBeCloseTo(lng)
         },
         bounds: (leafletObject: Map) => {
             const lBounds = leafletObject.getBounds()
-            const expectedBounds = new LatLngBounds(mapProps.bounds.values[0])
+            const expectedBounds = new LatLngBounds(mapProps.bounds.values[0] as any)
             expectBoundsToBeClose(lBounds, expectedBounds, [2, 2, 1, 1])
         },
         maxBounds: (leafletObject: Map) => {

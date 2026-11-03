@@ -1,4 +1,4 @@
-import type { Control } from 'leaflet'
+import type { ZoomControl, ZoomControlOptions } from 'leaflet'
 
 import { propsToLeafletOptions } from '@/utils'
 
@@ -11,7 +11,7 @@ import {
 import type { Ref } from 'vue'
 
 export interface ControlZoomProps<
-    T extends Control.ZoomOptions = Control.ZoomOptions
+    T extends ZoomControlOptions = ZoomControlOptions
 > extends ControlAbstractProps<T> {
     /**
      * The text set on the 'zoom in' button
@@ -40,15 +40,15 @@ export const controlZoomPropsDefaults = {
 }
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
-export interface ControlZoomEmits<T extends Control.Zoom = Control.Zoom> extends ControlEmits<T> {}
+export interface ControlZoomEmits<T extends ZoomControl = ZoomControl> extends ControlEmits<T> {}
 
 export const setupControlZoom = (
     props: ControlZoomProps,
-    leafletRef: Ref<Control.Zoom | undefined>
+    leafletRef: Ref<ZoomControl | undefined>
 ) => {
     const { options: controlOptions, methods: controlMethods } = setupControl(props, leafletRef)
 
-    const options = propsToLeafletOptions<Control.ZoomOptions>(props, controlOptions)
+    const options = propsToLeafletOptions<ZoomControlOptions>(props, controlOptions)
 
     return { options, methods: controlMethods }
 }

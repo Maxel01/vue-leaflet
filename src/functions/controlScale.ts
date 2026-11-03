@@ -1,4 +1,4 @@
-import type { Control } from 'leaflet'
+import type { ScaleControl, ScaleControlOptions } from 'leaflet'
 
 import { propsToLeafletOptions } from '@/utils'
 
@@ -11,7 +11,7 @@ import {
 import type { Ref } from 'vue'
 
 export interface ControlScaleProps<
-    T extends Control.ScaleOptions = Control.ScaleOptions
+    T extends ScaleControlOptions = ScaleControlOptions
 > extends ControlAbstractProps<T> {
     /**
      * Maximum width of the control in pixels. The width is set dynamically to show round values (eg. 100, 200, 500).
@@ -43,17 +43,15 @@ export const controlScalePropsDefaults = {
 }
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
-export interface ControlScaleEmits<
-    T extends Control.Scale = Control.Scale
-> extends ControlEmits<T> {}
+export interface ControlScaleEmits<T extends ScaleControl = ScaleControl> extends ControlEmits<T> {}
 
 export const setupControlScale = (
     props: ControlScaleProps,
-    leafletRef: Ref<Control.Scale | undefined>
+    leafletRef: Ref<ScaleControl | undefined>
 ) => {
     const { options: controlOptions, methods: controlMethods } = setupControl(props, leafletRef)
 
-    const options = propsToLeafletOptions<Control.ScaleOptions>(props, controlOptions)
+    const options = propsToLeafletOptions<ScaleControlOptions>(props, controlOptions)
 
     return { options, methods: controlMethods }
 }

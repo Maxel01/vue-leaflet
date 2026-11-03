@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { markRaw, nextTick, onMounted, ref } from 'vue'
-import { Control } from 'leaflet'
+import { LayersControl } from 'leaflet'
 import { RegisterLayerControlInjection } from '@/types/injectionKeys'
 import {
     type ControlLayersEmits,
@@ -21,21 +21,21 @@ const { leafletObject } = useControlLayers()
 defineExpose({
     /**
      * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
-     * @type {Ref<Control.Layers \| undefined>}
+     * @type {Ref<LayersControl \| undefined>}
      */
     leafletObject
 })
 
 function useControlLayers() {
-    const leafletObject = ref<Control.Layers>()
+    const leafletObject = ref<LayersControl>()
 
     const registerLayerControl = assertInject(RegisterLayerControlInjection)
 
     const { options, methods } = setupControlLayers(props, leafletObject)
 
     onMounted(async () => {
-        leafletObject.value = markRaw<Control.Layers>(
-            new Control.Layers(undefined, undefined, options)
+        leafletObject.value = markRaw<LayersControl>(
+            new LayersControl(undefined, undefined, options)
         )
 
         propsBinder(methods, leafletObject.value, props)

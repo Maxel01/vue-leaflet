@@ -9,7 +9,7 @@ import {
 } from '@/functions/wmsTileLayer'
 import { AddLayerInjection } from '@/types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '@/utils'
-import { TileLayer } from 'leaflet'
+import { WMSTileLayer } from 'leaflet'
 
 /**
  * > Display [WMS](https://en.wikipedia.org/wiki/Web_Map_Service) services as tile layers on the map.
@@ -23,20 +23,20 @@ const { leafletObject } = useWmsTileLayer()
 defineExpose({
     /**
      * The underlying Leaflet instance. Can be used to directly interact with the Leaflet API (e.g. calling methods or accessing internal state).
-     * @type {Ref<TileLayer.WMS \| undefined>}
+     * @type {Ref<WMSTileLayer \| undefined>}
      */
     leafletObject
 })
 
 function useWmsTileLayer() {
-    const leafletObject = ref<TileLayer.WMS>()
+    const leafletObject = ref<WMSTileLayer>()
 
     const addLayer = assertInject(AddLayerInjection)
 
     const { options, methods } = setupWMSTileLayer(props, leafletObject, emit)
 
     onMounted(async () => {
-        leafletObject.value = markRaw<TileLayer.WMS>(new TileLayer.WMS(props.url, options))
+        leafletObject.value = markRaw<WMSTileLayer>(new WMSTileLayer(props.url, options))
 
         const { listeners } = remapEvents(useAttrs())
         leafletObject.value.on(listeners)

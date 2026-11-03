@@ -13,7 +13,7 @@ import {
     mockRemoveLayer,
     testAddLayer
 } from '@/tests/helper/injectionsTests'
-import type { TileLayer } from 'leaflet'
+import type { WMSTileLayer } from 'leaflet'
 import LWmsTileLayer from '@/components/LWmsTileLayer.vue'
 import { wmsTileLayerProps } from './wrapper/LWmsTileLayer'
 
@@ -57,7 +57,7 @@ describe('LWmsTileLayer.vue', () => {
 const testCorrectInitialisation = (getWrapper: () => Promise<VueWrapper<any>>) => {
     it('creates a Leaflet wms tile layer with correct options', async () => {
         const wrapper = await getWrapper()
-        const obj = wrapper.vm.leafletObject as TileLayer.WMS
+        const obj = wrapper.vm.leafletObject as WMSTileLayer
 
         expect(obj).toBeDefined()
         expect(obj.options).toBeDefined()

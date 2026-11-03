@@ -2,7 +2,7 @@
 import { computed, ref, onMounted } from 'vue'
 
 import { LMap, LMarker, LPopup, LSVGOverlay } from '@maxel01/vue-leaflet'
-import { CRS, type LatLngBoundsLiteral } from 'leaflet'
+import { type LatLngBoundsLiteral, SimpleCRS } from 'leaflet'
 
 const width = ref(100)
 const height = ref(100)
@@ -36,7 +36,7 @@ const markers = ref([
 </script>
 
 <template>
-    <LMap :zoom="1" :crs="CRS.Simple" :center="[height / 2, width / 2]" :minZoom="-5">
+    <LMap :zoom="1" :crs="SimpleCRS" :center="[height / 2, width / 2]" :minZoom="-5">
         <!--LSVGOverlay v-if="svgElement" :svg="svgElement" :bounds="bounds"-->
         <LSVGOverlay :bounds="bounds">
             <template #svg>

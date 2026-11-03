@@ -21,7 +21,7 @@ import { geoJsonProps } from './wrapper/LGeoJson'
 const createWrapper = async (props = {}) => {
     const wrapper = shallowMount(LGeoJson, {
         propsData: {
-            geojson: geoJson,
+            geojson: geoJson as any,
             ...props
         },
         global: {

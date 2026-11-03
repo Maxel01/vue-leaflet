@@ -60,7 +60,10 @@ export const setupTileLayer = <T extends TileLayer>(
         leafletRef,
         emit
     )
-    const options = propsToLeafletOptions<TileLayerOptions>(props, gridLayerOptions)
+    const options = propsToLeafletOptions<TileLayerOptions>(
+        props,
+        gridLayerOptions as Partial<TileLayerOptions>
+    )
 
     const methods = {
         ...gridLayerMethods
