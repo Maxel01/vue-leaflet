@@ -50,6 +50,7 @@ export default defineConfig({
                     { text: 'Accessing a map instance', link: '/guide/accessing-map-instance' },
                     { text: 'Reactivity in vue-leaflet', link: '/guide/reactivity-leaflet' },
                     { text: 'Server-Side Rendering with vue-leaflet', link: '/guide/ssr' },
+                    { text: 'Testing', link: '/guide/testing' },
                     { text: 'Experimental Features', link: '/guide/experimental' }
                 ]
             },
