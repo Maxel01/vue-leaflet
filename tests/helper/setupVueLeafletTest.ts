@@ -65,9 +65,3 @@ export function setupVueLeafletTest(options: VueLeafletTestOptions = {}): void {
         })
     }
 }
-
-/**
- * Alias for `setupVueLeafletTest`.
- */
-export const setupLeafletTest = setupVueLeafletTest
-export type LeafletTestOptions = VueLeafletTestOptions
