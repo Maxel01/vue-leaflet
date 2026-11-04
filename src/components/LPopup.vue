@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { markRaw, nextTick, onBeforeUnmount, onMounted, ref, useAttrs } from 'vue'
+import { markRaw, nextTick, onBeforeUnmount, onMounted, ref, useAttrs, useTemplateRef } from 'vue'
 import { BindPopupInjection, UnbindPopupInjection } from '@/types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '@/utils'
 import { Popup } from 'leaflet'
@@ -26,7 +26,7 @@ const { root, leafletObject } = usePopup()
 defineExpose({
     /**
      * The root DOM element of the Leaflet popup. This element is managed by Leaflet's `Popup` class. You can use it to directly manipulate the popup's container (e.g. styling, event listeners), or alternatively use the default slot for custom content.
-     *  @type {Ref<HTMLElement \| undefined>}
+     *  @type {Readonly<ShallowRef<HTMLElement \| null>>}
      */
     root,
     /**
@@ -38,7 +38,7 @@ defineExpose({
 
 function usePopup() {
     const leafletObject = ref<Popup>()
-    const root = ref(null)
+    const root = useTemplateRef<HTMLElement>('root')
 
     const bindPopup = assertInject(BindPopupInjection)
     const unbindPopup = assertInject(UnbindPopupInjection)

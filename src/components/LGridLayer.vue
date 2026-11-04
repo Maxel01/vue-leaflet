@@ -6,7 +6,7 @@ import {
     gridLayerPropsDefaults,
     setupGridLayer
 } from '@/functions/gridLayer'
-import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
+import { markRaw, nextTick, onMounted, ref, useAttrs, useTemplateRef } from 'vue'
 import { AddLayerInjection } from '@/types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '@/utils'
 import type { GridLayer } from 'leaflet'
@@ -45,7 +45,7 @@ defineExpose({
     leafletObject,
     /**
      * The root DOM element. ?
-     * @type {Ref<HTMLElement \| undefined>}
+     * @type {Readonly<ShallowRef<HTMLElement \| null>>}
      */
     root,
     /**
@@ -57,7 +57,7 @@ defineExpose({
 
 function useGridLayer() {
     const leafletObject = ref<GridLayer>()
-    const root = ref<HTMLElement>()
+    const root = useTemplateRef<HTMLElement>('root')
     const ready = ref<boolean>(false)
 
     const addLayer = assertInject(AddLayerInjection)
