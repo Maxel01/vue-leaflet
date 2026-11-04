@@ -1,5 +1,43 @@
 # Changelog
 
+## [1.0.0-beta.9](https://github.com/Maxel01/vue-leaflet/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2026-11-04)
+
+### ⚠ BREAKING CHANGES
+
+* **types:** - **LSVGOverlay**: The `svg` prop in `SVGOverlayProps` now strictly expects an `SVGElement` instance (passing URL strings is no longer supported by Leaflet 2).
+  - **LGeoJson**: The `geojson` prop and `setGeojson` method types now accept Leaflet 2's GeoJSON data types (`GeoJSONData | GeoJSONData[] | null`) imported from GeoJSON.
+  - **Vector layers**: Emits interfaces have been aligned with Leaflet 2 vector layer types, resolving signature contravariance.
+* **icon:** Event listeners bound directly to <LIcon> (such as click events / v-on:click) are no longer attached via Leaflet DomEvent. Leaflet Icon and DivIcon instances are not EventTargets and do not support DOM event listeners. Listeners should be bound to <LMarker> or directly to elements within the <LIcon> template slot.
+* **components:** Exposed DOM element refs now resolve to null instead of undefined before mount.
+
+### ✨ Features
+
+* **testing:** add setupVueLeafletTest helper for component unit tests ([#321](https://github.com/Maxel01/vue-leaflet/issues/321)) ([5d8ef20](https://github.com/Maxel01/vue-leaflet/commit/5d8ef207ce194ff7dc3aca16569c1ef40ae6b4c6))
+* upgrade to leaflet@2.0.0-beta.1 ([#311](https://github.com/Maxel01/vue-leaflet/issues/311)) ([3d968f0](https://github.com/Maxel01/vue-leaflet/commit/3d968f0b9f3b8f59680f8f0a38abf146094ddffe))
+
+### 🐛 Bug Fixes
+
+* **playground:** use local communes.json for geo-json demo to avoid CORS error ([#313](https://github.com/Maxel01/vue-leaflet/issues/313)) ([06bd314](https://github.com/Maxel01/vue-leaflet/commit/06bd314756a07703e75b0bc8c653835f8c00a055))
+
+### 📝 Documentation
+
+* **testing:** generate test helper documentation dynamically using ts-morph ([#322](https://github.com/Maxel01/vue-leaflet/issues/322)) ([cbf4b77](https://github.com/Maxel01/vue-leaflet/commit/cbf4b7755e65c54aa2a92bd87e4805a4dd379c91))
+
+### ♻️ Refactoring
+
+* **components:** adopt useTemplateRef for DOM element template references ([#324](https://github.com/Maxel01/vue-leaflet/issues/324)) ([48d84a4](https://github.com/Maxel01/vue-leaflet/commit/48d84a4cd371cff624746a7bbc2300dc35ec15bc))
+* **config:** consolidate tsconfig files into single root tsconfig ([#318](https://github.com/Maxel01/vue-leaflet/issues/318)) ([6f9998b](https://github.com/Maxel01/vue-leaflet/commit/6f9998b6af2c196c445e377de82ebf588a570a59))
+* **config:** consolidate vite and vitest configurations into single vite.config ([#319](https://github.com/Maxel01/vue-leaflet/issues/319)) ([3806776](https://github.com/Maxel01/vue-leaflet/commit/3806776b6e14e0cc7c46f92b032e76994374b266))
+* **config:** remove deprecated experimental flag useResetWebpackIcon ([#314](https://github.com/Maxel01/vue-leaflet/issues/314)) ([e2e9b0a](https://github.com/Maxel01/vue-leaflet/commit/e2e9b0a01605163b849a83ecd115a84dd3e1a489))
+* **icon:** remove invalid DomEvent listener bindings from LIcon ([#315](https://github.com/Maxel01/vue-leaflet/issues/315)) ([3e605f5](https://github.com/Maxel01/vue-leaflet/commit/3e605f50af069ab3a3d25e684c603be954e0d487))
+* **map:** replace Map with LeafletMap and update v2 docs ([#317](https://github.com/Maxel01/vue-leaflet/issues/317)) ([969c47d](https://github.com/Maxel01/vue-leaflet/commit/969c47dc3b030f65d27ed09aabdba7001e596bb2))
+* **types:** align component props and emit types with Leaflet 2 ([#316](https://github.com/Maxel01/vue-leaflet/issues/316)) ([2b6bd4d](https://github.com/Maxel01/vue-leaflet/commit/2b6bd4d2b3839d96472de87094495b322f7d4d91))
+
+### 🚧 Chores
+
+* **docs:** remove simpleanalytics script from head config ([#323](https://github.com/Maxel01/vue-leaflet/issues/323)) ([4c32eec](https://github.com/Maxel01/vue-leaflet/commit/4c32eecf15afdaffd047386174d1f524e9fe62c8))
+* improvements to CI, playgrounds, alias config and package metadata ([#320](https://github.com/Maxel01/vue-leaflet/issues/320)) ([0ff1c43](https://github.com/Maxel01/vue-leaflet/commit/0ff1c431cc24af2054e3964b625bf19c3c93977b))
+
 ## [1.0.0-beta.8](https://github.com/Maxel01/vue-leaflet/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2026-07-29)
 
 ### 🐛 Bug Fixes
