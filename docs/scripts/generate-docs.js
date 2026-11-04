@@ -5,6 +5,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import propOriginHandler from './handler.js'
 import { alias } from '../../alias.config.ts'
+import { generateTestDocs } from './generate-test-docs.js'
 
 // Reconstruct __dirname in ESM context
 const __filename = fileURLToPath(import.meta.url)
@@ -66,6 +67,8 @@ async function generate() {
             `📄 Generated: ${path.relative(path.resolve(__dirname, '../../'), markdownPath)}`
         )
     }
+
+    await generateTestDocs()
 }
 
 function writeDemo(doc, markdown) {
@@ -111,7 +114,8 @@ function writeProps(doc, markdown) {
 
         let skip = false
         if (sortedGroups.length > 0 && sortedGroups[0][1].level > 0) {
-            markdown += 'This component does not have any specific props.\n\n### 🔗 Inherited props\n'
+            markdown +=
+                'This component does not have any specific props.\n\n### 🔗 Inherited props\n'
         }
         for (let i = 0; i < sortedGroups.length; i++) {
             if (skip) {

@@ -6,6 +6,11 @@ import { capitalizeFirstLetter, isFunction } from '@/utils'
 import type { Layer } from 'leaflet'
 import { mockAddLayer, mockHideLayer, mockRemoveLayer } from './injectionsTests'
 
+/**
+ * Asserts that Vue watchers are registered for every reactive/initOnly prop defined on the component.
+ * @param getWrapper Async function resolving to the mounted VueWrapper.
+ * @param componentName The component name (e.g. 'LMarker').
+ */
 export function testComponentPropBindings(
     getWrapper: () => Promise<VueWrapper<any>>,
     componentName: string
@@ -19,6 +24,11 @@ export function testComponentPropBindings(
     })
 }
 
+/**
+ * Asserts that updating component props invokes the corresponding Leaflet setter on leafletObject.
+ * @param getWrapper Async function resolving to the mounted VueWrapper.
+ * @param updatedProps Dictionary of props and expected values or customCheck functions.
+ */
 export function testPropsBindingToLeaflet(
     getWrapper: (initialProps?: Record<string, any>) => Promise<VueWrapper<any>>,
     updatedProps: Record<string, any>
