@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type IconProps, iconPropsDefaults } from '@/functions/icon'
-import { nextTick, onMounted, ref } from 'vue'
+import { nextTick, onMounted, useTemplateRef } from 'vue'
 import { assertInject, propsBinder, propsToLeafletOptions } from '@/utils'
 import {
     CanSetParentHtmlInjection,
@@ -21,13 +21,13 @@ const { root } = useIcon()
 defineExpose({
     /**
      * The root DOM element.
-     * @type {Ref<HTMLElement \| undefined>}
+     * @type {Readonly<ShallowRef<HTMLElement \| null>>}
      */
     root
 })
 
 function useIcon() {
-    const root = ref<HTMLElement>()
+    const root = useTemplateRef<HTMLElement>('root')
 
     const { scheduleCreateIcon, scheduleHtmlSwap } = useCreateIcon()
     const methods = {

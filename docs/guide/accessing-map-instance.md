@@ -28,9 +28,9 @@ The guide explains how to access a Leaflet map instance from a Vue component.
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { useTemplateRef } from 'vue'
 
-const map = ref(null)
+const map = useTemplateRef('map')
 </script>
 ```
 
@@ -59,9 +59,9 @@ You can now access the Leaflet map instance using `map.value.leafletObject`.
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { useTemplateRef } from 'vue'
 
-const map = ref(null)
+const map = useTemplateRef('map')
 
 // When the map is ready
 const onMapReady = () => {

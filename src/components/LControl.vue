@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Control, DomEvent } from 'leaflet'
-import { markRaw, nextTick, onMounted, ref } from 'vue'
+import { markRaw, nextTick, onMounted, ref, useTemplateRef } from 'vue'
 
 import {
     type ControlEmits,
@@ -23,7 +23,7 @@ const { root, leafletObject } = useControl()
 defineExpose({
     /**
      * The root DOM element of the Leaflet control. This element is managed by Leaflet's `Control` class. You can use it to directly manipulate the control's container (e.g. styling, event listeners), or alternatively use the default slot for custom content.
-     *  @type {Ref<HTMLElement \| undefined>}
+     *  @type {Readonly<ShallowRef<HTMLElement \| null>>}
      */
     root,
     /**
@@ -35,7 +35,7 @@ defineExpose({
 
 function useControl() {
     const leafletObject = ref<Control>()
-    const root = ref<HTMLElement>()
+    const root = useTemplateRef<HTMLElement>('root')
 
     const registerControl = assertInject(RegisterControlInjection)
 

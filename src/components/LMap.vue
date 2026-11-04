@@ -1,5 +1,14 @@
 <script setup lang="ts">
-import { computed, markRaw, nextTick, onBeforeUnmount, onMounted, ref, useAttrs } from 'vue'
+import {
+    computed,
+    markRaw,
+    nextTick,
+    onBeforeUnmount,
+    onMounted,
+    ref,
+    useAttrs,
+    useTemplateRef
+} from 'vue'
 import {
     type CRS,
     type FitBoundsOptions,
@@ -60,7 +69,7 @@ const emit = defineEmits<MapEmits>()
 defineExpose({
     /**
      * The root DOM element of the Leaflet map. This element is used to create the Leaflet's `LeafletMap` class. You can use it to directly manipulate the map's container (e.g. styling, event listeners).
-     *  @type {Ref<HTMLElement \| undefined>}
+     *  @type {Readonly<ShallowRef<HTMLElement \| null>>}
      */
     root,
     /**
@@ -78,7 +87,7 @@ defineExpose({
 })
 
 function useMap() {
-    const root = ref<HTMLElement>()
+    const root = useTemplateRef<HTMLElement>('root')
     const leafletObject = ref<LeafletMap>()
     const ready = ref<boolean>(false)
 

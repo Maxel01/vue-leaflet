@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { VideoOverlay } from 'leaflet'
-import { markRaw, nextTick, onMounted, ref, useAttrs, computed } from 'vue'
+import { markRaw, nextTick, onMounted, ref, useAttrs, computed, useTemplateRef } from 'vue'
 
 import { AddLayerInjection } from '@/types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '@/utils'
@@ -33,7 +33,7 @@ defineExpose({
     leafletObject,
     /**
      * The root DOM element holding the video slot.
-     * @type {Ref<HTMLDivElement \| undefined>}
+     * @type {Readonly<ShallowRef<HTMLDivElement \| null>>}
      */
     videoRoot
 })
@@ -41,7 +41,7 @@ defineExpose({
 function useVideoOverlay() {
     const leafletObject = ref<VideoOverlay>()
     const ready = ref<boolean>(false)
-    const videoRoot = ref<HTMLDivElement>()
+    const videoRoot = useTemplateRef<HTMLDivElement>('videoRoot')
     const video = computed(() => {
         const video = videoRoot.value?.firstElementChild
         return video?.tagName.toLowerCase() === 'video' ? (video as HTMLVideoElement) : undefined

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { SVGOverlay } from 'leaflet'
-import { markRaw, nextTick, onMounted, ref, useAttrs, computed } from 'vue'
+import { markRaw, nextTick, onMounted, ref, useAttrs, computed, useTemplateRef } from 'vue'
 import { AddLayerInjection } from '@/types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '@/utils'
 import {
@@ -32,7 +32,7 @@ defineExpose({
     leafletObject,
     /**
      * The root DOM element holding the svg slot.
-     * @type {Ref<HTMLDivElement \| undefined>}
+     * @type {Readonly<ShallowRef<HTMLDivElement \| null>>}
      */
     svgRoot
 })
@@ -40,7 +40,7 @@ defineExpose({
 function useSVGOverlay() {
     const leafletObject = ref<SVGOverlay>()
     const ready = ref(false)
-    const svgRoot = ref<HTMLDivElement>()
+    const svgRoot = useTemplateRef<HTMLDivElement>('svgRoot')
     const svg = computed<SVGElement | undefined>(() => {
         const svg = svgRoot.value?.firstElementChild
         return svg?.tagName.toLowerCase() === 'svg' ? (svg as SVGElement) : undefined

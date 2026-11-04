@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Tooltip } from 'leaflet'
-import { markRaw, nextTick, onMounted, ref, useAttrs } from 'vue'
+import { markRaw, nextTick, onMounted, ref, useAttrs, useTemplateRef } from 'vue'
 import { setupTooltip, type TooltipProps, tooltipPropsDefaults } from '@/functions/tooltip'
 import { BindTooltipInjection } from '@/types/injectionKeys'
 import { assertInject, propsBinder, remapEvents } from '@/utils'
@@ -25,7 +25,7 @@ const { root, leafletObject } = useTooltip()
 defineExpose({
     /**
      * The root DOM element of the Leaflet tooltip. This element is managed by Leaflet's `Tooltip` class. You can use it to directly manipulate the tooltip's container (e.g. styling, event listeners), or alternatively use the default slot for custom content.
-     *  @type {Ref<HTMLElement \| undefined>}
+     *  @type {Readonly<ShallowRef<HTMLElement \| null>>}
      */
     root,
     /**
@@ -37,7 +37,7 @@ defineExpose({
 
 function useTooltip() {
     const leafletObject = ref<Tooltip>()
-    const root = ref<HTMLElement>()
+    const root = useTemplateRef<HTMLElement>('root')
 
     const bindTooltip = assertInject(BindTooltipInjection)
 
