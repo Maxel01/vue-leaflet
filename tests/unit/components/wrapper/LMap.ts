@@ -71,23 +71,6 @@ export const mapProps = mergeReactiveProps(componentProps, {
     }
 })
 
-class ResizeObserver {
-    observe() {}
-    unobserve() {}
-    disconnect() {}
-}
-
-global.ResizeObserver = ResizeObserver
-
-Object.defineProperty(HTMLElement.prototype, 'clientWidth', {
-    configurable: true,
-    value: 300
-})
-Object.defineProperty(HTMLElement.prototype, 'clientHeight', {
-    configurable: true,
-    value: 300
-})
-
 export const createMapWrapper = async (props = {}, slots = {}) => {
     const wrapper = mount(LMap, {
         propsData: {
