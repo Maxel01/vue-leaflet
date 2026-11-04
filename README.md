@@ -28,27 +28,27 @@ A modern Vue 3 wrapper for Leaflet v2, based on [vue-leaflet/vue-leaflet](https:
 
 ## ✅ Available Components
 
-☑️ LCircle              
-☑️ LCircleMarker        
-☑️ LControl             
+☑️ LCircle  
+☑️ LCircleMarker  
+☑️ LControl  
 ☑️ LControlAttribution  
-☑️ LControlLayers       
-☑️ LControlScale        
-☑️ LControlZoom         
-☑️ LFeatureGroup        
-☑️ LGeoJson             
-☑️ LIcon                
-☑️ LImageOverlay        
-☑️ LMap                 
-☑️ LMarker              
-☑️ LPolygon             
-☑️ LPolyline            
-☑️ LPopup               
-☑️ LRectangle           
-☑️ LSVGOverlay          
-☑️ LTileLayer           
-☑️ LTooltip             
-☑️ LVideoOverlay        
+☑️ LControlLayers  
+☑️ LControlScale  
+☑️ LControlZoom  
+☑️ LFeatureGroup  
+☑️ LGeoJson  
+☑️ LIcon  
+☑️ LImageOverlay  
+☑️ LMap  
+☑️ LMarker  
+☑️ LPolygon  
+☑️ LPolyline  
+☑️ LPopup  
+☑️ LRectangle  
+☑️ LSVGOverlay  
+☑️ LTileLayer  
+☑️ LTooltip  
+☑️ LVideoOverlay  
 ☑️ LWmsTileLayer
 
 ---
@@ -62,8 +62,7 @@ Explore the documentation to see which plugins are already supported and learn h
 
 The first plugin has already been implemented. If you need support for a specific plugin, open an issue in the plugin repo and help shape the roadmap.
 
-> ⚠️ **Important:** Leaflet v1 plugins are **not compatible** with Leaflet v2 and cannot be used directly. To use a plugin with v2, it must be ported and wrapped appropriately. \
-> However, there is a possibility to use the [Leaflet-V1-polyfill](https://github.com/Falke-Design/Leaflet-V1-polyfill). Check out the [`vue-leaflet-plugins`](https://github.com/Maxel01/vue-leaflet-plugins) wrapper for more.
+> ⚠️ **Important:** Leaflet v1 plugins are **not compatible** with Leaflet v2 and cannot be used directly. To use a plugin with v2, it must be ported and wrapped appropriately.
 
 ---
 
@@ -125,6 +124,7 @@ cd vue-leaflet
 pnpm install
 pnpm dev
 ```
+
 Visit: [http://127.0.0.1:3000](http://127.0.0.1:3000)
 
 Or use the Vue-specific playground:
@@ -153,17 +153,14 @@ See the [contribution guide](https://maxel01.github.io/vue-leaflet/getting-start
 - [nuxt-modules/leaflet](https://github.com/nuxt-modules/leaflet)
 
 <!-- Badges -->
+
 [npm-version-src]: https://img.shields.io/npm/v/@maxel01/vue-leaflet/latest.svg?color=0F81C2
 [npm-version-href]: https://www.npmjs.com/package/@maxel01/vue-leaflet
-
 [npm-downloads-src]: https://img.shields.io/npm/dm/@maxel01/vue-leaflet.svg
 [npm-downloads-href]: https://www.npmjs.com/package/@maxel01/vue-leaflet
-
 [license-src]: https://img.shields.io/npm/l/@maxel01/vue-leaflet.svg
 [license-href]: https://www.npmjs.com/package/@maxel01/vue-leaflet
-
 [vue-src]: https://img.shields.io/npm/dependency-version/@maxel01/vue-leaflet/peer/vue?label=Vue&logo=vue.js&colorA=18181B
 [vue-href]: https://vuejs.org
-
 [leaflet-src]: https://img.shields.io/npm/dependency-version/@maxel01/vue-leaflet/peer/leaflet?label=Leaflet&logo=leaflet&colorA=18181B
 [leaflet-href]: https://leafletjs.com/
