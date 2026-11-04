@@ -19,6 +19,9 @@ export const markerProps = mergeReactiveProps(layerProps, {
     }
 })
 
+/**
+ * Mounts an LMarker component with default coordinates and mocked parent layer injections.
+ */
 export const createMarkerWrapper = async (props = {}, slots = {}) => {
     const wrapper = mount(LMarker, {
         propsData: {

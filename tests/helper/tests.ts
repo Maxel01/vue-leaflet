@@ -8,6 +8,10 @@ import {
     mockUnbindTooltip
 } from './injectionsTests'
 
+/**
+ * Asserts that leafletObject.remove() is called when the component is unmounted.
+ * @param getWrapper Async function that resolves to the mounted VueWrapper.
+ */
 export const testRemoveOnUnmount = (getWrapper: () => Promise<VueWrapper<any>>) => {
     it('removes the leafletObject on unmount', async () => {
         const wrapper = await getWrapper()
@@ -18,6 +22,10 @@ export const testRemoveOnUnmount = (getWrapper: () => Promise<VueWrapper<any>>) 
     })
 }
 
+/**
+ * Asserts that the layer removal injection (removeLayer) is called when the component is unmounted.
+ * @param getWrapper Async function that resolves to the mounted VueWrapper.
+ */
 export const testRemoveLayerOnUnmount = (getWrapper: () => Promise<VueWrapper<any>>) => {
     beforeEach(() => {
         mockRemoveLayer.mockReset()
@@ -29,6 +37,10 @@ export const testRemoveLayerOnUnmount = (getWrapper: () => Promise<VueWrapper<an
     })
 }
 
+/**
+ * Asserts that the tooltip is bound on mount via the bindTooltip injection.
+ * @param getWrapper Async function that resolves to the mounted VueWrapper.
+ */
 export const testBindTooltip = (getWrapper: () => Promise<VueWrapper<any>>) => {
     beforeEach(() => {
         mockBindTooltip.mockReset()
@@ -40,6 +52,10 @@ export const testBindTooltip = (getWrapper: () => Promise<VueWrapper<any>>) => {
     })
 }
 
+/**
+ * Asserts that the tooltip is unbound on unmount via the unbindTooltip injection.
+ * @param getWrapper Async function that resolves to the mounted VueWrapper.
+ */
 export const testUnbindTooltipOnUnmount = (getWrapper: () => Promise<VueWrapper<any>>) => {
     beforeEach(() => {
         mockUnbindTooltip.mockReset()
@@ -51,6 +67,10 @@ export const testUnbindTooltipOnUnmount = (getWrapper: () => Promise<VueWrapper<
     })
 }
 
+/**
+ * Asserts that the popup is bound on mount via the bindPopup injection.
+ * @param getWrapper Async function that resolves to the mounted VueWrapper.
+ */
 export const testBindPopup = (getWrapper: () => Promise<VueWrapper<any>>) => {
     beforeEach(() => {
         mockBindPopup.mockReset()
@@ -61,6 +81,10 @@ export const testBindPopup = (getWrapper: () => Promise<VueWrapper<any>>) => {
     })
 }
 
+/**
+ * Asserts that the popup is unbound on unmount via the unbindPopup injection.
+ * @param getWrapper Async function that resolves to the mounted VueWrapper.
+ */
 export const testUnbindPopupOnUnmount = (getWrapper: () => Promise<VueWrapper<any>>) => {
     beforeEach(() => {
         mockUnbindPopup.mockReset()

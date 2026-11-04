@@ -75,6 +75,9 @@ type ReactiveProps = {
     [key: string]: any
 }
 
+/**
+ * Merges parent and child reactive props test definitions including custom `expecting` handlers.
+ */
 export function mergeReactiveProps<P extends ReactiveProps, C extends ReactiveProps>(
     parentProps: P,
     childProps: C

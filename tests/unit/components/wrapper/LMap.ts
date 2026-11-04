@@ -71,6 +71,9 @@ export const mapProps = mergeReactiveProps(componentProps, {
     }
 })
 
+/**
+ * Mounts an LMap component with default test dimensions (300px x 300px).
+ */
 export const createMapWrapper = async (props = {}, slots = {}) => {
     const wrapper = mount(LMap, {
         propsData: {

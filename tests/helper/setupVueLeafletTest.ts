@@ -1,3 +1,6 @@
+/**
+ * Configuration options for `setupVueLeafletTest`.
+ */
 export interface VueLeafletTestOptions {
     /**
      * Default width for HTMLElement.prototype.clientWidth in JSDOM.
