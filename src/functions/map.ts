@@ -119,6 +119,11 @@ export interface MapProps<T extends MapOptions = MapOptions> extends ComponentPr
      */
     noBlockingAnimations?: boolean
     /**
+     * A function that translates the English text Leaflet and plugins show to users, such as control titles and accessible labels, e.g. `text => i18next.t(text)`. If it returns `undefined`, the text stays in English.
+     * @initOnly
+     */
+    translate?: (text: string) => string | undefined
+    /**
      * @initOnly
      */
     beforeMapMount?: () => void | Promise<void>
@@ -133,7 +138,8 @@ export const mapPropsDefaults = {
     zoomAnimation: undefined,
     fadeAnimation: undefined,
     markerZoomAnimation: undefined,
-    noBlockingAnimations: undefined
+    noBlockingAnimations: undefined,
+    translate: undefined
 }
 
 export interface MapEmits<T extends LeafletMap = LeafletMap> {

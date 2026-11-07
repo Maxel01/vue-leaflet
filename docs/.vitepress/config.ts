@@ -59,6 +59,7 @@ export default defineConfig({
                     { text: 'LCircle', link: '/components/l-circle' },
                     { text: 'LCircleMarker', link: '/components/l-circle-marker' },
                     { text: 'LControlAttribution', link: '/components/l-control-attribution' },
+                    { text: 'LControlFullscreen', link: '/components/l-control-fullscreen' },
                     { text: 'LControlLayers', link: '/components/l-control-layers' },
                     { text: 'LControlScale', link: '/components/l-control-scale' },
                     { text: 'LControlZoom', link: '/components/l-control-zoom' },

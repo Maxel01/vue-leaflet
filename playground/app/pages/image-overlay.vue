@@ -47,7 +47,7 @@ const markers = ref([
         placeholder="Url for image overlay"
         v-model="imageOverlayUrl"
     />
-    <br>
+    <br />
     <!-- Bounds settings -->
     <label for="width">Width: </label>
     <input type="number" id="width" placeholder="Width" v-model="width" />

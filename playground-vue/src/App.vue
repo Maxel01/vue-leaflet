@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
     <div class="main-wrapper">
@@ -17,6 +16,7 @@
             <RouterLink to="/control">Control</RouterLink>
             <RouterLink to="/control-attribution">Attribution</RouterLink>
             <RouterLink to="/control-custom-message">Custom Message</RouterLink>
+            <RouterLink to="/control-fullscreen">Fullscreen</RouterLink>
             <RouterLink to="/control-layers">Layers</RouterLink>
             <RouterLink to="/control-scale">Scale</RouterLink>
             <RouterLink to="/control-zoom">Zoom</RouterLink>

@@ -33,17 +33,17 @@ const iconSize = computed((): PointExpression => {
             <LMarker :lat-lng="[47.41322, -1.219482]">
                 <LIcon :iconUrl="iconUrl" :iconSize="iconSize" />
             </LMarker>
-            <LMarker :lat-lng="[47.41323, -1.219482]"/>
+            <LMarker :lat-lng="[47.41323, -1.219482]" />
 
             <LMarker :lat-lng="[47.61322, -0.519482]">
                 <LIcon :iconSize="[21, 21]">★</LIcon>
             </LMarker>
-            <LMarker :lat-lng="[47.61322, -0.519482]"/>
+            <LMarker :lat-lng="[47.61322, -0.519482]" />
 
             <LMarker :lat-lng="[47, -1]">
                 <LIcon className="">Hello, Map!</LIcon>
             </LMarker>
-            <LMarker :lat-lng="[47, -1]"/>
+            <LMarker :lat-lng="[47, -1]" />
         </LMap>
 
         <button class="bearBtn" @click="changeIcon">New bear icon</button>

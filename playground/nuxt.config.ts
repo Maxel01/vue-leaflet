@@ -16,9 +16,7 @@ export default defineNuxtConfig({
     css: ['leaflet/dist/leaflet.css'],
     app: {
         head: {
-            link: [
-                { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-            ]
+            link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
         }
     },
     vite: {
