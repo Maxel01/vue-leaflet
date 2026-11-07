@@ -10,15 +10,16 @@ const clickHandler = () => {
     <LMap :zoom="8" :center="[47.21322, -1.559482]">
         <LTileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
+            attribution='&amp;copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
             layer-type="base"
             name="OpenStreetMap"
         />
         <LControl position="bottomleft">
             <button
-                style="background: white; color: black; padding: 2px; border-radius: 5px;"
+                style="background: white; color: black; padding: 2px; border-radius: 5px"
                 @click="clickHandler"
-            >I am a useless button!
+            >
+                I am a useless button!
             </button>
         </LControl>
     </LMap>

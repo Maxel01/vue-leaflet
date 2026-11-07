@@ -12,4 +12,3 @@ import { LControlFullscreen, LMap, LTileLayer } from '@maxel01/vue-leaflet'
         <LControlFullscreen position="topleft" />
     </LMap>
 </template>
-

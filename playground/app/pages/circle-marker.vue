@@ -12,10 +12,6 @@ const zoom = ref<number>(16)
             layer-type="base"
             name="OpenStreetMap"
         />
-        <LCircleMarker
-            :lat-lng="[41.89026, 12.49238]"
-            :radius="50"
-            color="red"
-        />
+        <LCircleMarker :lat-lng="[41.89026, 12.49238]" :radius="50" color="red" />
     </LMap>
 </template>

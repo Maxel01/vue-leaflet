@@ -13,7 +13,7 @@ import { assertInject, propsBinder } from '@/utils'
 
 /**
  * > Base component for implementing map controls. Handles positioning. All other controls extend from this component.
- * @demo control {4-6,17-23}
+ * @demo control {4-6,17-24}
  */
 defineOptions({ name: 'LControl' })
 const props = withDefaults(defineProps<ControlProps>(), controlPropsDefaults)
