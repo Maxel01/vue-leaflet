@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.0.0-beta.10](https://github.com/Maxel01/vue-leaflet/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2026-11-07)
+
+### ✨ Features
+
+* upgrade to leaflet@2.0.0-beta.2 and add LControlFullscreen ([#326](https://github.com/Maxel01/vue-leaflet/issues/326)) ([6e707e4](https://github.com/Maxel01/vue-leaflet/commit/6e707e47c5aac823953ed54c41e563d88f5f7234))
+
+### 📝 Documentation
+
+* **readme:** remove leaflet v1 polyfill reference for plugins ([#325](https://github.com/Maxel01/vue-leaflet/issues/325)) ([4bdaf2f](https://github.com/Maxel01/vue-leaflet/commit/4bdaf2f38fbc13df12ce3e2a4d6d632b1f29260b))
+
 ## [1.0.0-beta.9](https://github.com/Maxel01/vue-leaflet/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2026-11-04)
 
 ### ⚠ BREAKING CHANGES
