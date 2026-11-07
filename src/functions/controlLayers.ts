@@ -35,6 +35,16 @@ export interface ControlLayersProps<
      */
     sortLayers?: boolean
     /**
+     * Collapse delay in milliseconds. If greater than 0, the control will remain open longer, making it easier to scroll through long layer lists.
+     * @initOnly
+     */
+    collapseDelay?: number
+    /**
+     * The title of the toggle button and the accessible label of the layers list.
+     * @initOnly
+     */
+    title?: string
+    /**
      * A [compare function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) that will be used for sorting the layers, when `sortLayers` is `true`. The function receives both the [L.Layer](https://leafletjs.com/reference-2.0.0.html#layer) instances and their names, as in `sortFunction(layerA, layerB, nameA, nameB)`. By default, it sorts layers alphabetically by their name.
      * @initOnly
      */
@@ -44,6 +54,8 @@ export interface ControlLayersProps<
 export const controlLayersPropsDefaults = {
     ...controlAbstractPropsDefaults,
     collapsed: undefined,
+    collapseDelay: undefined,
+    title: undefined,
     autoZIndex: undefined,
     hideSingleBase: undefined,
     sortLayers: undefined

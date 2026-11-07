@@ -32,6 +32,7 @@ A modern Vue 3 wrapper for Leaflet v2, based on [vue-leaflet/vue-leaflet](https:
 ☑️ LCircleMarker  
 ☑️ LControl  
 ☑️ LControlAttribution  
+☑️ LControlFullscreen  
 ☑️ LControlLayers  
 ☑️ LControlScale  
 ☑️ LControlZoom  

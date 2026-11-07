@@ -17,6 +17,7 @@ The module provides the following components:
 - [`LCircleMarker`](./l-circle-marker)
 - [`LControl`](./l-control)
 - [`LControlAttribution`](./l-control-attribution)
+- [`LControlFullscreen`](./l-control-fullscreen)
 - [`LControlLayers`](./l-control-layers)
 - [`LControlScale`](./l-control-scale)
 - [`LControlZoom`](./l-control-zoom)
